@@ -1,0 +1,19 @@
+<!--THIS FILE IS GENERATED.
+  
+  Dont make manual changes here, as it will be overwritten by the generator.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <shape android:shape="rectangle">
+      <stroke android:color="@color/field_grey" android:width="@dimen/frame_broad"/>
+      <corners android:radius="@dimen/frame_rounding" />
+      <solid android:color="@color/transparent" />
+    </shape>
+  </item>
+</layer-list>

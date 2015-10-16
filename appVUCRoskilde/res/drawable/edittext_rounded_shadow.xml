@@ -1,0 +1,25 @@
+<!--THIS FILE IS GENERATED.
+  
+  Dont make manual changes here, as it will be overwritten by the generator.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <shape android:shape="rectangle">
+      <solid android:color="@color/shadow_grey" />
+      <corners android:radius="@dimen/frame_rounding" />
+    </shape>
+  </item>
+
+  <item android:bottom="@dimen/frame_broad" android:right="@dimen/frame_broad" android:top="@dimen/frame_narrow" android:left="@dimen/frame_narrow">
+    <shape android:shape="rectangle">
+      <solid android:color="@color/field_grey" />
+      <corners android:radius="@dimen/frame_rounding" />
+    </shape>
+  </item>
+</layer-list>
