@@ -1,0 +1,16 @@
+<!--THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+  
+  This is a template that must be filled out by you. Once created it will not be overwritten.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<resources>
+
+    <string name="app_title">VUC Roskilde undervisningsapp</string>
+    <string name="wait">"Vent venligst..."</string>
+
+</resources>

@@ -1,0 +1,17 @@
+<!--THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+  
+  This is a template that must be filled out by you. Once created it will not be overwritten.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/menuItemExerciseStepShowOverview"
+    android:icon="@android:drawable/ic_menu_manage"
+    android:title="@string/menuitemExerciseStepShowOverview">
+  </item>
+</menu>

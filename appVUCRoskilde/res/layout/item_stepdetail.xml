@@ -1,0 +1,44 @@
+<!--THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+  
+  This is a template that must be filled out by you. Once created it will not be overwritten.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+  <TextView
+      android:id="@+id/textViewStepDetailStepNumber"
+      style="@style/MA.Text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="@dimen/padding_small"
+      android:text="@string/labelStepDetailStepNumber"
+      android:textSize="@dimen/text_size_medium"
+      android:textStyle="bold" />
+
+  <TextView
+      android:id="@+id/textViewStepDetailStepTitle"
+      style="@style/MA.Text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:maxLines="2"
+      android:text="@string/labelStepDetailStepTitle"
+      android:textSize="@dimen/text_size_medium" />
+
+  <ImageButton
+      android:id="@+id/imageButtonStepDetailDoStep"
+      style="@style/MA.Button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:contentDescription="@string/buttonStepDetailDoStep"
+      android:src="@drawable/ic_launch_black_24dp"
+      android:text="@string/buttonStepDetailDoStep" />
+
+</LinearLayout>

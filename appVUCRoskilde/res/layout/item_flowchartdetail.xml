@@ -1,0 +1,36 @@
+<!--
+THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+  
+  This is a template that must be filled out by you. Once created it will not be overwritten.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/textViewFlowchartDetailFlowchartTitle"
+        style="@style/MA.Text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/labelFlowchartDetailFlowchartTitle"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/imageButtonFlowchartDetailDoExercise"
+        style="@style/MA.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:contentDescription="@string/buttonFlowchartDetailDoExercise"
+        android:src="@drawable/ic_launch_black_24dp"
+        android:text="@string/buttonFlowchartDetailDoExercise" />
+
+</LinearLayout>

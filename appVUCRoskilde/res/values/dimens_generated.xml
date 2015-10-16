@@ -1,0 +1,42 @@
+<!--THIS FILE IS GENERATED.
+  
+  Dont make manual changes here, as it will be overwritten by the generator.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<resources>
+  <dimen name="text_size_tiny">12sp</dimen>
+  <dimen name="text_size_small">14sp</dimen>
+  <dimen name="text_size">18sp</dimen>
+  <dimen name="text_size_medium">22sp</dimen>
+  <dimen name="text_size_large">26sp</dimen>
+  <dimen name="text_size_huge">32sp</dimen>
+  <dimen name="icon_size">60dp</dimen>
+  <dimen name="layout_margin">5dp</dimen>
+  <dimen name="textblock_margin">5dp</dimen>
+  <dimen name="frame_margin">8dp</dimen>
+  <dimen name="button_margin">3dp</dimen>
+  <dimen name="spinnertext_margin">5dp</dimen>
+  <dimen name="amount_width">75dp</dimen>
+  <dimen name="count_width">50dp</dimen>
+  <dimen name="button_width">90dp</dimen>
+  <dimen name="button_height">35dp</dimen>
+  <dimen name="spinneritem_width">90dp</dimen>
+  <dimen name="spinneritem_height">35dp</dimen>
+  <dimen name="bigbutton_width">80dp</dimen>
+  <dimen name="bigbutton_height">64dp</dimen>
+  <dimen name="bigbutton_text_size">48sp</dimen>
+  <dimen name="padding_small">8dp</dimen>
+  <dimen name="padding_medium">16dp</dimen>
+  <dimen name="padding_large">24dp</dimen>
+  <dimen name="padding_xlarge">32dp</dimen>
+  <dimen name="padding_xxlarge">40dp</dimen>
+  <dimen name="wheel_margin">15dp</dimen>
+  <dimen name="frame_broad">3dp</dimen>
+  <dimen name="frame_narrow">1dp</dimen>
+  <dimen name="frame_rounding">7dp</dimen>
+</resources>

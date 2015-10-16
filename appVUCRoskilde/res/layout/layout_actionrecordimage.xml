@@ -1,0 +1,54 @@
+<!--THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+  
+  This is a template that must be filled out by you. Once created it will not be overwritten.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+  <android.widget.ImageView
+    android:id="@+id/imageViewActionRecordImageImage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:adjustViewBounds="true"
+    android:contentDescription="@string/labelActionRecordImageImage"
+    android:maxHeight="50dp"
+    android:maxWidth="120dp"
+    android:scaleType="fitXY"
+    android:src="@drawable/ic_launcher" />
+  <ImageButton
+    android:id="@+id/imageButtonActionRecordImageDoRecord"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/MA.Button"
+    android:layout_gravity="center_horizontal"
+    android:contentDescription="@string/buttonActionRecordImageDoRecord"
+    android:text="@string/buttonActionRecordImageDoRecord"
+    android:src="@drawable/ic_launcher" />
+  <ImageButton
+    android:id="@+id/imageButtonActionRecordImageDoRegret"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/MA.Button"
+    android:layout_gravity="center_horizontal"
+    android:contentDescription="@string/buttonActionRecordImageDoRegret"
+    android:text="@string/buttonActionRecordImageDoRegret"
+    android:src="@drawable/ic_launcher" />
+  <ImageButton
+    android:id="@+id/imageButtonActionRecordImageDoSave"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/MA.Button"
+    android:layout_gravity="center_horizontal"
+    android:contentDescription="@string/buttonActionRecordImageDoSave"
+    android:text="@string/buttonActionRecordImageDoSave"
+    android:src="@drawable/ic_launcher" />
+</LinearLayout>

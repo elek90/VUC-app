@@ -1,0 +1,77 @@
+<!--
+THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+  
+  This is a template that must be filled out by you. Once created it will not be overwritten.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <android.widget.ImageView
+        android:id="@+id/imageViewSplashVUCLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/labelSplashVUCLogo"
+        android:maxHeight="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/vucroskilde_logo" />
+
+    <TextView
+        android:id="@+id/textViewSplashTitle"
+        style="@style/MA.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/labelSplashTitle"
+        android:textSize="@dimen/text_size_huge" />
+
+    <TextView
+        android:id="@+id/textViewSplashForAndroid"
+        style="@style/MA.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/labelSplashForAndroid" />
+
+    <TextView
+        android:id="@+id/textViewSplashVersion"
+        style="@style/MA.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/labelSplashVersion" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <android.widget.ImageView
+        android:id="@+id/imageViewSplashLundOgBendsenLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/labelSplashLundOgBendsenLogo"
+        android:maxHeight="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/logo_lund_og_bendsen_227x63" />
+
+</LinearLayout>

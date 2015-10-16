@@ -1,0 +1,1886 @@
+<!--THIS FILE IS GENERATED.
+  
+  Dont make manual changes here, as it will be overwritten by the generator.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<resources>
+  <color name="android_green">#FFA4C639</color>
+  <color name="white">#FFFFFFFF</color>
+  <color name="black">#FF000000</color>
+  <color name="field_grey">#FFE6E7E8</color>
+  <color name="shadow_grey">#90606060</color>
+  <color name="semitransparent_grey">#88909090</color>
+  <color name="transparent">#00FFFFFF</color>
+  <color name="almost_transparent">#01000000</color>
+  <color name="background_color">#FFFFFFFF</color>
+  <color name="foreground_color">#FF000000</color>
+  <color name="text_color">#FF000000</color>
+  <color name="mobamb_blue">#FF0092CA</color>
+  <color name="yellow">#FFFCAF17</color>
+  <color name="alarm_red">#FFFF0000</color>
+  <color name="button_color">#FFFCAF17</color>
+
+
+  <style name="MA" parent="android:Theme.Holo.Light">
+  </style>
+
+  <style name="MA.Theme">
+    <item name="android:windowBackground">@color/background_color</item>
+    <item name="android:textColor">@color/text_color</item>
+  </style>
+
+  <style name="MA.Text" parent="MA.Theme">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+  </style>
+
+  <style name="MA.Text.Red">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Bold">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Bold.Red">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Italic">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Italic.Red">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Tiny">
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+  </style>
+
+  <style name="MA.Text.Tiny.Red">
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Tiny.Bold">
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Tiny.Bold.Red">
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Tiny.Italic">
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Tiny.Italic.Red">
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Small">
+    <item name="android:textSize">@dimen/text_size_small</item>
+  </style>
+
+  <style name="MA.Text.Small.Red">
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Small.Bold">
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Small.Bold.Red">
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Small.Italic">
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Small.Italic.Red">
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Medium">
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.Text.Medium.Red">
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Medium.Bold">
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Medium.Bold.Red">
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Medium.Italic">
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Medium.Italic.Red">
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Large">
+    <item name="android:textSize">@dimen/text_size_large</item>
+  </style>
+
+  <style name="MA.Text.Large.Red">
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Large.Bold">
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Large.Bold.Red">
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Large.Italic">
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Large.Italic.Red">
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Huge">
+    <item name="android:textSize">@dimen/text_size_huge</item>
+  </style>
+
+  <style name="MA.Text.Huge.Red">
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Huge.Bold">
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Huge.Bold.Red">
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Huge.Italic">
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Huge.Italic.Red">
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:gravity">right</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+  </style>
+
+  <style name="MA.Text.Amount.Red">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:gravity">right</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Bold">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:gravity">right</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Amount.Bold.Red">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:gravity">right</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Italic">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:gravity">right</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Amount.Italic.Red">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:gravity">right</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Tiny">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+  </style>
+
+  <style name="MA.Text.Amount.Tiny.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Tiny.Bold">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Amount.Tiny.Bold.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Tiny.Italic">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Amount.Tiny.Italic.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Small">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+  </style>
+
+  <style name="MA.Text.Amount.Small.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Small.Bold">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Amount.Small.Bold.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Small.Italic">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Amount.Small.Italic.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Medium">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.Text.Amount.Medium.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Medium.Bold">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Amount.Medium.Bold.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Medium.Italic">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Amount.Medium.Italic.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Large">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+  </style>
+
+  <style name="MA.Text.Amount.Large.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Large.Bold">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Amount.Large.Bold.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Large.Italic">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Amount.Large.Italic.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Huge">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+  </style>
+
+  <style name="MA.Text.Amount.Huge.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Huge.Bold">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Amount.Huge.Bold.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Amount.Huge.Italic">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Amount.Huge.Italic.Red">
+    <item name="android:layout_width">@dimen/amount_width</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+  </style>
+
+  <style name="MA.Text.Long.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Bold">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Long.Bold.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Italic">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Long.Italic.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_size</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Tiny">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+  </style>
+
+  <style name="MA.Text.Long.Tiny.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Tiny.Bold">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Long.Tiny.Bold.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Tiny.Italic">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Long.Tiny.Italic.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_tiny</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Small">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+  </style>
+
+  <style name="MA.Text.Long.Small.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Small.Bold">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Long.Small.Bold.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Small.Italic">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Long.Small.Italic.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Medium">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.Text.Long.Medium.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Medium.Bold">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Long.Medium.Bold.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Medium.Italic">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Long.Medium.Italic.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Large">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+  </style>
+
+  <style name="MA.Text.Long.Large.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Large.Bold">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Long.Large.Bold.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Large.Italic">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Long.Large.Italic.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Huge">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+  </style>
+
+  <style name="MA.Text.Long.Huge.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Huge.Bold">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.Text.Long.Huge.Bold.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Text.Long.Huge.Italic">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.Text.Long.Huge.Italic.Red">
+    <item name="android:layout_weight">1</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:textSize">@dimen/text_size_huge</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText" parent="MA.Text">
+    <item name="android:inputType">text</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.Red">
+    <item name="android:inputType">text</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Bold">
+    <item name="android:inputType">text</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Bold.Red">
+    <item name="android:inputType">text</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Italic">
+    <item name="android:inputType">text</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Italic.Red">
+    <item name="android:inputType">text</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Medium">
+    <item name="android:inputType">text</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.Medium.Red">
+    <item name="android:inputType">text</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Medium.Bold">
+    <item name="android:inputType">text</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Medium.Bold.Red">
+    <item name="android:inputType">text</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Medium.Italic">
+    <item name="android:inputType">text</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Medium.Italic.Red">
+    <item name="android:inputType">text</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Red">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Bold">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Bold.Red">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Italic">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Italic.Red">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Medium">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">false</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Medium.Red">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">false</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Medium.Bold">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">false</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Medium.Bold.Red">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">false</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Medium.Italic">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">false</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.MultiLine.Medium.Italic.Red">
+    <item name="android:inputType">textMultiLine</item>
+    <item name="android:singleLine">false</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Password">
+    <item name="android:password">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.Password.Red">
+    <item name="android:password">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Password.Bold">
+    <item name="android:password">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Password.Bold.Red">
+    <item name="android:password">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Password.Italic">
+    <item name="android:password">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Password.Italic.Red">
+    <item name="android:password">true</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Password.Medium">
+    <item name="android:password">true</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.Password.Medium.Red">
+    <item name="android:password">true</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Password.Medium.Bold">
+    <item name="android:password">true</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Password.Medium.Bold.Red">
+    <item name="android:password">true</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Password.Medium.Italic">
+    <item name="android:password">true</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Password.Medium.Italic.Red">
+    <item name="android:password">true</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Amount">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Bold">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Bold.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Italic">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Italic.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Medium">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Medium.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Medium.Bold">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Medium.Bold.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Medium.Italic">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Amount.Medium.Italic.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberSigned|numberDecimal</item>
+    <item name="android:numeric">signed|decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Integer">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Red">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Bold">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Bold.Red">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Italic">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Italic.Red">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Medium">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Medium.Red">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Medium.Bold">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Medium.Bold.Red">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Medium.Italic">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Integer.Medium.Italic.Red">
+    <item name="android:minWidth">@dimen/count_width</item>
+    <item name="android:inputType">number</item>
+    <item name="android:numeric">integer</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Decimal">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Bold">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Bold.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Italic">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Italic.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">left</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Medium">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Medium.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Medium.Bold">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Medium.Bold.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Medium.Italic">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Decimal.Medium.Italic.Red">
+    <item name="android:minWidth">@dimen/amount_width</item>
+    <item name="android:inputType">numberDecimal</item>
+    <item name="android:numeric">decimal</item>
+    <item name="android:gravity">right</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Name">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.Name.Red">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Name.Bold">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Name.Bold.Red">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Name.Italic">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Name.Italic.Red">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Name.Medium">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.Name.Medium.Red">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Name.Medium.Bold">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Name.Medium.Bold.Red">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Name.Medium.Italic">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Name.Medium.Italic.Red">
+    <item name="android:inputType">textCapSentences</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Phone">
+    <item name="android:inputType">phone</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Red">
+    <item name="android:inputType">phone</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Bold">
+    <item name="android:inputType">phone</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Bold.Red">
+    <item name="android:inputType">phone</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Italic">
+    <item name="android:inputType">phone</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Italic.Red">
+    <item name="android:inputType">phone</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Medium">
+    <item name="android:inputType">phone</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Medium.Red">
+    <item name="android:inputType">phone</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Medium.Bold">
+    <item name="android:inputType">phone</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Medium.Bold.Red">
+    <item name="android:inputType">phone</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Medium.Italic">
+    <item name="android:inputType">phone</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.Phone.Medium.Italic.Red">
+    <item name="android:inputType">phone</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.EMail">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Red">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Bold">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Bold.Red">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Italic">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Italic.Red">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left</item>
+    <item name="android:lines">1</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:padding">7dip</item>
+    <item name="android:background">@drawable/edittext_rounded_shadow</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Medium">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Medium.Red">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Medium.Bold">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Medium.Bold.Red">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Medium.Italic">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+  </style>
+
+  <style name="MA.EditText.EMail.Medium.Italic.Red">
+    <item name="android:inputType">textEmailAddress</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textStyle">italic</item>
+    <item name="android:textColor">@color/alarm_red</item>
+  </style>
+
+  <style name="MA.Button" parent="MA.Text">
+    <item name="android:minWidth">@dimen/button_width</item>
+    <item name="android:minHeight">@dimen/button_height</item>
+  </style>
+
+  <style name="MA.Button.Colored">
+    <item name="android:background">@drawable/button_rounded_shadow</item>
+    <item name="android:textColor">@color/white</item>
+  </style>
+
+  <style name="MA.Button.AsText">
+    <item name="android:background">@color/transparent</item>
+  </style>
+
+  <style name="MA.Button.AsText.Left">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:gravity">left|center_vertical</item>
+  </style>
+
+  <style name="MA.Spinner" parent="MA.Text">
+    <item name="android:minWidth">@dimen/spinneritem_width</item>
+    <item name="android:minHeight">@dimen/spinneritem_height</item>
+  </style>
+
+  <style name="MA.SpinnerItem" parent="MA.Spinner">
+    <item name="android:padding">@dimen/spinnertext_margin</item>
+    <item name="android:background">@color/transparent</item>
+  </style>
+
+  <style name="MA.Wheel" parent="MA.Text">
+    <item name="android:textColor">@color/white</item>
+  </style>
+
+  <style name="MA.Elastic">
+    <item name="android:layout_width">0dip</item>
+    <item name="android:layout_height">0dip</item>
+    <item name="android:layout_weight">1</item>
+  </style>
+
+  <style name="MA.Layout">
+    <item name="android:padding">@dimen/layout_margin</item>
+    <item name="android:background">@drawable/layout_rounded_shadow</item>
+  </style>
+
+  <style name="MA.Popup">
+    <item name="android:padding">@dimen/layout_margin</item>
+    <item name="android:background">@drawable/popup_rounded_shadow</item>
+  </style>
+
+</resources>

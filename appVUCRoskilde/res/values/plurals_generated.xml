@@ -1,0 +1,18 @@
+<!--THIS FILE IS GENERATED.
+  
+  Dont make manual changes here, as it will be overwritten by the generator.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<resources>
+<!--
+  <plurals name="wordAnswered">
+    <item quantity="one">besvaret</item>
+    <item quantity="other">besvarede</item>
+   </plurals>
+-->
+</resources>

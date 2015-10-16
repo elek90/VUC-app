@@ -1,0 +1,71 @@
+<!--THIS FILE IS GENERATED.
+  
+  Dont make manual changes here, as it will be overwritten by the generator.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+<resources>
+  <string name="titleAboutActivity">About</string>
+  <string name="titleActionRecordAudioActivity">Record Audio</string>
+  <string name="titleActionRecordImageActivity">Record Image</string>
+  <string name="titleActionRecordTextActivity">Record Text</string>
+  <string name="titleActionRecordVideoActivity">Record Video</string>
+  <string name="titleActionSendReportActivity">Send Report</string>
+  <string name="titleActionShowAudioActivity">Play Audio</string>
+  <string name="titleActionShowImageActivity">Show Image</string>
+  <string name="titleActionShowTextActivity">Show Text</string>
+  <string name="titleActionShowVideoActivity">Show Video</string>
+  <string name="titleExerciseOverviewActivity">Exercise Step</string>
+  <string name="titleExerciseStepActivity">Exercise Step</string>
+  <string name="titleFlowchartDetailActivity">Flowchart Details</string>
+  <string name="titleFlowchartMainActivity">Flowchart List</string>
+  <string name="titleSetupActivity">Setup</string>
+  <string name="titleSplashActivity">Splash</string>
+  <string name="titleStepDetailActivity">Step Detail</string>
+  <string name="buttonActionRecordAudioDoPlay">Play</string>
+  <string name="buttonActionRecordAudioDoRecord">Record Audio</string>
+  <string name="buttonActionRecordAudioDoRegret">Regret</string>
+  <string name="buttonActionRecordAudioDoSave">Save</string>
+  <string name="buttonActionRecordImageDoRecord">Record</string>
+  <string name="buttonActionRecordImageDoRegret">Regret</string>
+  <string name="buttonActionRecordImageDoSave">Save</string>
+  <string name="buttonActionRecordTextDoRegret">Regret</string>
+  <string name="buttonActionRecordTextDoSave">Save</string>
+  <string name="buttonActionRecordVideoDoRegret">Regret</string>
+  <string name="buttonActionRecordVideoDoSave">Save</string>
+  <string name="buttonActionSendReportDoSend">Send</string>
+  <string name="buttonActionShowAudioDoPlay">Play Audio</string>
+  <string name="buttonExerciseStepDoNext">Next</string>
+  <string name="buttonExerciseStepDoPrevious">Previous</string>
+  <string name="buttonFlowchartDetailDoExercise">Run</string>
+  <string name="buttonStepDetailDoStep">Run</string>
+  <string name="labelAboutDescription">[Description]</string>
+  <string name="labelActionRecordImageImage">Image</string>
+  <string name="labelActionRecordVideoVideo">Video</string>
+  <string name="labelActionShowImageImage">Image</string>
+  <string name="labelActionShowTextText">Text</string>
+  <string name="labelActionShowVideoVideo">Video</string>
+  <string name="labelExerciseOverviewExerciseOverview"></string>
+  <string name="labelExerciseOverviewExerciseStep">[Exercise Step]</string>
+  <string name="labelExerciseOverviewExerciseTitle">[Exercise]</string>
+  <string name="labelExerciseStepExerciseTitle">[Exercise]</string>
+  <string name="labelExerciseStepNextTitle">Next</string>
+  <string name="labelExerciseStepPreviousTitle">Previous</string>
+  <string name="labelFlowchartDetailFlowchartTitle">[Flowchart]</string>
+  <string name="labelSetupTeacher">Run teacher app</string>
+  <string name="labelSplashForAndroid">for Android™</string>
+  <string name="labelSplashLundOgBendsenLogo">Lund&amp;Bendsen Logo</string>
+  <string name="labelSplashTitle">NatScience</string>
+  <string name="labelSplashVUCLogo">Logo</string>
+  <string name="labelSplashVersion">Version %s</string>
+  <string name="labelStepDetailStepNumber">[Number]</string>
+  <string name="labelStepDetailStepTitle">[Flowchart]</string>
+  <string name="menuitemExerciseStepShowOverview">Show Overview</string>
+  <string name="menuitemFlowchartMainAbout">About</string>
+  <string name="menuitemFlowchartMainSetup">Setup</string>
+  <string name="app_name">VUCRoskilde</string>
+</resources>
