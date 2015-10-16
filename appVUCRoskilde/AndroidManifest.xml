@@ -1,0 +1,62 @@
+<!--THIS FILE IS GENERATED.
+  
+  Dont make manual changes here, as it will be overwritten by the generator.
+  The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
+  
+  Author: Lund&Bendsen, Jan Schoubo
+-->
+
+
+
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="dk.lundogbendsen.vucroskilde.android"
+      android:versionCode="1"
+      android:versionName="0.2">
+
+      <uses-permission android:name="android.permission.INTERNET" />
+
+      <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22" />
+
+      <application android:label="@string/app_name"
+          android:icon="@drawable/icon_logo"
+          android:allowBackup="true"
+          android:name="dk.lundogbendsen.vucroskilde.android.generated.GlobalState"
+          android:theme="@style/MA.Theme">
+
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.AboutActivity"
+            android:label="@string/titleAboutActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionRecordAudioActivity"
+            android:label="@string/titleActionRecordAudioActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionRecordImageActivity"
+            android:label="@string/titleActionRecordImageActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionRecordTextActivity"
+            android:label="@string/titleActionRecordTextActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoActivity"
+            android:label="@string/titleActionRecordVideoActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionSendReportActivity"
+            android:label="@string/titleActionSendReportActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionShowAudioActivity"
+            android:label="@string/titleActionShowAudioActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionShowImageActivity"
+            android:label="@string/titleActionShowImageActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionShowTextActivity"
+            android:label="@string/titleActionShowTextActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ActionShowVideoActivity"
+            android:label="@string/titleActionShowVideoActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ExerciseOverviewActivity"
+            android:label="@string/titleExerciseOverviewActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.ExerciseStepActivity"
+            android:label="@string/titleExerciseStepActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.FlowchartMainActivity"
+            android:label="@string/titleFlowchartMainActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.SetupActivity"
+            android:label="@string/titleSetupActivity"/>
+        <activity android:name="dk.lundogbendsen.vucroskilde.android.generated.SplashActivity">
+          <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+        </activity>
+      </application>
+
+  </manifest>

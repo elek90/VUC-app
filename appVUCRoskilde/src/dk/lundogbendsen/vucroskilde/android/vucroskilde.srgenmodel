@@ -1,0 +1,417 @@
+language en,da;
+
+branding "lund&bendsen";
+
+model VUCRoskilde
+      doc "VUCRoskilde|da:VUCRoskilde", "VUC Roskilde|da:VUC Roskilde"
+      option
+        ANDROID (
+          "permission:INTERNET",
+          "companypackage:dk.lundogbendsen",
+          "package:dk.lundogbendsen.vucroskilde.android",
+          "style:MA",
+          "version:0.2",
+          "sdk:14,22"
+          )
+      include libGenerator "dk.schoubo.library.android" option INCLUDEELEMENT(Addressable)
+{
+
+  // ----------------------------
+  // Defining exercises / opgaver
+  // ----------------------------
+
+
+  class Flowchart doc "Flowchart|da:Rutediagram", "Flowcharts|da:Rutediagrammer", "A flowchart for an exercise|da:Et rutediagram til en opgave"
+        option TABLE, USE ("Timestamped")
+  {
+    field Boolean executable doc "Flowchart is main|da:Rutediagrammet kan udføres";
+    
+    field String flowchartName doc "Flowchart Name|da:Rutediagramnavn", "Name of the flowchart|da:Navn på rutediagrammet"
+          width 10.0 option KEY;
+
+    field School school doc "School|da:School", "The school that created the flowchart|da:Den skole der har lavet det pågældende Flowchart"
+          option FOREIGNKEY;
+
+    field Step steps doc "Steps|da:Trin", "The steps in the Flowchart|da:Trinnene i rutediagrammet"
+            option SET;
+  }
+
+  class Step doc "Step|da:Trin", "Steps|da:Trin", "A step in a flowchart|da:Et trin i et rutediagram"
+        option TABLE, USE ("Timestamped")
+  {
+    field Flowchart parentFlowchart doc "Flowchart|da:Rutediagram", "Name of the Flowchart this step belongs to|da:Navn på det rutediagram trinnet er en del af"
+          option FOREIGNKEY;
+
+    field String text doc "Text|da:Tekst", "The text of the step|da:Tekst til trinnet";
+
+    field String stepType doc "Step Type|da:Trintype", "The type of the step|da:Trinnets type";
+// option ENUMERATION_FROM_CONSTANTS("FLYGTIGT", "BEKENDTMED", "ANVENDER", "FORTROLIGMED", "EXPERT")
+
+    // Depending on stepType, either actionId or subflowchartId is set, but never both and never neither
+    field Long actionId doc "Action|da:Handling", "Actions|da:Handlinger";
+    field Long subflowchartId doc "Subflowchart|da:Subrutediagram", "Subflowcharts|da:Subrutediagrammer";
+  }
+
+  class ActionShowVideo doc "Action to Show Video|da:Handling der viser video", "Actions to Show Videos|da:Handlinger der viser videoer", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
+  }
+
+  class ActionShowImage doc "Action to Show Image|da:Handling der viser billede", "Actions to Show Images|da:Handlinger der viser billeder", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
+  }
+
+ class ActionShowAudio doc "Action to Show Audio|da:Handling der afspiller lyd", "Actions to Show Audios|da:Handlinger der afspiller lyde", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String audioRef doc "Audio|da:Lyd", "The sound of the action|da:Lyd til handlingen";
+  }
+
+  class ActionShowDescription doc "Action to Show Description|da:Handling der viser forklaring", "Actions to Show Descriptions|da:Handlinger der viser forklaringer", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+ 
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
+  }
+
+  class ActionRecordVideo doc "Action to Record Video|da:Handling der optager video", "Actions to Record Videos|da:Handlinger der optager videoer", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
+  }
+
+  class ActionRecordImage doc "Action to Record Image|da:Handling der optager billede", "Actions to Record Images|da:Handlinger der optager billeder", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
+  }
+
+  class ActionRecordAudio doc "Action to Record Audio|da:Handling der optager lyd", "Actions to Record Audios|da:Handlinger der optager lyde", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String audioRef doc "Audio|da:Lyd", "The sound of the action|da:Lyd til handlingen";
+  }
+
+  class ActionRecordDescription doc "Action to Record Description|da:Handling der optager forklaring", "Actions to Record Descriptions|da:Handlinger der optager forklaringer", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
+  }
+
+
+
+  class ActionSendReport doc "Action to Send Report|da:Handling der sender rapport", "Actions to Send Report|da:Handlinger der sender rapport", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+  }
+
+
+  // -----------------------------
+  // Defining schools and students
+  // -----------------------------
+
+  class School doc "School|da:Skole", "Schools|da:Skoler", "The school|da:En skole"
+        option TABLE, USE ("Timestamped")
+  {
+    field String schoolName doc "School Name|da:Skolenavn", "Name of the school|da:Skolens navn"
+          width 10.0 option KEY;
+
+    field Addressable contactPerson doc "Contact Person|da:Kontaktperson", "Contact person for the school|da:Kontaktperson for skolen";
+
+    field String logoURL doc "Logo|da:Logo", "School logo|da:Skolens logo"
+          width 10.0 option PICTURE, HIDEINLIST;
+
+    field Flowchart flowcharts doc "Flowcharts|da:Rutediagram", "Flowcharts belonging to this school|da:Rutediagrammer fra denne skole"
+          option SET;
+
+    field Team teams doc "Teams|da:Hold", "Teams belonging to this school|da:Hold fra denne skole"
+          option SET;
+  }
+
+  class Team doc "Team|da:Hold", "Teams|da:Hold", "A team in a school|da:Et hold på en skole"
+        option TABLE, USE ("Timestamped")
+  {
+    field String teamName doc "Team Name|da:Holdnavn", "Name of the team|da:Holdets navn"
+          width 10.0 option KEY;
+
+    field Addressable contactPerson doc "Contact Person|da:Kontaktperson", "Contact person for the team|da:Kontaktperson for holdet";
+
+    field School parentSchool doc "School|da:Skole", "The school this team is member of|da:Den skole dette hold går på"
+          width 8.0 option FOREIGNKEY;
+
+    field Student students doc "Students|da:Studerende", "Students in the team|da:Studerende på dette hold"
+          option SET;
+  }
+
+
+  class Student doc "Student|da:Studerende", "Students|da:Studerende", "A person who is a student|da:En studerende"
+        option TABLE, USE ("Timestamped")
+  {
+    field Addressable contact doc "Contact|da:Kontakt", "Contact information|da:Kontaktinformation";
+
+    field String password doc "Password|da:Løsen", "Password|da:Løsen"
+        option PASSWORD;
+
+    field Team parentTeam doc "Team|da:Team", "The team this student is a member of|da:Det hold, denne studerende følger"
+          option FOREIGNKEY;
+  }
+
+
+  // -------------------------------------------------
+  // Defining running exercises / igangværende opgaver
+  // -------------------------------------------------
+
+ 
+  class Exercise doc "Exercise|da:Opgave", "Exercises|da:Opgaver", "A particular exercise as run by a student|da:En bestemt opgave der bliver udført af en studerende"
+        option TABLE, USE ("Timestamped")
+  {
+    field Flowchart flowchart doc "Flowchart|da:Rutediagram", "The flowchart to base the exercise on|da:Det rutediagram opgaven følger"
+          option FOREIGNKEY;
+
+    field Student student doc "Student|da:Studerende", "The student running the exercise|da:Den studerende der laver opgaven"
+          option FOREIGNKEY;
+
+    field Answer answers doc "Answers recorded|da:Besvarelser lavet", "Answers recorded by the student so far|da:Besvarelser registrerer af denne studerende indtil videre"
+          option SET;
+
+    field Date started doc "Start Time|da:Begyndelsestidspunkt";
+
+    field Date lastSeen doc "Last Seen Time|da:Sidst set tidspunkt";
+
+    field Date lastModified doc "Last Modified Time|da:Sidst rettet tidspunkt";
+  }
+
+ 
+  class Answer doc "Answer|da:Besvarelse", "Answers|da:Besvarelser", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
+        option TABLE, USE ("Timestamped")
+  {
+    field Exercise parentExercise doc "Exercise|da:Opgave", "Exercise this answer belongs to|da:Den opgave som denne besvarelse hører til"
+          option FOREIGNKEY;
+
+    field Long stepId doc "Step|da:Trin", "Steps|da:Trin";
+
+    // The type of the answer is determined by the stepType of the Step...
+    field Long answerId doc "Answer|da:Svar", "Answers|da:Svar";
+  }
+
+  class AnswerVideo doc "Answer with Video|da:Besvarelse med video", "Answer Videos|da:Besvarelser med videoer", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
+        option TABLE, USE ("Timestamped")
+  {
+
+    field String text doc "Text|da:Tekst", "The text of the action|da:Tekst til handlingen";
+ 
+    field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
+  }
+
+
+  class AnswerImage doc "Answer with Image|da:Besvarelse med billede", "Answer with Images|da:Besvarelse med billeder", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String text doc "Text|da:Tekst", "The text of the action|da:Tekst til handlingen";
+
+    field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
+  }
+
+  class AnswerDescription doc "Answer with Description|da:Besvarelse med forklaring", "Answers with Descriptions|da:Besvarelser med forklaringer", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String text doc "Text|da:Tekst", "The text of the action|da:Tekst til handlingen";
+ 
+    field String descriptionRef doc "Description|da:Forklaring", "The sescription of the action|da:Forklaringen til handlingen";
+  }
+
+
+
+  graphic School, Team, Student
+          filename "VUCRoskilde-Flowchart-Datamodel-Diagram-Schools";
+
+  graphic Flowchart, Step, Action
+          filename "VUCRoskilde-Flowchart-Datamodel-Diagram-Flowcharts";
+
+
+
+
+
+
+
+
+
+
+
+  view client Setup doc "Setup|da:Indstillinger", "" option ANDROIDGUI
+  {
+    field CheckBox Teacher doc "Run teacher app|da:Kør lærerens program";
+  }
+
+  view client About doc "About|da:Om", "" option ANDROIDGUI
+  {
+    field TextView Description doc "[Description]|da:[Beskrivelse]";
+  }
+
+  view client Splash doc "Splash|da:Splash", "" option ANDROIDGUI, SPLASH
+  {
+    field ImageView VUCLogo doc "Logo|da:Logo";
+    field ImageView LundOgBendsenLogo doc "Lund&Bendsen Logo|da:Lund&Bendsen logo";
+    field TextView Title doc "NatScience|da:Naturfag";
+    // field TextView Subtitle doc "[Name]|da:[Navn]";
+    field TextView ForAndroid doc "for Android™|da:for Android™";
+    field TextView Version doc "Version %s|da:Version %s";
+  }
+
+
+
+  view client ExerciseOverview doc "Exercise Step|da:Opgavetrin", "" option ANDROIDGUI
+  {
+    field ImageView ExerciseOverview;
+    field TextView ExerciseTitle doc "[Exercise]|da:[Opgave]";
+    field TextView ExerciseStep doc "[Exercise Step]|da:[Opgavetrin]";
+  }
+
+
+  view client ActionShowVideo doc "Show Video|da:Afspil video", "" option ANDROIDGUI
+  {
+    field VideoView Video doc "Video|da:Video";
+  }
+
+  view client ActionShowText doc "Show Text|da:Vis forklaring", "" option ANDROIDGUI
+  {
+    field TextView Text doc "Text|da:Forklaring";
+  }
+
+  view client ActionShowAudio doc "Play Audio|da:Afspil lyd", "" option ANDROIDGUI
+  {
+    field ImageButton DoPlay doc "Play Audio|da:Afspil lyd";
+  }
+
+  view client ActionShowImage doc "Show Image|da:Vis billede", "" option ANDROIDGUI
+  {
+    field ImageView Image doc "Image|da:Billede";
+  }
+
+  view client ActionRecordVideo doc "Record Video|da:Indspil video", "" option ANDROIDGUI
+  {
+    field VideoView Video doc "Video|da:Video";
+    field ImageButton DoRegret doc "Regret|da:Fortryd";
+    field ImageButton DoSave doc "Save|da:Gem";
+  }
+
+  view client ActionRecordText doc "Record Text|da:Registrer forklaring", "" option ANDROIDGUI
+  {
+    field EditText Text doc "Text|da:Forklaring";
+    field ImageButton DoRegret doc "Regret|da:Fortryd";
+    field ImageButton DoSave doc "Save|da:Gem";
+  }
+
+  view client ActionRecordAudio doc "Record Audio|da:Indspil lyd", "" option ANDROIDGUI
+  {
+    field ImageButton DoRecord doc "Record Audio|da:Indspil lyd";
+    field ImageButton DoPlay doc "Play|da:Afspil";
+    field ImageButton DoRegret doc "Regret|da:Fortryd";
+    field ImageButton DoSave doc "Save|da:Gem";
+  }
+
+  view client ActionRecordImage doc "Record Image|da:Tag billede", "" option ANDROIDGUI
+  {
+    field ImageView Image doc "Image|da:Billede";
+    field ImageButton DoRecord doc "Record|da:Tag";
+    field ImageButton DoRegret doc "Regret|da:Fortryd";
+    field ImageButton DoSave doc "Save|da:Gem";
+  }
+
+  view client ActionSendReport doc "Send Report|da:Send rapport", "" option ANDROIDGUI
+  {
+    field LinearLayout Answers doc "Answers for the report|da:Svar til rapporten";
+    field ImageButton DoSend doc "Send|da:Send";
+  }
+
+  view client StepDetail doc "Step Detail|da:Opgavetrin", "" option ANDROIDGUI, ISCHILD(Long)
+  {
+    field TextView StepNumber doc "[Number]|da:[Nummer]";
+    field TextView StepTitle doc "[Flowchart]|da:[Rutediagram]";
+    
+    field ImageButton DoStep doc "Run|da:Start";
+  }
+
+  view client ExerciseStep doc "Exercise Step|da:Opgavetrin", "" option ANDROIDGUI, HASCHILD(StepDetail)
+  {
+    calls ExerciseOverview;
+    calls ActionShowVideo;
+    calls ActionShowText;
+    calls ActionShowAudio;
+    calls ActionShowImage;
+    calls ActionRecordVideo;
+    calls ActionRecordText;
+    calls ActionRecordAudio;
+    calls ActionRecordImage;
+    calls ActionSendReport;
+  
+    field LinearLayout ExerciseStep;
+    field TextView ExerciseTitle doc "[Exercise]|da:[Opgave]";
+
+    field TextView PreviousTitle doc "Previous|da:Forrige";
+    field ImageButton DoPrevious doc "Previous|da:Forrige";
+    field TextView NextTitle doc "Next|da:Næste";
+    field ImageButton DoNext doc "Next|da:Næste";
+    field LinearLayout NextPrevious;
+
+    field MenuItem ShowOverview doc "Show Overview|da:Vis oversigt";
+  }
+
+
+ 
+  view client FlowchartDetail doc "Flowchart Details|da:Opgave", "" option ANDROIDGUI, ISCHILD(Long)
+  {
+    calls ExerciseStep;
+    
+    field TextView FlowchartTitle doc "[Flowchart]|da:[Rutediagram]";
+    
+    field ImageButton DoExercise doc "Run|da:Start";
+  }
+
+
+  view client FlowchartMain doc "Flowchart List|da:Liste over opgave-typer", "" option ANDROIDGUI, ENTRYPOINT, HASCHILD(FlowchartDetail)
+  {
+    calls Setup;
+    calls About;
+    calls Splash;
+
+    field LinearLayout ExerciseList;
+
+    field MenuItem Setup doc "Setup|da:Opsætning";
+    field MenuItem About doc "About|da:Om";
+  }
+}
