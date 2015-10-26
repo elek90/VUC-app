@@ -19,6 +19,7 @@
   <string name="titleActionShowImageActivity">Show Image</string>
   <string name="titleActionShowTextActivity">Show Text</string>
   <string name="titleActionShowVideoActivity">Show Video</string>
+  <string name="titleAnswerDetailActivity">Answer Detail</string>
   <string name="titleExerciseOverviewActivity">Exercise Step</string>
   <string name="titleExerciseStepActivity">Exercise Step</string>
   <string name="titleFlowchartDetailActivity">Flowchart Details</string>
@@ -39,6 +40,9 @@
   <string name="buttonActionRecordVideoDoSave">Save</string>
   <string name="buttonActionSendReportDoSend">Send</string>
   <string name="buttonActionShowAudioDoPlay">Play Audio</string>
+  <string name="buttonAnswerDetailDeleteStep">Delete</string>
+  <string name="buttonAnswerDetailDoStep">Run</string>
+  <string name="buttonAnswerDetailViewStep">View</string>
   <string name="buttonExerciseStepDoNext">Next</string>
   <string name="buttonExerciseStepDoPrevious">Previous</string>
   <string name="buttonFlowchartDetailDoExercise">Run</string>
@@ -49,12 +53,15 @@
   <string name="labelActionShowImageImage">Image</string>
   <string name="labelActionShowTextText">Text</string>
   <string name="labelActionShowVideoVideo">Video</string>
+  <string name="labelAnswerDetailStepNumber">[Number]</string>
+  <string name="labelAnswerDetailStepTitle">[Title]</string>
   <string name="labelExerciseOverviewExerciseOverview"></string>
   <string name="labelExerciseOverviewExerciseStep">[Exercise Step]</string>
   <string name="labelExerciseOverviewExerciseTitle">[Exercise]</string>
-  <string name="labelExerciseStepExerciseTitle">[Exercise]</string>
   <string name="labelExerciseStepNextTitle">Next</string>
   <string name="labelExerciseStepPreviousTitle">Previous</string>
+  <string name="labelExerciseStepStepNumber">[Number]</string>
+  <string name="labelExerciseStepStepTitle">[Title]</string>
   <string name="labelFlowchartDetailFlowchartTitle">[Flowchart]</string>
   <string name="labelSetupTeacher">Run teacher app</string>
   <string name="labelSplashForAndroid">for Android™</string>
@@ -63,7 +70,7 @@
   <string name="labelSplashVUCLogo">Logo</string>
   <string name="labelSplashVersion">Version %s</string>
   <string name="labelStepDetailStepNumber">[Number]</string>
-  <string name="labelStepDetailStepTitle">[Flowchart]</string>
+  <string name="labelStepDetailStepTitle">[Title]</string>
   <string name="menuitemExerciseStepShowOverview">Show Overview</string>
   <string name="menuitemFlowchartMainAbout">About</string>
   <string name="menuitemFlowchartMainSetup">Setup</string>

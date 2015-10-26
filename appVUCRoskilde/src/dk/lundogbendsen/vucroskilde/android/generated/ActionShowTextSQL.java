@@ -20,7 +20,7 @@ import java.util.*;
 import java.util.Date;
 
 
-public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<ActionShowDescriptionSQL>
+public class ActionShowTextSQL extends CommonSQL implements Comparable<ActionShowTextSQL>
 {
   Long id;
   public Long getId() { return id; }
@@ -43,7 +43,7 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   Boolean deletestamp;
   public Boolean isDeletestamp() { return deletestamp; }
 
-  ActionShowDescriptionSQL()
+  ActionShowTextSQL()
   {
     super();
     this.parentStep = 0L;
@@ -53,13 +53,13 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     this.deletestamp = false;
   }
 
-  public static ActionShowDescriptionSQL create() { return new ActionShowDescriptionSQL(); }
+  public static ActionShowTextSQL create() { return new ActionShowTextSQL(); }
 
-  public static final ActionShowDescriptionSQL BLANK = ActionShowDescriptionSQL.create();
-  @Override public ActionShowDescriptionSQL getBlank() { return BLANK; }
+  public static final ActionShowTextSQL BLANK = ActionShowTextSQL.create();
+  @Override public ActionShowTextSQL getBlank() { return BLANK; }
 
   @Override
-  public int compareTo(final ActionShowDescriptionSQL o)
+  public int compareTo(final ActionShowTextSQL o)
   {
     return id.compareTo(o.id);
   }
@@ -67,7 +67,7 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   @Override
   public boolean equals(final Object o)
   {
-    return (o instanceof ActionShowDescriptionSQL) && (this.id.equals(((ActionShowDescriptionSQL)o).id)); 
+    return (o instanceof ActionShowTextSQL) && (this.id.equals(((ActionShowTextSQL)o).id)); 
   }
 
   @Override
@@ -77,9 +77,9 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   }
 
   @Override
-  public ActionShowDescriptionSQL copy()
+  public ActionShowTextSQL copy()
   {
-    ActionShowDescriptionSQL recordSQL = new ActionShowDescriptionSQL();
+    ActionShowTextSQL recordSQL = new ActionShowTextSQL();
     recordSQL.id = this.getId();
     recordSQL.parentStep = this.parentStep;
     recordSQL.description = this.description;
@@ -92,7 +92,7 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   @Override
   public String toString()
   {
-    return "ActionShowDescriptionSQL" +
+    return "ActionShowTextSQL" +
       "[" +
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
@@ -104,9 +104,9 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   }
 
   @Override
-  public ActionShowDescriptionXML asXML()
+  public ActionShowTextXML asXML()
   {
-    ActionShowDescriptionXML recordXML = ActionShowDescriptionXML.create();
+    ActionShowTextXML recordXML = ActionShowTextXML.create();
     recordXML.setId(this.getId());
     recordXML.setParentStep(this.getParentStep());
     recordXML.setDescription(this.getDescription());
@@ -117,9 +117,9 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   }
 
   @Override
-  public ActionShowDescriptionSQL copy(Cursor cursor)
+  public ActionShowTextSQL copy(Cursor cursor)
   {
-    ActionShowDescriptionSQL recordSQL = new ActionShowDescriptionSQL();
+    ActionShowTextSQL recordSQL = new ActionShowTextSQL();
     recordSQL.id = cursor.getLong(cursor.getColumnIndex("ID"));
     recordSQL.parentStep = cursor.getLong(cursor.getColumnIndex("PARENTSTEP"));
     recordSQL.description = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
@@ -129,22 +129,22 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     return recordSQL;
   }
 
-  private static final String TABLE_NAME = "ACTIONSHOWDESCRIPTION";
+  private static final String TABLE_NAME = "ACTIONSHOWTEXT";
   @Override public String getTableNameSQL() { return TABLE_NAME; }
 
   private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
   @Override public String getAllFieldNamesSQL() { return ALL_FIELD_NAMES; }
 
-  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ACTIONSHOWDESCRIPTION(ID INTEGER, PARENTSTEP INTEGER NOT NULL, DESCRIPTION TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
+  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ACTIONSHOWTEXT(ID INTEGER, PARENTSTEP INTEGER NOT NULL, DESCRIPTION TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
   @Override public String getCreateTableSQL() { return CREATE_TABLE_STATEMENT; }
 
-  private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS ACTIONSHOWDESCRIPTION;";
+  private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS ACTIONSHOWTEXT;";
   @Override public String getDropTableSQL() { return DROP_TABLE_STATEMENT; }
 
-  private static final String INSERT_STATEMENT = "INSERT INTO ACTIONSHOWDESCRIPTION(PARENTSTEP, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?);";
+  private static final String INSERT_STATEMENT = "INSERT INTO ACTIONSHOWTEXT(PARENTSTEP, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?);";
   @Override public String getInsertSQL() { return INSERT_STATEMENT; }
 
-  private static final String UPDATE_STATEMENT = "UPDATE ACTIONSHOWDESCRIPTION SET PARENTSTEP = ?, DESCRIPTION = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
+  private static final String UPDATE_STATEMENT = "UPDATE ACTIONSHOWTEXT SET PARENTSTEP = ?, DESCRIPTION = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
   @Override public String getUpdateSQL() { return UPDATE_STATEMENT; }
 
   @Override
@@ -158,19 +158,19 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     statement.bindLong(6, this.id);
   }
 
-  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ACTIONSHOWDESCRIPTION WHERE ID=?;";
+  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ACTIONSHOWTEXT WHERE ID=?;";
   @Override public String getSelectByIdSQL() { return SELECT_BY_ID_STATEMENT; }
 
-  private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM ACTIONSHOWDESCRIPTION WHERE ID=?;";
+  private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM ACTIONSHOWTEXT WHERE ID=?;";
   @Override public String getDeleteByIdSQL() { return DELETE_BY_ID_STATEMENT; }
 
-  private static final String DELETE_FROM_TABLE_STATEMENT = "DELETE FROM ACTIONSHOWDESCRIPTION;";
+  private static final String DELETE_FROM_TABLE_STATEMENT = "DELETE FROM ACTIONSHOWTEXT;";
   @Override public String getDeleteFromTableSQL() { return DELETE_FROM_TABLE_STATEMENT; }
 
-  public static ActionShowDescriptionSQL query(final Long parentStep)
+  public static ActionShowTextSQL query(final Long parentStep)
   {
-    List<ActionShowDescriptionSQL> records =
-      GlobalSQLStructure.getDBHelper().runQuery(ActionShowDescriptionSQL.BLANK,
+    List<ActionShowTextSQL> records =
+      GlobalSQLStructure.getDBHelper().runQuery(ActionShowTextSQL.BLANK,
           "parentStep = ? AND deletestamp = 'false'",
           ""+parentStep);
 
@@ -179,10 +179,10 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     return records.iterator().next();
   }
 
-  public static ActionShowDescriptionSQL queryOrderBy(final Long parentStep, final String order)
+  public static ActionShowTextSQL queryOrderBy(final Long parentStep, final String order)
   {
-    List<ActionShowDescriptionSQL> records =
-      GlobalSQLStructure.getDBHelper().runQueryOrderBy(ActionShowDescriptionSQL.BLANK,
+    List<ActionShowTextSQL> records =
+      GlobalSQLStructure.getDBHelper().runQueryOrderBy(ActionShowTextSQL.BLANK,
           "parentStep = ? AND deletestamp = 'false'",
           order, ""+parentStep);
 
@@ -191,10 +191,10 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     return records.iterator().next();
   }
 
-  public static ActionShowDescriptionSQL querySince(final Long parentStep, final Date since)
+  public static ActionShowTextSQL querySince(final Long parentStep, final Date since)
   {
-    List<ActionShowDescriptionSQL> records =
-      GlobalSQLStructure.getDBHelper().runQuery(ActionShowDescriptionSQL.BLANK,
+    List<ActionShowTextSQL> records =
+      GlobalSQLStructure.getDBHelper().runQuery(ActionShowTextSQL.BLANK,
           "parentStep = ? AND changestamp >= ?",
           ""+parentStep, DateAdapter.compactDate(since));
 
@@ -203,10 +203,10 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     return records.iterator().next();
   }
 
-  public static ActionShowDescriptionSQL queryOrderBySince(final Long parentStep, final String order, final Date since)
+  public static ActionShowTextSQL queryOrderBySince(final Long parentStep, final String order, final Date since)
   {
-    List<ActionShowDescriptionSQL> records =
-      GlobalSQLStructure.getDBHelper().runQueryOrderBy(ActionShowDescriptionSQL.BLANK,
+    List<ActionShowTextSQL> records =
+      GlobalSQLStructure.getDBHelper().runQueryOrderBy(ActionShowTextSQL.BLANK,
           "parentStep = ? AND changestamp >= ?",
           order, ""+parentStep, DateAdapter.compactDate(since));
 
@@ -215,14 +215,14 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     return records.iterator().next();
   }
 
-  public static LinkedList<ActionShowDescriptionSQL> queryAll(final Long parentStep)
+  public static LinkedList<ActionShowTextSQL> queryAll(final Long parentStep)
   {
     Separator sep = new Separator("", " AND ");
     String filter = "";
     filter += sep.next() + "deletestamp = 'false'";
     if (parentStep != null) filter += sep.next() + "parentStep = ?";
-    LinkedList<ActionShowDescriptionSQL> records =
-      GlobalSQLStructure.getDBHelper().runQuery(ActionShowDescriptionSQL.BLANK,
+    LinkedList<ActionShowTextSQL> records =
+      GlobalSQLStructure.getDBHelper().runQuery(ActionShowTextSQL.BLANK,
           filter,
           ""+parentStep);
     return records;
@@ -234,14 +234,14 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
       return null;
   }
 
-  public static LinkedList<ActionShowDescriptionSQL> queryAllOrderBy(final Long parentStep, final String order)
+  public static LinkedList<ActionShowTextSQL> queryAllOrderBy(final Long parentStep, final String order)
   {
     Separator sep = new Separator("", " AND ");
     String filter = "";
     filter += sep.next() + "deletestamp = 'false'";
     if (parentStep != null) filter += sep.next() + "parentStep = ?";
-    LinkedList<ActionShowDescriptionSQL> records =
-      GlobalSQLStructure.getDBHelper().runQueryOrderBy(ActionShowDescriptionSQL.BLANK,
+    LinkedList<ActionShowTextSQL> records =
+      GlobalSQLStructure.getDBHelper().runQueryOrderBy(ActionShowTextSQL.BLANK,
           filter,
           order, ""+parentStep);
     return records;
@@ -253,14 +253,14 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
       return null;
   }
 
-  public static LinkedList<ActionShowDescriptionSQL> queryAllSince(final Long parentStep, final Date since)
+  public static LinkedList<ActionShowTextSQL> queryAllSince(final Long parentStep, final Date since)
   {
     Separator sep = new Separator("", " AND ");
     String filter = "";
     filter += sep.next() + "changestamp >= ?";
     if (parentStep != null) filter += sep.next() + "parentStep = ?";
-    LinkedList<ActionShowDescriptionSQL> records =
-      GlobalSQLStructure.getDBHelper().runQuery(ActionShowDescriptionSQL.BLANK,
+    LinkedList<ActionShowTextSQL> records =
+      GlobalSQLStructure.getDBHelper().runQuery(ActionShowTextSQL.BLANK,
           filter,
           ""+parentStep, DateAdapter.compactDate(since));
     return records;
@@ -272,14 +272,14 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
       return null;
   }
 
-  public static LinkedList<ActionShowDescriptionSQL> queryAllOrderBySince(final Long parentStep, final String order, final Date since)
+  public static LinkedList<ActionShowTextSQL> queryAllOrderBySince(final Long parentStep, final String order, final Date since)
   {
     Separator sep = new Separator("", " AND ");
     String filter = "";
     filter += sep.next() + "changestamp >= ?";
     if (parentStep != null) filter += sep.next() + "parentStep = ?";
-    LinkedList<ActionShowDescriptionSQL> records =
-      GlobalSQLStructure.getDBHelper().runQueryOrderBy(ActionShowDescriptionSQL.BLANK,
+    LinkedList<ActionShowTextSQL> records =
+      GlobalSQLStructure.getDBHelper().runQueryOrderBy(ActionShowTextSQL.BLANK,
           filter,
           order, ""+parentStep, DateAdapter.compactDate(since));
     return records;
@@ -294,7 +294,7 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   @Override
   public void get()
   {
-    ActionShowDescriptionSQL recordSQL = GlobalSQLStructure.getDBHelper().getObjectById(ActionShowDescriptionSQL.BLANK, id);
+    ActionShowTextSQL recordSQL = GlobalSQLStructure.getDBHelper().getObjectById(ActionShowTextSQL.BLANK, id);
     if (recordSQL != null)
     {
       if (recordSQL.deletestamp) return;
@@ -310,9 +310,9 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     }
   }
 
-  public static ActionShowDescriptionSQL get(final Long id)
+  public static ActionShowTextSQL get(final Long id)
   {
-    ActionShowDescriptionSQL recordSQL = GlobalSQLStructure.getDBHelper().getObjectById(ActionShowDescriptionSQL.BLANK, id);
+    ActionShowTextSQL recordSQL = GlobalSQLStructure.getDBHelper().getObjectById(ActionShowTextSQL.BLANK, id);
     if (recordSQL == null) return null;
     if (recordSQL.deletestamp) return null;
     return recordSQL;
@@ -321,7 +321,7 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   @Override
   public void get(final Date since)
   {
-    ActionShowDescriptionSQL recordSQL = GlobalSQLStructure.getDBHelper().getObjectById(ActionShowDescriptionSQL.BLANK, id);
+    ActionShowTextSQL recordSQL = GlobalSQLStructure.getDBHelper().getObjectById(ActionShowTextSQL.BLANK, id);
     if (recordSQL != null)
     {
       if (recordSQL.changestamp.before(since)) return;
@@ -337,15 +337,15 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
     }
   }
 
-  public static ActionShowDescriptionSQL get(final Long id, final Date since)
+  public static ActionShowTextSQL get(final Long id, final Date since)
   {
-    ActionShowDescriptionSQL recordSQL = GlobalSQLStructure.getDBHelper().getObjectById(ActionShowDescriptionSQL.BLANK, id);
+    ActionShowTextSQL recordSQL = GlobalSQLStructure.getDBHelper().getObjectById(ActionShowTextSQL.BLANK, id);
     if (recordSQL == null) return null;
     if (recordSQL.changestamp.before(since)) return null;
     return recordSQL;
   }
 
-  public static void write(final ActionShowDescriptionSQL recordSQL)
+  public static void write(final ActionShowTextSQL recordSQL)
   {
     recordSQL.changestamp = new Date();
     GlobalSQLStructure.getDBHelper().insertOrUpdate(recordSQL);
@@ -361,7 +361,7 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
   @Override
   public void update()
   {
-    ActionShowDescriptionSQL recordOLD = ActionShowDescriptionSQL.query(parentStep);
+    ActionShowTextSQL recordOLD = ActionShowTextSQL.query(parentStep);
     if (recordOLD != null) this.id = recordOLD.id; else if (this.id == null) this.id = SQLUtil.nextId();
     this.changestamp = new Date();
     GlobalSQLStructure.getDBHelper().insertOrUpdate(this, recordOLD != null);
@@ -369,7 +369,7 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
 
   public static void delete(final Long id)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.get(id);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.get(id);
     if (recordSQL == null) return;
     recordSQL.changestamp = new Date();
     recordSQL.deletestamp = true;
@@ -386,53 +386,53 @@ public class ActionShowDescriptionSQL extends CommonSQL implements Comparable<Ac
 
   public static void remove(final Long id)
   {
-    GlobalSQLStructure.getDBHelper().deleteObjectById(ActionShowDescriptionSQL.BLANK, id);
+    GlobalSQLStructure.getDBHelper().deleteObjectById(ActionShowTextSQL.BLANK, id);
   }
 
   public static void removeAll(final Set<Long> ids)
   {
-    GlobalSQLStructure.getDBHelper().deleteObjectsById(ActionShowDescriptionSQL.BLANK, ids);
+    GlobalSQLStructure.getDBHelper().deleteObjectsById(ActionShowTextSQL.BLANK, ids);
   }
 
   @Override
   public void remove()
   {
-    GlobalSQLStructure.getDBHelper().deleteObjectById(ActionShowDescriptionSQL.BLANK, this.id);
+    GlobalSQLStructure.getDBHelper().deleteObjectById(ActionShowTextSQL.BLANK, this.id);
   }
 
-  public static ActionShowDescriptionXML queryAsXML(final Long parentStep)
+  public static ActionShowTextXML queryAsXML(final Long parentStep)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.query(parentStep);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.query(parentStep);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionShowDescriptionXML queryOrderByAsXML(final Long parentStep, String order)
+  public static ActionShowTextXML queryOrderByAsXML(final Long parentStep, String order)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.queryOrderBy(parentStep, order);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.queryOrderBy(parentStep, order);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static LinkedList<ActionShowDescriptionXML> queryAllAsXML(final Long parentStep)
+  public static LinkedList<ActionShowTextXML> queryAllAsXML(final Long parentStep)
   {
-    List<ActionShowDescriptionSQL> recordsSQL = ActionShowDescriptionSQL.queryAll(parentStep);
-    LinkedList<ActionShowDescriptionXML> recordsXML = new LinkedList<ActionShowDescriptionXML>();
-    for (ActionShowDescriptionSQL recordSQL : recordsSQL) recordsXML.add(recordSQL.asXML());
+    List<ActionShowTextSQL> recordsSQL = ActionShowTextSQL.queryAll(parentStep);
+    LinkedList<ActionShowTextXML> recordsXML = new LinkedList<ActionShowTextXML>();
+    for (ActionShowTextSQL recordSQL : recordsSQL) recordsXML.add(recordSQL.asXML());
     return recordsXML;
   }
 
-  public static LinkedList<ActionShowDescriptionXML> queryAllOrderByAsXML(final Long parentStep, String order)
+  public static LinkedList<ActionShowTextXML> queryAllOrderByAsXML(final Long parentStep, String order)
   {
-    List<ActionShowDescriptionSQL> recordsSQL = ActionShowDescriptionSQL.queryAllOrderBy(parentStep, order);
-    LinkedList<ActionShowDescriptionXML> recordsXML = new LinkedList<ActionShowDescriptionXML>();
-    for (ActionShowDescriptionSQL recordSQL : recordsSQL) recordsXML.add(recordSQL.asXML());
+    List<ActionShowTextSQL> recordsSQL = ActionShowTextSQL.queryAllOrderBy(parentStep, order);
+    LinkedList<ActionShowTextXML> recordsXML = new LinkedList<ActionShowTextXML>();
+    for (ActionShowTextSQL recordSQL : recordsSQL) recordsXML.add(recordSQL.asXML());
     return recordsXML;
   }
 
-  public static ActionShowDescriptionXML getAsXML(final Long id)
+  public static ActionShowTextXML getAsXML(final Long id)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.get(id);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.get(id);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }

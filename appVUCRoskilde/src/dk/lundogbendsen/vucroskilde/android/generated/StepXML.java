@@ -26,9 +26,14 @@ public class StepXML extends CommonXML implements Serializable
   public void setParentFlowchart(final Long parentFlowchart) { this.parentFlowchart = parentFlowchart; }
 
   @Element(required=false)
-  String text = "";
-  public String getText() { return text; }
-  public void setText(final String text) { this.text = text; }
+  String stepName = "";
+  public String getStepName() { return stepName; }
+  public void setStepName(final String stepName) { this.stepName = stepName; }
+
+  @Element(required=false)
+  String stepSequence = "";
+  public String getStepSequence() { return stepSequence; }
+  public void setStepSequence(final String stepSequence) { this.stepSequence = stepSequence; }
 
   @Element(required=false)
   String stepType = "";
@@ -64,7 +69,8 @@ public class StepXML extends CommonXML implements Serializable
   {
     super();
     this.parentFlowchart = 0L;
-    this.text = "";
+    this.stepName = "";
+    this.stepSequence = "";
     this.stepType = "";
     this.actionId = 0L;
     this.subflowchartId = 0L;
@@ -86,7 +92,8 @@ public class StepXML extends CommonXML implements Serializable
     StepXML n = StepXML.create();
     n.id = this.id;
     n.parentFlowchart = this.parentFlowchart;
-    n.text = this.text;
+    n.stepName = this.stepName;
+    n.stepSequence = this.stepSequence;
     n.stepType = this.stepType;
     n.actionId = this.actionId;
     n.subflowchartId = this.subflowchartId;
@@ -103,7 +110,8 @@ public class StepXML extends CommonXML implements Serializable
       "[" +
         "id=" + id + ", " +
         "parentFlowchart=" + parentFlowchart + ", " +
-        "text=" + text + ", " +
+        "stepName=" + stepName + ", " +
+        "stepSequence=" + stepSequence + ", " +
         "stepType=" + stepType + ", " +
         "actionId=" + actionId + ", " +
         "subflowchartId=" + subflowchartId + ", " +
@@ -119,7 +127,8 @@ public class StepXML extends CommonXML implements Serializable
     StepSQL recordSQL = new StepSQL();
     recordSQL.id = this.id; 
     recordSQL.parentFlowchart = this.parentFlowchart; 
-    recordSQL.text = this.text; 
+    recordSQL.stepName = this.stepName; 
+    recordSQL.stepSequence = this.stepSequence; 
     recordSQL.stepType = this.stepType; 
     recordSQL.actionId = this.actionId; 
     recordSQL.subflowchartId = this.subflowchartId; 

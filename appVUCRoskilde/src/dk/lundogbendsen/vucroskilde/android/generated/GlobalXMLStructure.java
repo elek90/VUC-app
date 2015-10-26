@@ -26,11 +26,11 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionShowVideoXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionShowImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionShowAudioXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionShowDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionShowTextXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionRecordVideoXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionRecordImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionRecordAudioXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionRecordDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionRecordTextXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionSendReportXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(SchoolXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(TeamXML.class);
@@ -51,11 +51,11 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionShowVideoXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionShowImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionShowAudioXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionShowDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionShowTextXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionRecordVideoXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionRecordImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionRecordAudioXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionRecordDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionRecordTextXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ActionSendReportXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(SchoolXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(TeamXML.class);
@@ -99,7 +99,7 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(ActionShowAudioXML.class, cc);
 
     cc = new LinkedList<Class<? extends CommonXML>>();
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(ActionShowDescriptionXML.class, cc);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(ActionShowTextXML.class, cc);
 
     cc = new LinkedList<Class<? extends CommonXML>>();
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(ActionRecordVideoXML.class, cc);
@@ -111,7 +111,7 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(ActionRecordAudioXML.class, cc);
 
     cc = new LinkedList<Class<? extends CommonXML>>();
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(ActionRecordDescriptionXML.class, cc);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(ActionRecordTextXML.class, cc);
 
     cc = new LinkedList<Class<? extends CommonXML>>();
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(ActionSendReportXML.class, cc);
@@ -156,11 +156,11 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionShowVideo", ActionShowVideoXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionShowImage", ActionShowImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionShowAudio", ActionShowAudioXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionShowDescription", ActionShowDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionShowText", ActionShowTextXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionRecordVideo", ActionRecordVideoXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionRecordImage", ActionRecordImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionRecordAudio", ActionRecordAudioXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionRecordDescription", ActionRecordDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionRecordText", ActionRecordTextXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("ActionSendReport", ActionSendReportXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("School", SchoolXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("Team", TeamXML.class);
@@ -182,11 +182,11 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionShowVideo", ActionShowVideoXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionShowImage", ActionShowImageXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionShowAudio", ActionShowAudioXML.create());
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionShowDescription", ActionShowDescriptionXML.create());
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionShowText", ActionShowTextXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionRecordVideo", ActionRecordVideoXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionRecordImage", ActionRecordImageXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionRecordAudio", ActionRecordAudioXML.create());
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionRecordDescription", ActionRecordDescriptionXML.create());
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionRecordText", ActionRecordTextXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("ActionSendReport", ActionSendReportXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("School", SchoolXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("Team", TeamXML.create());

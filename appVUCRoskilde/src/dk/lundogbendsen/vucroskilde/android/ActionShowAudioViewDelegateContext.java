@@ -58,14 +58,13 @@ public class ActionShowAudioViewDelegateContext extends ActionShowAudioViewDeleg
   @Override
   public void onViewBackActionShowAudio(final View view, final PayloadBack payload)
   {
-    // TODO To be filled out by YOU   -- super contains   goReturn(Activity.RESULT_CANCELED);
-    goReturn(Activity.RESULT_CANCELED);
+    goReturn(Activity.RESULT_OK);
   }
 
   @Override
   public void onViewRefreshActionShowAudio(final View view, final PayloadRefresh payload)
   {
-    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getText());
+    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
    // TODO To be filled out by YOU
   }
 

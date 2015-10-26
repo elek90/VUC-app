@@ -12,6 +12,7 @@ package dk.lundogbendsen.vucroskilde.android;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Map;
 
 import android.app.Activity;
 import dk.lundogbendsen.vucroskilde.android.generated.ExerciseXML;
@@ -46,6 +47,11 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
     return TestData.getInstance().getFlowcharts().get(id);
   }
 
+  public StepXML getStepById(final Long id)
+  {
+    return TestData.getInstance().getSteps().get(id);
+  }
+
   private ExerciseXML currentExercise = null;
 
   public ExerciseXML getExerciseById(final int id)
@@ -63,8 +69,8 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
     this.currentExercise = currentExercise;
     stackFlowcharts.clear();
     stackFlowcharts.addLast(getFlowchartById(currentExercise.getFlowchart()));
-    selectedStep.clear();
-    selectedStep.addLast(0);
+    stackSelectedStep.clear();
+    stackSelectedStep.addLast(0);
     currentStep = null;
   }
 
@@ -98,7 +104,7 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
   }
 
   private StepXML currentStep;
-  private final LinkedList<Integer> selectedStep = new LinkedList<Integer>();
+  private final LinkedList<Integer> stackSelectedStep = new LinkedList<Integer>();
 
   public StepXML getCurrentStepIfSelected()
   {
@@ -112,13 +118,13 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
 
   public void stackSelectedStep(final int index)
   {
-    selectedStep.addLast(index);
+    stackSelectedStep.addLast(index);
   }
 
   public int unstackSelectedStep()
   {
     currentStep = null;
-    return selectedStep.removeLast();
+    return stackSelectedStep.removeLast();
   }
 
   public ExerciseXML newExercise(final FlowchartXML flowchart)
@@ -131,9 +137,9 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
 
   public void setCurrentStepPrevious()
   {
-    int stepindex = selectedStep.removeLast();
+    int stepindex = stackSelectedStep.removeLast();
     if (stepindex > 0) stepindex--;
-    selectedStep.addLast(stepindex);
+    stackSelectedStep.addLast(stepindex);
 
     currentStep = getCurrentStep(stepindex);
   }
@@ -141,9 +147,9 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
   public void setCurrentStepNext()
   {
     FlowchartXML flowchart = stackFlowcharts.getLast();
-    int stepindex = selectedStep.removeLast();
+    int stepindex = stackSelectedStep.removeLast();
     if (stepindex < flowchart.getSteps().size() - 1) stepindex++;
-    selectedStep.addLast(stepindex);
+    stackSelectedStep.addLast(stepindex);
 
     currentStep = getCurrentStep(stepindex);
   }
@@ -188,9 +194,9 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
   public StepXML getAboveStepPrevious()
   {
     if (stackFlowcharts.size() < 2) return null;
-int d = (currentStep != null ? 0 : 1);
+    int d = (currentStep != null ? 0 : 1);
 
-    int index = selectedStep.getLast();
+    int index = stackSelectedStep.getLast();
     FlowchartXML flowchart = stackFlowcharts.get(stackFlowcharts.size() - 1 - d);
     if (index > 0)
     {
@@ -209,7 +215,7 @@ int d = (currentStep != null ? 0 : 1);
     if (stackFlowcharts.size() < 2) return null;
     int d = (currentStep != null ? 0 : 1);
 
-    int index = selectedStep.getLast();
+    int index = stackSelectedStep.getLast();
     FlowchartXML flowchart = stackFlowcharts.get(stackFlowcharts.size() - 1 - d);
     if (index < flowchart.getSteps().size() - 1)
     {
@@ -225,7 +231,7 @@ int d = (currentStep != null ? 0 : 1);
 
   public void setAboveStepPrevious()
   {
-    int index = selectedStep.getLast();
+    int index = stackSelectedStep.getLast();
     unstack();
     if (index > 0) index--;
     stack(index);
@@ -233,7 +239,7 @@ int d = (currentStep != null ? 0 : 1);
 
   public void setAboveStepNext()
   {
-    int index = selectedStep.getLast();
+    int index = stackSelectedStep.getLast();
     unstack();
     if (index < getCurrentFlowchart().getSteps().size() - 1) index++;
     stack(index);
@@ -263,4 +269,41 @@ int d = (currentStep != null ? 0 : 1);
     }
   }
 
+  public String getSelectedStepsString(final Long index)
+  {
+    String res = "";
+    String sep = "";
+    boolean first = true;
+    for (Integer n : stackSelectedStep)
+    {
+      if (!first)
+      {
+        res += sep + (n + 1);
+        sep = ".";
+      }
+      else
+      {
+        first = false;
+      }
+    }
+
+    if (index != null) res += sep + (index + 1);
+
+    return res;
+  }
+
+  public <T> T getAnswer(final ExerciseXML exercise, final StepXML step)
+  {
+    return TestData.getInstance().<T> getAnswer(exercise, step);
+  }
+
+  public <T> T getAnswer()
+  {
+    return getAnswer(getCurrentExercise(), getCurrentStepIfSelected());
+  }
+
+  public Map<Long, Object> getAnswers(final ExerciseXML exercise)
+  {
+    return TestData.getInstance().getAnswers(exercise);
+  }
 }

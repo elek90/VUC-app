@@ -33,6 +33,10 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
   public String getFlowchartName() { return flowchartName; }
   public void setFlowchartName(final String flowchartName) { this.flowchartName = flowchartName; }
 
+  String flowchartSequence;
+  public String getFlowchartSequence() { return flowchartSequence; }
+  public void setFlowchartSequence(final String flowchartSequence) { this.flowchartSequence = flowchartSequence; }
+
   Long school;
   public Long getSchool() { return school; }
   public void setSchool(final SchoolSQL school) { this.school = school.getId(); }
@@ -52,6 +56,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
     super();
     this.executable = false;
     this.flowchartName = "";
+    this.flowchartSequence = "";
     this.school = 0L;
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -88,6 +93,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
     recordSQL.id = this.getId();
     recordSQL.executable = this.executable;
     recordSQL.flowchartName = this.flowchartName;
+    recordSQL.flowchartSequence = this.flowchartSequence;
     recordSQL.school = this.school;
     recordSQL.timestamp = this.timestamp;
     recordSQL.changestamp = this.changestamp;
@@ -103,6 +109,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
         "id=" + id + ", " +
         "executable=" + executable + ", " +
         "flowchartName=" + flowchartName + ", " +
+        "flowchartSequence=" + flowchartSequence + ", " +
         "school=" + school + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
@@ -116,6 +123,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
     FlowchartXML recordXML = FlowchartXML.create(this.getFlowchartName());
     recordXML.setId(this.getId());
     recordXML.setExecutable(this.isExecutable());
+    recordXML.setFlowchartSequence(this.getFlowchartSequence());
     recordXML.setSchool(this.getSchool());
     recordXML.setTimestamp(this.getTimestamp());
     recordXML.setChangestamp(this.getChangestamp());
@@ -130,6 +138,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
     recordSQL.id = cursor.getLong(cursor.getColumnIndex("ID"));
     recordSQL.executable = Boolean.valueOf(cursor.getString(cursor.getColumnIndex("EXECUTABLE")));
     recordSQL.flowchartName = cursor.getString(cursor.getColumnIndex("FLOWCHARTNAME"));
+    recordSQL.flowchartSequence = cursor.getString(cursor.getColumnIndex("FLOWCHARTSEQUENCE"));
     recordSQL.school = cursor.getLong(cursor.getColumnIndex("SCHOOL"));
     recordSQL.timestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("TIMESTAMP")));
     recordSQL.changestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("CHANGESTAMP")));
@@ -140,19 +149,19 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
   private static final String TABLE_NAME = "FLOWCHART";
   @Override public String getTableNameSQL() { return TABLE_NAME; }
 
-  private static final String ALL_FIELD_NAMES = "ID, EXECUTABLE, FLOWCHARTNAME, SCHOOL, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
+  private static final String ALL_FIELD_NAMES = "ID, EXECUTABLE, FLOWCHARTNAME, FLOWCHARTSEQUENCE, SCHOOL, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
   @Override public String getAllFieldNamesSQL() { return ALL_FIELD_NAMES; }
 
-  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE FLOWCHART(ID INTEGER, EXECUTABLE TEXT NOT NULL, FLOWCHARTNAME TEXT NOT NULL, SCHOOL INTEGER NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
+  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE FLOWCHART(ID INTEGER, EXECUTABLE TEXT NOT NULL, FLOWCHARTNAME TEXT NOT NULL, FLOWCHARTSEQUENCE TEXT NOT NULL, SCHOOL INTEGER NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
   @Override public String getCreateTableSQL() { return CREATE_TABLE_STATEMENT; }
 
   private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS FLOWCHART;";
   @Override public String getDropTableSQL() { return DROP_TABLE_STATEMENT; }
 
-  private static final String INSERT_STATEMENT = "INSERT INTO FLOWCHART(EXECUTABLE, FLOWCHARTNAME, SCHOOL, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  private static final String INSERT_STATEMENT = "INSERT INTO FLOWCHART(EXECUTABLE, FLOWCHARTNAME, FLOWCHARTSEQUENCE, SCHOOL, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
   @Override public String getInsertSQL() { return INSERT_STATEMENT; }
 
-  private static final String UPDATE_STATEMENT = "UPDATE FLOWCHART SET EXECUTABLE = ?, FLOWCHARTNAME = ?, SCHOOL = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
+  private static final String UPDATE_STATEMENT = "UPDATE FLOWCHART SET EXECUTABLE = ?, FLOWCHARTNAME = ?, FLOWCHARTSEQUENCE = ?, SCHOOL = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
   @Override public String getUpdateSQL() { return UPDATE_STATEMENT; }
 
   @Override
@@ -160,14 +169,15 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
   {
     statement.bindString(1, this.executable.toString());
     statement.bindString(2, this.flowchartName);
-    statement.bindLong(3, this.school);
-    statement.bindString(4, DateAdapter.compactDate(this.timestamp));
-    statement.bindString(5, DateAdapter.compactDate(this.changestamp));
-    statement.bindString(6, this.deletestamp.toString());
-    statement.bindLong(7, this.id);
+    statement.bindString(3, this.flowchartSequence);
+    statement.bindLong(4, this.school);
+    statement.bindString(5, DateAdapter.compactDate(this.timestamp));
+    statement.bindString(6, DateAdapter.compactDate(this.changestamp));
+    statement.bindString(7, this.deletestamp.toString());
+    statement.bindLong(8, this.id);
   }
 
-  private static final String SELECT_BY_ID_STATEMENT = "SELECT EXECUTABLE, FLOWCHARTNAME, SCHOOL, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM FLOWCHART WHERE ID=?;";
+  private static final String SELECT_BY_ID_STATEMENT = "SELECT EXECUTABLE, FLOWCHARTNAME, FLOWCHARTSEQUENCE, SCHOOL, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM FLOWCHART WHERE ID=?;";
   @Override public String getSelectByIdSQL() { return SELECT_BY_ID_STATEMENT; }
 
   private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM FLOWCHART WHERE ID=?;";
@@ -329,6 +339,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
       if (recordSQL.deletestamp) return;
       this.executable = recordSQL.executable;
       this.flowchartName = recordSQL.flowchartName;
+      this.flowchartSequence = recordSQL.flowchartSequence;
       this.school = recordSQL.school;
       this.timestamp = recordSQL.timestamp;
       this.changestamp = recordSQL.changestamp;
@@ -357,6 +368,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
       if (recordSQL.changestamp.before(since)) return;
       this.executable = recordSQL.executable;
       this.flowchartName = recordSQL.flowchartName;
+      this.flowchartSequence = recordSQL.flowchartSequence;
       this.school = recordSQL.school;
       this.timestamp = recordSQL.timestamp;
       this.changestamp = recordSQL.changestamp;
@@ -515,10 +527,11 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
   public static final int ID_Id = 0;
   public static final int ID_Executable = 1;
   public static final int ID_FlowchartName = 2;
-  public static final int ID_School = 3;
-  public static final int ID_Timestamp = 4;
-  public static final int ID_Changestamp = 5;
-  public static final int ID_Deletestamp = 6;
+  public static final int ID_FlowchartSequence = 3;
+  public static final int ID_School = 4;
+  public static final int ID_Timestamp = 5;
+  public static final int ID_Changestamp = 6;
+  public static final int ID_Deletestamp = 7;
 
   @Override
   public Object get(final int fieldId)
@@ -528,6 +541,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
       case ID_Id: return id;
       case ID_Executable: return executable;
       case ID_FlowchartName: return flowchartName;
+      case ID_FlowchartSequence: return flowchartSequence;
       case ID_School: return school;
       case ID_Timestamp: return timestamp;
       case ID_Changestamp: return changestamp;
@@ -544,6 +558,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
       case ID_Id: { id = (Long) value; return; }
       case ID_Executable: { executable = (Boolean) value; return; }
       case ID_FlowchartName: { flowchartName = (String) value; return; }
+      case ID_FlowchartSequence: { flowchartSequence = (String) value; return; }
       case ID_School: { school = (Long) value; return; }
       case ID_Timestamp: { timestamp = (Date) value; return; }
       case ID_Changestamp: { changestamp = (Date) value; return; }
@@ -559,6 +574,7 @@ public class FlowchartSQL extends CommonSQL implements Comparable<FlowchartSQL>
       case ID_Id: return "id";
       case ID_Executable: return "executable";
       case ID_FlowchartName: return "flowchartName";
+      case ID_FlowchartSequence: return "flowchartSequence";
       case ID_School: return "school";
       case ID_Timestamp: return "timestamp";
       case ID_Changestamp: return "changestamp";

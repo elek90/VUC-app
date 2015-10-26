@@ -37,7 +37,8 @@ public class ExerciseStepGUI extends CommonGUI<VUCRoskildeBusinessContext, Exerc
 {
 
   public final LinearLayout linearLayoutExerciseStepExerciseStep;
-  public final TextView textViewExerciseStepExerciseTitle;
+  public final TextView textViewExerciseStepStepNumber;
+  public final TextView textViewExerciseStepStepTitle;
   public final TextView textViewExerciseStepPreviousTitle;
   public final ImageButton imageButtonExerciseStepDoPrevious;
   public final TextView textViewExerciseStepNextTitle;
@@ -51,7 +52,8 @@ public class ExerciseStepGUI extends CommonGUI<VUCRoskildeBusinessContext, Exerc
     activity.setContentView(R.layout.layout_exercisestep);
 
     linearLayoutExerciseStepExerciseStep = (LinearLayout) activity.findViewById(R.id.linearLayoutExerciseStepExerciseStep);
-    textViewExerciseStepExerciseTitle = (TextView) activity.findViewById(R.id.textViewExerciseStepExerciseTitle);
+    textViewExerciseStepStepNumber = (TextView) activity.findViewById(R.id.textViewExerciseStepStepNumber);
+    textViewExerciseStepStepTitle = (TextView) activity.findViewById(R.id.textViewExerciseStepStepTitle);
     textViewExerciseStepPreviousTitle = (TextView) activity.findViewById(R.id.textViewExerciseStepPreviousTitle);
     imageButtonExerciseStepDoPrevious = (ImageButton) activity.findViewById(R.id.imageButtonExerciseStepDoPrevious);
     imageButtonExerciseStepDoPrevious.setOnClickListener(this);

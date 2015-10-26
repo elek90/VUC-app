@@ -51,14 +51,13 @@ public class ActionShowImageViewDelegateContext extends ActionShowImageViewDeleg
   @Override
   public void onViewBackActionShowImage(final View view, final PayloadBack payload)
   {
-    // TODO To be filled out by YOU   -- super contains   goReturn(Activity.RESULT_CANCELED);
-    goReturn(Activity.RESULT_CANCELED);
+    goReturn(Activity.RESULT_OK);
   }
 
   @Override
   public void onViewRefreshActionShowImage(final View view, final PayloadRefresh payload)
   {
-    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getText());
+    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
    // TODO To be filled out by YOU
     guictx.imageViewActionShowImageImage.setImageResource(R.drawable.ic_launcher);
   }

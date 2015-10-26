@@ -12,26 +12,22 @@ package dk.lundogbendsen.vucroskilde.android;
 
 import android.app.Activity;
 import android.view.View;
+import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordAudioXML;
+import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordImageXML;
+import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordTextXML;
+import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionSendReportGUI;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionSendReportRootActivity;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionSendReportViewDelegate;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionSendReportViewDelegateRoot;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionSendReportXML;
+import dk.lundogbendsen.vucroskilde.android.generated.AnswerDetailGUI;
+import dk.lundogbendsen.vucroskilde.android.generated.StepXML;
 import dk.lundogbendsen.vucroskilde.android.util.DisplayUtil;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadClick;
 import dk.schoubo.library.android.ui.framework.PayloadCreate;
-import dk.schoubo.library.android.ui.framework.PayloadDestroy;
-import dk.schoubo.library.android.ui.framework.PayloadNewIntent;
-import dk.schoubo.library.android.ui.framework.PayloadPause;
 import dk.schoubo.library.android.ui.framework.PayloadRefresh;
-import dk.schoubo.library.android.ui.framework.PayloadRestart;
-import dk.schoubo.library.android.ui.framework.PayloadRestoreInstanceState;
-import dk.schoubo.library.android.ui.framework.PayloadResume;
-import dk.schoubo.library.android.ui.framework.PayloadSaveInstanceState;
-import dk.schoubo.library.android.ui.framework.PayloadStart;
-import dk.schoubo.library.android.ui.framework.PayloadStop;
-import dk.schoubo.library.android.ui.framework.PayloadWindowFocusChanged;
 
 
 public class ActionSendReportViewDelegateContext extends ActionSendReportViewDelegateRoot
@@ -53,20 +49,52 @@ public class ActionSendReportViewDelegateContext extends ActionSendReportViewDel
   public void onViewClickActionSendReportDoSendImageButton(final View view, final PayloadClick payload)
   {
     // TODO To be filled out by YOU
+    // cook up an email and ship it
+    goReturn(Activity.RESULT_OK);
   }
 
   @Override
   public void onViewBackActionSendReport(final View view, final PayloadBack payload)
   {
-    // TODO To be filled out by YOU   -- super contains   goReturn(Activity.RESULT_CANCELED);
-    goReturn(Activity.RESULT_CANCELED);
+    goReturn(Activity.RESULT_OK);
   }
 
   @Override
   public void onViewRefreshActionSendReport(final View view, final PayloadRefresh payload)
   {
-    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getText());
-   // TODO To be filled out by YOU
+    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
+   
+    guictx.linearLayoutActionSendReportAnswers.removeAllViews();
+for (Object a : busctx.getAnswers(busctx.getCurrentExercise()).values())
+{
+  AnswerDetailGUI answerdetailgui = AnswerDetailGUI.create(activity, guictx, 0L);
+  if (a instanceof ActionRecordTextXML)
+  {
+    ActionRecordTextXML answer = (ActionRecordTextXML)a;
+    StepXML step = busctx.getStepById(answer.getParentStep());
+    answerdetailgui.textViewAnswerDetailStepNumber.setText(step.getStepSequence());
+    answerdetailgui.textViewAnswerDetailStepTitle.setText(step.getStepName());
+  } else
+    if (a instanceof ActionRecordImageXML)
+    {
+      ActionRecordImageXML answer = (ActionRecordImageXML)a;
+      
+    } else
+      if (a instanceof ActionRecordAudioXML)
+      {
+        ActionRecordAudioXML answer = (ActionRecordAudioXML)a;
+        
+      } else
+        if (a instanceof ActionRecordVideoXML)
+        {
+          ActionRecordVideoXML answer = (ActionRecordVideoXML)a;
+          
+        } else
+        {
+          throw new RuntimeException("Answer can only be one of the ActionRecord... types, but was "+a.getClass().getName());
+        }
+}
+    
   }
 
   @Override
@@ -75,64 +103,35 @@ public class ActionSendReportViewDelegateContext extends ActionSendReportViewDel
     action = busctx.<ActionSendReportXML> getCurrentAction(busctx.getCurrentStepIfSelected());
   }
 
+
+  
+  
+  
+  
   @Override
-  public void onViewStartActionSendReport(final View view, final PayloadStart payload)
+  public void onViewClickChildAnswerDetailDoStepImageButton(final View view, final PayloadClick payload)
   {
-    // TODO To be filled out by YOU   -- super contains nothing
+    // call the step in edit mode
+    // TODO Auto-generated method stub
+    
   }
 
   @Override
-  public void onViewResumeActionSendReport(final View view, final PayloadResume payload)
+  public void onViewClickChildAnswerDetailViewStepImageButton(final View view, final PayloadClick payload)
   {
-    // TODO To be filled out by YOU   -- super contains nothing
+    // call the step up in view mode
+    // TODO Auto-generated method stub
+    
   }
 
   @Override
-  public void onViewPauseActionSendReport(final View view, final PayloadPause payload)
+  public void onViewClickChildAnswerDetailDeleteStepImageButton(final View view, final PayloadClick payload)
   {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewStopActionSendReport(final View view, final PayloadStop payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewDestroyActionSendReport(final View view, final PayloadDestroy payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewWindowFocusChangedActionSendReport(final View view, final PayloadWindowFocusChanged payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewRestartActionSendReport(final View view, final PayloadRestart payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewNewIntentActionSendReport(final View view, final PayloadNewIntent payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewSaveInstanceStateActionSendReport(final View view, final PayloadSaveInstanceState payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewRestoreInstanceStateActionSendReport(final View view, final PayloadRestoreInstanceState payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
+//    remove answer
+    // set icon to inactive
+    
+    // TODO Auto-generated method stub
+    
   }
 
 

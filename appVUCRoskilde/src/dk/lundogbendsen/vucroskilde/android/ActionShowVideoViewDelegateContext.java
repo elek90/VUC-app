@@ -55,7 +55,7 @@ public class ActionShowVideoViewDelegateContext extends ActionShowVideoViewDeleg
   @Override
   public void onViewRefreshActionShowVideo(final View view, final PayloadRefresh payload)
   {
-    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getText());
+    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
     
     busctx.setCurrentVideo(action.getVideoRef());
 
@@ -130,9 +130,6 @@ public class ActionShowVideoViewDelegateContext extends ActionShowVideoViewDeleg
   public void onViewBackActionShowVideo(final View view, final PayloadBack payload)
   {
     guictx.videoViewActionShowVideoVideo.stopPlayback();
-    
-    busctx.setCurrentStep(null);
-    busctx.setCurrentVideo(null);
     goReturn(Activity.RESULT_OK);
   }
 

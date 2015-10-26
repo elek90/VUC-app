@@ -29,6 +29,8 @@ model VUCRoskilde
     field String flowchartName doc "Flowchart Name|da:Rutediagramnavn", "Name of the flowchart|da:Navn på rutediagrammet"
           width 10.0 option KEY;
 
+    field String flowchartSequence doc "Sequence Number|da:Sekvensnummer", "The sequence number of the flowchart|da:Sekvensnummer på rutediagrammet";
+
     field School school doc "School|da:School", "The school that created the flowchart|da:Den skole der har lavet det pågældende Flowchart"
           option FOREIGNKEY;
 
@@ -39,10 +41,11 @@ model VUCRoskilde
   class Step doc "Step|da:Trin", "Steps|da:Trin", "A step in a flowchart|da:Et trin i et rutediagram"
         option TABLE, USE ("Timestamped")
   {
-    field Flowchart parentFlowchart doc "Flowchart|da:Rutediagram", "Name of the Flowchart this step belongs to|da:Navn på det rutediagram trinnet er en del af"
+    field Flowchart parentFlowchart doc "Flowchart|da:Rutediagram", "The Flowchart this step belongs to|da:Det rutediagram trinnet er en del af"
           option FOREIGNKEY;
 
-    field String text doc "Text|da:Tekst", "The text of the step|da:Tekst til trinnet";
+    field String stepName doc "Name|da:Navn", "The name of the step|da:Navn på trinnet";
+    field String stepSequence doc "Sequence Number|da:Sekvensnummer", "The sequence number of the step|da:Sekvensnummer på trinnet";
 
     field String stepType doc "Step Type|da:Trintype", "The type of the step|da:Trinnets type";
 // option ENUMERATION_FROM_CONSTANTS("FLYGTIGT", "BEKENDTMED", "ANVENDER", "FORTROLIGMED", "EXPERT")
@@ -59,6 +62,8 @@ model VUCRoskilde
           option FOREIGNKEY;
 
     field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
 
   class ActionShowImage doc "Action to Show Image|da:Handling der viser billede", "Actions to Show Images|da:Handlinger der viser billeder", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
@@ -68,6 +73,8 @@ model VUCRoskilde
           option FOREIGNKEY;
 
     field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
 
  class ActionShowAudio doc "Action to Show Audio|da:Handling der afspiller lyd", "Actions to Show Audios|da:Handlinger der afspiller lyde", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
@@ -77,9 +84,11 @@ model VUCRoskilde
           option FOREIGNKEY;
 
     field String audioRef doc "Audio|da:Lyd", "The sound of the action|da:Lyd til handlingen";
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
 
-  class ActionShowDescription doc "Action to Show Description|da:Handling der viser forklaring", "Actions to Show Descriptions|da:Handlinger der viser forklaringer", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+  class ActionShowText doc "Action to Show Description|da:Handling der viser forklaring", "Actions to Show Descriptions|da:Handlinger der viser forklaringer", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
         option TABLE, USE ("Timestamped")
   {
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
@@ -95,6 +104,8 @@ model VUCRoskilde
           option FOREIGNKEY;
 
     field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
 
   class ActionRecordImage doc "Action to Record Image|da:Handling der optager billede", "Actions to Record Images|da:Handlinger der optager billeder", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
@@ -104,6 +115,8 @@ model VUCRoskilde
           option FOREIGNKEY;
 
     field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
 
   class ActionRecordAudio doc "Action to Record Audio|da:Handling der optager lyd", "Actions to Record Audios|da:Handlinger der optager lyde", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
@@ -113,9 +126,11 @@ model VUCRoskilde
           option FOREIGNKEY;
 
     field String audioRef doc "Audio|da:Lyd", "The sound of the action|da:Lyd til handlingen";
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
 
-  class ActionRecordDescription doc "Action to Record Description|da:Handling der optager forklaring", "Actions to Record Descriptions|da:Handlinger der optager forklaringer", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
+  class ActionRecordText doc "Action to Record Description|da:Handling der optager forklaring", "Actions to Record Descriptions|da:Handlinger der optager forklaringer", "The action taken by a step in a flowchart|da:Den handling, trinnet i et rutediagram medfører"
         option TABLE, USE ("Timestamped")
   {
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
@@ -352,16 +367,27 @@ model VUCRoskilde
     field ImageButton DoSave doc "Save|da:Gem";
   }
 
-  view client ActionSendReport doc "Send Report|da:Send rapport", "" option ANDROIDGUI
+  view client ActionSendReport doc "Send Report|da:Send rapport", "" option ANDROIDGUI, HASCHILD(AnswerDetail)
   {
     field LinearLayout Answers doc "Answers for the report|da:Svar til rapporten";
+    
     field ImageButton DoSend doc "Send|da:Send";
+  }
+
+  view client AnswerDetail doc "Answer Detail|da:Opgavetrinsvar", "" option ANDROIDGUI, ISCHILD(Long)
+  {
+    field TextView StepNumber doc "[Number]|da:[Nummer]";
+    field TextView StepTitle doc "[Title]|da:[Navn]";
+    
+    field ImageButton DoStep doc "Run|da:Start";
+    field ImageButton ViewStep doc "View|da:Se";
+    field ImageButton DeleteStep doc "Delete|da:Slet";
   }
 
   view client StepDetail doc "Step Detail|da:Opgavetrin", "" option ANDROIDGUI, ISCHILD(Long)
   {
     field TextView StepNumber doc "[Number]|da:[Nummer]";
-    field TextView StepTitle doc "[Flowchart]|da:[Rutediagram]";
+    field TextView StepTitle doc "[Title]|da:[Navn]";
     
     field ImageButton DoStep doc "Run|da:Start";
   }
@@ -380,7 +406,8 @@ model VUCRoskilde
     calls ActionSendReport;
   
     field LinearLayout ExerciseStep;
-    field TextView ExerciseTitle doc "[Exercise]|da:[Opgave]";
+    field TextView StepNumber doc "[Number]|da:[Nummer]";
+    field TextView StepTitle doc "[Title]|da:[Navn]";
 
     field TextView PreviousTitle doc "Previous|da:Forrige";
     field ImageButton DoPrevious doc "Previous|da:Forrige";

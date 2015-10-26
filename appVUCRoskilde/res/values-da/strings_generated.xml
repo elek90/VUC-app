@@ -19,6 +19,7 @@
   <string name="titleActionShowImageActivity">Vis billede</string>
   <string name="titleActionShowTextActivity">Vis forklaring</string>
   <string name="titleActionShowVideoActivity">Afspil video</string>
+  <string name="titleAnswerDetailActivity">Opgavetrinsvar</string>
   <string name="titleExerciseOverviewActivity">Opgavetrin</string>
   <string name="titleExerciseStepActivity">Opgavetrin</string>
   <string name="titleFlowchartDetailActivity">Opgave</string>
@@ -39,6 +40,9 @@
   <string name="buttonActionRecordVideoDoSave">Gem</string>
   <string name="buttonActionSendReportDoSend">Send</string>
   <string name="buttonActionShowAudioDoPlay">Afspil lyd</string>
+  <string name="buttonAnswerDetailDeleteStep">Slet</string>
+  <string name="buttonAnswerDetailDoStep">Start</string>
+  <string name="buttonAnswerDetailViewStep">Se</string>
   <string name="buttonExerciseStepDoNext">Næste</string>
   <string name="buttonExerciseStepDoPrevious">Forrige</string>
   <string name="buttonFlowchartDetailDoExercise">Start</string>
@@ -49,12 +53,15 @@
   <string name="labelActionShowImageImage">Billede</string>
   <string name="labelActionShowTextText">Forklaring</string>
   <string name="labelActionShowVideoVideo">Video</string>
+  <string name="labelAnswerDetailStepNumber">[Nummer]</string>
+  <string name="labelAnswerDetailStepTitle">[Navn]</string>
   <string name="labelExerciseOverviewExerciseOverview"></string>
   <string name="labelExerciseOverviewExerciseStep">[Opgavetrin]</string>
   <string name="labelExerciseOverviewExerciseTitle">[Opgave]</string>
-  <string name="labelExerciseStepExerciseTitle">[Opgave]</string>
   <string name="labelExerciseStepNextTitle">Næste</string>
   <string name="labelExerciseStepPreviousTitle">Forrige</string>
+  <string name="labelExerciseStepStepNumber">[Nummer]</string>
+  <string name="labelExerciseStepStepTitle">[Navn]</string>
   <string name="labelFlowchartDetailFlowchartTitle">[Rutediagram]</string>
   <string name="labelSetupTeacher">Kør lærerens program</string>
   <string name="labelSplashForAndroid">for Android™</string>
@@ -63,7 +70,7 @@
   <string name="labelSplashVUCLogo">Logo</string>
   <string name="labelSplashVersion">Version %s</string>
   <string name="labelStepDetailStepNumber">[Nummer]</string>
-  <string name="labelStepDetailStepTitle">[Rutediagram]</string>
+  <string name="labelStepDetailStepTitle">[Navn]</string>
   <string name="menuitemExerciseStepShowOverview">Vis oversigt</string>
   <string name="menuitemFlowchartMainAbout">Om</string>
   <string name="menuitemFlowchartMainSetup">Opsætning</string>

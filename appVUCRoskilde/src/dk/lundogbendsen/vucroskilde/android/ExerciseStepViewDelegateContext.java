@@ -10,6 +10,7 @@
 package dk.lundogbendsen.vucroskilde.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -76,7 +77,7 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
     StepXML stepPrevious = busctx.getAboveStepPrevious();
     if (stepPrevious != null)
     {
-      guictx.textViewExerciseStepPreviousTitle.setText(stepPrevious.getText());
+      guictx.textViewExerciseStepPreviousTitle.setText(stepPrevious.getStepName());
       guictx.textViewExerciseStepPreviousTitle.setVisibility(View.VISIBLE);
       guictx.imageButtonExerciseStepDoPrevious.setVisibility(View.VISIBLE);
     }
@@ -89,7 +90,7 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
     StepXML stepNext = busctx.getAboveStepNext();
     if (stepNext != null)
     {
-      guictx.textViewExerciseStepNextTitle.setText(stepNext.getText());
+      guictx.textViewExerciseStepNextTitle.setText(stepNext.getStepName());
       guictx.textViewExerciseStepNextTitle.setVisibility(View.VISIBLE);
       guictx.imageButtonExerciseStepDoNext.setVisibility(View.VISIBLE);
     }
@@ -102,7 +103,9 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
 
   private void refreshGUIFlowchart(final FlowchartXML flowchart)
   {
-    guictx.textViewExerciseStepExerciseTitle.setText(flowchart.getFlowchartName());
+    String st = flowchart.getFlowchartSequence(); // busctx.getSelectedStepsString(null);
+    guictx.textViewExerciseStepStepNumber.setText(st);
+    guictx.textViewExerciseStepStepTitle.setText(flowchart.getFlowchartName());
 
     // Log.i("--FLOW--", "Viser steps for flowchart " + flowchart.getFlowchartName());
 
@@ -112,12 +115,13 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
     {
       StepDetailGUI stepdetailgui = StepDetailGUI.create(activity, guictx, i);
 
-      stepdetailgui.textViewStepDetailStepNumber.setText("" + (i + 1));
-      stepdetailgui.textViewStepDetailStepTitle.setText(step.getText());
+      String s = step.getStepSequence(); // busctx.getSelectedStepsString(i);
+      stepdetailgui.textViewStepDetailStepNumber.setText(s);
+      stepdetailgui.textViewStepDetailStepTitle.setText(step.getStepName());
 
       StepType steptype = StepType.valueOf(step.getStepType());
       stepdetailgui.imageButtonStepDetailDoStep.setImageResource(steptype.getResId());
-      
+
       // Log.i("--FLOW--", "Viser step " + (i + 1) + " af " + flowchart.getSteps().size() + ": " + step.getText());
 
       guictx.linearLayoutExerciseStepExerciseStep.addView(stepdetailgui.detail);
@@ -183,7 +187,7 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
           goSubActionShowAudio();
           break;
         }
-        case SHOW_PICTURE:
+        case SHOW_IMAGE:
         {
           goSubActionShowImage();
           break;
@@ -235,4 +239,125 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
     }
   }
 
+  
+  
+ 
+  
+  
+  private void handleReturnFromAction()
+  {
+    busctx.setCurrentStep(null);
+    busctx.setCurrentVideo(null);
+    activity.refreshGUI();
+  }
+  
+  @Override
+  public void onReturnFromActionShowVideoOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionShowVideoCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionShowTextOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionShowTextCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionShowAudioOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionShowAudioCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionShowImageOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionShowImageCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionRecordVideoOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionRecordVideoCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionRecordTextOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionRecordTextCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionRecordAudioOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionRecordAudioCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionRecordImageOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionRecordImageCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionSendReportOK(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  @Override
+  public void onReturnFromActionSendReportCancelled(final Intent data)
+  {
+    handleReturnFromAction();
+  }
+
+  
 }

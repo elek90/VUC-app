@@ -30,6 +30,9 @@ import dk.schoubo.library.android.ui.framework.PayloadWindowFocusChanged;
 public interface ActionSendReportViewDelegate
 {
   public void onViewClickActionSendReportDoSendImageButton(final View view, final PayloadClick payload);
+  public void onViewClickChildAnswerDetailDoStepImageButton(final View view, final PayloadClick payload);
+  public void onViewClickChildAnswerDetailViewStepImageButton(final View view, final PayloadClick payload);
+  public void onViewClickChildAnswerDetailDeleteStepImageButton(final View view, final PayloadClick payload);
   public void onViewBackActionSendReport(final View view, final PayloadBack payload);
   public void onViewRefreshActionSendReport(final View view, final PayloadRefresh payload);
   public void onViewCreateActionSendReport(final View view, final PayloadCreate payload);

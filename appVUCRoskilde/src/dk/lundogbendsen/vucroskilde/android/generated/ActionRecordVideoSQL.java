@@ -34,6 +34,10 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
   public String getVideoRef() { return videoRef; }
   public void setVideoRef(final String videoRef) { this.videoRef = videoRef; }
 
+  String description;
+  public String getDescription() { return description; }
+  public void setDescription(final String description) { this.description = description; }
+
   Date timestamp;
   public Date getTimestamp() { return timestamp; }
 
@@ -48,6 +52,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     super();
     this.parentStep = 0L;
     this.videoRef = "";
+    this.description = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
     this.deletestamp = false;
@@ -83,6 +88,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     recordSQL.id = this.getId();
     recordSQL.parentStep = this.parentStep;
     recordSQL.videoRef = this.videoRef;
+    recordSQL.description = this.description;
     recordSQL.timestamp = this.timestamp;
     recordSQL.changestamp = this.changestamp;
     recordSQL.deletestamp = this.deletestamp;
@@ -97,6 +103,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
         "videoRef=" + videoRef + ", " +
+        "description=" + description + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
         "deletestamp=" + deletestamp +
@@ -110,6 +117,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     recordXML.setId(this.getId());
     recordXML.setParentStep(this.getParentStep());
     recordXML.setVideoRef(this.getVideoRef());
+    recordXML.setDescription(this.getDescription());
     recordXML.setTimestamp(this.getTimestamp());
     recordXML.setChangestamp(this.getChangestamp());
     recordXML.setDeletestamp(this.isDeletestamp());
@@ -123,6 +131,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     recordSQL.id = cursor.getLong(cursor.getColumnIndex("ID"));
     recordSQL.parentStep = cursor.getLong(cursor.getColumnIndex("PARENTSTEP"));
     recordSQL.videoRef = cursor.getString(cursor.getColumnIndex("VIDEOREF"));
+    recordSQL.description = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
     recordSQL.timestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("TIMESTAMP")));
     recordSQL.changestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("CHANGESTAMP")));
     recordSQL.deletestamp = Boolean.valueOf(cursor.getString(cursor.getColumnIndex("DELETESTAMP")));
@@ -132,19 +141,19 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
   private static final String TABLE_NAME = "ACTIONRECORDVIDEO";
   @Override public String getTableNameSQL() { return TABLE_NAME; }
 
-  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, VIDEOREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
+  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, VIDEOREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
   @Override public String getAllFieldNamesSQL() { return ALL_FIELD_NAMES; }
 
-  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ACTIONRECORDVIDEO(ID INTEGER, PARENTSTEP INTEGER NOT NULL, VIDEOREF TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
+  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ACTIONRECORDVIDEO(ID INTEGER, PARENTSTEP INTEGER NOT NULL, VIDEOREF TEXT NOT NULL, DESCRIPTION TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
   @Override public String getCreateTableSQL() { return CREATE_TABLE_STATEMENT; }
 
   private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS ACTIONRECORDVIDEO;";
   @Override public String getDropTableSQL() { return DROP_TABLE_STATEMENT; }
 
-  private static final String INSERT_STATEMENT = "INSERT INTO ACTIONRECORDVIDEO(PARENTSTEP, VIDEOREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?);";
+  private static final String INSERT_STATEMENT = "INSERT INTO ACTIONRECORDVIDEO(PARENTSTEP, VIDEOREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
   @Override public String getInsertSQL() { return INSERT_STATEMENT; }
 
-  private static final String UPDATE_STATEMENT = "UPDATE ACTIONRECORDVIDEO SET PARENTSTEP = ?, VIDEOREF = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
+  private static final String UPDATE_STATEMENT = "UPDATE ACTIONRECORDVIDEO SET PARENTSTEP = ?, VIDEOREF = ?, DESCRIPTION = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
   @Override public String getUpdateSQL() { return UPDATE_STATEMENT; }
 
   @Override
@@ -152,13 +161,14 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
   {
     statement.bindLong(1, this.parentStep);
     statement.bindString(2, this.videoRef);
-    statement.bindString(3, DateAdapter.compactDate(this.timestamp));
-    statement.bindString(4, DateAdapter.compactDate(this.changestamp));
-    statement.bindString(5, this.deletestamp.toString());
-    statement.bindLong(6, this.id);
+    statement.bindString(3, this.description);
+    statement.bindString(4, DateAdapter.compactDate(this.timestamp));
+    statement.bindString(5, DateAdapter.compactDate(this.changestamp));
+    statement.bindString(6, this.deletestamp.toString());
+    statement.bindLong(7, this.id);
   }
 
-  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, VIDEOREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ACTIONRECORDVIDEO WHERE ID=?;";
+  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, VIDEOREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ACTIONRECORDVIDEO WHERE ID=?;";
   @Override public String getSelectByIdSQL() { return SELECT_BY_ID_STATEMENT; }
 
   private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM ACTIONRECORDVIDEO WHERE ID=?;";
@@ -300,6 +310,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
       if (recordSQL.deletestamp) return;
       this.parentStep = recordSQL.parentStep;
       this.videoRef = recordSQL.videoRef;
+      this.description = recordSQL.description;
       this.timestamp = recordSQL.timestamp;
       this.changestamp = recordSQL.changestamp;
       this.deletestamp = recordSQL.deletestamp;
@@ -327,6 +338,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
       if (recordSQL.changestamp.before(since)) return;
       this.parentStep = recordSQL.parentStep;
       this.videoRef = recordSQL.videoRef;
+      this.description = recordSQL.description;
       this.timestamp = recordSQL.timestamp;
       this.changestamp = recordSQL.changestamp;
       this.deletestamp = recordSQL.deletestamp;
@@ -440,9 +452,10 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
   public static final int ID_Id = 0;
   public static final int ID_ParentStep = 1;
   public static final int ID_VideoRef = 2;
-  public static final int ID_Timestamp = 3;
-  public static final int ID_Changestamp = 4;
-  public static final int ID_Deletestamp = 5;
+  public static final int ID_Description = 3;
+  public static final int ID_Timestamp = 4;
+  public static final int ID_Changestamp = 5;
+  public static final int ID_Deletestamp = 6;
 
   @Override
   public Object get(final int fieldId)
@@ -452,6 +465,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
       case ID_Id: return id;
       case ID_ParentStep: return parentStep;
       case ID_VideoRef: return videoRef;
+      case ID_Description: return description;
       case ID_Timestamp: return timestamp;
       case ID_Changestamp: return changestamp;
       case ID_Deletestamp: return deletestamp;
@@ -467,6 +481,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
       case ID_Id: { id = (Long) value; return; }
       case ID_ParentStep: { parentStep = (Long) value; return; }
       case ID_VideoRef: { videoRef = (String) value; return; }
+      case ID_Description: { description = (String) value; return; }
       case ID_Timestamp: { timestamp = (Date) value; return; }
       case ID_Changestamp: { changestamp = (Date) value; return; }
       case ID_Deletestamp: { deletestamp = (Boolean) value; return; }
@@ -481,6 +496,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
       case ID_Id: return "id";
       case ID_ParentStep: return "parentStep";
       case ID_VideoRef: return "videoRef";
+      case ID_Description: return "description";
       case ID_Timestamp: return "timestamp";
       case ID_Changestamp: return "changestamp";
       case ID_Deletestamp: return "deletestamp";

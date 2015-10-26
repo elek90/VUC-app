@@ -30,9 +30,13 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
   public void setParentFlowchart(final FlowchartSQL parentFlowchart) { this.parentFlowchart = parentFlowchart.getId(); }
   public void setParentFlowchart(final Long parentFlowchartId) { this.parentFlowchart = parentFlowchartId; }
 
-  String text;
-  public String getText() { return text; }
-  public void setText(final String text) { this.text = text; }
+  String stepName;
+  public String getStepName() { return stepName; }
+  public void setStepName(final String stepName) { this.stepName = stepName; }
+
+  String stepSequence;
+  public String getStepSequence() { return stepSequence; }
+  public void setStepSequence(final String stepSequence) { this.stepSequence = stepSequence; }
 
   String stepType;
   public String getStepType() { return stepType; }
@@ -59,7 +63,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
   {
     super();
     this.parentFlowchart = 0L;
-    this.text = "";
+    this.stepName = "";
+    this.stepSequence = "";
     this.stepType = "";
     this.actionId = 0L;
     this.subflowchartId = 0L;
@@ -97,7 +102,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     StepSQL recordSQL = new StepSQL();
     recordSQL.id = this.getId();
     recordSQL.parentFlowchart = this.parentFlowchart;
-    recordSQL.text = this.text;
+    recordSQL.stepName = this.stepName;
+    recordSQL.stepSequence = this.stepSequence;
     recordSQL.stepType = this.stepType;
     recordSQL.actionId = this.actionId;
     recordSQL.subflowchartId = this.subflowchartId;
@@ -114,7 +120,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
       "[" +
         "id=" + id + ", " +
         "parentFlowchart=" + parentFlowchart + ", " +
-        "text=" + text + ", " +
+        "stepName=" + stepName + ", " +
+        "stepSequence=" + stepSequence + ", " +
         "stepType=" + stepType + ", " +
         "actionId=" + actionId + ", " +
         "subflowchartId=" + subflowchartId + ", " +
@@ -130,7 +137,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     StepXML recordXML = StepXML.create();
     recordXML.setId(this.getId());
     recordXML.setParentFlowchart(this.getParentFlowchart());
-    recordXML.setText(this.getText());
+    recordXML.setStepName(this.getStepName());
+    recordXML.setStepSequence(this.getStepSequence());
     recordXML.setStepType(this.getStepType());
     recordXML.setActionId(this.getActionId());
     recordXML.setSubflowchartId(this.getSubflowchartId());
@@ -146,7 +154,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     StepSQL recordSQL = new StepSQL();
     recordSQL.id = cursor.getLong(cursor.getColumnIndex("ID"));
     recordSQL.parentFlowchart = cursor.getLong(cursor.getColumnIndex("PARENTFLOWCHART"));
-    recordSQL.text = cursor.getString(cursor.getColumnIndex("TEXT"));
+    recordSQL.stepName = cursor.getString(cursor.getColumnIndex("STEPNAME"));
+    recordSQL.stepSequence = cursor.getString(cursor.getColumnIndex("STEPSEQUENCE"));
     recordSQL.stepType = cursor.getString(cursor.getColumnIndex("STEPTYPE"));
     recordSQL.actionId = cursor.getLong(cursor.getColumnIndex("ACTIONID"));
     recordSQL.subflowchartId = cursor.getLong(cursor.getColumnIndex("SUBFLOWCHARTID"));
@@ -159,36 +168,37 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
   private static final String TABLE_NAME = "STEP";
   @Override public String getTableNameSQL() { return TABLE_NAME; }
 
-  private static final String ALL_FIELD_NAMES = "ID, PARENTFLOWCHART, TEXT, STEPTYPE, ACTIONID, SUBFLOWCHARTID, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
+  private static final String ALL_FIELD_NAMES = "ID, PARENTFLOWCHART, STEPNAME, STEPSEQUENCE, STEPTYPE, ACTIONID, SUBFLOWCHARTID, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
   @Override public String getAllFieldNamesSQL() { return ALL_FIELD_NAMES; }
 
-  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE STEP(ID INTEGER, PARENTFLOWCHART INTEGER NOT NULL, TEXT TEXT NOT NULL, STEPTYPE TEXT NOT NULL, ACTIONID INTEGER NOT NULL, SUBFLOWCHARTID INTEGER NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
+  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE STEP(ID INTEGER, PARENTFLOWCHART INTEGER NOT NULL, STEPNAME TEXT NOT NULL, STEPSEQUENCE TEXT NOT NULL, STEPTYPE TEXT NOT NULL, ACTIONID INTEGER NOT NULL, SUBFLOWCHARTID INTEGER NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
   @Override public String getCreateTableSQL() { return CREATE_TABLE_STATEMENT; }
 
   private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS STEP;";
   @Override public String getDropTableSQL() { return DROP_TABLE_STATEMENT; }
 
-  private static final String INSERT_STATEMENT = "INSERT INTO STEP(PARENTFLOWCHART, TEXT, STEPTYPE, ACTIONID, SUBFLOWCHARTID, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+  private static final String INSERT_STATEMENT = "INSERT INTO STEP(PARENTFLOWCHART, STEPNAME, STEPSEQUENCE, STEPTYPE, ACTIONID, SUBFLOWCHARTID, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
   @Override public String getInsertSQL() { return INSERT_STATEMENT; }
 
-  private static final String UPDATE_STATEMENT = "UPDATE STEP SET PARENTFLOWCHART = ?, TEXT = ?, STEPTYPE = ?, ACTIONID = ?, SUBFLOWCHARTID = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
+  private static final String UPDATE_STATEMENT = "UPDATE STEP SET PARENTFLOWCHART = ?, STEPNAME = ?, STEPSEQUENCE = ?, STEPTYPE = ?, ACTIONID = ?, SUBFLOWCHARTID = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
   @Override public String getUpdateSQL() { return UPDATE_STATEMENT; }
 
   @Override
   public void bindForInsertOrUpdate(final SQLiteStatement statement)
   {
     statement.bindLong(1, this.parentFlowchart);
-    statement.bindString(2, this.text);
-    statement.bindString(3, this.stepType);
-    statement.bindLong(4, this.actionId);
-    statement.bindLong(5, this.subflowchartId);
-    statement.bindString(6, DateAdapter.compactDate(this.timestamp));
-    statement.bindString(7, DateAdapter.compactDate(this.changestamp));
-    statement.bindString(8, this.deletestamp.toString());
-    statement.bindLong(9, this.id);
+    statement.bindString(2, this.stepName);
+    statement.bindString(3, this.stepSequence);
+    statement.bindString(4, this.stepType);
+    statement.bindLong(5, this.actionId);
+    statement.bindLong(6, this.subflowchartId);
+    statement.bindString(7, DateAdapter.compactDate(this.timestamp));
+    statement.bindString(8, DateAdapter.compactDate(this.changestamp));
+    statement.bindString(9, this.deletestamp.toString());
+    statement.bindLong(10, this.id);
   }
 
-  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTFLOWCHART, TEXT, STEPTYPE, ACTIONID, SUBFLOWCHARTID, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM STEP WHERE ID=?;";
+  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTFLOWCHART, STEPNAME, STEPSEQUENCE, STEPTYPE, ACTIONID, SUBFLOWCHARTID, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM STEP WHERE ID=?;";
   @Override public String getSelectByIdSQL() { return SELECT_BY_ID_STATEMENT; }
 
   private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM STEP WHERE ID=?;";
@@ -329,7 +339,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     {
       if (recordSQL.deletestamp) return;
       this.parentFlowchart = recordSQL.parentFlowchart;
-      this.text = recordSQL.text;
+      this.stepName = recordSQL.stepName;
+      this.stepSequence = recordSQL.stepSequence;
       this.stepType = recordSQL.stepType;
       this.actionId = recordSQL.actionId;
       this.subflowchartId = recordSQL.subflowchartId;
@@ -359,7 +370,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     {
       if (recordSQL.changestamp.before(since)) return;
       this.parentFlowchart = recordSQL.parentFlowchart;
-      this.text = recordSQL.text;
+      this.stepName = recordSQL.stepName;
+      this.stepSequence = recordSQL.stepSequence;
       this.stepType = recordSQL.stepType;
       this.actionId = recordSQL.actionId;
       this.subflowchartId = recordSQL.subflowchartId;
@@ -475,13 +487,14 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
 
   public static final int ID_Id = 0;
   public static final int ID_ParentFlowchart = 1;
-  public static final int ID_Text = 2;
-  public static final int ID_StepType = 3;
-  public static final int ID_ActionId = 4;
-  public static final int ID_SubflowchartId = 5;
-  public static final int ID_Timestamp = 6;
-  public static final int ID_Changestamp = 7;
-  public static final int ID_Deletestamp = 8;
+  public static final int ID_StepName = 2;
+  public static final int ID_StepSequence = 3;
+  public static final int ID_StepType = 4;
+  public static final int ID_ActionId = 5;
+  public static final int ID_SubflowchartId = 6;
+  public static final int ID_Timestamp = 7;
+  public static final int ID_Changestamp = 8;
+  public static final int ID_Deletestamp = 9;
 
   @Override
   public Object get(final int fieldId)
@@ -490,7 +503,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     {
       case ID_Id: return id;
       case ID_ParentFlowchart: return parentFlowchart;
-      case ID_Text: return text;
+      case ID_StepName: return stepName;
+      case ID_StepSequence: return stepSequence;
       case ID_StepType: return stepType;
       case ID_ActionId: return actionId;
       case ID_SubflowchartId: return subflowchartId;
@@ -508,7 +522,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     {
       case ID_Id: { id = (Long) value; return; }
       case ID_ParentFlowchart: { parentFlowchart = (Long) value; return; }
-      case ID_Text: { text = (String) value; return; }
+      case ID_StepName: { stepName = (String) value; return; }
+      case ID_StepSequence: { stepSequence = (String) value; return; }
       case ID_StepType: { stepType = (String) value; return; }
       case ID_ActionId: { actionId = (Long) value; return; }
       case ID_SubflowchartId: { subflowchartId = (Long) value; return; }
@@ -525,7 +540,8 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     {
       case ID_Id: return "id";
       case ID_ParentFlowchart: return "parentFlowchart";
-      case ID_Text: return "text";
+      case ID_StepName: return "stepName";
+      case ID_StepSequence: return "stepSequence";
       case ID_StepType: return "stepType";
       case ID_ActionId: return "actionId";
       case ID_SubflowchartId: return "subflowchartId";

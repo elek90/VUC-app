@@ -14,19 +14,29 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
-  <LinearLayout
-    android:id="@+id/linearLayoutActionSendReportAnswers"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-  </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/linearLayoutActionSendReportAnswers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
   <ImageButton
-    android:id="@+id/imageButtonActionSendReportDoSend"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/MA.Button"
-    android:layout_gravity="center_horizontal"
-    android:contentDescription="@string/buttonActionSendReportDoSend"
-    android:text="@string/buttonActionSendReportDoSend"
-    android:src="@drawable/ic_launcher" />
+      android:id="@+id/imageButtonActionSendReportDoSend"
+      style="@style/MA.Button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:contentDescription="@string/buttonActionSendReportDoSend"
+      android:src="@drawable/ic_send_black_24dp"
+      android:text="@string/buttonActionSendReportDoSend" />
+
 </LinearLayout>

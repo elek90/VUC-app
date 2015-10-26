@@ -18,7 +18,7 @@ import org.simpleframework.xml.*;
 
 
 @Root
-public class ActionRecordDescriptionXML extends CommonXML implements Serializable
+public class ActionRecordTextXML extends CommonXML implements Serializable
 {
   @Element
   Long parentStep;
@@ -45,7 +45,7 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
   public Boolean isDeletestamp() { return deletestamp; }
   public void setDeletestamp(final Boolean deletestamp) { this.deletestamp = deletestamp; }
 
-  protected ActionRecordDescriptionXML()
+  protected ActionRecordTextXML()
   {
     super();
     this.parentStep = 0L;
@@ -55,17 +55,17 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
     this.deletestamp = false;
   }
 
-  public static ActionRecordDescriptionXML create()
+  public static ActionRecordTextXML create()
   {
-    return new ActionRecordDescriptionXML();
+    return new ActionRecordTextXML();
   }
 
-  public static final ActionRecordDescriptionXML BLANK = ActionRecordDescriptionXML.create();
-  @Override public ActionRecordDescriptionXML getBlank() { return BLANK; }
+  public static final ActionRecordTextXML BLANK = ActionRecordTextXML.create();
+  @Override public ActionRecordTextXML getBlank() { return BLANK; }
 
-  @Override public ActionRecordDescriptionXML copy()
+  @Override public ActionRecordTextXML copy()
   {
-    ActionRecordDescriptionXML n = ActionRecordDescriptionXML.create();
+    ActionRecordTextXML n = ActionRecordTextXML.create();
     n.id = this.id;
     n.parentStep = this.parentStep;
     n.description = this.description;
@@ -78,7 +78,7 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
   @Override
   public String toString()
   {
-    return "ActionRecordDescriptionXML" +
+    return "ActionRecordTextXML" +
       "[" +
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
@@ -90,9 +90,9 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
   }
 
   @Override
-  public ActionRecordDescriptionSQL asSQL()
+  public ActionRecordTextSQL asSQL()
   {
-    ActionRecordDescriptionSQL recordSQL = new ActionRecordDescriptionSQL();
+    ActionRecordTextSQL recordSQL = new ActionRecordTextSQL();
     recordSQL.id = this.id; 
     recordSQL.parentStep = this.parentStep; 
     recordSQL.description = this.description; 
@@ -102,39 +102,39 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
     return recordSQL;
   }
 
-  public static ActionRecordDescriptionXML query(final Long parentStep)
+  public static ActionRecordTextXML query(final Long parentStep)
   {
-    ActionRecordDescriptionSQL recordSQL = ActionRecordDescriptionSQL.query(parentStep);
+    ActionRecordTextSQL recordSQL = ActionRecordTextSQL.query(parentStep);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionRecordDescriptionXML queryOrderBy(final Long parentStep, final String order)
+  public static ActionRecordTextXML queryOrderBy(final Long parentStep, final String order)
   {
-    ActionRecordDescriptionSQL recordSQL = ActionRecordDescriptionSQL.queryOrderBy(parentStep, order);
+    ActionRecordTextSQL recordSQL = ActionRecordTextSQL.queryOrderBy(parentStep, order);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionRecordDescriptionXML querySince(final Long parentStep, final Date since)
+  public static ActionRecordTextXML querySince(final Long parentStep, final Date since)
   {
-    ActionRecordDescriptionSQL recordSQL = ActionRecordDescriptionSQL.querySince(parentStep, since);
+    ActionRecordTextSQL recordSQL = ActionRecordTextSQL.querySince(parentStep, since);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionRecordDescriptionXML queryOrderBySince(final Long parentStep, final String order, final Date since)
+  public static ActionRecordTextXML queryOrderBySince(final Long parentStep, final String order, final Date since)
   {
-    ActionRecordDescriptionSQL recordSQL = ActionRecordDescriptionSQL.queryOrderBySince(parentStep, order, since);
+    ActionRecordTextSQL recordSQL = ActionRecordTextSQL.queryOrderBySince(parentStep, order, since);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static List<ActionRecordDescriptionXML> queryAll(final Long parentStep)
+  public static List<ActionRecordTextXML> queryAll(final Long parentStep)
   {
-    List<ActionRecordDescriptionSQL> recordListSQL = ActionRecordDescriptionSQL.queryAll(parentStep);
-    List<ActionRecordDescriptionXML> recordListXML = new LinkedList<ActionRecordDescriptionXML>();
-    for (ActionRecordDescriptionSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
+    List<ActionRecordTextSQL> recordListSQL = ActionRecordTextSQL.queryAll(parentStep);
+    List<ActionRecordTextXML> recordListXML = new LinkedList<ActionRecordTextXML>();
+    for (ActionRecordTextSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
     return recordListXML;
   }
 
@@ -143,11 +143,11 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
   {
       return null;
   }
-  public static List<ActionRecordDescriptionXML> queryAllOrderBy(final Long parentStep, final String order)
+  public static List<ActionRecordTextXML> queryAllOrderBy(final Long parentStep, final String order)
   {
-    List<ActionRecordDescriptionSQL> recordListSQL = ActionRecordDescriptionSQL.queryAllOrderBy(parentStep, order);
-    List<ActionRecordDescriptionXML> recordListXML = new LinkedList<ActionRecordDescriptionXML>();
-    for (ActionRecordDescriptionSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
+    List<ActionRecordTextSQL> recordListSQL = ActionRecordTextSQL.queryAllOrderBy(parentStep, order);
+    List<ActionRecordTextXML> recordListXML = new LinkedList<ActionRecordTextXML>();
+    for (ActionRecordTextSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
     return recordListXML;
   }
 
@@ -156,11 +156,11 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
   {
       return null;
   }
-  public static List<ActionRecordDescriptionXML> queryAllSince(final Long parentStep, final Date since)
+  public static List<ActionRecordTextXML> queryAllSince(final Long parentStep, final Date since)
   {
-    List<ActionRecordDescriptionSQL> recordListSQL = ActionRecordDescriptionSQL.queryAllSince(parentStep, since);
-    List<ActionRecordDescriptionXML> recordListXML = new LinkedList<ActionRecordDescriptionXML>();
-    for (ActionRecordDescriptionSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
+    List<ActionRecordTextSQL> recordListSQL = ActionRecordTextSQL.queryAllSince(parentStep, since);
+    List<ActionRecordTextXML> recordListXML = new LinkedList<ActionRecordTextXML>();
+    for (ActionRecordTextSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
     return recordListXML;
   }
 
@@ -169,11 +169,11 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
   {
       return null;
   }
-  public static List<ActionRecordDescriptionXML> queryAllOrderBySince(final Long parentStep, final String order, final Date since)
+  public static List<ActionRecordTextXML> queryAllOrderBySince(final Long parentStep, final String order, final Date since)
   {
-    List<ActionRecordDescriptionSQL> recordListSQL = ActionRecordDescriptionSQL.queryAllOrderBySince(parentStep, order, since);
-    List<ActionRecordDescriptionXML> recordListXML = new LinkedList<ActionRecordDescriptionXML>();
-    for (ActionRecordDescriptionSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
+    List<ActionRecordTextSQL> recordListSQL = ActionRecordTextSQL.queryAllOrderBySince(parentStep, order, since);
+    List<ActionRecordTextXML> recordListXML = new LinkedList<ActionRecordTextXML>();
+    for (ActionRecordTextSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
     return recordListXML;
   }
 
@@ -182,16 +182,16 @@ public class ActionRecordDescriptionXML extends CommonXML implements Serializabl
   {
       return null;
   }
-  public static ActionRecordDescriptionXML get(final Long id)
+  public static ActionRecordTextXML get(final Long id)
   {
-    ActionRecordDescriptionSQL recordSQL = ActionRecordDescriptionSQL.get(id);
+    ActionRecordTextSQL recordSQL = ActionRecordTextSQL.get(id);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionRecordDescriptionXML get(final Long id, final Date since)
+  public static ActionRecordTextXML get(final Long id, final Date since)
   {
-    ActionRecordDescriptionSQL recordSQL = ActionRecordDescriptionSQL.get(id, since);
+    ActionRecordTextSQL recordSQL = ActionRecordTextSQL.get(id, since);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }

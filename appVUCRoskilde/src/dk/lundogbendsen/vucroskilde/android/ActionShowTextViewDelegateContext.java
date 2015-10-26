@@ -12,11 +12,11 @@ package dk.lundogbendsen.vucroskilde.android;
 
 import android.app.Activity;
 import android.view.View;
-import dk.lundogbendsen.vucroskilde.android.generated.ActionShowDescriptionXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowTextGUI;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowTextRootActivity;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowTextViewDelegate;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowTextViewDelegateRoot;
+import dk.lundogbendsen.vucroskilde.android.generated.ActionShowTextXML;
 import dk.lundogbendsen.vucroskilde.android.util.DisplayUtil;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadCreate;
@@ -37,7 +37,7 @@ public class ActionShowTextViewDelegateContext extends ActionShowTextViewDelegat
   }
 
   
-  private ActionShowDescriptionXML action;
+  private ActionShowTextXML action;
   
   @Override
   public void onViewBackActionShowText(final View view, final PayloadBack payload)
@@ -48,7 +48,7 @@ public class ActionShowTextViewDelegateContext extends ActionShowTextViewDelegat
   @Override
   public void onViewRefreshActionShowText(final View view, final PayloadRefresh payload)
   {
-    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getText());
+    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
 
     guictx.textViewActionShowTextText.setText(action.getDescription());
   }
@@ -56,7 +56,7 @@ public class ActionShowTextViewDelegateContext extends ActionShowTextViewDelegat
   @Override
   public void onViewCreateActionShowText(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionShowDescriptionXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionShowTextXML> getCurrentAction(busctx.getCurrentStepIfSelected());
   }
 
 }

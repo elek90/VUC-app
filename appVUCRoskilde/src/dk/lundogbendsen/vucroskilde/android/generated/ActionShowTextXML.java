@@ -18,7 +18,7 @@ import org.simpleframework.xml.*;
 
 
 @Root
-public class ActionShowDescriptionXML extends CommonXML implements Serializable
+public class ActionShowTextXML extends CommonXML implements Serializable
 {
   @Element
   Long parentStep;
@@ -45,7 +45,7 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
   public Boolean isDeletestamp() { return deletestamp; }
   public void setDeletestamp(final Boolean deletestamp) { this.deletestamp = deletestamp; }
 
-  protected ActionShowDescriptionXML()
+  protected ActionShowTextXML()
   {
     super();
     this.parentStep = 0L;
@@ -55,17 +55,17 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
     this.deletestamp = false;
   }
 
-  public static ActionShowDescriptionXML create()
+  public static ActionShowTextXML create()
   {
-    return new ActionShowDescriptionXML();
+    return new ActionShowTextXML();
   }
 
-  public static final ActionShowDescriptionXML BLANK = ActionShowDescriptionXML.create();
-  @Override public ActionShowDescriptionXML getBlank() { return BLANK; }
+  public static final ActionShowTextXML BLANK = ActionShowTextXML.create();
+  @Override public ActionShowTextXML getBlank() { return BLANK; }
 
-  @Override public ActionShowDescriptionXML copy()
+  @Override public ActionShowTextXML copy()
   {
-    ActionShowDescriptionXML n = ActionShowDescriptionXML.create();
+    ActionShowTextXML n = ActionShowTextXML.create();
     n.id = this.id;
     n.parentStep = this.parentStep;
     n.description = this.description;
@@ -78,7 +78,7 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
   @Override
   public String toString()
   {
-    return "ActionShowDescriptionXML" +
+    return "ActionShowTextXML" +
       "[" +
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
@@ -90,9 +90,9 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
   }
 
   @Override
-  public ActionShowDescriptionSQL asSQL()
+  public ActionShowTextSQL asSQL()
   {
-    ActionShowDescriptionSQL recordSQL = new ActionShowDescriptionSQL();
+    ActionShowTextSQL recordSQL = new ActionShowTextSQL();
     recordSQL.id = this.id; 
     recordSQL.parentStep = this.parentStep; 
     recordSQL.description = this.description; 
@@ -102,39 +102,39 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
     return recordSQL;
   }
 
-  public static ActionShowDescriptionXML query(final Long parentStep)
+  public static ActionShowTextXML query(final Long parentStep)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.query(parentStep);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.query(parentStep);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionShowDescriptionXML queryOrderBy(final Long parentStep, final String order)
+  public static ActionShowTextXML queryOrderBy(final Long parentStep, final String order)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.queryOrderBy(parentStep, order);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.queryOrderBy(parentStep, order);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionShowDescriptionXML querySince(final Long parentStep, final Date since)
+  public static ActionShowTextXML querySince(final Long parentStep, final Date since)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.querySince(parentStep, since);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.querySince(parentStep, since);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionShowDescriptionXML queryOrderBySince(final Long parentStep, final String order, final Date since)
+  public static ActionShowTextXML queryOrderBySince(final Long parentStep, final String order, final Date since)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.queryOrderBySince(parentStep, order, since);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.queryOrderBySince(parentStep, order, since);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static List<ActionShowDescriptionXML> queryAll(final Long parentStep)
+  public static List<ActionShowTextXML> queryAll(final Long parentStep)
   {
-    List<ActionShowDescriptionSQL> recordListSQL = ActionShowDescriptionSQL.queryAll(parentStep);
-    List<ActionShowDescriptionXML> recordListXML = new LinkedList<ActionShowDescriptionXML>();
-    for (ActionShowDescriptionSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
+    List<ActionShowTextSQL> recordListSQL = ActionShowTextSQL.queryAll(parentStep);
+    List<ActionShowTextXML> recordListXML = new LinkedList<ActionShowTextXML>();
+    for (ActionShowTextSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
     return recordListXML;
   }
 
@@ -143,11 +143,11 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
   {
       return null;
   }
-  public static List<ActionShowDescriptionXML> queryAllOrderBy(final Long parentStep, final String order)
+  public static List<ActionShowTextXML> queryAllOrderBy(final Long parentStep, final String order)
   {
-    List<ActionShowDescriptionSQL> recordListSQL = ActionShowDescriptionSQL.queryAllOrderBy(parentStep, order);
-    List<ActionShowDescriptionXML> recordListXML = new LinkedList<ActionShowDescriptionXML>();
-    for (ActionShowDescriptionSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
+    List<ActionShowTextSQL> recordListSQL = ActionShowTextSQL.queryAllOrderBy(parentStep, order);
+    List<ActionShowTextXML> recordListXML = new LinkedList<ActionShowTextXML>();
+    for (ActionShowTextSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
     return recordListXML;
   }
 
@@ -156,11 +156,11 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
   {
       return null;
   }
-  public static List<ActionShowDescriptionXML> queryAllSince(final Long parentStep, final Date since)
+  public static List<ActionShowTextXML> queryAllSince(final Long parentStep, final Date since)
   {
-    List<ActionShowDescriptionSQL> recordListSQL = ActionShowDescriptionSQL.queryAllSince(parentStep, since);
-    List<ActionShowDescriptionXML> recordListXML = new LinkedList<ActionShowDescriptionXML>();
-    for (ActionShowDescriptionSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
+    List<ActionShowTextSQL> recordListSQL = ActionShowTextSQL.queryAllSince(parentStep, since);
+    List<ActionShowTextXML> recordListXML = new LinkedList<ActionShowTextXML>();
+    for (ActionShowTextSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
     return recordListXML;
   }
 
@@ -169,11 +169,11 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
   {
       return null;
   }
-  public static List<ActionShowDescriptionXML> queryAllOrderBySince(final Long parentStep, final String order, final Date since)
+  public static List<ActionShowTextXML> queryAllOrderBySince(final Long parentStep, final String order, final Date since)
   {
-    List<ActionShowDescriptionSQL> recordListSQL = ActionShowDescriptionSQL.queryAllOrderBySince(parentStep, order, since);
-    List<ActionShowDescriptionXML> recordListXML = new LinkedList<ActionShowDescriptionXML>();
-    for (ActionShowDescriptionSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
+    List<ActionShowTextSQL> recordListSQL = ActionShowTextSQL.queryAllOrderBySince(parentStep, order, since);
+    List<ActionShowTextXML> recordListXML = new LinkedList<ActionShowTextXML>();
+    for (ActionShowTextSQL recordSQL : recordListSQL) recordListXML.add(recordSQL.asXML());
     return recordListXML;
   }
 
@@ -182,16 +182,16 @@ public class ActionShowDescriptionXML extends CommonXML implements Serializable
   {
       return null;
   }
-  public static ActionShowDescriptionXML get(final Long id)
+  public static ActionShowTextXML get(final Long id)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.get(id);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.get(id);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }
 
-  public static ActionShowDescriptionXML get(final Long id, final Date since)
+  public static ActionShowTextXML get(final Long id, final Date since)
   {
-    ActionShowDescriptionSQL recordSQL = ActionShowDescriptionSQL.get(id, since);
+    ActionShowTextSQL recordSQL = ActionShowTextSQL.get(id, since);
     if (recordSQL == null) return null;
     return recordSQL.asXML();
   }

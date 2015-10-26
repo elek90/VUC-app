@@ -70,14 +70,13 @@ public class ActionRecordImageViewDelegateContext extends ActionRecordImageViewD
   @Override
   public void onViewBackActionRecordImage(final View view, final PayloadBack payload)
   {
-    // TODO To be filled out by YOU   -- super contains   goReturn(Activity.RESULT_CANCELED);
-    goReturn(Activity.RESULT_CANCELED);
+    goReturn(Activity.RESULT_OK);
   }
 
   @Override
   public void onViewRefreshActionRecordImage(final View view, final PayloadRefresh payload)
   {
-    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getText());
+    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
     // TODO To be filled out by YOU
     guictx.imageViewActionRecordImageImage.setImageResource(R.drawable.ic_launcher);
   }

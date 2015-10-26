@@ -30,6 +30,11 @@ public class FlowchartXML extends CommonXML implements Serializable
   public String getFlowchartName() { return flowchartName; }
   public void setFlowchartName(final String flowchartName) { this.flowchartName = flowchartName; }
 
+  @Element(required=false)
+  String flowchartSequence = "";
+  public String getFlowchartSequence() { return flowchartSequence; }
+  public void setFlowchartSequence(final String flowchartSequence) { this.flowchartSequence = flowchartSequence; }
+
   @Element
   Long school;
   public Long getSchool() { return school; }
@@ -65,6 +70,7 @@ public class FlowchartXML extends CommonXML implements Serializable
     super();
     this.executable = false;
     this.flowchartName = "";
+    this.flowchartSequence = "";
     this.school = 0L;
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -97,6 +103,7 @@ public class FlowchartXML extends CommonXML implements Serializable
     n.id = this.id;
     n.executable = this.executable;
     n.flowchartName = this.flowchartName;
+    n.flowchartSequence = this.flowchartSequence;
     n.school = this.school;
     n.timestamp = this.timestamp;
     n.changestamp = this.changestamp;
@@ -114,6 +121,7 @@ public class FlowchartXML extends CommonXML implements Serializable
         "id=" + id + ", " +
         "executable=" + executable + ", " +
         "flowchartName=" + flowchartName + ", " +
+        "flowchartSequence=" + flowchartSequence + ", " +
         "school=" + school + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
@@ -130,6 +138,7 @@ public class FlowchartXML extends CommonXML implements Serializable
     recordSQL.id = this.id; 
     recordSQL.executable = this.executable; 
     recordSQL.flowchartName = this.flowchartName; 
+    recordSQL.flowchartSequence = this.flowchartSequence; 
     recordSQL.school = this.school; 
     recordSQL.timestamp = this.timestamp; 
     recordSQL.changestamp = this.changestamp; 

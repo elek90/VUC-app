@@ -26,11 +26,11 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionShowVideoSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionShowImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionShowAudioSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionShowDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionShowTextSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionRecordVideoSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionRecordImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionRecordAudioSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionRecordDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionRecordTextSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionSendReportSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(SchoolSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(TeamSQL.class);
@@ -51,11 +51,11 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionShowVideoSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionShowImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionShowAudioSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionShowDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionShowTextSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionRecordVideoSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionRecordImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionRecordAudioSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionRecordDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionRecordTextSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ActionSendReportSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(SchoolSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(TeamSQL.class);
@@ -99,7 +99,7 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(ActionShowAudioSQL.class, cc);
 
     cc = new LinkedList<Class<? extends CommonSQL>>();
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(ActionShowDescriptionSQL.class, cc);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(ActionShowTextSQL.class, cc);
 
     cc = new LinkedList<Class<? extends CommonSQL>>();
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(ActionRecordVideoSQL.class, cc);
@@ -111,7 +111,7 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(ActionRecordAudioSQL.class, cc);
 
     cc = new LinkedList<Class<? extends CommonSQL>>();
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(ActionRecordDescriptionSQL.class, cc);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(ActionRecordTextSQL.class, cc);
 
     cc = new LinkedList<Class<? extends CommonSQL>>();
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(ActionSendReportSQL.class, cc);
@@ -156,11 +156,11 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionShowVideo", ActionShowVideoSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionShowImage", ActionShowImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionShowAudio", ActionShowAudioSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionShowDescription", ActionShowDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionShowText", ActionShowTextSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionRecordVideo", ActionRecordVideoSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionRecordImage", ActionRecordImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionRecordAudio", ActionRecordAudioSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionRecordDescription", ActionRecordDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionRecordText", ActionRecordTextSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("ActionSendReport", ActionSendReportSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("School", SchoolSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("Team", TeamSQL.class);
@@ -182,11 +182,11 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionShowVideo", ActionShowVideoSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionShowImage", ActionShowImageSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionShowAudio", ActionShowAudioSQL.create());
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionShowDescription", ActionShowDescriptionSQL.create());
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionShowText", ActionShowTextSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionRecordVideo", ActionRecordVideoSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionRecordImage", ActionRecordImageSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionRecordAudio", ActionRecordAudioSQL.create());
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionRecordDescription", ActionRecordDescriptionSQL.create());
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionRecordText", ActionRecordTextSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("ActionSendReport", ActionSendReportSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("School", SchoolSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("Team", TeamSQL.create());

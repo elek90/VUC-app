@@ -143,6 +143,21 @@ public abstract class ActionSendReportRootActivity extends RootActivity<VUCRoski
         viewdelegatectx.onViewClickActionSendReportDoSendImageButton(view, (PayloadClick)payload);
         break;
       }
+      case CLICKCHILDANSWERDETAILDOSTEPIMAGEBUTTON:
+      {
+        viewdelegatectx.onViewClickChildAnswerDetailDoStepImageButton(view, (PayloadClick)payload);
+        break;
+      }
+      case CLICKCHILDANSWERDETAILVIEWSTEPIMAGEBUTTON:
+      {
+        viewdelegatectx.onViewClickChildAnswerDetailViewStepImageButton(view, (PayloadClick)payload);
+        break;
+      }
+      case CLICKCHILDANSWERDETAILDELETESTEPIMAGEBUTTON:
+      {
+        viewdelegatectx.onViewClickChildAnswerDetailDeleteStepImageButton(view, (PayloadClick)payload);
+        break;
+      }
       case BACKACTIONSENDREPORT:
       {
         viewdelegatectx.onViewBackActionSendReport(view, (PayloadBack)payload);

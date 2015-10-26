@@ -30,6 +30,11 @@ public class ActionShowImageXML extends CommonXML implements Serializable
   public String getImageRef() { return imageRef; }
   public void setImageRef(final String imageRef) { this.imageRef = imageRef; }
 
+  @Element(required=false)
+  String description = "";
+  public String getDescription() { return description; }
+  public void setDescription(final String description) { this.description = description; }
+
   @Element
   Date timestamp;
   public Date getTimestamp() { return timestamp; }
@@ -50,6 +55,7 @@ public class ActionShowImageXML extends CommonXML implements Serializable
     super();
     this.parentStep = 0L;
     this.imageRef = "";
+    this.description = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
     this.deletestamp = false;
@@ -69,6 +75,7 @@ public class ActionShowImageXML extends CommonXML implements Serializable
     n.id = this.id;
     n.parentStep = this.parentStep;
     n.imageRef = this.imageRef;
+    n.description = this.description;
     n.timestamp = this.timestamp;
     n.changestamp = this.changestamp;
     n.deletestamp = this.deletestamp;
@@ -83,6 +90,7 @@ public class ActionShowImageXML extends CommonXML implements Serializable
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
         "imageRef=" + imageRef + ", " +
+        "description=" + description + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
         "deletestamp=" + deletestamp +
@@ -96,6 +104,7 @@ public class ActionShowImageXML extends CommonXML implements Serializable
     recordSQL.id = this.id; 
     recordSQL.parentStep = this.parentStep; 
     recordSQL.imageRef = this.imageRef; 
+    recordSQL.description = this.description; 
     recordSQL.timestamp = this.timestamp; 
     recordSQL.changestamp = this.changestamp; 
     recordSQL.deletestamp = this.deletestamp; 

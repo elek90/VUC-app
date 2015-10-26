@@ -1011,6 +1011,180 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     ViewAsserts.assertOnScreen(actionShowVideo.getWindow().getDecorView(), getViewActionShowVideoVideo());
   }
 
+  private TextView textViewAnswerDetailStepNumber;
+
+  protected TextView getViewAnswerDetailStepNumber()
+  {
+    assertNotNull("actionSendReport not set - did you remember to call setActivityActionSendReport(final ActionSendReportActivity actionSendReport) ?", actionSendReport);
+    if (textViewAnswerDetailStepNumber == null)
+    {
+      textViewAnswerDetailStepNumber = (TextView) actionSendReport.findViewById(R.id.textViewAnswerDetailStepNumber);
+      assertNotNull("R.id.textViewAnswerDetailStepNumber could not be found via actionSendReport", textViewAnswerDetailStepNumber);
+    }
+    setLastActivity(actionSendReport);
+    return textViewAnswerDetailStepNumber;
+  }
+
+  protected void clickAnswerDetailStepNumber()
+  {
+    takeComment("Before click on AnswerDetailStepNumber");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickAnswerDetailStepNumber");
+    TouchUtils.clickView(this, getViewAnswerDetailStepNumber());
+  }
+
+  protected void verifyTextAnswerDetailStepNumber(final int id)
+  {
+    assertEquals("Incorrect AnswerDetailStepNumber.getText()", actionSendReport.getString(id), getViewAnswerDetailStepNumber().getText().toString());
+  }
+
+  protected void verifyTextAnswerDetailStepNumber(final String text)
+  {
+    assertEquals("Incorrect AnswerDetailStepNumber.getText()", text, getViewAnswerDetailStepNumber().getText().toString());
+  }
+
+  protected void setTextAnswerDetailStepNumber(final String text)
+  {
+    takeComment("Setting AnswerDetailStepNumber to '"+text+"'");
+    final TextView view = getViewAnswerDetailStepNumber();
+    actionSendReport.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextAnswerDetailStepNumber()
+  {
+    return getViewAnswerDetailStepNumber().getText().toString();
+  }
+
+  protected void verifyOnScreenAnswerDetailStepNumber()
+  {
+    ViewAsserts.assertOnScreen(actionSendReport.getWindow().getDecorView(), getViewAnswerDetailStepNumber());
+  }
+
+  private TextView textViewAnswerDetailStepTitle;
+
+  protected TextView getViewAnswerDetailStepTitle()
+  {
+    assertNotNull("actionSendReport not set - did you remember to call setActivityActionSendReport(final ActionSendReportActivity actionSendReport) ?", actionSendReport);
+    if (textViewAnswerDetailStepTitle == null)
+    {
+      textViewAnswerDetailStepTitle = (TextView) actionSendReport.findViewById(R.id.textViewAnswerDetailStepTitle);
+      assertNotNull("R.id.textViewAnswerDetailStepTitle could not be found via actionSendReport", textViewAnswerDetailStepTitle);
+    }
+    setLastActivity(actionSendReport);
+    return textViewAnswerDetailStepTitle;
+  }
+
+  protected void clickAnswerDetailStepTitle()
+  {
+    takeComment("Before click on AnswerDetailStepTitle");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickAnswerDetailStepTitle");
+    TouchUtils.clickView(this, getViewAnswerDetailStepTitle());
+  }
+
+  protected void verifyTextAnswerDetailStepTitle(final int id)
+  {
+    assertEquals("Incorrect AnswerDetailStepTitle.getText()", actionSendReport.getString(id), getViewAnswerDetailStepTitle().getText().toString());
+  }
+
+  protected void verifyTextAnswerDetailStepTitle(final String text)
+  {
+    assertEquals("Incorrect AnswerDetailStepTitle.getText()", text, getViewAnswerDetailStepTitle().getText().toString());
+  }
+
+  protected void setTextAnswerDetailStepTitle(final String text)
+  {
+    takeComment("Setting AnswerDetailStepTitle to '"+text+"'");
+    final TextView view = getViewAnswerDetailStepTitle();
+    actionSendReport.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextAnswerDetailStepTitle()
+  {
+    return getViewAnswerDetailStepTitle().getText().toString();
+  }
+
+  protected void verifyOnScreenAnswerDetailStepTitle()
+  {
+    ViewAsserts.assertOnScreen(actionSendReport.getWindow().getDecorView(), getViewAnswerDetailStepTitle());
+  }
+
+  private ImageButton imageButtonAnswerDetailDoStep;
+
+  protected ImageButton getViewAnswerDetailDoStep()
+  {
+    assertNotNull("actionSendReport not set - did you remember to call setActivityActionSendReport(final ActionSendReportActivity actionSendReport) ?", actionSendReport);
+    if (imageButtonAnswerDetailDoStep == null)
+    {
+      imageButtonAnswerDetailDoStep = (ImageButton) actionSendReport.findViewById(R.id.imageButtonAnswerDetailDoStep);
+      assertNotNull("R.id.imageButtonAnswerDetailDoStep could not be found via actionSendReport", imageButtonAnswerDetailDoStep);
+    }
+    setLastActivity(actionSendReport);
+    return imageButtonAnswerDetailDoStep;
+  }
+
+  protected void clickAnswerDetailDoStep()
+  {
+    takeComment("Before click on AnswerDetailDoStep");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickAnswerDetailDoStep");
+    TouchUtils.clickView(this, getViewAnswerDetailDoStep());
+  }
+
+  protected void verifyOnScreenAnswerDetailDoStep()
+  {
+    ViewAsserts.assertOnScreen(actionSendReport.getWindow().getDecorView(), getViewAnswerDetailDoStep());
+  }
+
+  private ImageButton imageButtonAnswerDetailViewStep;
+
+  protected ImageButton getViewAnswerDetailViewStep()
+  {
+    assertNotNull("actionSendReport not set - did you remember to call setActivityActionSendReport(final ActionSendReportActivity actionSendReport) ?", actionSendReport);
+    if (imageButtonAnswerDetailViewStep == null)
+    {
+      imageButtonAnswerDetailViewStep = (ImageButton) actionSendReport.findViewById(R.id.imageButtonAnswerDetailViewStep);
+      assertNotNull("R.id.imageButtonAnswerDetailViewStep could not be found via actionSendReport", imageButtonAnswerDetailViewStep);
+    }
+    setLastActivity(actionSendReport);
+    return imageButtonAnswerDetailViewStep;
+  }
+
+  protected void clickAnswerDetailViewStep()
+  {
+    takeComment("Before click on AnswerDetailViewStep");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickAnswerDetailViewStep");
+    TouchUtils.clickView(this, getViewAnswerDetailViewStep());
+  }
+
+  protected void verifyOnScreenAnswerDetailViewStep()
+  {
+    ViewAsserts.assertOnScreen(actionSendReport.getWindow().getDecorView(), getViewAnswerDetailViewStep());
+  }
+
+  private ImageButton imageButtonAnswerDetailDeleteStep;
+
+  protected ImageButton getViewAnswerDetailDeleteStep()
+  {
+    assertNotNull("actionSendReport not set - did you remember to call setActivityActionSendReport(final ActionSendReportActivity actionSendReport) ?", actionSendReport);
+    if (imageButtonAnswerDetailDeleteStep == null)
+    {
+      imageButtonAnswerDetailDeleteStep = (ImageButton) actionSendReport.findViewById(R.id.imageButtonAnswerDetailDeleteStep);
+      assertNotNull("R.id.imageButtonAnswerDetailDeleteStep could not be found via actionSendReport", imageButtonAnswerDetailDeleteStep);
+    }
+    setLastActivity(actionSendReport);
+    return imageButtonAnswerDetailDeleteStep;
+  }
+
+  protected void clickAnswerDetailDeleteStep()
+  {
+    takeComment("Before click on AnswerDetailDeleteStep");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickAnswerDetailDeleteStep");
+    TouchUtils.clickView(this, getViewAnswerDetailDeleteStep());
+  }
+
+  protected void verifyOnScreenAnswerDetailDeleteStep()
+  {
+    ViewAsserts.assertOnScreen(actionSendReport.getWindow().getDecorView(), getViewAnswerDetailDeleteStep());
+  }
+
   private ExerciseOverviewActivity exerciseOverview;
   protected ExerciseOverviewActivity getActivityExerciseOverview() { return exerciseOverview; }
 
@@ -1200,7 +1374,8 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   {
     takeComment("Verifying all fields in ExerciseStepActivity");
     getViewExerciseStepExerciseStep();
-    getViewExerciseStepExerciseTitle();
+    getViewExerciseStepStepNumber();
+    getViewExerciseStepStepTitle();
     getViewExerciseStepPreviousTitle();
     getViewExerciseStepDoPrevious();
     getViewExerciseStepNextTitle();
@@ -1211,7 +1386,8 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   protected void nullAllFieldsExerciseStep()
   {
     linearLayoutExerciseStepExerciseStep = null;
-    textViewExerciseStepExerciseTitle = null;
+    textViewExerciseStepStepNumber = null;
+    textViewExerciseStepStepTitle = null;
     textViewExerciseStepPreviousTitle = null;
     imageButtonExerciseStepDoPrevious = null;
     textViewExerciseStepNextTitle = null;
@@ -1245,52 +1421,100 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     ViewAsserts.assertOnScreen(exerciseStep.getWindow().getDecorView(), getViewExerciseStepExerciseStep());
   }
 
-  private TextView textViewExerciseStepExerciseTitle;
+  private TextView textViewExerciseStepStepNumber;
 
-  protected TextView getViewExerciseStepExerciseTitle()
+  protected TextView getViewExerciseStepStepNumber()
   {
     assertNotNull("exerciseStep not set - did you remember to call setActivityExerciseStep(final ExerciseStepActivity exerciseStep) ?", exerciseStep);
-    if (textViewExerciseStepExerciseTitle == null)
+    if (textViewExerciseStepStepNumber == null)
     {
-      textViewExerciseStepExerciseTitle = (TextView) exerciseStep.findViewById(R.id.textViewExerciseStepExerciseTitle);
-      assertNotNull("R.id.textViewExerciseStepExerciseTitle could not be found via exerciseStep", textViewExerciseStepExerciseTitle);
+      textViewExerciseStepStepNumber = (TextView) exerciseStep.findViewById(R.id.textViewExerciseStepStepNumber);
+      assertNotNull("R.id.textViewExerciseStepStepNumber could not be found via exerciseStep", textViewExerciseStepStepNumber);
     }
     setLastActivity(exerciseStep);
-    return textViewExerciseStepExerciseTitle;
+    return textViewExerciseStepStepNumber;
   }
 
-  protected void clickExerciseStepExerciseTitle()
+  protected void clickExerciseStepStepNumber()
   {
-    takeComment("Before click on ExerciseStepExerciseTitle");
-    if (isScreenshotsAutomatic()) takeScreenshot("Before clickExerciseStepExerciseTitle");
-    TouchUtils.clickView(this, getViewExerciseStepExerciseTitle());
+    takeComment("Before click on ExerciseStepStepNumber");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickExerciseStepStepNumber");
+    TouchUtils.clickView(this, getViewExerciseStepStepNumber());
   }
 
-  protected void verifyTextExerciseStepExerciseTitle(final int id)
+  protected void verifyTextExerciseStepStepNumber(final int id)
   {
-    assertEquals("Incorrect ExerciseStepExerciseTitle.getText()", exerciseStep.getString(id), getViewExerciseStepExerciseTitle().getText().toString());
+    assertEquals("Incorrect ExerciseStepStepNumber.getText()", exerciseStep.getString(id), getViewExerciseStepStepNumber().getText().toString());
   }
 
-  protected void verifyTextExerciseStepExerciseTitle(final String text)
+  protected void verifyTextExerciseStepStepNumber(final String text)
   {
-    assertEquals("Incorrect ExerciseStepExerciseTitle.getText()", text, getViewExerciseStepExerciseTitle().getText().toString());
+    assertEquals("Incorrect ExerciseStepStepNumber.getText()", text, getViewExerciseStepStepNumber().getText().toString());
   }
 
-  protected void setTextExerciseStepExerciseTitle(final String text)
+  protected void setTextExerciseStepStepNumber(final String text)
   {
-    takeComment("Setting ExerciseStepExerciseTitle to '"+text+"'");
-    final TextView view = getViewExerciseStepExerciseTitle();
+    takeComment("Setting ExerciseStepStepNumber to '"+text+"'");
+    final TextView view = getViewExerciseStepStepNumber();
     exerciseStep.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
   }
 
-  protected String getTextExerciseStepExerciseTitle()
+  protected String getTextExerciseStepStepNumber()
   {
-    return getViewExerciseStepExerciseTitle().getText().toString();
+    return getViewExerciseStepStepNumber().getText().toString();
   }
 
-  protected void verifyOnScreenExerciseStepExerciseTitle()
+  protected void verifyOnScreenExerciseStepStepNumber()
   {
-    ViewAsserts.assertOnScreen(exerciseStep.getWindow().getDecorView(), getViewExerciseStepExerciseTitle());
+    ViewAsserts.assertOnScreen(exerciseStep.getWindow().getDecorView(), getViewExerciseStepStepNumber());
+  }
+
+  private TextView textViewExerciseStepStepTitle;
+
+  protected TextView getViewExerciseStepStepTitle()
+  {
+    assertNotNull("exerciseStep not set - did you remember to call setActivityExerciseStep(final ExerciseStepActivity exerciseStep) ?", exerciseStep);
+    if (textViewExerciseStepStepTitle == null)
+    {
+      textViewExerciseStepStepTitle = (TextView) exerciseStep.findViewById(R.id.textViewExerciseStepStepTitle);
+      assertNotNull("R.id.textViewExerciseStepStepTitle could not be found via exerciseStep", textViewExerciseStepStepTitle);
+    }
+    setLastActivity(exerciseStep);
+    return textViewExerciseStepStepTitle;
+  }
+
+  protected void clickExerciseStepStepTitle()
+  {
+    takeComment("Before click on ExerciseStepStepTitle");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickExerciseStepStepTitle");
+    TouchUtils.clickView(this, getViewExerciseStepStepTitle());
+  }
+
+  protected void verifyTextExerciseStepStepTitle(final int id)
+  {
+    assertEquals("Incorrect ExerciseStepStepTitle.getText()", exerciseStep.getString(id), getViewExerciseStepStepTitle().getText().toString());
+  }
+
+  protected void verifyTextExerciseStepStepTitle(final String text)
+  {
+    assertEquals("Incorrect ExerciseStepStepTitle.getText()", text, getViewExerciseStepStepTitle().getText().toString());
+  }
+
+  protected void setTextExerciseStepStepTitle(final String text)
+  {
+    takeComment("Setting ExerciseStepStepTitle to '"+text+"'");
+    final TextView view = getViewExerciseStepStepTitle();
+    exerciseStep.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextExerciseStepStepTitle()
+  {
+    return getViewExerciseStepStepTitle().getText().toString();
+  }
+
+  protected void verifyOnScreenExerciseStepStepTitle()
+  {
+    ViewAsserts.assertOnScreen(exerciseStep.getWindow().getDecorView(), getViewExerciseStepStepTitle());
   }
 
   private TextView textViewExerciseStepPreviousTitle;

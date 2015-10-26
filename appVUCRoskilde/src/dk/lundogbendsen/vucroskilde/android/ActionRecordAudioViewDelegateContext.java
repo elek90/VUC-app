@@ -75,14 +75,13 @@ public class ActionRecordAudioViewDelegateContext extends ActionRecordAudioViewD
   @Override
   public void onViewBackActionRecordAudio(final View view, final PayloadBack payload)
   {
-    // TODO To be filled out by YOU   -- super contains   goReturn(Activity.RESULT_CANCELED);
-    goReturn(Activity.RESULT_CANCELED);
+    goReturn(Activity.RESULT_OK);
   }
 
   @Override
   public void onViewRefreshActionRecordAudio(final View view, final PayloadRefresh payload)
   {
-    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getText());
+    DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
     // TODO To be filled out by YOU
   }
 

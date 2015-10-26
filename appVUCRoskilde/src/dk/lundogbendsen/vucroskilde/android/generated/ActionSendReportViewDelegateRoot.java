@@ -47,6 +47,15 @@ public abstract class ActionSendReportViewDelegateRoot extends CommonViewDelegat
   public abstract void onViewClickActionSendReportDoSendImageButton(final View view, final PayloadClick payload);
 
   @Override
+  public abstract void onViewClickChildAnswerDetailDoStepImageButton(final View view, final PayloadClick payload);
+
+  @Override
+  public abstract void onViewClickChildAnswerDetailViewStepImageButton(final View view, final PayloadClick payload);
+
+  @Override
+  public abstract void onViewClickChildAnswerDetailDeleteStepImageButton(final View view, final PayloadClick payload);
+
+  @Override
   public void onViewBackActionSendReport(final View view, final PayloadBack payload)
   {
     goReturn(Activity.RESULT_CANCELED);

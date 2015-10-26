@@ -14,13 +14,20 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textViewExerciseStepExerciseTitle"
+        android:id="@+id/textViewExerciseStepStepNumber"
+        style="@style/MA.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelExerciseStepStepNumber"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewExerciseStepStepTitle"
         style="@style/MA.Text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_medium"
-        android:layout_marginTop="@dimen/padding_medium"
-        android:text="@string/labelExerciseStepExerciseTitle"
+        android:text="@string/labelExerciseStepStepTitle"
         android:textSize="@dimen/text_size_medium"
         android:textStyle="bold" />
 
@@ -81,7 +88,6 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
                 android:contentDescription="@string/buttonExerciseStepDoNext"
                 android:src="@drawable/ic_arrow_forward_black_24dp"
                 android:text="@string/buttonExerciseStepDoNext" />
-
         </LinearLayout>
 
         <TextView
@@ -92,19 +98,6 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
             android:layout_gravity="right"
             android:text="@string/labelExerciseStepNextTitle"
             android:textSize="@dimen/text_size" />
-
     </LinearLayout>
-
-    <!--
-         <ImageButton
-        android:id="@+id/imageButtonExerciseStepDoStop"
-        style="@style/MA.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/buttonExerciseStepDoStop"
-        android:src="@drawable/ic_exit_to_app_black_24dp"
-        android:text="@string/buttonExerciseStepDoStop" />
-    -->
 
 </LinearLayout>
