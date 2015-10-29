@@ -6,11 +6,11 @@ model VUCRoskilde
       doc "VUCRoskilde|da:VUCRoskilde", "VUC Roskilde|da:VUC Roskilde"
       option
         ANDROID (
-          "permission:INTERNET",
+          "permission:INTERNET,CAMERA,WRITE_EXTERNAL_STORAGE,RECORD_AUDIO",
           "companypackage:dk.lundogbendsen",
           "package:dk.lundogbendsen.vucroskilde.android",
           "style:MA",
-          "version:0.2",
+          "version:0.3",
           "sdk:14,22"
           )
       include libGenerator "dk.schoubo.library.android" option INCLUDEELEMENT(Addressable)
@@ -20,6 +20,15 @@ model VUCRoskilde
   // Defining exercises / opgaver
   // ----------------------------
 
+
+  class MediaRef doc "", "", ""
+  {
+    field PlacementType placementType doc "Placement Type|da:Placeringstype", "The type of the placement|da:Placeringens type" 
+          option ENUMERATION;
+  
+    field String placementPath doc "Placement|da:Placering", "Placement of the media file|da:Medie-filens placering";
+  }
+        
 
   class Flowchart doc "Flowchart|da:Rutediagram", "Flowcharts|da:Rutediagrammer", "A flowchart for an exercise|da:Et rutediagram til en opgave"
         option TABLE, USE ("Timestamped")
@@ -47,8 +56,8 @@ model VUCRoskilde
     field String stepName doc "Name|da:Navn", "The name of the step|da:Navn på trinnet";
     field String stepSequence doc "Sequence Number|da:Sekvensnummer", "The sequence number of the step|da:Sekvensnummer på trinnet";
 
-    field String stepType doc "Step Type|da:Trintype", "The type of the step|da:Trinnets type";
-// option ENUMERATION_FROM_CONSTANTS("FLYGTIGT", "BEKENDTMED", "ANVENDER", "FORTROLIGMED", "EXPERT")
+    field StepType stepType doc "Step Type|da:Trintype", "The type of the step|da:Trinnets type" 
+          option ENUMERATION;
 
     // Depending on stepType, either actionId or subflowchartId is set, but never both and never neither
     field Long actionId doc "Action|da:Handling", "Actions|da:Handlinger";
@@ -61,7 +70,7 @@ model VUCRoskilde
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
           option FOREIGNKEY;
 
-    field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
+    field MediaRef videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
 
     field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
@@ -72,7 +81,7 @@ model VUCRoskilde
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
           option FOREIGNKEY;
 
-    field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
+    field MediaRef imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
 
     field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
@@ -83,7 +92,7 @@ model VUCRoskilde
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
           option FOREIGNKEY;
 
-    field String audioRef doc "Audio|da:Lyd", "The sound of the action|da:Lyd til handlingen";
+    field MediaRef audioRef doc "Audio|da:Lyd", "The sound of the action|da:Lyd til handlingen";
 
     field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
@@ -103,7 +112,7 @@ model VUCRoskilde
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
           option FOREIGNKEY;
 
-    field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
+    field MediaRef videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
 
     field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
@@ -114,7 +123,7 @@ model VUCRoskilde
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
           option FOREIGNKEY;
 
-    field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
+    field MediaRef imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
 
     field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
@@ -125,7 +134,7 @@ model VUCRoskilde
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
           option FOREIGNKEY;
 
-    field String audioRef doc "Audio|da:Lyd", "The sound of the action|da:Lyd til handlingen";
+    field MediaRef audioRef doc "Audio|da:Lyd", "The sound of the action|da:Lyd til handlingen";
 
     field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
   }
@@ -290,6 +299,9 @@ model VUCRoskilde
   view client Setup doc "Setup|da:Indstillinger", "" option ANDROIDGUI
   {
     field CheckBox Teacher doc "Run teacher app|da:Kør lærerens program";
+    field TextView EmailLabel doc "Email Address:|da:Email adresse:";
+    field EditText Email doc "Email Address|da:Email adresse"
+        option EMAIL;
   }
 
   view client About doc "About|da:Om", "" option ANDROIDGUI
@@ -317,31 +329,27 @@ model VUCRoskilde
   }
 
 
-  view client ActionShowVideo doc "Show Video|da:Afspil video", "" option ANDROIDGUI
-  {
-    field VideoView Video doc "Video|da:Video";
-  }
-
   view client ActionShowText doc "Show Text|da:Vis forklaring", "" option ANDROIDGUI
   {
+    field TextView Text doc "Text|da:Forklaring";
+  }
+
+  view client ActionShowImage doc "Show Image|da:Vis billede", "" option ANDROIDGUI
+  {
+    field ImageView Image doc "Image|da:Billede";
     field TextView Text doc "Text|da:Forklaring";
   }
 
   view client ActionShowAudio doc "Play Audio|da:Afspil lyd", "" option ANDROIDGUI
   {
     field ImageButton DoPlay doc "Play Audio|da:Afspil lyd";
+    field TextView Text doc "Text|da:Forklaring";
   }
 
-  view client ActionShowImage doc "Show Image|da:Vis billede", "" option ANDROIDGUI
-  {
-    field ImageView Image doc "Image|da:Billede";
-  }
-
-  view client ActionRecordVideo doc "Record Video|da:Indspil video", "" option ANDROIDGUI
+  view client ActionShowVideo doc "Show Video|da:Afspil video", "" option ANDROIDGUI
   {
     field VideoView Video doc "Video|da:Video";
-    field ImageButton DoRegret doc "Regret|da:Fortryd";
-    field ImageButton DoSave doc "Save|da:Gem";
+    field TextView Text doc "Text|da:Forklaring";
   }
 
   view client ActionRecordText doc "Record Text|da:Registrer forklaring", "" option ANDROIDGUI
@@ -351,21 +359,38 @@ model VUCRoskilde
     field ImageButton DoSave doc "Save|da:Gem";
   }
 
+  view client ActionRecordImage doc "Record Image|da:Tag billede", "" option ANDROIDGUI
+  {
+    calls ExternalCamera option EXTERNAL;
+    calls ExternalGallery option EXTERNAL;
+    
+    field TextView Text doc "Text|da:Forklaring";
+    field ImageView Image doc "Image|da:Billede";
+    field ImageButton DoSelect doc "Select|da:Vælg";
+    field ImageButton DoRecord doc "Record|da:Tag";
+    field ImageButton DoRegret doc "Regret|da:Fortryd";
+    field ImageButton DoSave doc "Save|da:Gem";
+  }
+
   view client ActionRecordAudio doc "Record Audio|da:Indspil lyd", "" option ANDROIDGUI
   {
+    field TextView Text doc "Text|da:Forklaring";
     field ImageButton DoRecord doc "Record Audio|da:Indspil lyd";
     field ImageButton DoPlay doc "Play|da:Afspil";
     field ImageButton DoRegret doc "Regret|da:Fortryd";
     field ImageButton DoSave doc "Save|da:Gem";
   }
 
-  view client ActionRecordImage doc "Record Image|da:Tag billede", "" option ANDROIDGUI
+  view client ActionRecordVideo doc "Record Video|da:Indspil video", "" option ANDROIDGUI
   {
-    field ImageView Image doc "Image|da:Billede";
-    field ImageButton DoRecord doc "Record|da:Tag";
+    field VideoView Video doc "Video|da:Video";
+    field TextView Text doc "Text|da:Forklaring";
+    field ImageButton DoRecord doc "Record Video|da:Indspil video";
+    field ImageButton DoPlay doc "Play|da:Afspil";
     field ImageButton DoRegret doc "Regret|da:Fortryd";
     field ImageButton DoSave doc "Save|da:Gem";
   }
+
 
   view client ActionSendReport doc "Send Report|da:Send rapport", "" option ANDROIDGUI, HASCHILD(AnswerDetail)
   {

@@ -11,6 +11,8 @@
 package dk.lundogbendsen.vucroskilde.android.generated;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import dk.lundogbendsen.vucroskilde.android.VUCRoskildeBusinessContext;
 import dk.schoubo.library.android.CommonViewDelegateRoot;
@@ -42,6 +44,9 @@ public abstract class ActionRecordImageViewDelegateRoot extends CommonViewDelega
     this.busctx = busctx;
     this.guictx = guictx;
   }
+
+  @Override
+  public abstract void onViewClickActionRecordImageDoSelectImageButton(final View view, final PayloadClick payload);
 
   @Override
   public abstract void onViewClickActionRecordImageDoRecordImageButton(final View view, final PayloadClick payload);
@@ -114,4 +119,50 @@ public abstract class ActionRecordImageViewDelegateRoot extends CommonViewDelega
   public void onViewRestoreInstanceStateActionRecordImage(final View view, final PayloadRestoreInstanceState payload)
   {
   }
+
+  @Override
+  public void onReturnFromExternalCameraOK(final Intent data)
+  {
+    activity.refreshGUI();
+  }
+
+  @Override
+  public void onReturnFromExternalCameraRetryManually(final Intent data)
+  {
+    Log.wtf(TAG(), "ActionRecordImageViewDelegateContext.onReturnFromExternalCameraRetryManually not implemented");
+  }
+
+  @Override
+  public void onReturnFromExternalCameraCancelled(final Intent data)
+  {
+    activity.refreshGUI();
+  }
+
+  @Override
+  public void onReturnFromExternalGalleryOK(final Intent data)
+  {
+    activity.refreshGUI();
+  }
+
+  @Override
+  public void onReturnFromExternalGalleryRetryManually(final Intent data)
+  {
+    Log.wtf(TAG(), "ActionRecordImageViewDelegateContext.onReturnFromExternalGalleryRetryManually not implemented");
+  }
+
+  @Override
+  public void onReturnFromExternalGalleryCancelled(final Intent data)
+  {
+    activity.refreshGUI();
+  }
+  public void goSubExternalCamera()
+  {
+    Log.wtf(TAG(), "Must be handcrafted....");
+  }
+
+  public void goSubExternalGallery()
+  {
+    Log.wtf(TAG(), "Must be handcrafted....");
+  }
+
 }

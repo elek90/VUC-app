@@ -12,6 +12,7 @@ package dk.lundogbendsen.vucroskilde.android.generated;
 
 import android.database.*;
 import android.database.sqlite.SQLiteStatement;
+import dk.lundogbendsen.vucroskilde.android.data.PlacementType;
 import dk.schoubo.library.android.CommonSQL;
 import dk.schoubo.library.android.generated.GlobalSQLStructure;
 import dk.schoubo.library.android.sql.SQLUtil;
@@ -30,9 +31,9 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
   public void setParentStep(final StepSQL parentStep) { this.parentStep = parentStep.getId(); }
   public void setParentStep(final Long parentStepId) { this.parentStep = parentStepId; }
 
-  String imageRef;
-  public String getImageRef() { return imageRef; }
-  public void setImageRef(final String imageRef) { this.imageRef = imageRef; }
+  MediaRefSQL imageRef;
+  public MediaRefSQL getImageRef() { return imageRef; }
+  public void setImageRef(final MediaRefSQL imageRef) { this.imageRef = imageRef; }
 
   String description;
   public String getDescription() { return description; }
@@ -51,7 +52,7 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
   {
     super();
     this.parentStep = 0L;
-    this.imageRef = "";
+    this.imageRef = new MediaRefSQL();
     this.description = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -87,7 +88,8 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
     ActionRecordImageSQL recordSQL = new ActionRecordImageSQL();
     recordSQL.id = this.getId();
     recordSQL.parentStep = this.parentStep;
-    recordSQL.imageRef = this.imageRef;
+    recordSQL.imageRef.placementType = this.imageRef.placementType;
+    recordSQL.imageRef.placementPath = this.imageRef.placementPath;
     recordSQL.description = this.description;
     recordSQL.timestamp = this.timestamp;
     recordSQL.changestamp = this.changestamp;
@@ -116,7 +118,7 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
     ActionRecordImageXML recordXML = ActionRecordImageXML.create();
     recordXML.setId(this.getId());
     recordXML.setParentStep(this.getParentStep());
-    recordXML.setImageRef(this.getImageRef());
+    recordXML.setImageRef(this.getImageRef().asXML());
     recordXML.setDescription(this.getDescription());
     recordXML.setTimestamp(this.getTimestamp());
     recordXML.setChangestamp(this.getChangestamp());
@@ -130,7 +132,8 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
     ActionRecordImageSQL recordSQL = new ActionRecordImageSQL();
     recordSQL.id = cursor.getLong(cursor.getColumnIndex("ID"));
     recordSQL.parentStep = cursor.getLong(cursor.getColumnIndex("PARENTSTEP"));
-    recordSQL.imageRef = cursor.getString(cursor.getColumnIndex("IMAGEREF"));
+    recordSQL.imageRef.placementType = PlacementType.valueOf(cursor.getString(cursor.getColumnIndex("IMAGEREF_PLACEMENTTYPE")));
+    recordSQL.imageRef.placementPath = cursor.getString(cursor.getColumnIndex("IMAGEREF_PLACEMENTPATH"));
     recordSQL.description = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
     recordSQL.timestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("TIMESTAMP")));
     recordSQL.changestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("CHANGESTAMP")));
@@ -141,34 +144,35 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
   private static final String TABLE_NAME = "ACTIONRECORDIMAGE";
   @Override public String getTableNameSQL() { return TABLE_NAME; }
 
-  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, IMAGEREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
+  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, IMAGEREF_PLACEMENTTYPE, IMAGEREF_PLACEMENTPATH, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
   @Override public String getAllFieldNamesSQL() { return ALL_FIELD_NAMES; }
 
-  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ACTIONRECORDIMAGE(ID INTEGER, PARENTSTEP INTEGER NOT NULL, IMAGEREF TEXT NOT NULL, DESCRIPTION TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
+  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ACTIONRECORDIMAGE(ID INTEGER, PARENTSTEP INTEGER NOT NULL, IMAGEREF_PLACEMENTTYPE TEXT NOT NULL, IMAGEREF_PLACEMENTPATH TEXT NOT NULL, DESCRIPTION TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
   @Override public String getCreateTableSQL() { return CREATE_TABLE_STATEMENT; }
 
   private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS ACTIONRECORDIMAGE;";
   @Override public String getDropTableSQL() { return DROP_TABLE_STATEMENT; }
 
-  private static final String INSERT_STATEMENT = "INSERT INTO ACTIONRECORDIMAGE(PARENTSTEP, IMAGEREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  private static final String INSERT_STATEMENT = "INSERT INTO ACTIONRECORDIMAGE(PARENTSTEP, IMAGEREF_PLACEMENTTYPE, IMAGEREF_PLACEMENTPATH, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
   @Override public String getInsertSQL() { return INSERT_STATEMENT; }
 
-  private static final String UPDATE_STATEMENT = "UPDATE ACTIONRECORDIMAGE SET PARENTSTEP = ?, IMAGEREF = ?, DESCRIPTION = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
+  private static final String UPDATE_STATEMENT = "UPDATE ACTIONRECORDIMAGE SET PARENTSTEP = ?, IMAGEREF_PLACEMENTTYPE = ?, IMAGEREF_PLACEMENTPATH = ?, DESCRIPTION = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
   @Override public String getUpdateSQL() { return UPDATE_STATEMENT; }
 
   @Override
   public void bindForInsertOrUpdate(final SQLiteStatement statement)
   {
     statement.bindLong(1, this.parentStep);
-    statement.bindString(2, this.imageRef);
-    statement.bindString(3, this.description);
-    statement.bindString(4, DateAdapter.compactDate(this.timestamp));
-    statement.bindString(5, DateAdapter.compactDate(this.changestamp));
-    statement.bindString(6, this.deletestamp.toString());
-    statement.bindLong(7, this.id);
+    statement.bindString(2, this.imageRef.placementType.name());
+    statement.bindString(3, this.imageRef.placementPath);
+    statement.bindString(4, this.description);
+    statement.bindString(5, DateAdapter.compactDate(this.timestamp));
+    statement.bindString(6, DateAdapter.compactDate(this.changestamp));
+    statement.bindString(7, this.deletestamp.toString());
+    statement.bindLong(8, this.id);
   }
 
-  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, IMAGEREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ACTIONRECORDIMAGE WHERE ID=?;";
+  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, IMAGEREF_PLACEMENTTYPE, IMAGEREF_PLACEMENTPATH, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ACTIONRECORDIMAGE WHERE ID=?;";
   @Override public String getSelectByIdSQL() { return SELECT_BY_ID_STATEMENT; }
 
   private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM ACTIONRECORDIMAGE WHERE ID=?;";
@@ -451,11 +455,12 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
 
   public static final int ID_Id = 0;
   public static final int ID_ParentStep = 1;
-  public static final int ID_ImageRef = 2;
-  public static final int ID_Description = 3;
-  public static final int ID_Timestamp = 4;
-  public static final int ID_Changestamp = 5;
-  public static final int ID_Deletestamp = 6;
+  public static final int ID_ImageRefPlacementType = 2;
+  public static final int ID_ImageRefPlacementPath = 3;
+  public static final int ID_Description = 4;
+  public static final int ID_Timestamp = 5;
+  public static final int ID_Changestamp = 6;
+  public static final int ID_Deletestamp = 7;
 
   @Override
   public Object get(final int fieldId)
@@ -464,7 +469,8 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
     {
       case ID_Id: return id;
       case ID_ParentStep: return parentStep;
-      case ID_ImageRef: return imageRef;
+      case ID_ImageRefPlacementType: return imageRef.placementType;
+      case ID_ImageRefPlacementPath: return imageRef.placementPath;
       case ID_Description: return description;
       case ID_Timestamp: return timestamp;
       case ID_Changestamp: return changestamp;
@@ -480,7 +486,8 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
     {
       case ID_Id: { id = (Long) value; return; }
       case ID_ParentStep: { parentStep = (Long) value; return; }
-      case ID_ImageRef: { imageRef = (String) value; return; }
+      case ID_ImageRefPlacementType: { imageRef.placementType = (PlacementType) value; return; }
+      case ID_ImageRefPlacementPath: { imageRef.placementPath = (String) value; return; }
       case ID_Description: { description = (String) value; return; }
       case ID_Timestamp: { timestamp = (Date) value; return; }
       case ID_Changestamp: { changestamp = (Date) value; return; }
@@ -495,7 +502,8 @@ public class ActionRecordImageSQL extends CommonSQL implements Comparable<Action
     {
       case ID_Id: return "id";
       case ID_ParentStep: return "parentStep";
-      case ID_ImageRef: return "imageRef";
+      case ID_ImageRefPlacementType: return "imageRef.placementType";
+      case ID_ImageRefPlacementPath: return "imageRef.placementPath";
       case ID_Description: return "description";
       case ID_Timestamp: return "timestamp";
       case ID_Changestamp: return "changestamp";

@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
 import android.widget.VideoView;
 import com.sinkpoint.smoothwheel.OnWheelSpinListener;
 import com.sinkpoint.smoothwheel.WheelAdapter;
@@ -32,6 +33,7 @@ public class ActionShowVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
 {
 
   public final VideoView videoViewActionShowVideoVideo;
+  public final TextView textViewActionShowVideoText;
 
   public ActionShowVideoGUI(final RootActivity<VUCRoskildeBusinessContext, ActionShowVideoGUI, ActionShowVideoActionPoint, NavigationPoint> activity)
   {
@@ -40,6 +42,7 @@ public class ActionShowVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
     activity.setContentView(R.layout.layout_actionshowvideo);
 
     videoViewActionShowVideoVideo = (VideoView) activity.findViewById(R.id.videoViewActionShowVideoVideo);
+    textViewActionShowVideoText = (TextView) activity.findViewById(R.id.textViewActionShowVideoText);
   }
 
   public static ActionShowVideoGUI create(final RootActivity<VUCRoskildeBusinessContext, ActionShowVideoGUI, ActionShowVideoActionPoint, NavigationPoint> activity)

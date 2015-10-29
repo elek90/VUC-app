@@ -25,10 +25,10 @@ public class ActionShowImageXML extends CommonXML implements Serializable
   public Long getParentStep() { return parentStep; }
   public void setParentStep(final Long parentStep) { this.parentStep = parentStep; }
 
-  @Element(required=false)
-  String imageRef = "";
-  public String getImageRef() { return imageRef; }
-  public void setImageRef(final String imageRef) { this.imageRef = imageRef; }
+  @Element
+  MediaRefXML imageRef;
+  public MediaRefXML getImageRef() { return imageRef; }
+  public void setImageRef(final MediaRefXML imageRef) { this.imageRef = imageRef; }
 
   @Element(required=false)
   String description = "";
@@ -54,7 +54,7 @@ public class ActionShowImageXML extends CommonXML implements Serializable
   {
     super();
     this.parentStep = 0L;
-    this.imageRef = "";
+    this.imageRef = new MediaRefXML();
     this.description = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -74,7 +74,8 @@ public class ActionShowImageXML extends CommonXML implements Serializable
     ActionShowImageXML n = ActionShowImageXML.create();
     n.id = this.id;
     n.parentStep = this.parentStep;
-    n.imageRef = this.imageRef;
+    n.imageRef.placementType = this.imageRef.placementType;
+    n.imageRef.placementPath = this.imageRef.placementPath;
     n.description = this.description;
     n.timestamp = this.timestamp;
     n.changestamp = this.changestamp;
@@ -103,7 +104,8 @@ public class ActionShowImageXML extends CommonXML implements Serializable
     ActionShowImageSQL recordSQL = new ActionShowImageSQL();
     recordSQL.id = this.id; 
     recordSQL.parentStep = this.parentStep; 
-    recordSQL.imageRef = this.imageRef; 
+    recordSQL.imageRef.placementType = this.imageRef.placementType; 
+    recordSQL.imageRef.placementPath = this.imageRef.placementPath; 
     recordSQL.description = this.description; 
     recordSQL.timestamp = this.timestamp; 
     recordSQL.changestamp = this.changestamp; 

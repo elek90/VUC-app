@@ -1,4 +1,5 @@
-<!--THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+<!--
+THIS FILE IS GENERATED IF NOT FOUND ALREADY.
   
   This is a template that must be filled out by you. Once created it will not be overwritten.
   The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
@@ -6,23 +7,33 @@
   Author: Lund&Bendsen, Jan Schoubo
 -->
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
+    <android.widget.ImageView
+        android:id="@+id/imageViewActionShowImageImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/labelActionShowImageImage"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher" />
 
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
+    <TextView
+        android:id="@+id/textViewActionShowImageText"
+        style="@style/MA.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelActionShowImageText" />
 
-  <android.widget.ImageView
-      android:id="@+id/imageViewActionShowImageImage"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:layout_gravity="center"
-      android:adjustViewBounds="true"
-      android:contentDescription="@string/labelActionShowImageImage"
-      android:scaleType="fitXY"
-      android:src="@drawable/ic_launcher" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+    </LinearLayout>
 
 </LinearLayout>

@@ -34,8 +34,11 @@
   <string name="buttonActionRecordImageDoRecord">Tag</string>
   <string name="buttonActionRecordImageDoRegret">Fortryd</string>
   <string name="buttonActionRecordImageDoSave">Gem</string>
+  <string name="buttonActionRecordImageDoSelect">Vælg</string>
   <string name="buttonActionRecordTextDoRegret">Fortryd</string>
   <string name="buttonActionRecordTextDoSave">Gem</string>
+  <string name="buttonActionRecordVideoDoPlay">Afspil</string>
+  <string name="buttonActionRecordVideoDoRecord">Indspil video</string>
   <string name="buttonActionRecordVideoDoRegret">Fortryd</string>
   <string name="buttonActionRecordVideoDoSave">Gem</string>
   <string name="buttonActionSendReportDoSend">Send</string>
@@ -48,10 +51,16 @@
   <string name="buttonFlowchartDetailDoExercise">Start</string>
   <string name="buttonStepDetailDoStep">Start</string>
   <string name="labelAboutDescription">[Beskrivelse]</string>
+  <string name="labelActionRecordAudioText">Forklaring</string>
   <string name="labelActionRecordImageImage">Billede</string>
+  <string name="labelActionRecordImageText">Forklaring</string>
+  <string name="labelActionRecordVideoText">Forklaring</string>
   <string name="labelActionRecordVideoVideo">Video</string>
+  <string name="labelActionShowAudioText">Forklaring</string>
   <string name="labelActionShowImageImage">Billede</string>
+  <string name="labelActionShowImageText">Forklaring</string>
   <string name="labelActionShowTextText">Forklaring</string>
+  <string name="labelActionShowVideoText">Forklaring</string>
   <string name="labelActionShowVideoVideo">Video</string>
   <string name="labelAnswerDetailStepNumber">[Nummer]</string>
   <string name="labelAnswerDetailStepTitle">[Navn]</string>
@@ -63,6 +72,7 @@
   <string name="labelExerciseStepStepNumber">[Nummer]</string>
   <string name="labelExerciseStepStepTitle">[Navn]</string>
   <string name="labelFlowchartDetailFlowchartTitle">[Rutediagram]</string>
+  <string name="labelSetupEmailLabel">Email adresse:</string>
   <string name="labelSetupTeacher">Kør lærerens program</string>
   <string name="labelSplashForAndroid">for Android™</string>
   <string name="labelSplashLundOgBendsenLogo">Lund&amp;Bendsen logo</string>

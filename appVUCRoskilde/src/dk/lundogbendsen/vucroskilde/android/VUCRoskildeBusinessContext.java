@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import android.app.Activity;
+import dk.lundogbendsen.vucroskilde.android.data.StepType;
 import dk.lundogbendsen.vucroskilde.android.generated.ExerciseXML;
 import dk.lundogbendsen.vucroskilde.android.generated.FlowchartXML;
 import dk.lundogbendsen.vucroskilde.android.generated.StepXML;
@@ -29,7 +30,7 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
   @Override
   public long getSplashTimeMS()
   {
-    return 1500;
+    return 800;
   }
 
   public void initializeDuringSplash(final Activity activity)
@@ -88,19 +89,7 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
     Long actionid = step.getActionId();
     if (actionid == null) return null;
 
-    return TestData.getInstance().getAction(StepType.valueOf(step.getStepType()), actionid);
-  }
-
-  private String currentVideo;
-
-  public String getCurrentVideo()
-  {
-    return currentVideo;
-  }
-
-  public void setCurrentVideo(final String videoRef)
-  {
-    this.currentVideo = videoRef;
+    return TestData.getInstance().getAction(step.getStepType(), actionid);
   }
 
   private StepXML currentStep;
@@ -255,7 +244,7 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
   {
     StepXML step = getCurrentStep(index);
 
-    if (StepType.valueOf(step.getStepType()) != StepType.SUB_FLOWCHART)
+    if (step.getStepType() != StepType.SUB_FLOWCHART)
     {
       stackSelectedStep(index);
       setCurrentStep(step);
@@ -305,5 +294,53 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
   public Map<Long, Object> getAnswers(final ExerciseXML exercise)
   {
     return TestData.getInstance().getAnswers(exercise);
+  }
+
+  private boolean isMediaPlaying = false;
+
+  public void setMediaPlaying(final boolean isMediaPlaying)
+  {
+    this.isMediaPlaying = isMediaPlaying;
+  }
+
+  public boolean isMediaPlaying()
+  {
+    return isMediaPlaying;
+  }
+
+  private int MediaPosition = 0;
+
+  public void setMediaPosition(final int MediaPosition)
+  {
+    this.MediaPosition = MediaPosition;
+  }
+
+  public int getMediaPosition()
+  {
+    return MediaPosition;
+  }
+
+  private boolean isMediaRecording = false;
+
+  public void setMediaRecording(final boolean isMediaRecording)
+  {
+    this.isMediaRecording = isMediaRecording;
+  }
+
+  public boolean isMediaRecording()
+  {
+    return isMediaRecording;
+  }
+
+  private boolean runAsTeacher;
+
+  public void setRunAsTeacher(final boolean runAsTeacher)
+  {
+    this.runAsTeacher = runAsTeacher;
+  }
+
+  public boolean getRunasTeacher()
+  {
+    return runAsTeacher;
   }
 }

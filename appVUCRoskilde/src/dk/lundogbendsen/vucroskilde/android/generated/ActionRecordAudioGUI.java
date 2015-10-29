@@ -20,6 +20,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import com.sinkpoint.smoothwheel.OnWheelSpinListener;
 import com.sinkpoint.smoothwheel.WheelAdapter;
 import dk.lundogbendsen.vucroskilde.android.R;
@@ -32,6 +33,7 @@ import dk.schoubo.library.android.ui.framework.RootActivity;
 public class ActionRecordAudioGUI extends CommonGUI<VUCRoskildeBusinessContext, ActionRecordAudioActionPoint, NavigationPoint> implements OnClickListener, OnItemSelectedListener, OnWheelSpinListener, OnCheckedChangeListener
 {
 
+  public final TextView textViewActionRecordAudioText;
   public final ImageButton imageButtonActionRecordAudioDoRecord;
   public final ImageButton imageButtonActionRecordAudioDoPlay;
   public final ImageButton imageButtonActionRecordAudioDoRegret;
@@ -43,6 +45,7 @@ public class ActionRecordAudioGUI extends CommonGUI<VUCRoskildeBusinessContext, 
     activity.switchLocale();
     activity.setContentView(R.layout.layout_actionrecordaudio);
 
+    textViewActionRecordAudioText = (TextView) activity.findViewById(R.id.textViewActionRecordAudioText);
     imageButtonActionRecordAudioDoRecord = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordAudioDoRecord);
     imageButtonActionRecordAudioDoRecord.setOnClickListener(this);
     imageButtonActionRecordAudioDoPlay = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordAudioDoPlay);

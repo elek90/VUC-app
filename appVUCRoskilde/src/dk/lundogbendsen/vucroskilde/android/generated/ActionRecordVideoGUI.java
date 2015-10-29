@@ -20,6 +20,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.VideoView;
 import com.sinkpoint.smoothwheel.OnWheelSpinListener;
 import com.sinkpoint.smoothwheel.WheelAdapter;
@@ -34,6 +35,9 @@ public class ActionRecordVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, 
 {
 
   public final VideoView videoViewActionRecordVideoVideo;
+  public final TextView textViewActionRecordVideoText;
+  public final ImageButton imageButtonActionRecordVideoDoRecord;
+  public final ImageButton imageButtonActionRecordVideoDoPlay;
   public final ImageButton imageButtonActionRecordVideoDoRegret;
   public final ImageButton imageButtonActionRecordVideoDoSave;
 
@@ -44,6 +48,11 @@ public class ActionRecordVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, 
     activity.setContentView(R.layout.layout_actionrecordvideo);
 
     videoViewActionRecordVideoVideo = (VideoView) activity.findViewById(R.id.videoViewActionRecordVideoVideo);
+    textViewActionRecordVideoText = (TextView) activity.findViewById(R.id.textViewActionRecordVideoText);
+    imageButtonActionRecordVideoDoRecord = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordVideoDoRecord);
+    imageButtonActionRecordVideoDoRecord.setOnClickListener(this);
+    imageButtonActionRecordVideoDoPlay = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordVideoDoPlay);
+    imageButtonActionRecordVideoDoPlay.setOnClickListener(this);
     imageButtonActionRecordVideoDoRegret = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordVideoDoRegret);
     imageButtonActionRecordVideoDoRegret.setOnClickListener(this);
     imageButtonActionRecordVideoDoSave = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordVideoDoSave);
@@ -60,6 +69,8 @@ public class ActionRecordVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, 
   {
     switch (view.getId())
     {
+      case R.id.imageButtonActionRecordVideoDoRecord: { activity.onAction(view, ActionRecordVideoActionPoint.CLICKACTIONRECORDVIDEODORECORDIMAGEBUTTON, PayloadClick.create(-1)); break; } 
+      case R.id.imageButtonActionRecordVideoDoPlay: { activity.onAction(view, ActionRecordVideoActionPoint.CLICKACTIONRECORDVIDEODOPLAYIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       case R.id.imageButtonActionRecordVideoDoRegret: { activity.onAction(view, ActionRecordVideoActionPoint.CLICKACTIONRECORDVIDEODOREGRETIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       case R.id.imageButtonActionRecordVideoDoSave: { activity.onAction(view, ActionRecordVideoActionPoint.CLICKACTIONRECORDVIDEODOSAVEIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       default: { throw new RuntimeException("Serious error in generated code: onClick not covered..."); } 

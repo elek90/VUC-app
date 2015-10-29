@@ -20,6 +20,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import com.sinkpoint.smoothwheel.OnWheelSpinListener;
 import com.sinkpoint.smoothwheel.WheelAdapter;
 import dk.lundogbendsen.vucroskilde.android.R;
@@ -33,6 +34,7 @@ public class ActionShowAudioGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
 {
 
   public final ImageButton imageButtonActionShowAudioDoPlay;
+  public final TextView textViewActionShowAudioText;
 
   public ActionShowAudioGUI(final RootActivity<VUCRoskildeBusinessContext, ActionShowAudioGUI, ActionShowAudioActionPoint, NavigationPoint> activity)
   {
@@ -42,6 +44,7 @@ public class ActionShowAudioGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
 
     imageButtonActionShowAudioDoPlay = (ImageButton) activity.findViewById(R.id.imageButtonActionShowAudioDoPlay);
     imageButtonActionShowAudioDoPlay.setOnClickListener(this);
+    textViewActionShowAudioText = (TextView) activity.findViewById(R.id.textViewActionShowAudioText);
   }
 
   public static ActionShowAudioGUI create(final RootActivity<VUCRoskildeBusinessContext, ActionShowAudioGUI, ActionShowAudioActionPoint, NavigationPoint> activity)

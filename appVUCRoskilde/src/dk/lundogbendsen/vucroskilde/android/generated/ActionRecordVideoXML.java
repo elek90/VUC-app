@@ -25,10 +25,10 @@ public class ActionRecordVideoXML extends CommonXML implements Serializable
   public Long getParentStep() { return parentStep; }
   public void setParentStep(final Long parentStep) { this.parentStep = parentStep; }
 
-  @Element(required=false)
-  String videoRef = "";
-  public String getVideoRef() { return videoRef; }
-  public void setVideoRef(final String videoRef) { this.videoRef = videoRef; }
+  @Element
+  MediaRefXML videoRef;
+  public MediaRefXML getVideoRef() { return videoRef; }
+  public void setVideoRef(final MediaRefXML videoRef) { this.videoRef = videoRef; }
 
   @Element(required=false)
   String description = "";
@@ -54,7 +54,7 @@ public class ActionRecordVideoXML extends CommonXML implements Serializable
   {
     super();
     this.parentStep = 0L;
-    this.videoRef = "";
+    this.videoRef = new MediaRefXML();
     this.description = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -74,7 +74,8 @@ public class ActionRecordVideoXML extends CommonXML implements Serializable
     ActionRecordVideoXML n = ActionRecordVideoXML.create();
     n.id = this.id;
     n.parentStep = this.parentStep;
-    n.videoRef = this.videoRef;
+    n.videoRef.placementType = this.videoRef.placementType;
+    n.videoRef.placementPath = this.videoRef.placementPath;
     n.description = this.description;
     n.timestamp = this.timestamp;
     n.changestamp = this.changestamp;
@@ -103,7 +104,8 @@ public class ActionRecordVideoXML extends CommonXML implements Serializable
     ActionRecordVideoSQL recordSQL = new ActionRecordVideoSQL();
     recordSQL.id = this.id; 
     recordSQL.parentStep = this.parentStep; 
-    recordSQL.videoRef = this.videoRef; 
+    recordSQL.videoRef.placementType = this.videoRef.placementType; 
+    recordSQL.videoRef.placementPath = this.videoRef.placementPath; 
     recordSQL.description = this.description; 
     recordSQL.timestamp = this.timestamp; 
     recordSQL.changestamp = this.changestamp; 

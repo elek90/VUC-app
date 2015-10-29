@@ -25,10 +25,10 @@ public class ActionShowAudioXML extends CommonXML implements Serializable
   public Long getParentStep() { return parentStep; }
   public void setParentStep(final Long parentStep) { this.parentStep = parentStep; }
 
-  @Element(required=false)
-  String audioRef = "";
-  public String getAudioRef() { return audioRef; }
-  public void setAudioRef(final String audioRef) { this.audioRef = audioRef; }
+  @Element
+  MediaRefXML audioRef;
+  public MediaRefXML getAudioRef() { return audioRef; }
+  public void setAudioRef(final MediaRefXML audioRef) { this.audioRef = audioRef; }
 
   @Element(required=false)
   String description = "";
@@ -54,7 +54,7 @@ public class ActionShowAudioXML extends CommonXML implements Serializable
   {
     super();
     this.parentStep = 0L;
-    this.audioRef = "";
+    this.audioRef = new MediaRefXML();
     this.description = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -74,7 +74,8 @@ public class ActionShowAudioXML extends CommonXML implements Serializable
     ActionShowAudioXML n = ActionShowAudioXML.create();
     n.id = this.id;
     n.parentStep = this.parentStep;
-    n.audioRef = this.audioRef;
+    n.audioRef.placementType = this.audioRef.placementType;
+    n.audioRef.placementPath = this.audioRef.placementPath;
     n.description = this.description;
     n.timestamp = this.timestamp;
     n.changestamp = this.changestamp;
@@ -103,7 +104,8 @@ public class ActionShowAudioXML extends CommonXML implements Serializable
     ActionShowAudioSQL recordSQL = new ActionShowAudioSQL();
     recordSQL.id = this.id; 
     recordSQL.parentStep = this.parentStep; 
-    recordSQL.audioRef = this.audioRef; 
+    recordSQL.audioRef.placementType = this.audioRef.placementType; 
+    recordSQL.audioRef.placementPath = this.audioRef.placementPath; 
     recordSQL.description = this.description; 
     recordSQL.timestamp = this.timestamp; 
     recordSQL.changestamp = this.changestamp; 

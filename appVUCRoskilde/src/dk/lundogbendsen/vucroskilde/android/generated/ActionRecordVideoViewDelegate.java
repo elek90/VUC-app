@@ -29,6 +29,8 @@ import dk.schoubo.library.android.ui.framework.PayloadWindowFocusChanged;
 
 public interface ActionRecordVideoViewDelegate
 {
+  public void onViewClickActionRecordVideoDoRecordImageButton(final View view, final PayloadClick payload);
+  public void onViewClickActionRecordVideoDoPlayImageButton(final View view, final PayloadClick payload);
   public void onViewClickActionRecordVideoDoRegretImageButton(final View view, final PayloadClick payload);
   public void onViewClickActionRecordVideoDoSaveImageButton(final View view, final PayloadClick payload);
   public void onViewBackActionRecordVideo(final View view, final PayloadBack payload);

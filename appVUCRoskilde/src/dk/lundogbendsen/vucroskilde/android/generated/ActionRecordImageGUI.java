@@ -21,6 +21,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.sinkpoint.smoothwheel.OnWheelSpinListener;
 import com.sinkpoint.smoothwheel.WheelAdapter;
 import dk.lundogbendsen.vucroskilde.android.R;
@@ -33,7 +34,9 @@ import dk.schoubo.library.android.ui.framework.RootActivity;
 public class ActionRecordImageGUI extends CommonGUI<VUCRoskildeBusinessContext, ActionRecordImageActionPoint, NavigationPoint> implements OnClickListener, OnItemSelectedListener, OnWheelSpinListener, OnCheckedChangeListener
 {
 
+  public final TextView textViewActionRecordImageText;
   public final ImageView imageViewActionRecordImageImage;
+  public final ImageButton imageButtonActionRecordImageDoSelect;
   public final ImageButton imageButtonActionRecordImageDoRecord;
   public final ImageButton imageButtonActionRecordImageDoRegret;
   public final ImageButton imageButtonActionRecordImageDoSave;
@@ -44,7 +47,10 @@ public class ActionRecordImageGUI extends CommonGUI<VUCRoskildeBusinessContext, 
     activity.switchLocale();
     activity.setContentView(R.layout.layout_actionrecordimage);
 
+    textViewActionRecordImageText = (TextView) activity.findViewById(R.id.textViewActionRecordImageText);
     imageViewActionRecordImageImage = (ImageView) activity.findViewById(R.id.imageViewActionRecordImageImage);
+    imageButtonActionRecordImageDoSelect = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordImageDoSelect);
+    imageButtonActionRecordImageDoSelect.setOnClickListener(this);
     imageButtonActionRecordImageDoRecord = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordImageDoRecord);
     imageButtonActionRecordImageDoRecord.setOnClickListener(this);
     imageButtonActionRecordImageDoRegret = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordImageDoRegret);
@@ -63,6 +69,7 @@ public class ActionRecordImageGUI extends CommonGUI<VUCRoskildeBusinessContext, 
   {
     switch (view.getId())
     {
+      case R.id.imageButtonActionRecordImageDoSelect: { activity.onAction(view, ActionRecordImageActionPoint.CLICKACTIONRECORDIMAGEDOSELECTIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       case R.id.imageButtonActionRecordImageDoRecord: { activity.onAction(view, ActionRecordImageActionPoint.CLICKACTIONRECORDIMAGEDORECORDIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       case R.id.imageButtonActionRecordImageDoRegret: { activity.onAction(view, ActionRecordImageActionPoint.CLICKACTIONRECORDIMAGEDOREGRETIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       case R.id.imageButtonActionRecordImageDoSave: { activity.onAction(view, ActionRecordImageActionPoint.CLICKACTIONRECORDIMAGEDOSAVEIMAGEBUTTON, PayloadClick.create(-1)); break; } 
@@ -147,6 +154,8 @@ public class ActionRecordImageGUI extends CommonGUI<VUCRoskildeBusinessContext, 
   @Override
   protected void onActivityReturn(final int requestCode, final int resultCode, final Intent data)
   {
+    NavigationPoint rc = NavigationPoint.values()[requestCode];
+    activity.onReturn(rc, resultCode, data);
   }
 
 }

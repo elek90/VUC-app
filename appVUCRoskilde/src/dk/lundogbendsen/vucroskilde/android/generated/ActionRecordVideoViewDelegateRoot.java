@@ -44,6 +44,12 @@ public abstract class ActionRecordVideoViewDelegateRoot extends CommonViewDelega
   }
 
   @Override
+  public abstract void onViewClickActionRecordVideoDoRecordImageButton(final View view, final PayloadClick payload);
+
+  @Override
+  public abstract void onViewClickActionRecordVideoDoPlayImageButton(final View view, final PayloadClick payload);
+
+  @Override
   public abstract void onViewClickActionRecordVideoDoRegretImageButton(final View view, final PayloadClick payload);
 
   @Override

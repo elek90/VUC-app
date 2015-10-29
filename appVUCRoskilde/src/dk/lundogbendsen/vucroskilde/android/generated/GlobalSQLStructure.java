@@ -21,6 +21,7 @@ public abstract class GlobalSQLStructure
 
   static
   {
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(MediaRefSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(FlowchartSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(StepSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ActionShowVideoSQL.class);

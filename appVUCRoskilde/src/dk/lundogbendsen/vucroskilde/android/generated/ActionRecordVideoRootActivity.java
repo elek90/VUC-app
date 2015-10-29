@@ -138,6 +138,16 @@ public abstract class ActionRecordVideoRootActivity extends RootActivity<VUCRosk
   {
     switch (actionpoint)
     {
+      case CLICKACTIONRECORDVIDEODORECORDIMAGEBUTTON:
+      {
+        viewdelegatectx.onViewClickActionRecordVideoDoRecordImageButton(view, (PayloadClick)payload);
+        break;
+      }
+      case CLICKACTIONRECORDVIDEODOPLAYIMAGEBUTTON:
+      {
+        viewdelegatectx.onViewClickActionRecordVideoDoPlayImageButton(view, (PayloadClick)payload);
+        break;
+      }
       case CLICKACTIONRECORDVIDEODOREGRETIMAGEBUTTON:
       {
         viewdelegatectx.onViewClickActionRecordVideoDoRegretImageButton(view, (PayloadClick)payload);

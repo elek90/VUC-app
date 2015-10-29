@@ -12,6 +12,7 @@ package dk.lundogbendsen.vucroskilde.android.generated;
 
 import android.database.*;
 import android.database.sqlite.SQLiteStatement;
+import dk.lundogbendsen.vucroskilde.android.data.PlacementType;
 import dk.schoubo.library.android.CommonSQL;
 import dk.schoubo.library.android.generated.GlobalSQLStructure;
 import dk.schoubo.library.android.sql.SQLUtil;
@@ -30,9 +31,9 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
   public void setParentStep(final StepSQL parentStep) { this.parentStep = parentStep.getId(); }
   public void setParentStep(final Long parentStepId) { this.parentStep = parentStepId; }
 
-  String videoRef;
-  public String getVideoRef() { return videoRef; }
-  public void setVideoRef(final String videoRef) { this.videoRef = videoRef; }
+  MediaRefSQL videoRef;
+  public MediaRefSQL getVideoRef() { return videoRef; }
+  public void setVideoRef(final MediaRefSQL videoRef) { this.videoRef = videoRef; }
 
   String description;
   public String getDescription() { return description; }
@@ -51,7 +52,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
   {
     super();
     this.parentStep = 0L;
-    this.videoRef = "";
+    this.videoRef = new MediaRefSQL();
     this.description = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -87,7 +88,8 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     ActionRecordVideoSQL recordSQL = new ActionRecordVideoSQL();
     recordSQL.id = this.getId();
     recordSQL.parentStep = this.parentStep;
-    recordSQL.videoRef = this.videoRef;
+    recordSQL.videoRef.placementType = this.videoRef.placementType;
+    recordSQL.videoRef.placementPath = this.videoRef.placementPath;
     recordSQL.description = this.description;
     recordSQL.timestamp = this.timestamp;
     recordSQL.changestamp = this.changestamp;
@@ -116,7 +118,7 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     ActionRecordVideoXML recordXML = ActionRecordVideoXML.create();
     recordXML.setId(this.getId());
     recordXML.setParentStep(this.getParentStep());
-    recordXML.setVideoRef(this.getVideoRef());
+    recordXML.setVideoRef(this.getVideoRef().asXML());
     recordXML.setDescription(this.getDescription());
     recordXML.setTimestamp(this.getTimestamp());
     recordXML.setChangestamp(this.getChangestamp());
@@ -130,7 +132,8 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     ActionRecordVideoSQL recordSQL = new ActionRecordVideoSQL();
     recordSQL.id = cursor.getLong(cursor.getColumnIndex("ID"));
     recordSQL.parentStep = cursor.getLong(cursor.getColumnIndex("PARENTSTEP"));
-    recordSQL.videoRef = cursor.getString(cursor.getColumnIndex("VIDEOREF"));
+    recordSQL.videoRef.placementType = PlacementType.valueOf(cursor.getString(cursor.getColumnIndex("VIDEOREF_PLACEMENTTYPE")));
+    recordSQL.videoRef.placementPath = cursor.getString(cursor.getColumnIndex("VIDEOREF_PLACEMENTPATH"));
     recordSQL.description = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
     recordSQL.timestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("TIMESTAMP")));
     recordSQL.changestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("CHANGESTAMP")));
@@ -141,34 +144,35 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
   private static final String TABLE_NAME = "ACTIONRECORDVIDEO";
   @Override public String getTableNameSQL() { return TABLE_NAME; }
 
-  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, VIDEOREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
+  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, VIDEOREF_PLACEMENTTYPE, VIDEOREF_PLACEMENTPATH, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
   @Override public String getAllFieldNamesSQL() { return ALL_FIELD_NAMES; }
 
-  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ACTIONRECORDVIDEO(ID INTEGER, PARENTSTEP INTEGER NOT NULL, VIDEOREF TEXT NOT NULL, DESCRIPTION TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
+  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ACTIONRECORDVIDEO(ID INTEGER, PARENTSTEP INTEGER NOT NULL, VIDEOREF_PLACEMENTTYPE TEXT NOT NULL, VIDEOREF_PLACEMENTPATH TEXT NOT NULL, DESCRIPTION TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
   @Override public String getCreateTableSQL() { return CREATE_TABLE_STATEMENT; }
 
   private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS ACTIONRECORDVIDEO;";
   @Override public String getDropTableSQL() { return DROP_TABLE_STATEMENT; }
 
-  private static final String INSERT_STATEMENT = "INSERT INTO ACTIONRECORDVIDEO(PARENTSTEP, VIDEOREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  private static final String INSERT_STATEMENT = "INSERT INTO ACTIONRECORDVIDEO(PARENTSTEP, VIDEOREF_PLACEMENTTYPE, VIDEOREF_PLACEMENTPATH, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
   @Override public String getInsertSQL() { return INSERT_STATEMENT; }
 
-  private static final String UPDATE_STATEMENT = "UPDATE ACTIONRECORDVIDEO SET PARENTSTEP = ?, VIDEOREF = ?, DESCRIPTION = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
+  private static final String UPDATE_STATEMENT = "UPDATE ACTIONRECORDVIDEO SET PARENTSTEP = ?, VIDEOREF_PLACEMENTTYPE = ?, VIDEOREF_PLACEMENTPATH = ?, DESCRIPTION = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
   @Override public String getUpdateSQL() { return UPDATE_STATEMENT; }
 
   @Override
   public void bindForInsertOrUpdate(final SQLiteStatement statement)
   {
     statement.bindLong(1, this.parentStep);
-    statement.bindString(2, this.videoRef);
-    statement.bindString(3, this.description);
-    statement.bindString(4, DateAdapter.compactDate(this.timestamp));
-    statement.bindString(5, DateAdapter.compactDate(this.changestamp));
-    statement.bindString(6, this.deletestamp.toString());
-    statement.bindLong(7, this.id);
+    statement.bindString(2, this.videoRef.placementType.name());
+    statement.bindString(3, this.videoRef.placementPath);
+    statement.bindString(4, this.description);
+    statement.bindString(5, DateAdapter.compactDate(this.timestamp));
+    statement.bindString(6, DateAdapter.compactDate(this.changestamp));
+    statement.bindString(7, this.deletestamp.toString());
+    statement.bindLong(8, this.id);
   }
 
-  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, VIDEOREF, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ACTIONRECORDVIDEO WHERE ID=?;";
+  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, VIDEOREF_PLACEMENTTYPE, VIDEOREF_PLACEMENTPATH, DESCRIPTION, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ACTIONRECORDVIDEO WHERE ID=?;";
   @Override public String getSelectByIdSQL() { return SELECT_BY_ID_STATEMENT; }
 
   private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM ACTIONRECORDVIDEO WHERE ID=?;";
@@ -451,11 +455,12 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
 
   public static final int ID_Id = 0;
   public static final int ID_ParentStep = 1;
-  public static final int ID_VideoRef = 2;
-  public static final int ID_Description = 3;
-  public static final int ID_Timestamp = 4;
-  public static final int ID_Changestamp = 5;
-  public static final int ID_Deletestamp = 6;
+  public static final int ID_VideoRefPlacementType = 2;
+  public static final int ID_VideoRefPlacementPath = 3;
+  public static final int ID_Description = 4;
+  public static final int ID_Timestamp = 5;
+  public static final int ID_Changestamp = 6;
+  public static final int ID_Deletestamp = 7;
 
   @Override
   public Object get(final int fieldId)
@@ -464,7 +469,8 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     {
       case ID_Id: return id;
       case ID_ParentStep: return parentStep;
-      case ID_VideoRef: return videoRef;
+      case ID_VideoRefPlacementType: return videoRef.placementType;
+      case ID_VideoRefPlacementPath: return videoRef.placementPath;
       case ID_Description: return description;
       case ID_Timestamp: return timestamp;
       case ID_Changestamp: return changestamp;
@@ -480,7 +486,8 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     {
       case ID_Id: { id = (Long) value; return; }
       case ID_ParentStep: { parentStep = (Long) value; return; }
-      case ID_VideoRef: { videoRef = (String) value; return; }
+      case ID_VideoRefPlacementType: { videoRef.placementType = (PlacementType) value; return; }
+      case ID_VideoRefPlacementPath: { videoRef.placementPath = (String) value; return; }
       case ID_Description: { description = (String) value; return; }
       case ID_Timestamp: { timestamp = (Date) value; return; }
       case ID_Changestamp: { changestamp = (Date) value; return; }
@@ -495,7 +502,8 @@ public class ActionRecordVideoSQL extends CommonSQL implements Comparable<Action
     {
       case ID_Id: return "id";
       case ID_ParentStep: return "parentStep";
-      case ID_VideoRef: return "videoRef";
+      case ID_VideoRefPlacementType: return "videoRef.placementType";
+      case ID_VideoRefPlacementPath: return "videoRef.placementPath";
       case ID_Description: return "description";
       case ID_Timestamp: return "timestamp";
       case ID_Changestamp: return "changestamp";

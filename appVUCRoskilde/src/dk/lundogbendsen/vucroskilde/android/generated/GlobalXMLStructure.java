@@ -21,6 +21,7 @@ public abstract class GlobalXMLStructure
 
   static
   {
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(MediaRefXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(FlowchartXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(StepXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ActionShowVideoXML.class);

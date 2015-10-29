@@ -10,6 +10,7 @@
 
 package dk.lundogbendsen.vucroskilde.android.generated;
 
+import android.content.Intent;
 import android.view.View;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadClick;
@@ -29,6 +30,7 @@ import dk.schoubo.library.android.ui.framework.PayloadWindowFocusChanged;
 
 public interface ActionRecordImageViewDelegate
 {
+  public void onViewClickActionRecordImageDoSelectImageButton(final View view, final PayloadClick payload);
   public void onViewClickActionRecordImageDoRecordImageButton(final View view, final PayloadClick payload);
   public void onViewClickActionRecordImageDoRegretImageButton(final View view, final PayloadClick payload);
   public void onViewClickActionRecordImageDoSaveImageButton(final View view, final PayloadClick payload);
@@ -46,5 +48,11 @@ public interface ActionRecordImageViewDelegate
   public void onViewSaveInstanceStateActionRecordImage(final View view, final PayloadSaveInstanceState payload);
   public void onViewRestoreInstanceStateActionRecordImage(final View view, final PayloadRestoreInstanceState payload);
 
+  public void onReturnFromExternalCameraOK(final Intent data);
+  public void onReturnFromExternalCameraRetryManually(final Intent data);
+  public void onReturnFromExternalCameraCancelled(final Intent data);
+  public void onReturnFromExternalGalleryOK(final Intent data);
+  public void onReturnFromExternalGalleryRetryManually(final Intent data);
+  public void onReturnFromExternalGalleryCancelled(final Intent data);
 
 }

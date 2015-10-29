@@ -12,6 +12,7 @@ package dk.lundogbendsen.vucroskilde.android.generated;
 
 import android.database.*;
 import android.database.sqlite.SQLiteStatement;
+import dk.lundogbendsen.vucroskilde.android.data.StepType;
 import dk.schoubo.library.android.CommonSQL;
 import dk.schoubo.library.android.generated.GlobalSQLStructure;
 import dk.schoubo.library.android.sql.SQLUtil;
@@ -38,9 +39,9 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
   public String getStepSequence() { return stepSequence; }
   public void setStepSequence(final String stepSequence) { this.stepSequence = stepSequence; }
 
-  String stepType;
-  public String getStepType() { return stepType; }
-  public void setStepType(final String stepType) { this.stepType = stepType; }
+  StepType stepType;
+  public StepType getStepType() { return stepType; }
+  public void setStepType(final StepType stepType) { this.stepType = stepType; }
 
   Long actionId;
   public Long getActionId() { return actionId; }
@@ -65,7 +66,7 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     this.parentFlowchart = 0L;
     this.stepName = "";
     this.stepSequence = "";
-    this.stepType = "";
+    this.stepType = null;
     this.actionId = 0L;
     this.subflowchartId = 0L;
     this.timestamp = new Date();
@@ -156,7 +157,7 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     recordSQL.parentFlowchart = cursor.getLong(cursor.getColumnIndex("PARENTFLOWCHART"));
     recordSQL.stepName = cursor.getString(cursor.getColumnIndex("STEPNAME"));
     recordSQL.stepSequence = cursor.getString(cursor.getColumnIndex("STEPSEQUENCE"));
-    recordSQL.stepType = cursor.getString(cursor.getColumnIndex("STEPTYPE"));
+    recordSQL.stepType = StepType.valueOf(cursor.getString(cursor.getColumnIndex("STEPTYPE")));
     recordSQL.actionId = cursor.getLong(cursor.getColumnIndex("ACTIONID"));
     recordSQL.subflowchartId = cursor.getLong(cursor.getColumnIndex("SUBFLOWCHARTID"));
     recordSQL.timestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("TIMESTAMP")));
@@ -189,7 +190,7 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
     statement.bindLong(1, this.parentFlowchart);
     statement.bindString(2, this.stepName);
     statement.bindString(3, this.stepSequence);
-    statement.bindString(4, this.stepType);
+    statement.bindString(4, this.stepType.name());
     statement.bindLong(5, this.actionId);
     statement.bindLong(6, this.subflowchartId);
     statement.bindString(7, DateAdapter.compactDate(this.timestamp));
@@ -524,7 +525,7 @@ public class StepSQL extends CommonSQL implements Comparable<StepSQL>
       case ID_ParentFlowchart: { parentFlowchart = (Long) value; return; }
       case ID_StepName: { stepName = (String) value; return; }
       case ID_StepSequence: { stepSequence = (String) value; return; }
-      case ID_StepType: { stepType = (String) value; return; }
+      case ID_StepType: { stepType = (StepType) value; return; }
       case ID_ActionId: { actionId = (Long) value; return; }
       case ID_SubflowchartId: { subflowchartId = (Long) value; return; }
       case ID_Timestamp: { timestamp = (Date) value; return; }

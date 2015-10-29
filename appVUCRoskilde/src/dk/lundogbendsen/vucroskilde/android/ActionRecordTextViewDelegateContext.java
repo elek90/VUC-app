@@ -11,7 +11,6 @@ package dk.lundogbendsen.vucroskilde.android;
 
 import android.app.Activity;
 import android.view.View;
-import android.widget.Toast;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordTextGUI;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordTextRootActivity;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordTextViewDelegate;
@@ -25,6 +24,7 @@ import dk.schoubo.library.android.ui.framework.PayloadRefresh;
 
 public class ActionRecordTextViewDelegateContext extends ActionRecordTextViewDelegateRoot
 {
+  @SuppressWarnings("unused")
   private ActionRecordTextXML action;
   private ActionRecordTextXML answer;
 
@@ -41,24 +41,49 @@ public class ActionRecordTextViewDelegateContext extends ActionRecordTextViewDel
   @Override
   public void onViewClickActionRecordTextDoRegretImageButton(final View view, final PayloadClick payload)
   {
-    guictx.editTextActionRecordTextText.setText(answer.getDescription());
+    boolean goAhead = true;
+    String oldText = answer.getDescription();
+    String newText = guictx.editTextActionRecordTextText.getText().toString();
+    if (!newText.isEmpty() && !oldText.equals(newText))
+    {
+      // TODO Are you sure?
+      // goAhead måske= false;
+    }
+    if (goAhead)
+    {
+      guictx.editTextActionRecordTextText.setText(answer.getDescription());
+    }
   }
 
   @Override
   public void onViewClickActionRecordTextDoSaveImageButton(final View view, final PayloadClick payload)
   {
-    answer.setDescription(guictx.editTextActionRecordTextText.getText().toString());
+    boolean goAhead = true;
+    // TODO Are you sure?
+    // goAhead måske= false;
+    if (goAhead)
+    {
+      answer.setDescription(guictx.editTextActionRecordTextText.getText().toString());
+      goReturn(Activity.RESULT_OK);
+    }
   }
 
   @Override
   public void onViewBackActionRecordText(final View view, final PayloadBack payload)
   {
-    if (!answer.getDescription().equals(guictx.editTextActionRecordTextText.getText().toString()))
+    boolean goAhead = true;
+    String oldText = answer.getDescription();
+    String newText = guictx.editTextActionRecordTextText.getText().toString();
+    if (!newText.isEmpty() && !oldText.equals(newText))
     {
-      // TODO Are you sure dialog
-      Toast.makeText(activity, "You loose text (later: Are you sure?)", Toast.LENGTH_LONG).show();
+      // TODO Are you sure?
+      // goAhead måske= false;
     }
-    goReturn(Activity.RESULT_OK);
+
+    if (goAhead)
+    {
+      goReturn(Activity.RESULT_OK);
+    }
   }
 
   @Override
@@ -66,7 +91,6 @@ public class ActionRecordTextViewDelegateContext extends ActionRecordTextViewDel
   {
     DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
 
-    guictx.editTextActionRecordTextText.setText(answer.getDescription());
   }
 
   @Override
@@ -74,5 +98,7 @@ public class ActionRecordTextViewDelegateContext extends ActionRecordTextViewDel
   {
     action = busctx.<ActionRecordTextXML> getCurrentAction(busctx.getCurrentStepIfSelected());
     answer = busctx.<ActionRecordTextXML> getAnswer();
+
+    guictx.editTextActionRecordTextText.setText(answer.getDescription());
   }
 }

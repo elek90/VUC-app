@@ -20,6 +20,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.TextView;
 import com.sinkpoint.smoothwheel.OnWheelSpinListener;
 import com.sinkpoint.smoothwheel.WheelAdapter;
 import dk.lundogbendsen.vucroskilde.android.R;
@@ -33,6 +35,8 @@ public class SetupGUI extends CommonGUI<VUCRoskildeBusinessContext, SetupActionP
 {
 
   public final CheckBox checkBoxSetupTeacher;
+  public final TextView textViewSetupEmailLabel;
+  public final EditText editTextSetupEmail;
 
   public SetupGUI(final RootActivity<VUCRoskildeBusinessContext, SetupGUI, SetupActionPoint, NavigationPoint> activity)
   {
@@ -42,6 +46,8 @@ public class SetupGUI extends CommonGUI<VUCRoskildeBusinessContext, SetupActionP
 
     checkBoxSetupTeacher = (CheckBox) activity.findViewById(R.id.checkBoxSetupTeacher);
     checkBoxSetupTeacher.setOnClickListener(this);
+    textViewSetupEmailLabel = (TextView) activity.findViewById(R.id.textViewSetupEmailLabel);
+    editTextSetupEmail = (EditText) activity.findViewById(R.id.editTextSetupEmail);
   }
 
   public static SetupGUI create(final RootActivity<VUCRoskildeBusinessContext, SetupGUI, SetupActionPoint, NavigationPoint> activity)

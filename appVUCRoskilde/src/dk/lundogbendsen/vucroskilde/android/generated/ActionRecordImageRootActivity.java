@@ -17,6 +17,7 @@ import android.view.View;
 import dk.lundogbendsen.vucroskilde.android.ActionRecordImageViewDelegateContext;
 import dk.lundogbendsen.vucroskilde.android.VUCRoskildeBusinessContext;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordImageViewDelegate;
+import dk.schoubo.library.android.LibraryConstants;
 import dk.schoubo.library.android.ui.framework.Payload;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadClick;
@@ -138,6 +139,11 @@ public abstract class ActionRecordImageRootActivity extends RootActivity<VUCRosk
   {
     switch (actionpoint)
     {
+      case CLICKACTIONRECORDIMAGEDOSELECTIMAGEBUTTON:
+      {
+        viewdelegatectx.onViewClickActionRecordImageDoSelectImageButton(view, (PayloadClick)payload);
+        break;
+      }
       case CLICKACTIONRECORDIMAGEDORECORDIMAGEBUTTON:
       {
         viewdelegatectx.onViewClickActionRecordImageDoRecordImageButton(view, (PayloadClick)payload);
@@ -226,6 +232,50 @@ public abstract class ActionRecordImageRootActivity extends RootActivity<VUCRosk
   {
     switch (requestCode)
     {
+      case EXTERNALCAMERA:
+      {
+        switch (resultCode)
+        {
+          case LibraryConstants.RESULT_OK:
+          {
+            viewdelegatectx.onReturnFromExternalCameraOK(data);
+            break;
+          }
+          case LibraryConstants.RESULT_RETRY_MANUALLY:
+          {
+            viewdelegatectx.onReturnFromExternalCameraRetryManually(data);
+            break;
+          }
+          case LibraryConstants.RESULT_CANCELED:
+          {
+            viewdelegatectx.onReturnFromExternalCameraCancelled(data);
+            break;
+          }
+        }
+        break;
+      }
+      case EXTERNALGALLERY:
+      {
+        switch (resultCode)
+        {
+          case LibraryConstants.RESULT_OK:
+          {
+            viewdelegatectx.onReturnFromExternalGalleryOK(data);
+            break;
+          }
+          case LibraryConstants.RESULT_RETRY_MANUALLY:
+          {
+            viewdelegatectx.onReturnFromExternalGalleryRetryManually(data);
+            break;
+          }
+          case LibraryConstants.RESULT_CANCELED:
+          {
+            viewdelegatectx.onReturnFromExternalGalleryCancelled(data);
+            break;
+          }
+        }
+        break;
+      }
       default:
       {
         Log.wtf(TAG(), "Navigation to "+requestCode+" should never return to the Activity ActionRecordImage since that Activity did not declare it?");

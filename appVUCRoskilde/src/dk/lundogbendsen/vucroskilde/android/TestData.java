@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import dk.lundogbendsen.vucroskilde.android.data.PlacementType;
+import dk.lundogbendsen.vucroskilde.android.data.StepType;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordAudioXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordImageXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordTextXML;
@@ -18,6 +20,7 @@ import dk.lundogbendsen.vucroskilde.android.generated.ActionShowVideoXML;
 import dk.lundogbendsen.vucroskilde.android.generated.AddressableXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ExerciseXML;
 import dk.lundogbendsen.vucroskilde.android.generated.FlowchartXML;
+import dk.lundogbendsen.vucroskilde.android.generated.MediaRefXML;
 import dk.lundogbendsen.vucroskilde.android.generated.SchoolXML;
 import dk.lundogbendsen.vucroskilde.android.generated.StepXML;
 import dk.lundogbendsen.vucroskilde.android.generated.StudentXML;
@@ -38,7 +41,7 @@ public class TestData
 
   public FlowchartXML spektrometerflowchart;
   public FlowchartXML sampleflowchart;
-  
+
   public SchoolXML vucschool;
   public TeamXML hold3x;
   public StudentXML studentAnna;
@@ -108,6 +111,7 @@ public class TestData
   // vid01small.mp4 https://drive.google.com/open?id=0ByqV1F-KEJ--Z2JNdXQ0NG5kb2c brug spek
   // vid02small.mp4 https://drive.google.com/open?id=0ByqV1F-KEJ--d1pDMmJvUTZlQms byg eget spek
   // vid03small.mp4 https://drive.google.com/open?id=0ByqV1F-KEJ--N1A5MFhYblluLUE brug eget spek
+  @SuppressWarnings("unused")
   private static final String GOOGLE_DRIVE_PREFIX = "https://drive.google.com/uc?export=download&id=";
 
   private static final String SR_PREFIX = "http://www.schoubo-reasoning.dk/images/stories/vuc/lab01/";
@@ -121,35 +125,38 @@ public class TestData
   // private static final String SR_POSTFIX = "androidsdhigh.mp4"; // does not work
   // private static final String SR_POSTFIX = "androidhd.mp4"; // does not work
   private static final String SR_POSTFIX = "fullvp80.webm"; // works
+  private static final String massespektrometriForklaring = "massespektrometri, analysemetode til bestemmelse af molekylers masse og kemiske struktur. Massespektrometri er en af de mest specifikke og følsomme analysemetoder til kvalitativ og kvantitativ analyse af et bredt udsnit af forskellige stoftyper. Metoden anvendes inden for forskning og rutineanalyse i områder som fx kemi, biokemi, bioteknologi, geokemi, klinisk kemi og miljøkontrol.\n"
+      + "Analysen foretages i et massespektrometer, som består af en ionkilde, hvor prøven ioniseres og bringes på gasform, en masseanalysator, hvor de dannede ioner adskilles efter masse i elektriske og/eller magnetiske felter, og detektoren, hvor ionernes ankomst registreres. Masseanalysator og detektor befinder sig i et højvakuumkammer. Afhængigt af den valgte ioniseringsmetode kan molekylerne tilføres overskudsenergi, hvorved de fragmenterer. Herved dannes ud over molekylarionen en række fragmentationer, som kan anvendes til at bestemme molekylets kemiske struktur. Hvis ioniseringsmetoden ikke tilfører tilstrækkelig overskudsenergi, kan fragmentering opnås ved at lade ionerne kollidere med fx neutrale gasmolekyler.\n"
+      + "Ca. 1945-85 anvendtes massespektrometri næsten udelukkende til analyse af flygtige organiske forbindelser. Udvikling af nye ioniseringsmetoder, baseret på sprayteknik eller på beskydning af prøven med atomer, ioner eller fotoner kombineret med forbedrede masseanalysatorer, har åbnet for analyse af ikke-flygtige højmolekylære forbindelser som proteiner og nukleinsyrer. Ved direkte kobling til separationsmetoder som fx gas- og væskekromatografi kan meget komplekse stofblandinger analyseres.";
 
   @SuppressWarnings("unused")
   private void initFlowchartExercise1()
   {
-    FlowchartXML f1 = newFlowchart("(F1) Bliv klog på lys", vucschool.getId());
-    StepXML s11 = newStepShowText("(S11) Se video om lys", f1, "(Her skal der være en video om lysets fysik og hvad viden om lys kan bruges til...)");
+    FlowchartXML f1 = newFlowchart("Bliv klog på lys", vucschool.getId());
+    StepXML s11 = newStepShowText("Se video om lys", f1, "(Her skal der være en video om lysets fysik og hvad viden om lys kan bruges til...)");
 
-    FlowchartXML f2 = newFlowchart("(F2) Praktisk arbejde", vucschool.getId());
-    StepXML s21 = newStepShowVideo("(S21) Sådan laver du eksperimenter", f2, ref("vid01"), "Brug et spektrometer");
-    StepXML s22 = newStepShowVideo("(S22) Byg selv dit udstyr", f2, ref("vid02"), "Byg et spektrometer");
+    FlowchartXML f2 = newFlowchart("Praktisk arbejde", vucschool.getId());
+    StepXML s21 = newStepShowVideo("Sådan laver du eksperimenter", f2, "Brug et spektrometer", ref("vid01"));
+    StepXML s22 = newStepShowVideo("Byg selv dit udstyr", f2, "Byg et spektrometer", ref("vid02"));
 
-    FlowchartXML f23 = newFlowchart("(F23) Praktisk opgave", vucschool.getId());
-    StepXML s231 = newStepRecordImage("(S231) Tag et billede af den blå himmel", f23, "Spektrum for blå himmel");
-    StepXML s232 = newStepRecordImage("(S232) Tag et billede af en elektrisk pære", f23, "Spektrum af lyskilde");
+    FlowchartXML f23 = newFlowchart("Praktisk opgave", vucschool.getId());
+    StepXML s231 = newStepRecordImage("Tag et billede af den blå himmel", f23, "Spektrum for blå himmel");
+    StepXML s232 = newStepRecordImage("Tag et billede af en elektrisk pære", f23, "Spektrum af lyskilde");
 
     StepXML s23 = newStepSubFlowchart(f2, f23);
 
-    FlowchartXML f3 = newFlowchart("(F3) Gennemfør din egen undersøgelse", vucschool.getId());
-    StepXML s31 = newStepShowVideo("(S31) Instruktion til undersøgelsen", f3, ref("vid03"), "Lav eksperimentet");
+    FlowchartXML f3 = newFlowchart("Gennemfør din egen undersøgelse", vucschool.getId());
+    StepXML s31 = newStepShowVideo("Instruktion til undersøgelsen", f3, "Lav eksperimentet", ref("vid03"));
 
-    FlowchartXML f32 = newFlowchart("(F32) Tag billeder", vucschool.getId());
-    StepXML s321 = newStepRecordImage("(S321) Billede af spektrum", f32, "Spektrum for blå himmel");
-    StepXML s322 = newStepRecordImage("(S322) Billede af lyskilde", f32, "Spektrum af lyskilde");
+    FlowchartXML f32 = newFlowchart("Tag billeder", vucschool.getId());
+    StepXML s321 = newStepRecordImage("Billede af spektrum", f32, "Spektrum for blå himmel");
+    StepXML s322 = newStepRecordImage("Billede af lyskilde", f32, "Spektrum af lyskilde");
 
     StepXML s32 = newStepSubFlowchart(f3, f32);
 
-    StepXML s33 = newStepSendReport("(S33) Aflever rapport", f32);
+    StepXML s33 = newStepSendReport("Aflever rapport", f32);
 
-    FlowchartXML f = newFlowchart("(F) Lys - Niveau G", vucschool.getId());
+    FlowchartXML f = newFlowchart("Lys - Niveau G", vucschool.getId());
     StepXML s1 = newStepSubFlowchart(f, f1);
     StepXML s2 = newStepSubFlowchart(f, f2);
     StepXML s3 = newStepSubFlowchart(f, f3);
@@ -158,40 +165,52 @@ public class TestData
 
     f.setFlowchartSequence("");
     assignSequenceNumbers(f);
-    
+
     spektrometerflowchart = f;
   }
+
+  private final Map<Long, String> pendingTexts = new HashMap<Long, String>();
+  private final Map<Long, MediaRefXML> pendingMediaRefs = new HashMap<Long, MediaRefXML>();
 
   @SuppressWarnings("unused")
   private void initFlowchartSample()
   {
-    FlowchartXML f1 = newFlowchart("(F1) En af hver-øvelsen", vucschool.getId());
-    StepXML s11 = newStepShowText("(S11) Forklaring", f1, "Denne øvelse indeholder blot et af hvert af de step-typer der kan forekomme.\nDen kan derfor forekomme lidt \"konstrueret\".");
+    FlowchartXML f1 = newFlowchart("En af hver-øvelsen", vucschool.getId());
+    StepXML s11 = newStepShowText("Forklaring", f1, "Denne øvelse indeholder blot et af hvert af de step-typer der kan forekomme.\nDen kan derfor forekomme lidt \"konstrueret\".");
 
-    FlowchartXML f2 = newFlowchart("(F2) Til eleven", vucschool.getId());
-    StepXML s21 = newStepShowText("(S21) Vis forklaring", f2, "Her er en lang forklaring, som bliver ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved og ved.");
-    StepXML s22 = newStepShowImage("(S22) Vis billede", f2, locref("img01.png"), "Et billede");
-    StepXML s23 = newStepShowAudio("(S23) Vis forklaring", f2, locref("aud01.ogg"), "En lydindspilning");
-    StepXML s24 = newStepShowVideo("(S24) Vis forklaring", f2, ref("vid03"), "En video");
-    StepXML s25 = newStepSendReport("(S35) Aflever rapport", f2);
-    
-    FlowchartXML f3 = newFlowchart("(F3) Fra eleven", vucschool.getId());
-    StepXML s31 = newStepRecordText("(S31) Besvar med forklaring", f3);
-    StepXML s32 = newStepRecordImage("(S32) Besvar med billede", f3, "Mit billede");
-    StepXML s33 = newStepRecordAudio("(S33) Besvar med audio", f3, "Min lydoptagelse");
-    StepXML s34 = newStepRecordVideo("(S34) Besvar med video", f3, "Min video");
+    FlowchartXML f2 = newFlowchart("Til eleven", vucschool.getId());
+    StepXML s21 = newStepShowText("Vis forklaring", f2, massespektrometriForklaring);
+    StepXML s22 = newStepShowImage("Vis billede", f2, "Masse-spektrometer", "img01.jpg");
+    StepXML s23 = newStepShowAudio("Afspil lydfil", f2, "Another day in Paradise", "aud01.ogg");
+    StepXML s24 = newStepShowVideo("Vis video", f2, "Brug spektroskopet", ref("vid01"));
 
+    FlowchartXML f3 = newFlowchart("Fra eleven", vucschool.getId());
+    StepXML s31 = newStepRecordText("Besvar med forklaring", f3);
+    StepXML s32 = newStepRecordImage("Besvar med billede", f3, "Mit billede");
+    StepXML s33 = newStepRecordAudio("Besvar med audio", f3, "Min lydoptagelse");
+    StepXML s34 = newStepRecordVideo("Besvar med video", f3, "Min video");
 
-    FlowchartXML f = newFlowchart("(F) En af hver - Niveau X", vucschool.getId());
+    FlowchartXML f4 = newFlowchart("Fra eleven (besvaret)", vucschool.getId());
+    StepXML s41 = newStepRecordText("Besvarelse med forklaring", f4, "Dette er min forklaring til en spørgsmål.");
+    StepXML s42 = newStepRecordImage("Besvarelse med billede", f4, "Mit billede", "img01.jpg", PlacementType.ASSETS);
+    StepXML s43 = newStepRecordAudio("Besvarelse med audio", f4, "Min lydoptagelse", "aud01.ogg", PlacementType.ASSETS);
+    StepXML s44 = newStepRecordVideo("Besvarelse med video", f4, "Min video", ref("vid01"), PlacementType.ASSETS);
+
+    FlowchartXML f5 = newFlowchart("Rapportering", vucschool.getId());
+    StepXML s51 = newStepSendReport("Aflever rapport", f5);
+
+    FlowchartXML f = newFlowchart("En af hver - Niveau X", vucschool.getId());
     StepXML s1 = newStepSubFlowchart(f, f1);
     StepXML s2 = newStepSubFlowchart(f, f2);
     StepXML s3 = newStepSubFlowchart(f, f3);
+    StepXML s4 = newStepSubFlowchart(f, f4);
+    StepXML s5 = newStepSubFlowchart(f, f5);
 
     f.setExecutable(true);
 
     f.setFlowchartSequence("");
     assignSequenceNumbers(f);
-    
+
     sampleflowchart = f;
   }
 
@@ -200,29 +219,24 @@ public class TestData
     int n = 1;
     for (StepXML step : f.getSteps())
     {
-      String seq = (f.getFlowchartSequence().isEmpty() ? "" : f.getFlowchartSequence()+".") + n;
+      String seq = (f.getFlowchartSequence().isEmpty() ? "" : f.getFlowchartSequence() + ".") + n;
       step.setStepSequence(seq);
-      
-      if (StepType.valueOf(step.getStepType()) == StepType.SUB_FLOWCHART)
+
+      if (step.getStepType() == StepType.SUB_FLOWCHART)
       {
         FlowchartXML sf = flowcharts.get(step.getSubflowchartId());
         sf.setFlowchartSequence(seq);
         assignSequenceNumbers(sf);
       }
-      
+
       n++;
     }
-    
+
   }
 
   private String ref(final String name)
   {
     return SR_PREFIX + name + SR_POSTFIX;
-  }
-
-  private String locref(final String name)
-  {
-    return name;
   }
 
   private ActionSendReportXML newActionSendReportXML(final StepXML step)
@@ -232,7 +246,7 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
 
@@ -243,7 +257,7 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
 
@@ -254,7 +268,7 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
 
@@ -265,7 +279,7 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
 
@@ -276,7 +290,7 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
 
@@ -287,7 +301,7 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
 
@@ -298,7 +312,7 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
 
@@ -309,7 +323,7 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
 
@@ -320,10 +334,9 @@ public class TestData
     a.setParentStep(step.getId());
     step.setActionId(a.getId());
 
-    actions.get(StepType.valueOf(step.getStepType())).put(a.getId(), a);
+    actions.get(step.getStepType()).put(a.getId(), a);
     return a;
   }
-
 
   private StepXML newStep(final String name, final FlowchartXML f)
   {
@@ -333,7 +346,7 @@ public class TestData
     s.setStepName(name);
     s.setStepSequence("!!!");
     s.setParentFlowchart(f.getId());
-    
+
     steps.put(s.getId(), s);
 
     return s;
@@ -342,7 +355,7 @@ public class TestData
   private StepXML newStepShowText(final String name, final FlowchartXML f, final String description)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.SHOW_TEXT.name());
+    s.setStepType(StepType.SHOW_TEXT);
     ActionShowTextXML a = newActionShowTextXML(s);
     a.setDescription(description);
     return s;
@@ -351,9 +364,10 @@ public class TestData
   private StepXML newStepShowImage(final String name, final FlowchartXML f, final String description, final String imageRef)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.SHOW_IMAGE.name());
+    s.setStepType(StepType.SHOW_IMAGE);
     ActionShowImageXML a = newActionShowImageXML(s);
-    a.setImageRef(imageRef);
+    a.getImageRef().setPlacementPath(imageRef);
+    a.getImageRef().setPlacementType(PlacementType.ASSETS);
     a.setDescription(description);
     return s;
   }
@@ -361,9 +375,10 @@ public class TestData
   private StepXML newStepShowAudio(final String name, final FlowchartXML f, final String description, final String audioRef)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.SHOW_AUDIO.name());
+    s.setStepType(StepType.SHOW_AUDIO);
     ActionShowAudioXML a = newActionShowAudioXML(s);
-    a.setAudioRef(audioRef);
+    a.getAudioRef().setPlacementPath(audioRef);
+    a.getAudioRef().setPlacementType(PlacementType.ASSETS);
     a.setDescription(description);
     return s;
   }
@@ -371,9 +386,10 @@ public class TestData
   private StepXML newStepShowVideo(final String name, final FlowchartXML f, final String description, final String videoRef)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.SHOW_VIDEO.name());
+    s.setStepType(StepType.SHOW_VIDEO);
     ActionShowVideoXML a = newActionShowVideoXML(s);
-    a.setVideoRef(videoRef);
+    a.getVideoRef().setPlacementPath(videoRef);
+    a.getVideoRef().setPlacementType(PlacementType.URL);
     a.setDescription(description);
     return s;
   }
@@ -381,46 +397,86 @@ public class TestData
   private StepXML newStepRecordText(final String name, final FlowchartXML f)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.RECORD_TEXT.name());
+    s.setStepType(StepType.RECORD_TEXT);
     ActionRecordTextXML a = newActionRecordTextXML(s);
     a.setDescription("");
     return s;
   }
 
+  private StepXML newStepRecordText(final String name, final FlowchartXML f, final String text)
+  {
+    StepXML step = newStepRecordText(name, f);
+    pendingTexts.put(step.getId(), text);
+    return step;
+  }
+
   private StepXML newStepRecordImage(final String name, final FlowchartXML f, final String description)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.RECORD_IMAGE.name());
+    s.setStepType(StepType.RECORD_IMAGE);
     ActionRecordImageXML a = newActionRecordImageXML(s);
-    a.setImageRef("");
+    a.getImageRef().setPlacementPath("");
+    a.getImageRef().setPlacementType(PlacementType.NULL);
     a.setDescription(description);
     return s;
+  }
+
+  private StepXML newStepRecordImage(final String name, final FlowchartXML f, final String description, final String path, final PlacementType type)
+  {
+    StepXML step = newStepRecordImage(name, f, description);
+    MediaRefXML m = MediaRefXML.create();
+    m.setPlacementPath(path);
+    m.setPlacementType(type);
+    pendingMediaRefs.put(step.getId(), m);
+    return step;
   }
 
   private StepXML newStepRecordAudio(final String name, final FlowchartXML f, final String description)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.RECORD_AUDIO.name());
+    s.setStepType(StepType.RECORD_AUDIO);
     ActionRecordAudioXML a = newActionRecordAudioXML(s);
-    a.setAudioRef("");
+    a.getAudioRef().setPlacementPath("");
+    a.getAudioRef().setPlacementType(PlacementType.NULL);
     a.setDescription(description);
     return s;
+  }
+
+  private StepXML newStepRecordAudio(final String name, final FlowchartXML f, final String description, final String path, final PlacementType type)
+  {
+    StepXML step = newStepRecordAudio(name, f, description);
+    MediaRefXML m = MediaRefXML.create();
+    m.setPlacementPath(path);
+    m.setPlacementType(type);
+    pendingMediaRefs.put(step.getId(), m);
+    return step;
   }
 
   private StepXML newStepRecordVideo(final String name, final FlowchartXML f, final String description)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.RECORD_VIDEO.name());
+    s.setStepType(StepType.RECORD_VIDEO);
     ActionRecordVideoXML a = newActionRecordVideoXML(s);
-    a.setVideoRef("");
+    a.getVideoRef().setPlacementPath("");
+    a.getVideoRef().setPlacementType(PlacementType.NULL);
     a.setDescription(description);
     return s;
+  }
+
+  private StepXML newStepRecordVideo(final String name, final FlowchartXML f, final String description, final String path, final PlacementType type)
+  {
+    StepXML step = newStepRecordVideo(name, f, description);
+    MediaRefXML m = MediaRefXML.create();
+    m.setPlacementPath(path);
+    m.setPlacementType(type);
+    pendingMediaRefs.put(step.getId(), m);
+    return step;
   }
 
   private StepXML newStepSendReport(final String name, final FlowchartXML f)
   {
     StepXML s = newStep(name, f);
-    s.setStepType(StepType.SEND_REPORT.name());
+    s.setStepType(StepType.SEND_REPORT);
     @SuppressWarnings("unused")
     ActionSendReportXML a = newActionSendReportXML(s);
     return s;
@@ -429,7 +485,7 @@ public class TestData
   private StepXML newStepSubFlowchart(final FlowchartXML f, final FlowchartXML sf)
   {
     StepXML s = newStep(sf.getFlowchartName(), f);
-    s.setStepType(StepType.SUB_FLOWCHART.name());
+    s.setStepType(StepType.SUB_FLOWCHART);
     s.setSubflowchartId(sf.getId());
     sf.setFlowchartSequence(s.getStepSequence());
     return s;
@@ -477,7 +533,7 @@ public class TestData
     sa1.setZip("4000");
     sa1.setCountry("Danmark");
     sa1.setCountryISO("DA");
-    sa1.setEmail("anna95@gmail.com");
+    sa1.setEmail("jan@lundogbendsen.dk");
     sa1.setPhone("40123456");
 
     sa2.setName("Berit Bendixen");
@@ -551,8 +607,12 @@ public class TestData
 
     exercises.put(e1.getId(), e1);
 
-    Map<Long, Object> answersToSteps = new HashMap<Long, Object>();
-    answers.put(e1.getId(), answersToSteps);
+    Map<Long, Object> answersToSteps = answers.get(e1.getId());
+    if (answersToSteps == null)
+    {
+      answersToSteps = new HashMap<Long, Object>();
+      answers.put(e1.getId(), answersToSteps);
+    }
     fillWithBlankAnswers(answersToSteps, flowchart);
 
     return e1;
@@ -564,40 +624,120 @@ public class TestData
     {
       fillWithBlankAnswers(answersToSteps, step);
     }
-
   }
 
   private void fillWithBlankAnswers(final Map<Long, Object> answersToSteps, final StepXML step)
   {
-    StepType steptype = StepType.valueOf(step.getStepType());
-    switch (steptype)
+    if (!answersToSteps.containsKey(step.getActionId()))
     {
-      case RECORD_AUDIO:
+      StepType steptype = step.getStepType();
+      switch (steptype)
       {
-        answersToSteps.put(step.getActionId(), ActionRecordAudioXML.create());
-        break;
-      }
-      case RECORD_IMAGE:
-      {
-        answersToSteps.put(step.getActionId(), ActionRecordImageXML.create());
-        break;
-      }
-      case RECORD_TEXT:
-      {
-        answersToSteps.put(step.getActionId(), ActionRecordTextXML.create());
-        break;
-      }
-      case RECORD_VIDEO:
-      {
-        answersToSteps.put(step.getActionId(), ActionRecordVideoXML.create());
-        break;
-      }
-      default:
-      {
-        // These step types have no answer
+        case RECORD_TEXT:
+        {
+          String text = pendingTexts.get(step.getId());
+          if (text == null)
+          {
+            addAnswerText(answersToSteps, step, "");
+          }
+          else
+          {
+            addAnswerText(answersToSteps, step, text);
+          }
+          break;
+        }
+        case RECORD_IMAGE:
+        {
+          ActionRecordImageXML a = (ActionRecordImageXML) actions.get(step.getStepType()).get(step.getActionId());
+          MediaRefXML m = pendingMediaRefs.get(step.getId());
+          if (m == null)
+          {
+            addAnswerImage(answersToSteps, step, a.getDescription(), "", PlacementType.NULL);
+          }
+          else
+          {
+            addAnswerImage(answersToSteps, step, a.getDescription(), m.getPlacementPath(), m.getPlacementType());
+          }
+          break;
+        }
+        case RECORD_AUDIO:
+        {
+          ActionRecordAudioXML a = (ActionRecordAudioXML) actions.get(step.getStepType()).get(step.getActionId());
+          MediaRefXML m = pendingMediaRefs.get(step.getId());
+          if (m == null)
+          {
+            addAnswerAudio(answersToSteps, step, a.getDescription(), "", PlacementType.NULL);
+          }
+          else
+          {
+            addAnswerAudio(answersToSteps, step, a.getDescription(), m.getPlacementPath(), m.getPlacementType());
+          }
+          break;
+        }
+        case RECORD_VIDEO:
+        {
+          ActionRecordVideoXML a = (ActionRecordVideoXML) actions.get(step.getStepType()).get(step.getActionId());
+          MediaRefXML m = pendingMediaRefs.get(step.getId());
+          if (m == null)
+          {
+            addAnswerVideo(answersToSteps, step, a.getDescription(), "", PlacementType.NULL);
+          }
+          else
+          {
+            addAnswerVideo(answersToSteps, step, a.getDescription(), m.getPlacementPath(), m.getPlacementType());
+          }
+          break;
+        }
+        case SUB_FLOWCHART:
+        {
+          FlowchartXML sf = flowcharts.get(step.getSubflowchartId());
+          fillWithBlankAnswers(answersToSteps, sf);
+          break;
+        }
+        default:
+        {
+          // These step types have no answer
+        }
       }
     }
+  }
 
+  private void addAnswerText(final Map<Long, Object> answersToSteps, final StepXML step, final String description)
+  {
+    ActionRecordTextXML an = ActionRecordTextXML.create();
+    an.setParentStep(step.getId());
+    an.setDescription(description);
+    answersToSteps.put(step.getActionId(), an);
+  }
+
+  private void addAnswerImage(final Map<Long, Object> answersToSteps, final StepXML step, final String description, final String path, final PlacementType placement)
+  {
+    ActionRecordImageXML an = ActionRecordImageXML.create();
+    an.setParentStep(step.getId());
+    an.getImageRef().setPlacementPath(path);
+    an.getImageRef().setPlacementType(placement);
+    an.setDescription(description);
+    answersToSteps.put(step.getActionId(), an);
+  }
+
+  private void addAnswerAudio(final Map<Long, Object> answersToSteps, final StepXML step, final String description, final String path, final PlacementType placement)
+  {
+    ActionRecordAudioXML an = ActionRecordAudioXML.create();
+    an.setParentStep(step.getId());
+    an.getAudioRef().setPlacementPath(path);
+    an.getAudioRef().setPlacementType(placement);
+    an.setDescription(description);
+    answersToSteps.put(step.getActionId(), an);
+  }
+
+  private void addAnswerVideo(final Map<Long, Object> answersToSteps, final StepXML step, final String description, final String path, final PlacementType placement)
+  {
+    ActionRecordVideoXML an = ActionRecordVideoXML.create();
+    an.setParentStep(step.getId());
+    an.getVideoRef().setPlacementPath(path);
+    an.getVideoRef().setPlacementType(placement);
+    an.setDescription(description);
+    answersToSteps.put(step.getActionId(), an);
   }
 
   @SuppressWarnings("unchecked")

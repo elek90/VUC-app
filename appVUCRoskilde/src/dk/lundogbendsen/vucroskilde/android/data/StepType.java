@@ -1,13 +1,14 @@
-package dk.lundogbendsen.vucroskilde.android;
+package dk.lundogbendsen.vucroskilde.android.data;
 
+import dk.lundogbendsen.vucroskilde.android.R;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordAudioXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordImageXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordTextXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionSendReportXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowAudioXML;
-import dk.lundogbendsen.vucroskilde.android.generated.ActionShowTextXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowImageXML;
+import dk.lundogbendsen.vucroskilde.android.generated.ActionShowTextXML;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowVideoXML;
 
 public enum StepType

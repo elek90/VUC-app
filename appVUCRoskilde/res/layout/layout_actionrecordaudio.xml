@@ -14,40 +14,89 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
-  <ImageButton
-    android:id="@+id/imageButtonActionRecordAudioDoRecord"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/MA.Button"
-    android:layout_gravity="center_horizontal"
-    android:contentDescription="@string/buttonActionRecordAudioDoRecord"
-    android:text="@string/buttonActionRecordAudioDoRecord"
-    android:src="@drawable/ic_launcher" />
-  <ImageButton
-    android:id="@+id/imageButtonActionRecordAudioDoPlay"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/MA.Button"
-    android:layout_gravity="center_horizontal"
-    android:contentDescription="@string/buttonActionRecordAudioDoPlay"
-    android:text="@string/buttonActionRecordAudioDoPlay"
-    android:src="@drawable/ic_launcher" />
-  <ImageButton
-    android:id="@+id/imageButtonActionRecordAudioDoRegret"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/MA.Button"
-    android:layout_gravity="center_horizontal"
-    android:contentDescription="@string/buttonActionRecordAudioDoRegret"
-    android:text="@string/buttonActionRecordAudioDoRegret"
-    android:src="@drawable/ic_launcher" />
-  <ImageButton
-    android:id="@+id/imageButtonActionRecordAudioDoSave"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/MA.Button"
-    android:layout_gravity="center_horizontal"
-    android:contentDescription="@string/buttonActionRecordAudioDoSave"
-    android:text="@string/buttonActionRecordAudioDoSave"
-    android:src="@drawable/ic_launcher" />
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewActionRecordAudioText"
+        style="@style/MA.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelActionRecordAudioText" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordAudioDoRecord"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/buttonActionRecordAudioDoRecord"
+            android:src="@drawable/ic_mic_black_24dp"
+            android:text="@string/buttonActionRecordAudioDoRecord" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordAudioDoPlay"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/buttonActionRecordAudioDoPlay"
+            android:src="@drawable/ic_play_arrow_black_24dp"
+            android:text="@string/buttonActionRecordAudioDoPlay" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordAudioDoRegret"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/buttonActionRecordAudioDoRegret"
+            android:src="@drawable/ic_undo_black_24dp"
+            android:text="@string/buttonActionRecordAudioDoRegret" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordAudioDoSave"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/buttonActionRecordAudioDoSave"
+            android:src="@drawable/ic_save_black_24dp"
+            android:text="@string/buttonActionRecordAudioDoSave" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+    </LinearLayout>
+
+  </LinearLayout>

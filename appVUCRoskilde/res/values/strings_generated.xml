@@ -34,8 +34,11 @@
   <string name="buttonActionRecordImageDoRecord">Record</string>
   <string name="buttonActionRecordImageDoRegret">Regret</string>
   <string name="buttonActionRecordImageDoSave">Save</string>
+  <string name="buttonActionRecordImageDoSelect">Select</string>
   <string name="buttonActionRecordTextDoRegret">Regret</string>
   <string name="buttonActionRecordTextDoSave">Save</string>
+  <string name="buttonActionRecordVideoDoPlay">Play</string>
+  <string name="buttonActionRecordVideoDoRecord">Record Video</string>
   <string name="buttonActionRecordVideoDoRegret">Regret</string>
   <string name="buttonActionRecordVideoDoSave">Save</string>
   <string name="buttonActionSendReportDoSend">Send</string>
@@ -48,10 +51,16 @@
   <string name="buttonFlowchartDetailDoExercise">Run</string>
   <string name="buttonStepDetailDoStep">Run</string>
   <string name="labelAboutDescription">[Description]</string>
+  <string name="labelActionRecordAudioText">Text</string>
   <string name="labelActionRecordImageImage">Image</string>
+  <string name="labelActionRecordImageText">Text</string>
+  <string name="labelActionRecordVideoText">Text</string>
   <string name="labelActionRecordVideoVideo">Video</string>
+  <string name="labelActionShowAudioText">Text</string>
   <string name="labelActionShowImageImage">Image</string>
+  <string name="labelActionShowImageText">Text</string>
   <string name="labelActionShowTextText">Text</string>
+  <string name="labelActionShowVideoText">Text</string>
   <string name="labelActionShowVideoVideo">Video</string>
   <string name="labelAnswerDetailStepNumber">[Number]</string>
   <string name="labelAnswerDetailStepTitle">[Title]</string>
@@ -63,6 +72,7 @@
   <string name="labelExerciseStepStepNumber">[Number]</string>
   <string name="labelExerciseStepStepTitle">[Title]</string>
   <string name="labelFlowchartDetailFlowchartTitle">[Flowchart]</string>
+  <string name="labelSetupEmailLabel">Email Address:</string>
   <string name="labelSetupTeacher">Run teacher app</string>
   <string name="labelSplashForAndroid">for Android™</string>
   <string name="labelSplashLundOgBendsenLogo">Lund&amp;Bendsen Logo</string>

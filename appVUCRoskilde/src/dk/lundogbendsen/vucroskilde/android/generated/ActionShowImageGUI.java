@@ -20,6 +20,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.sinkpoint.smoothwheel.OnWheelSpinListener;
 import com.sinkpoint.smoothwheel.WheelAdapter;
 import dk.lundogbendsen.vucroskilde.android.R;
@@ -32,6 +33,7 @@ public class ActionShowImageGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
 {
 
   public final ImageView imageViewActionShowImageImage;
+  public final TextView textViewActionShowImageText;
 
   public ActionShowImageGUI(final RootActivity<VUCRoskildeBusinessContext, ActionShowImageGUI, ActionShowImageActionPoint, NavigationPoint> activity)
   {
@@ -40,6 +42,7 @@ public class ActionShowImageGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
     activity.setContentView(R.layout.layout_actionshowimage);
 
     imageViewActionShowImageImage = (ImageView) activity.findViewById(R.id.imageViewActionShowImageImage);
+    textViewActionShowImageText = (TextView) activity.findViewById(R.id.textViewActionShowImageText);
   }
 
   public static ActionShowImageGUI create(final RootActivity<VUCRoskildeBusinessContext, ActionShowImageGUI, ActionShowImageActionPoint, NavigationPoint> activity)

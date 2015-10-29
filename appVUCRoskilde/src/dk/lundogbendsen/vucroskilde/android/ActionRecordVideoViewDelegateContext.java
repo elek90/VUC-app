@@ -12,32 +12,35 @@ package dk.lundogbendsen.vucroskilde.android;
 
 import android.app.Activity;
 import android.view.View;
+import dk.lundogbendsen.vucroskilde.android.data.PlacementType;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoGUI;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoRootActivity;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoViewDelegate;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoViewDelegateRoot;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoXML;
+import dk.lundogbendsen.vucroskilde.android.generated.MediaRefXML;
 import dk.lundogbendsen.vucroskilde.android.util.DisplayUtil;
+import dk.lundogbendsen.vucroskilde.android.util.FileUtil;
+import dk.lundogbendsen.vucroskilde.android.util.VideoPlayerWrapper;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadClick;
 import dk.schoubo.library.android.ui.framework.PayloadCreate;
 import dk.schoubo.library.android.ui.framework.PayloadDestroy;
-import dk.schoubo.library.android.ui.framework.PayloadNewIntent;
 import dk.schoubo.library.android.ui.framework.PayloadPause;
 import dk.schoubo.library.android.ui.framework.PayloadRefresh;
-import dk.schoubo.library.android.ui.framework.PayloadRestart;
-import dk.schoubo.library.android.ui.framework.PayloadRestoreInstanceState;
 import dk.schoubo.library.android.ui.framework.PayloadResume;
-import dk.schoubo.library.android.ui.framework.PayloadSaveInstanceState;
-import dk.schoubo.library.android.ui.framework.PayloadStart;
-import dk.schoubo.library.android.ui.framework.PayloadStop;
-import dk.schoubo.library.android.ui.framework.PayloadWindowFocusChanged;
 
 
 public class ActionRecordVideoViewDelegateContext extends ActionRecordVideoViewDelegateRoot
 {
 
+  @SuppressWarnings("unused")
   private ActionRecordVideoXML action;
+  private ActionRecordVideoXML answer;
+private MediaRefXML videoFileRef;
+
+private VideoPlayerWrapper mpw;
+private VideoRecorderWrapper mrw;
 
   private ActionRecordVideoViewDelegateContext(final ActionRecordVideoRootActivity activity, final VUCRoskildeBusinessContext busctx, final ActionRecordVideoGUI guictx)
   {
@@ -52,14 +55,90 @@ public class ActionRecordVideoViewDelegateContext extends ActionRecordVideoViewD
   @Override
   public void onViewClickActionRecordVideoDoRegretImageButton(final View view, final PayloadClick payload)
   {
-    // TODO To be filled out by YOU
+    boolean goAhead = true;
+    // TODO Are you sure?
+    // goAhead måske= false;
+    if (goAhead)
+    {
+      videoFileRef.setPlacementPath(answer.getVideoRef().getPlacementPath());
+      videoFileRef.setPlacementType(answer.getVideoRef().getPlacementType());
+
+      goReturn(Activity.RESULT_OK);
+    }
   }
 
   @Override
   public void onViewClickActionRecordVideoDoSaveImageButton(final View view, final PayloadClick payload)
   {
-    // TODO To be filled out by YOU
+    boolean goAhead = true;
+    // TODO Are you sure?
+    // goAhead måske= false;
+    if (goAhead)
+    {
+      answer.getVideoRef().setPlacementPath(videoFileRef.getPlacementPath());
+      answer.getVideoRef().setPlacementType(videoFileRef.getPlacementType());
+
+      goReturn(Activity.RESULT_OK);
+    }
   }
+
+  
+  @Override
+  public void onViewClickActionRecordVideoDoRecordImageButton(final View view, final PayloadClick payload)
+  {
+    if (busctx.isMediaPlaying())
+    {
+      busctx.setMediaPosition(0);
+      mpw.stopMediaPlayer();
+      mpw.destroyMediaPlayer();
+      busctx.setMediaPlaying(false);
+    }
+
+    if (busctx.isMediaRecording())
+    {
+      busctx.setMediaPosition(0);
+      mrw.stopMediaRecorder();
+      mrw.destroyMediaRecorder();
+      busctx.setMediaRecording(false);
+    }
+    else
+    {
+      mrw.createMediaRecorder();
+      mrw.startMediaRecorder();
+      busctx.setMediaRecording(true);
+    }
+    
+    activity.refreshGUI();
+  }
+
+  
+  @Override
+  public void onViewClickActionRecordVideoDoPlayImageButton(final View view, final PayloadClick payload)
+  {
+    if (busctx.isMediaRecording())
+    {
+      mrw.stopMediaRecorder();
+      mrw.destroyMediaRecorder();
+      busctx.setMediaRecording(false);
+    }
+
+    if (busctx.isMediaPlaying())
+    {
+//      busctx.setMediaPosition(mpw.getCurrentPosition());
+      mpw.stopMediaPlayer();
+      mpw.destroyMediaPlayer();
+      busctx.setMediaPlaying(false);
+    }
+    else
+    {
+      mpw.createMediaPlayer();
+      mpw.startMediaPlayer(); // busctx.getMediaPosition()
+      busctx.setMediaPlaying(true);
+    }
+    
+    activity.refreshGUI();
+  }
+
 
   @Override
   public void onViewBackActionRecordVideo(final View view, final PayloadBack payload)
@@ -71,76 +150,102 @@ public class ActionRecordVideoViewDelegateContext extends ActionRecordVideoViewD
   public void onViewRefreshActionRecordVideo(final View view, final PayloadRefresh payload)
   {
     DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
-    // TODO To be filled out by YOU
-    // guictx.videoViewActionRecordVideoVideo.setVideoURI(Uri.parse("..."));
+
+    guictx.textViewActionRecordVideoText.setText(action.getDescription());
+
+    if (busctx.isMediaPlaying())
+    {
+      guictx.imageButtonActionRecordVideoDoPlay.setImageResource(R.drawable.ic_pause_black_24dp);
+    }
+    else
+    {
+      guictx.imageButtonActionRecordVideoDoPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+    }
+
+    if (busctx.isMediaRecording())
+    {
+      guictx.imageButtonActionRecordVideoDoRecord.setImageResource(R.drawable.ic_stop_black_24dp);
+    }
+    else
+    {
+      guictx.imageButtonActionRecordVideoDoRecord.setImageResource(R.drawable.ic_keyboard_voice_black_24dp);
+    }
   }
 
   @Override
   public void onViewCreateActionRecordVideo(final View view, final PayloadCreate payload)
   {
     action = busctx.<ActionRecordVideoXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    answer = busctx.<ActionRecordVideoXML> getAnswer();
+
+    videoFileRef = MediaRefXML.create();
+    videoFileRef.setPlacementPath(FileUtil.getNewMediaPath(activity, FileUtil.generateVideoFilename(action.getId())));
+    videoFileRef.setPlacementType(PlacementType.STORAGE);
+    
+    mrw = new VideoRecorderWrapper(videoFileRef);
+
+    mpw = new VideoPlayerWrapper(videoFileRef, activity, guictx.videoViewActionRecordVideoVideo);
+    busctx.setMediaPlaying(false);
+    busctx.setMediaPosition(0);
+
+    busctx.setMediaRecording(false);
+
+    activity.refreshGUI();
   }
 
-  @Override
-  public void onViewStartActionRecordVideo(final View view, final PayloadStart payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
 
   @Override
   public void onViewResumeActionRecordVideo(final View view, final PayloadResume payload)
   {
-    // TODO To be filled out by YOU   -- super contains nothing
+    mrw.createMediaRecorder();
+    busctx.setMediaRecording(false);
+
+    mpw.createMediaPlayer();
+    if (busctx.isMediaPlaying())
+    {
+      mpw.startMediaPlayer(); //     mrw.createMediaRecorder();
+      busctx.setMediaPlaying(true);
+    }
+
+    activity.refreshGUI();
   }
 
   @Override
   public void onViewPauseActionRecordVideo(final View view, final PayloadPause payload)
   {
-    // TODO To be filled out by YOU   -- super contains nothing
+    if (busctx.isMediaRecording())
+    {
+      busctx.setMediaPosition(0);
+      mrw.stopMediaRecorder();
+      mrw.destroyMediaRecorder();
+      busctx.setMediaRecording(false); // We will not recommence after a stop
+    }
+    else
+    {
+      mrw.destroyMediaRecorder();
+      busctx.setMediaRecording(false);
+    }
+
+    if (busctx.isMediaPlaying())
+    {
+//      busctx.setMediaPosition(mpw.getCurrentPosition());
+      mpw.stopMediaPlayer();
+      mpw.destroyMediaPlayer();
+      busctx.setMediaPlaying(true);
+    }
+    else
+    {
+      mpw.destroyMediaPlayer();
+      busctx.setMediaPlaying(false);
+    }
   }
 
-  @Override
-  public void onViewStopActionRecordVideo(final View view, final PayloadStop payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
 
   @Override
   public void onViewDestroyActionRecordVideo(final View view, final PayloadDestroy payload)
   {
-    // TODO To be filled out by YOU   -- super contains nothing
+    mrw = null;
+    mpw = null;
   }
-
-  @Override
-  public void onViewWindowFocusChangedActionRecordVideo(final View view, final PayloadWindowFocusChanged payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewRestartActionRecordVideo(final View view, final PayloadRestart payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewNewIntentActionRecordVideo(final View view, final PayloadNewIntent payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewSaveInstanceStateActionRecordVideo(final View view, final PayloadSaveInstanceState payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-  @Override
-  public void onViewRestoreInstanceStateActionRecordVideo(final View view, final PayloadRestoreInstanceState payload)
-  {
-    // TODO To be filled out by YOU   -- super contains nothing
-  }
-
-
 
 }

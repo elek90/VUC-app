@@ -63,8 +63,8 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
   {
     if (busctx.isFlowchartsStackEmpty())
     {
-      Toast.makeText(activity, "Stack of flowcharts empty", Toast.LENGTH_LONG).show();
-      Log.wtf(TAG, "Stack of flowcharts empty");
+      Toast.makeText(activity, "Stack of flowcharts is empty", Toast.LENGTH_LONG).show();
+      Log.wtf(TAG, "Stack of flowcharts is empty");
       goReturn(Activity.RESULT_CANCELED);
     }
 
@@ -103,8 +103,16 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
 
   private void refreshGUIFlowchart(final FlowchartXML flowchart)
   {
-    String st = flowchart.getFlowchartSequence(); // busctx.getSelectedStepsString(null);
-    guictx.textViewExerciseStepStepNumber.setText(st);
+    String st = flowchart.getFlowchartSequence();
+    if (st.isEmpty())
+    {
+      guictx.textViewExerciseStepStepNumber.setVisibility(View.GONE);
+    }
+    else
+    {
+      guictx.textViewExerciseStepStepNumber.setVisibility(View.VISIBLE);
+      guictx.textViewExerciseStepStepNumber.setText(st);
+    }
     guictx.textViewExerciseStepStepTitle.setText(flowchart.getFlowchartName());
 
     // Log.i("--FLOW--", "Viser steps for flowchart " + flowchart.getFlowchartName());
@@ -115,12 +123,10 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
     {
       StepDetailGUI stepdetailgui = StepDetailGUI.create(activity, guictx, i);
 
-      String s = step.getStepSequence(); // busctx.getSelectedStepsString(i);
-      stepdetailgui.textViewStepDetailStepNumber.setText(s);
+      stepdetailgui.textViewStepDetailStepNumber.setText(step.getStepSequence());
       stepdetailgui.textViewStepDetailStepTitle.setText(step.getStepName());
 
-      StepType steptype = StepType.valueOf(step.getStepType());
-      stepdetailgui.imageButtonStepDetailDoStep.setImageResource(steptype.getResId());
+      stepdetailgui.imageButtonStepDetailDoStep.setImageResource(step.getStepType().getResId());
 
       // Log.i("--FLOW--", "Viser step " + (i + 1) + " af " + flowchart.getSteps().size() + ": " + step.getText());
 
@@ -179,8 +185,7 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
     }
     else
     {
-      StepType steptype = StepType.valueOf(step.getStepType());
-      switch (steptype)
+      switch (step.getStepType())
       {
         case SHOW_AUDIO:
         {
@@ -232,25 +237,19 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
           Toast.makeText(activity, "Showing a leaf step, but getting type SUB_FLOWCHART?", Toast.LENGTH_LONG).show();
           Log.wtf(TAG, "Showing a leaf step, but getting type SUB_FLOWCHART?");
           goReturn(Activity.RESULT_CANCELED);
-          // throw new RuntimeException("Should never meet SUB_FLOWCHART after CurrentStep is set...?");
         }
 
       }
     }
   }
 
-  
-  
- 
-  
-  
   private void handleReturnFromAction()
   {
-    busctx.setCurrentStep(null);
-    busctx.setCurrentVideo(null);
+    busctx.unstack();
+    
     activity.refreshGUI();
   }
-  
+
   @Override
   public void onReturnFromActionShowVideoOK(final Intent data)
   {
@@ -359,5 +358,4 @@ public class ExerciseStepViewDelegateContext extends ExerciseStepViewDelegateRoo
     handleReturnFromAction();
   }
 
-  
 }

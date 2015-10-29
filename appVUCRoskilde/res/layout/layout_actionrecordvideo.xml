@@ -1,4 +1,5 @@
-<!--THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+<!--
+THIS FILE IS GENERATED IF NOT FOUND ALREADY.
   
   This is a template that must be filled out by you. Once created it will not be overwritten.
   The generator class is dk.schoubo.generator.products.templates.TemplateAndroidXML
@@ -6,34 +7,88 @@
   Author: Lund&Bendsen, Jan Schoubo
 -->
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
+    <VideoView
+        android:id="@+id/videoViewActionRecordVideoVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
-  <VideoView
-    android:id="@+id/videoViewActionRecordVideoVideo"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
-  <ImageButton
-    android:id="@+id/imageButtonActionRecordVideoDoRegret"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/MA.Button"
+    <TextView
+        android:id="@+id/textViewActionRecordVideoText"
+        style="@style/MA.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelActionRecordVideoText" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordVideoDoRegret"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/buttonActionRecordVideoDoRegret"
+            android:src="@drawable/ic_undo_black_24dp"
+            android:text="@string/buttonActionRecordVideoDoRegret" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordVideoDoSave"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/buttonActionRecordVideoDoSave"
+            android:src="@drawable/ic_save_black_24dp"
+            android:text="@string/buttonActionRecordVideoDoSave" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </LinearLayout>
+    </LinearLayout>
+
+  
+<ImageButton
+    android:contentDescription="@string/buttonActionRecordVideoDoRecord"
+    android:id="@+id/imageButtonActionRecordVideoDoRecord"
     android:layout_gravity="center_horizontal"
-    android:contentDescription="@string/buttonActionRecordVideoDoRegret"
-    android:text="@string/buttonActionRecordVideoDoRegret"
-    android:src="@drawable/ic_launcher" />
-  <ImageButton
-    android:id="@+id/imageButtonActionRecordVideoDoSave"
-    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    style="@style/MA.Button"
+    android:layout_width="wrap_content"
+    android:src="@drawable/ic_launcher"
+    android:text="@string/buttonActionRecordVideoDoRecord"
+    style="@style/MA.Button"/>
+  <ImageButton
+    android:contentDescription="@string/buttonActionRecordVideoDoPlay"
+    android:id="@+id/imageButtonActionRecordVideoDoPlay"
     android:layout_gravity="center_horizontal"
-    android:contentDescription="@string/buttonActionRecordVideoDoSave"
-    android:text="@string/buttonActionRecordVideoDoSave"
-    android:src="@drawable/ic_launcher" />
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:src="@drawable/ic_launcher"
+    android:text="@string/buttonActionRecordVideoDoPlay"
+    style="@style/MA.Button"/>
+  </LinearLayout>

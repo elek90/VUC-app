@@ -10,6 +10,7 @@
 
 package dk.lundogbendsen.vucroskilde.android.generated;
 
+import dk.lundogbendsen.vucroskilde.android.data.StepType;
 import dk.schoubo.library.android.CommonXML;
 import java.io.Serializable;
 import java.util.*;
@@ -35,10 +36,10 @@ public class StepXML extends CommonXML implements Serializable
   public String getStepSequence() { return stepSequence; }
   public void setStepSequence(final String stepSequence) { this.stepSequence = stepSequence; }
 
-  @Element(required=false)
-  String stepType = "";
-  public String getStepType() { return stepType; }
-  public void setStepType(final String stepType) { this.stepType = stepType; }
+  @Element
+  StepType stepType;
+  public StepType getStepType() { return stepType; }
+  public void setStepType(final StepType stepType) { this.stepType = stepType; }
 
   @Element
   Long actionId;
@@ -71,7 +72,7 @@ public class StepXML extends CommonXML implements Serializable
     this.parentFlowchart = 0L;
     this.stepName = "";
     this.stepSequence = "";
-    this.stepType = "";
+    this.stepType = null;
     this.actionId = 0L;
     this.subflowchartId = 0L;
     this.timestamp = new Date();
