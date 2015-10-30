@@ -20,7 +20,7 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
         android:adjustViewBounds="true"
         android:contentDescription="@string/labelActionShowImageImage"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/vucroskilde_logo_simple_square" />
 
     <TextView
         android:id="@+id/textViewActionShowImageText"

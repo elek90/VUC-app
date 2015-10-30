@@ -79,7 +79,7 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
     android:layout_gravity="center_horizontal"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:src="@drawable/ic_launcher"
+    android:src="@drawable/vucroskilde_logo_simple_square"
     android:text="@string/buttonActionRecordVideoDoRecord"
     style="@style/MA.Button"/>
   <ImageButton
@@ -88,7 +88,7 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
     android:layout_gravity="center_horizontal"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:src="@drawable/ic_launcher"
+    android:src="@drawable/vucroskilde_logo_simple_square"
     android:text="@string/buttonActionRecordVideoDoPlay"
     style="@style/MA.Button"/>
   </LinearLayout>

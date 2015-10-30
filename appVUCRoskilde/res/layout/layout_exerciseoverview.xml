@@ -36,6 +36,6 @@
       android:adjustViewBounds="true"
       android:contentDescription="@string/labelExerciseOverviewExerciseOverview"
       android:scaleType="fitXY"
-      android:src="@drawable/ic_launcher" />
+      android:src="@drawable/vucroskilde_logo_simple_square" />
 
   </LinearLayout>
