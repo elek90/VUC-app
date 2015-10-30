@@ -30,9 +30,9 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
   public void setParentStep(final StepSQL parentStep) { this.parentStep = parentStep.getId(); }
   public void setParentStep(final Long parentStepId) { this.parentStep = parentStepId; }
 
-  String text;
-  public String getText() { return text; }
-  public void setText(final String text) { this.text = text; }
+  String description;
+  public String getDescription() { return description; }
+  public void setDescription(final String description) { this.description = description; }
 
   String imageRef;
   public String getImageRef() { return imageRef; }
@@ -51,7 +51,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
   {
     super();
     this.parentStep = 0L;
-    this.text = "";
+    this.description = "";
     this.imageRef = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -87,7 +87,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     AnswerImageSQL recordSQL = new AnswerImageSQL();
     recordSQL.id = this.getId();
     recordSQL.parentStep = this.parentStep;
-    recordSQL.text = this.text;
+    recordSQL.description = this.description;
     recordSQL.imageRef = this.imageRef;
     recordSQL.timestamp = this.timestamp;
     recordSQL.changestamp = this.changestamp;
@@ -102,7 +102,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
       "[" +
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
-        "text=" + text + ", " +
+        "description=" + description + ", " +
         "imageRef=" + imageRef + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
@@ -116,7 +116,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     AnswerImageXML recordXML = AnswerImageXML.create();
     recordXML.setId(this.getId());
     recordXML.setParentStep(this.getParentStep());
-    recordXML.setText(this.getText());
+    recordXML.setDescription(this.getDescription());
     recordXML.setImageRef(this.getImageRef());
     recordXML.setTimestamp(this.getTimestamp());
     recordXML.setChangestamp(this.getChangestamp());
@@ -130,7 +130,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     AnswerImageSQL recordSQL = new AnswerImageSQL();
     recordSQL.id = cursor.getLong(cursor.getColumnIndex("ID"));
     recordSQL.parentStep = cursor.getLong(cursor.getColumnIndex("PARENTSTEP"));
-    recordSQL.text = cursor.getString(cursor.getColumnIndex("TEXT"));
+    recordSQL.description = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
     recordSQL.imageRef = cursor.getString(cursor.getColumnIndex("IMAGEREF"));
     recordSQL.timestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("TIMESTAMP")));
     recordSQL.changestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("CHANGESTAMP")));
@@ -141,26 +141,26 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
   private static final String TABLE_NAME = "ANSWERIMAGE";
   @Override public String getTableNameSQL() { return TABLE_NAME; }
 
-  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, TEXT, IMAGEREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
+  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, DESCRIPTION, IMAGEREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
   @Override public String getAllFieldNamesSQL() { return ALL_FIELD_NAMES; }
 
-  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ANSWERIMAGE(ID INTEGER, PARENTSTEP INTEGER NOT NULL, TEXT TEXT NOT NULL, IMAGEREF TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
+  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ANSWERIMAGE(ID INTEGER, PARENTSTEP INTEGER NOT NULL, DESCRIPTION TEXT NOT NULL, IMAGEREF TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
   @Override public String getCreateTableSQL() { return CREATE_TABLE_STATEMENT; }
 
   private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS ANSWERIMAGE;";
   @Override public String getDropTableSQL() { return DROP_TABLE_STATEMENT; }
 
-  private static final String INSERT_STATEMENT = "INSERT INTO ANSWERIMAGE(PARENTSTEP, TEXT, IMAGEREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  private static final String INSERT_STATEMENT = "INSERT INTO ANSWERIMAGE(PARENTSTEP, DESCRIPTION, IMAGEREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
   @Override public String getInsertSQL() { return INSERT_STATEMENT; }
 
-  private static final String UPDATE_STATEMENT = "UPDATE ANSWERIMAGE SET PARENTSTEP = ?, TEXT = ?, IMAGEREF = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
+  private static final String UPDATE_STATEMENT = "UPDATE ANSWERIMAGE SET PARENTSTEP = ?, DESCRIPTION = ?, IMAGEREF = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
   @Override public String getUpdateSQL() { return UPDATE_STATEMENT; }
 
   @Override
   public void bindForInsertOrUpdate(final SQLiteStatement statement)
   {
     statement.bindLong(1, this.parentStep);
-    statement.bindString(2, this.text);
+    statement.bindString(2, this.description);
     statement.bindString(3, this.imageRef);
     statement.bindString(4, DateAdapter.compactDate(this.timestamp));
     statement.bindString(5, DateAdapter.compactDate(this.changestamp));
@@ -168,7 +168,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     statement.bindLong(7, this.id);
   }
 
-  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, TEXT, IMAGEREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ANSWERIMAGE WHERE ID=?;";
+  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, DESCRIPTION, IMAGEREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ANSWERIMAGE WHERE ID=?;";
   @Override public String getSelectByIdSQL() { return SELECT_BY_ID_STATEMENT; }
 
   private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM ANSWERIMAGE WHERE ID=?;";
@@ -309,7 +309,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     {
       if (recordSQL.deletestamp) return;
       this.parentStep = recordSQL.parentStep;
-      this.text = recordSQL.text;
+      this.description = recordSQL.description;
       this.imageRef = recordSQL.imageRef;
       this.timestamp = recordSQL.timestamp;
       this.changestamp = recordSQL.changestamp;
@@ -337,7 +337,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     {
       if (recordSQL.changestamp.before(since)) return;
       this.parentStep = recordSQL.parentStep;
-      this.text = recordSQL.text;
+      this.description = recordSQL.description;
       this.imageRef = recordSQL.imageRef;
       this.timestamp = recordSQL.timestamp;
       this.changestamp = recordSQL.changestamp;
@@ -451,7 +451,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
 
   public static final int ID_Id = 0;
   public static final int ID_ParentStep = 1;
-  public static final int ID_Text = 2;
+  public static final int ID_Description = 2;
   public static final int ID_ImageRef = 3;
   public static final int ID_Timestamp = 4;
   public static final int ID_Changestamp = 5;
@@ -464,7 +464,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     {
       case ID_Id: return id;
       case ID_ParentStep: return parentStep;
-      case ID_Text: return text;
+      case ID_Description: return description;
       case ID_ImageRef: return imageRef;
       case ID_Timestamp: return timestamp;
       case ID_Changestamp: return changestamp;
@@ -480,7 +480,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     {
       case ID_Id: { id = (Long) value; return; }
       case ID_ParentStep: { parentStep = (Long) value; return; }
-      case ID_Text: { text = (String) value; return; }
+      case ID_Description: { description = (String) value; return; }
       case ID_ImageRef: { imageRef = (String) value; return; }
       case ID_Timestamp: { timestamp = (Date) value; return; }
       case ID_Changestamp: { changestamp = (Date) value; return; }
@@ -495,7 +495,7 @@ public class AnswerImageSQL extends CommonSQL implements Comparable<AnswerImageS
     {
       case ID_Id: return "id";
       case ID_ParentStep: return "parentStep";
-      case ID_Text: return "text";
+      case ID_Description: return "description";
       case ID_ImageRef: return "imageRef";
       case ID_Timestamp: return "timestamp";
       case ID_Changestamp: return "changestamp";

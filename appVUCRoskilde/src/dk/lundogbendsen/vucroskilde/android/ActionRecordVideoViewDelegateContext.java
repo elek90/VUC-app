@@ -175,7 +175,7 @@ private VideoRecorderWrapper mrw;
   @Override
   public void onViewCreateActionRecordVideo(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionRecordVideoXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionRecordVideoXML> getCurrentAction();
     answer = busctx.<ActionRecordVideoXML> getAnswer();
 
     videoFileRef = MediaRefXML.create();

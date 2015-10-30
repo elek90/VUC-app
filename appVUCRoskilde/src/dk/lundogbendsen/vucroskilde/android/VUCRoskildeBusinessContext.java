@@ -82,8 +82,9 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
     return currentStudent;
   }
 
-  public <T> T getCurrentAction(final StepXML step)
+  public <T> T getCurrentAction()
   {
+    StepXML step = getCurrentStepIfSelected();
     if (step == null) return null;
 
     Long actionid = step.getActionId();
@@ -281,7 +282,7 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
     return res;
   }
 
-  public <T> T getAnswer(final ExerciseXML exercise, final StepXML step)
+  private <T> T getAnswer(final ExerciseXML exercise, final StepXML step)
   {
     return TestData.getInstance().<T> getAnswer(exercise, step);
   }

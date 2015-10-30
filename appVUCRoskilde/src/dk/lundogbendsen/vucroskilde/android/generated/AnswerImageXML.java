@@ -26,9 +26,9 @@ public class AnswerImageXML extends CommonXML implements Serializable
   public void setParentStep(final Long parentStep) { this.parentStep = parentStep; }
 
   @Element(required=false)
-  String text = "";
-  public String getText() { return text; }
-  public void setText(final String text) { this.text = text; }
+  String description = "";
+  public String getDescription() { return description; }
+  public void setDescription(final String description) { this.description = description; }
 
   @Element(required=false)
   String imageRef = "";
@@ -54,7 +54,7 @@ public class AnswerImageXML extends CommonXML implements Serializable
   {
     super();
     this.parentStep = 0L;
-    this.text = "";
+    this.description = "";
     this.imageRef = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -74,7 +74,7 @@ public class AnswerImageXML extends CommonXML implements Serializable
     AnswerImageXML n = AnswerImageXML.create();
     n.id = this.id;
     n.parentStep = this.parentStep;
-    n.text = this.text;
+    n.description = this.description;
     n.imageRef = this.imageRef;
     n.timestamp = this.timestamp;
     n.changestamp = this.changestamp;
@@ -89,7 +89,7 @@ public class AnswerImageXML extends CommonXML implements Serializable
       "[" +
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
-        "text=" + text + ", " +
+        "description=" + description + ", " +
         "imageRef=" + imageRef + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
@@ -103,7 +103,7 @@ public class AnswerImageXML extends CommonXML implements Serializable
     AnswerImageSQL recordSQL = new AnswerImageSQL();
     recordSQL.id = this.id; 
     recordSQL.parentStep = this.parentStep; 
-    recordSQL.text = this.text; 
+    recordSQL.description = this.description; 
     recordSQL.imageRef = this.imageRef; 
     recordSQL.timestamp = this.timestamp; 
     recordSQL.changestamp = this.changestamp; 

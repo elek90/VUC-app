@@ -51,7 +51,7 @@ public class ActionShowVideoViewDelegateContext extends ActionShowVideoViewDeleg
   {
     // media_Controller = new MediaController(activity);
 
-    action = busctx.<ActionShowVideoXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionShowVideoXML> getCurrentAction();
 
     videoFileRef = MediaRefXML.create();
     videoFileRef.setPlacementPath(action.getVideoRef().getPlacementPath());

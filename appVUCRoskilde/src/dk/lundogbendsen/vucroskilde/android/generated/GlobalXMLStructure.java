@@ -38,9 +38,9 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(StudentXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(ExerciseXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(AnswerXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(AnswerVideoXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(AnswerImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(AnswerDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(AnswerImageXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addAllClasses(AnswerVideoXML.class);
   }
 
   public static List<Class<? extends CommonXML>> getTableClasses() { return dk.schoubo.library.android.generated.GlobalXMLStructure.getTableClasses(); }
@@ -63,9 +63,9 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(StudentXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(ExerciseXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(AnswerXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(AnswerVideoXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(AnswerImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(AnswerDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(AnswerImageXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.addTableClasses(AnswerVideoXML.class);
   }
 
   public static List<Class<? extends CommonXML>> getRootClasses() { return dk.schoubo.library.android.generated.GlobalXMLStructure.getRootClasses(); }
@@ -137,13 +137,13 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(AnswerXML.class, cc);
 
     cc = new LinkedList<Class<? extends CommonXML>>();
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(AnswerVideoXML.class, cc);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(AnswerDescriptionXML.class, cc);
 
     cc = new LinkedList<Class<? extends CommonXML>>();
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(AnswerImageXML.class, cc);
 
     cc = new LinkedList<Class<? extends CommonXML>>();
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(AnswerDescriptionXML.class, cc);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassChildren(AnswerVideoXML.class, cc);
 
   }
 
@@ -168,9 +168,9 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("Student", StudentXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("Exercise", ExerciseXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("Answer", AnswerXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("AnswerVideo", AnswerVideoXML.class);
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("AnswerImage", AnswerImageXML.class);
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("AnswerDescription", AnswerDescriptionXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("AnswerImage", AnswerImageXML.class);
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableClassByName("AnswerVideo", AnswerVideoXML.class);
   }
 
   public static Map<String, CommonXML> getTableInstancesByName() { return dk.schoubo.library.android.generated.GlobalXMLStructure.getTableInstancesByName(); }
@@ -194,9 +194,9 @@ public abstract class GlobalXMLStructure
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("Student", StudentXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("Exercise", ExerciseXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("Answer", AnswerXML.create());
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("AnswerVideo", AnswerVideoXML.create());
-    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("AnswerImage", AnswerImageXML.create());
     dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("AnswerDescription", AnswerDescriptionXML.create());
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("AnswerImage", AnswerImageXML.create());
+    dk.schoubo.library.android.generated.GlobalXMLStructure.putTableInstanceByName("AnswerVideo", AnswerVideoXML.create());
   }
 
   public static final void ensureInit() { };

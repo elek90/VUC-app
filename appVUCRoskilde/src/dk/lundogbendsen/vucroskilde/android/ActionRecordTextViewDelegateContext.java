@@ -51,21 +51,15 @@ public class ActionRecordTextViewDelegateContext extends ActionRecordTextViewDel
     }
     if (goAhead)
     {
-      guictx.editTextActionRecordTextText.setText(answer.getDescription());
+      guictx.editTextActionRecordTextText.setText(oldText);
     }
   }
 
   @Override
   public void onViewClickActionRecordTextDoSaveImageButton(final View view, final PayloadClick payload)
   {
-    boolean goAhead = true;
-    // TODO Are you sure?
-    // goAhead måske= false;
-    if (goAhead)
-    {
       answer.setDescription(guictx.editTextActionRecordTextText.getText().toString());
       goReturn(Activity.RESULT_OK);
-    }
   }
 
   @Override
@@ -90,13 +84,12 @@ public class ActionRecordTextViewDelegateContext extends ActionRecordTextViewDel
   public void onViewRefreshActionRecordText(final View view, final PayloadRefresh payload)
   {
     DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
-
   }
 
   @Override
   public void onViewCreateActionRecordText(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionRecordTextXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionRecordTextXML> getCurrentAction();
     answer = busctx.<ActionRecordTextXML> getAnswer();
 
     guictx.editTextActionRecordTextText.setText(answer.getDescription());

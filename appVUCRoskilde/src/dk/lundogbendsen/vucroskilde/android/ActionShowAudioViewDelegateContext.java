@@ -93,7 +93,7 @@ public class ActionShowAudioViewDelegateContext extends ActionShowAudioViewDeleg
   @Override
   public void onViewCreateActionShowAudio(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionShowAudioXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionShowAudioXML> getCurrentAction();
 
     mpw = new AudioPlayerWrapper(action.getAudioRef(), activity, new OnCompletionListener()
     {

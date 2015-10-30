@@ -55,7 +55,7 @@ public class ExerciseOverviewViewDelegateContext extends ExerciseOverviewViewDel
   public void onViewRefreshExerciseOverview(final View view, final PayloadRefresh payload)
   {
     // TODO To be filled out by YOU
-    guictx.imageViewExerciseOverviewExerciseOverview.setImageResource(R.drawable.ic_launcher);
+    guictx.imageViewExerciseOverviewExerciseOverview.setImageResource(R.drawable.vucroskilde_logo_simple_square);
     // guictx.textViewExerciseOverviewExerciseTitle.setText("...");
     // guictx.textViewExerciseOverviewExerciseStep.setText("...");
   }

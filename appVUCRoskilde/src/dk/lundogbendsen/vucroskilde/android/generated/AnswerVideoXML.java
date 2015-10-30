@@ -21,9 +21,9 @@ import org.simpleframework.xml.*;
 public class AnswerVideoXML extends CommonXML implements Serializable
 {
   @Element(required=false)
-  String text = "";
-  public String getText() { return text; }
-  public void setText(final String text) { this.text = text; }
+  String description = "";
+  public String getDescription() { return description; }
+  public void setDescription(final String description) { this.description = description; }
 
   @Element(required=false)
   String videoRef = "";
@@ -48,7 +48,7 @@ public class AnswerVideoXML extends CommonXML implements Serializable
   protected AnswerVideoXML()
   {
     super();
-    this.text = "";
+    this.description = "";
     this.videoRef = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
@@ -67,7 +67,7 @@ public class AnswerVideoXML extends CommonXML implements Serializable
   {
     AnswerVideoXML n = AnswerVideoXML.create();
     n.id = this.id;
-    n.text = this.text;
+    n.description = this.description;
     n.videoRef = this.videoRef;
     n.timestamp = this.timestamp;
     n.changestamp = this.changestamp;
@@ -81,7 +81,7 @@ public class AnswerVideoXML extends CommonXML implements Serializable
     return "AnswerVideoXML" +
       "[" +
         "id=" + id + ", " +
-        "text=" + text + ", " +
+        "description=" + description + ", " +
         "videoRef=" + videoRef + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
@@ -94,7 +94,7 @@ public class AnswerVideoXML extends CommonXML implements Serializable
   {
     AnswerVideoSQL recordSQL = new AnswerVideoSQL();
     recordSQL.id = this.id; 
-    recordSQL.text = this.text; 
+    recordSQL.description = this.description; 
     recordSQL.videoRef = this.videoRef; 
     recordSQL.timestamp = this.timestamp; 
     recordSQL.changestamp = this.changestamp; 

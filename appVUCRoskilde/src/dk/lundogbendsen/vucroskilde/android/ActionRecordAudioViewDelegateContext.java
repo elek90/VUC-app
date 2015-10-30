@@ -163,7 +163,7 @@ public class ActionRecordAudioViewDelegateContext extends ActionRecordAudioViewD
   @Override
   public void onViewCreateActionRecordAudio(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionRecordAudioXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionRecordAudioXML> getCurrentAction();
     answer = busctx.<ActionRecordAudioXML> getAnswer();
 
     audioFileRef = MediaRefXML.create();

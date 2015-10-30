@@ -44,9 +44,9 @@ import dk.schoubo.library.android.util.DateAdapter;
 public class ActionSendReportViewDelegateContext extends ActionSendReportViewDelegateRoot
 {
   private static final String TAG = ActionSendReportViewDelegateContext.class.getName();
-  
+
   private static final String MARGIN = "      ";
-  
+
   @SuppressWarnings("unused")
   private ActionSendReportXML action;
 
@@ -101,7 +101,7 @@ public class ActionSendReportViewDelegateContext extends ActionSendReportViewDel
 
         if (!info.getAnswerText().isEmpty())
         {
-          content += "\n" + info.getAnswerText().replaceAll("\n", "\n   ");
+          content += MARGIN + info.getAnswerText().replaceAll("\n", "\n" + MARGIN);
         }
       }
       else
@@ -225,7 +225,7 @@ public class ActionSendReportViewDelegateContext extends ActionSendReportViewDel
       {
         ActionRecordTextXML answer = (ActionRecordTextXML) a;
         StepXML step = busctx.getStepById(answer.getParentStep());
-        answerInfo.put(step.getStepSequence(), new Info(step.getStepSequence(), step.getStepName(), answer.getDescription().isEmpty(), null, answer.getDescription()));
+        answerInfo.put(step.getStepSequence(), new Info(step.getStepSequence(), step.getStepName(), !answer.getDescription().isEmpty(), null, answer.getDescription()));
       }
       else if (a instanceof ActionRecordImageXML)
       {
@@ -256,7 +256,7 @@ public class ActionSendReportViewDelegateContext extends ActionSendReportViewDel
   @Override
   public void onViewCreateActionSendReport(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionSendReportXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionSendReportXML> getCurrentAction();
   }
 
   @Override

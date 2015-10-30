@@ -56,7 +56,7 @@ public class ActionShowTextViewDelegateContext extends ActionShowTextViewDelegat
   @Override
   public void onViewCreateActionShowText(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionShowTextXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionShowTextXML> getCurrentAction();
   }
 
 }

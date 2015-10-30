@@ -26,14 +26,14 @@ public class AnswerDescriptionXML extends CommonXML implements Serializable
   public void setParentStep(final Long parentStep) { this.parentStep = parentStep; }
 
   @Element(required=false)
+  String description = "";
+  public String getDescription() { return description; }
+  public void setDescription(final String description) { this.description = description; }
+
+  @Element(required=false)
   String text = "";
   public String getText() { return text; }
   public void setText(final String text) { this.text = text; }
-
-  @Element(required=false)
-  String descriptionRef = "";
-  public String getDescriptionRef() { return descriptionRef; }
-  public void setDescriptionRef(final String descriptionRef) { this.descriptionRef = descriptionRef; }
 
   @Element
   Date timestamp;
@@ -54,8 +54,8 @@ public class AnswerDescriptionXML extends CommonXML implements Serializable
   {
     super();
     this.parentStep = 0L;
+    this.description = "";
     this.text = "";
-    this.descriptionRef = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
     this.deletestamp = false;
@@ -74,8 +74,8 @@ public class AnswerDescriptionXML extends CommonXML implements Serializable
     AnswerDescriptionXML n = AnswerDescriptionXML.create();
     n.id = this.id;
     n.parentStep = this.parentStep;
+    n.description = this.description;
     n.text = this.text;
-    n.descriptionRef = this.descriptionRef;
     n.timestamp = this.timestamp;
     n.changestamp = this.changestamp;
     n.deletestamp = this.deletestamp;
@@ -89,8 +89,8 @@ public class AnswerDescriptionXML extends CommonXML implements Serializable
       "[" +
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
+        "description=" + description + ", " +
         "text=" + text + ", " +
-        "descriptionRef=" + descriptionRef + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
         "deletestamp=" + deletestamp +
@@ -103,8 +103,8 @@ public class AnswerDescriptionXML extends CommonXML implements Serializable
     AnswerDescriptionSQL recordSQL = new AnswerDescriptionSQL();
     recordSQL.id = this.id; 
     recordSQL.parentStep = this.parentStep; 
+    recordSQL.description = this.description; 
     recordSQL.text = this.text; 
-    recordSQL.descriptionRef = this.descriptionRef; 
     recordSQL.timestamp = this.timestamp; 
     recordSQL.changestamp = this.changestamp; 
     recordSQL.deletestamp = this.deletestamp; 

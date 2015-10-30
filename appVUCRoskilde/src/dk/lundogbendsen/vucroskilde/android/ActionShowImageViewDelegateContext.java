@@ -82,7 +82,7 @@ public class ActionShowImageViewDelegateContext extends ActionShowImageViewDeleg
   @Override
   public void onViewCreateActionShowImage(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionShowImageXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionShowImageXML> getCurrentAction();
   }
 
 }

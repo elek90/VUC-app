@@ -30,13 +30,13 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
   public void setParentStep(final StepSQL parentStep) { this.parentStep = parentStep.getId(); }
   public void setParentStep(final Long parentStepId) { this.parentStep = parentStepId; }
 
+  String description;
+  public String getDescription() { return description; }
+  public void setDescription(final String description) { this.description = description; }
+
   String text;
   public String getText() { return text; }
   public void setText(final String text) { this.text = text; }
-
-  String descriptionRef;
-  public String getDescriptionRef() { return descriptionRef; }
-  public void setDescriptionRef(final String descriptionRef) { this.descriptionRef = descriptionRef; }
 
   Date timestamp;
   public Date getTimestamp() { return timestamp; }
@@ -51,8 +51,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
   {
     super();
     this.parentStep = 0L;
+    this.description = "";
     this.text = "";
-    this.descriptionRef = "";
     this.timestamp = new Date();
     this.changestamp = new Date();
     this.deletestamp = false;
@@ -87,8 +87,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
     AnswerDescriptionSQL recordSQL = new AnswerDescriptionSQL();
     recordSQL.id = this.getId();
     recordSQL.parentStep = this.parentStep;
+    recordSQL.description = this.description;
     recordSQL.text = this.text;
-    recordSQL.descriptionRef = this.descriptionRef;
     recordSQL.timestamp = this.timestamp;
     recordSQL.changestamp = this.changestamp;
     recordSQL.deletestamp = this.deletestamp;
@@ -102,8 +102,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
       "[" +
         "id=" + id + ", " +
         "parentStep=" + parentStep + ", " +
+        "description=" + description + ", " +
         "text=" + text + ", " +
-        "descriptionRef=" + descriptionRef + ", " +
         "timestamp=" + timestamp + ", " +
         "changestamp=" + changestamp + ", " +
         "deletestamp=" + deletestamp +
@@ -116,8 +116,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
     AnswerDescriptionXML recordXML = AnswerDescriptionXML.create();
     recordXML.setId(this.getId());
     recordXML.setParentStep(this.getParentStep());
+    recordXML.setDescription(this.getDescription());
     recordXML.setText(this.getText());
-    recordXML.setDescriptionRef(this.getDescriptionRef());
     recordXML.setTimestamp(this.getTimestamp());
     recordXML.setChangestamp(this.getChangestamp());
     recordXML.setDeletestamp(this.isDeletestamp());
@@ -130,8 +130,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
     AnswerDescriptionSQL recordSQL = new AnswerDescriptionSQL();
     recordSQL.id = cursor.getLong(cursor.getColumnIndex("ID"));
     recordSQL.parentStep = cursor.getLong(cursor.getColumnIndex("PARENTSTEP"));
+    recordSQL.description = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
     recordSQL.text = cursor.getString(cursor.getColumnIndex("TEXT"));
-    recordSQL.descriptionRef = cursor.getString(cursor.getColumnIndex("DESCRIPTIONREF"));
     recordSQL.timestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("TIMESTAMP")));
     recordSQL.changestamp = DateAdapter.compactDate(cursor.getString(cursor.getColumnIndex("CHANGESTAMP")));
     recordSQL.deletestamp = Boolean.valueOf(cursor.getString(cursor.getColumnIndex("DELETESTAMP")));
@@ -141,34 +141,34 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
   private static final String TABLE_NAME = "ANSWERDESCRIPTION";
   @Override public String getTableNameSQL() { return TABLE_NAME; }
 
-  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, TEXT, DESCRIPTIONREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
+  private static final String ALL_FIELD_NAMES = "ID, PARENTSTEP, DESCRIPTION, TEXT, TIMESTAMP, CHANGESTAMP, DELETESTAMP";
   @Override public String getAllFieldNamesSQL() { return ALL_FIELD_NAMES; }
 
-  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ANSWERDESCRIPTION(ID INTEGER, PARENTSTEP INTEGER NOT NULL, TEXT TEXT NOT NULL, DESCRIPTIONREF TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
+  private static final String CREATE_TABLE_STATEMENT = "CREATE TABLE ANSWERDESCRIPTION(ID INTEGER, PARENTSTEP INTEGER NOT NULL, DESCRIPTION TEXT NOT NULL, TEXT TEXT NOT NULL, TIMESTAMP TEXT NOT NULL, CHANGESTAMP TEXT NOT NULL, DELETESTAMP TEXT NOT NULL, PRIMARY KEY (ID));";
   @Override public String getCreateTableSQL() { return CREATE_TABLE_STATEMENT; }
 
   private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS ANSWERDESCRIPTION;";
   @Override public String getDropTableSQL() { return DROP_TABLE_STATEMENT; }
 
-  private static final String INSERT_STATEMENT = "INSERT INTO ANSWERDESCRIPTION(PARENTSTEP, TEXT, DESCRIPTIONREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  private static final String INSERT_STATEMENT = "INSERT INTO ANSWERDESCRIPTION(PARENTSTEP, DESCRIPTION, TEXT, TIMESTAMP, CHANGESTAMP, DELETESTAMP, ID) VALUES (?, ?, ?, ?, ?, ?, ?);";
   @Override public String getInsertSQL() { return INSERT_STATEMENT; }
 
-  private static final String UPDATE_STATEMENT = "UPDATE ANSWERDESCRIPTION SET PARENTSTEP = ?, TEXT = ?, DESCRIPTIONREF = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
+  private static final String UPDATE_STATEMENT = "UPDATE ANSWERDESCRIPTION SET PARENTSTEP = ?, DESCRIPTION = ?, TEXT = ?, TIMESTAMP = ?, CHANGESTAMP = ?, DELETESTAMP = ? WHERE ID = ?;";
   @Override public String getUpdateSQL() { return UPDATE_STATEMENT; }
 
   @Override
   public void bindForInsertOrUpdate(final SQLiteStatement statement)
   {
     statement.bindLong(1, this.parentStep);
-    statement.bindString(2, this.text);
-    statement.bindString(3, this.descriptionRef);
+    statement.bindString(2, this.description);
+    statement.bindString(3, this.text);
     statement.bindString(4, DateAdapter.compactDate(this.timestamp));
     statement.bindString(5, DateAdapter.compactDate(this.changestamp));
     statement.bindString(6, this.deletestamp.toString());
     statement.bindLong(7, this.id);
   }
 
-  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, TEXT, DESCRIPTIONREF, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ANSWERDESCRIPTION WHERE ID=?;";
+  private static final String SELECT_BY_ID_STATEMENT = "SELECT PARENTSTEP, DESCRIPTION, TEXT, TIMESTAMP, CHANGESTAMP, DELETESTAMP FROM ANSWERDESCRIPTION WHERE ID=?;";
   @Override public String getSelectByIdSQL() { return SELECT_BY_ID_STATEMENT; }
 
   private static final String DELETE_BY_ID_STATEMENT = "DELETE FROM ANSWERDESCRIPTION WHERE ID=?;";
@@ -309,8 +309,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
     {
       if (recordSQL.deletestamp) return;
       this.parentStep = recordSQL.parentStep;
+      this.description = recordSQL.description;
       this.text = recordSQL.text;
-      this.descriptionRef = recordSQL.descriptionRef;
       this.timestamp = recordSQL.timestamp;
       this.changestamp = recordSQL.changestamp;
       this.deletestamp = recordSQL.deletestamp;
@@ -337,8 +337,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
     {
       if (recordSQL.changestamp.before(since)) return;
       this.parentStep = recordSQL.parentStep;
+      this.description = recordSQL.description;
       this.text = recordSQL.text;
-      this.descriptionRef = recordSQL.descriptionRef;
       this.timestamp = recordSQL.timestamp;
       this.changestamp = recordSQL.changestamp;
       this.deletestamp = recordSQL.deletestamp;
@@ -451,8 +451,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
 
   public static final int ID_Id = 0;
   public static final int ID_ParentStep = 1;
-  public static final int ID_Text = 2;
-  public static final int ID_DescriptionRef = 3;
+  public static final int ID_Description = 2;
+  public static final int ID_Text = 3;
   public static final int ID_Timestamp = 4;
   public static final int ID_Changestamp = 5;
   public static final int ID_Deletestamp = 6;
@@ -464,8 +464,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
     {
       case ID_Id: return id;
       case ID_ParentStep: return parentStep;
+      case ID_Description: return description;
       case ID_Text: return text;
-      case ID_DescriptionRef: return descriptionRef;
       case ID_Timestamp: return timestamp;
       case ID_Changestamp: return changestamp;
       case ID_Deletestamp: return deletestamp;
@@ -480,8 +480,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
     {
       case ID_Id: { id = (Long) value; return; }
       case ID_ParentStep: { parentStep = (Long) value; return; }
+      case ID_Description: { description = (String) value; return; }
       case ID_Text: { text = (String) value; return; }
-      case ID_DescriptionRef: { descriptionRef = (String) value; return; }
       case ID_Timestamp: { timestamp = (Date) value; return; }
       case ID_Changestamp: { changestamp = (Date) value; return; }
       case ID_Deletestamp: { deletestamp = (Boolean) value; return; }
@@ -495,8 +495,8 @@ public class AnswerDescriptionSQL extends CommonSQL implements Comparable<Answer
     {
       case ID_Id: return "id";
       case ID_ParentStep: return "parentStep";
+      case ID_Description: return "description";
       case ID_Text: return "text";
-      case ID_DescriptionRef: return "descriptionRef";
       case ID_Timestamp: return "timestamp";
       case ID_Changestamp: return "changestamp";
       case ID_Deletestamp: return "deletestamp";

@@ -38,9 +38,9 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(StudentSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(ExerciseSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(AnswerSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(AnswerVideoSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(AnswerImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(AnswerDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(AnswerImageSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addAllClasses(AnswerVideoSQL.class);
   }
 
   public static List<Class<? extends CommonSQL>> getTableClasses() { return dk.schoubo.library.android.generated.GlobalSQLStructure.getTableClasses(); }
@@ -63,9 +63,9 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(StudentSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(ExerciseSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(AnswerSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(AnswerVideoSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(AnswerImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(AnswerDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(AnswerImageSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.addTableClasses(AnswerVideoSQL.class);
   }
 
   public static List<Class<? extends CommonSQL>> getRootClasses() { return dk.schoubo.library.android.generated.GlobalSQLStructure.getRootClasses(); }
@@ -137,13 +137,13 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(AnswerSQL.class, cc);
 
     cc = new LinkedList<Class<? extends CommonSQL>>();
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(AnswerVideoSQL.class, cc);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(AnswerDescriptionSQL.class, cc);
 
     cc = new LinkedList<Class<? extends CommonSQL>>();
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(AnswerImageSQL.class, cc);
 
     cc = new LinkedList<Class<? extends CommonSQL>>();
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(AnswerDescriptionSQL.class, cc);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassChildren(AnswerVideoSQL.class, cc);
 
   }
 
@@ -168,9 +168,9 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("Student", StudentSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("Exercise", ExerciseSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("Answer", AnswerSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("AnswerVideo", AnswerVideoSQL.class);
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("AnswerImage", AnswerImageSQL.class);
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("AnswerDescription", AnswerDescriptionSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("AnswerImage", AnswerImageSQL.class);
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableClassByName("AnswerVideo", AnswerVideoSQL.class);
   }
 
   public static Map<String, CommonSQL> getTableInstancesByName() { return dk.schoubo.library.android.generated.GlobalSQLStructure.getTableInstancesByName(); }
@@ -194,9 +194,9 @@ public abstract class GlobalSQLStructure
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("Student", StudentSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("Exercise", ExerciseSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("Answer", AnswerSQL.create());
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("AnswerVideo", AnswerVideoSQL.create());
-    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("AnswerImage", AnswerImageSQL.create());
     dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("AnswerDescription", AnswerDescriptionSQL.create());
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("AnswerImage", AnswerImageSQL.create());
+    dk.schoubo.library.android.generated.GlobalSQLStructure.putTableInstanceByName("AnswerVideo", AnswerVideoSQL.create());
   }
 
   public static final void ensureInit() { };

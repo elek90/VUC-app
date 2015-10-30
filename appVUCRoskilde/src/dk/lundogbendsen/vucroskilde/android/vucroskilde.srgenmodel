@@ -242,29 +242,8 @@ model VUCRoskilde
 
     field Long stepId doc "Step|da:Trin", "Steps|da:Trin";
 
-    // The type of the answer is determined by the stepType of the Step...
+    // The type of the actual answer is determined by the stepType of the Step...
     field Long answerId doc "Answer|da:Svar", "Answers|da:Svar";
-  }
-
-  class AnswerVideo doc "Answer with Video|da:Besvarelse med video", "Answer Videos|da:Besvarelser med videoer", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
-        option TABLE, USE ("Timestamped")
-  {
-
-    field String text doc "Text|da:Tekst", "The text of the action|da:Tekst til handlingen";
- 
-    field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
-  }
-
-
-  class AnswerImage doc "Answer with Image|da:Besvarelse med billede", "Answer with Images|da:Besvarelse med billeder", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
-        option TABLE, USE ("Timestamped")
-  {
-    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
-          option FOREIGNKEY;
-
-    field String text doc "Text|da:Tekst", "The text of the action|da:Tekst til handlingen";
-
-    field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
   }
 
   class AnswerDescription doc "Answer with Description|da:Besvarelse med forklaring", "Answers with Descriptions|da:Besvarelser med forklaringer", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
@@ -273,10 +252,31 @@ model VUCRoskilde
     field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
           option FOREIGNKEY;
 
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
+
     field String text doc "Text|da:Tekst", "The text of the action|da:Tekst til handlingen";
- 
-    field String descriptionRef doc "Description|da:Forklaring", "The sescription of the action|da:Forklaringen til handlingen";
   }
+
+  class AnswerImage doc "Answer with Image|da:Besvarelse med billede", "Answer with Images|da:Besvarelse med billeder", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
+        option TABLE, USE ("Timestamped")
+  {
+    field Step parentStep doc "Step|da:Trin", "Step this action belongs to|da:Trin denne handling tilhører"
+          option FOREIGNKEY;
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
+
+    field String imageRef doc "Image|da:Billede", "The image of the action|da:Billede til handlingen";
+  }
+
+  class AnswerVideo doc "Answer with Video|da:Besvarelse med video", "Answer Videos|da:Besvarelser med videoer", "An answer to a point in an exercise|da:Et svar på et spørgsmål i en opgave"
+        option TABLE, USE ("Timestamped")
+  {
+
+    field String description doc "Description|da:Forklaring", "The description of the action|da:Forklaringen til handlingen";
+ 
+    field String videoRef doc "Video|da:Video", "The video of the action|da:Video til handlingen";
+  }
+
 
 
 

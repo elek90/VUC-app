@@ -175,7 +175,7 @@ public class ActionRecordImageViewDelegateContext extends ActionRecordImageViewD
   @Override
   public void onViewCreateActionRecordImage(final View view, final PayloadCreate payload)
   {
-    action = busctx.<ActionRecordImageXML> getCurrentAction(busctx.getCurrentStepIfSelected());
+    action = busctx.<ActionRecordImageXML> getCurrentAction();
     answer = busctx.<ActionRecordImageXML> getAnswer();
     
     imageFileRef = MediaRefXML.create();

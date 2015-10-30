@@ -191,7 +191,7 @@ public class TestData
     StepXML s34 = newStepRecordVideo("Besvar med video", f3, "Min video");
 
     FlowchartXML f4 = newFlowchart("Fra eleven (besvaret)", vucschool.getId());
-    StepXML s41 = newStepRecordText("Besvarelse med forklaring", f4, "Dette er min forklaring til en spørgsmål.");
+    StepXML s41 = newStepRecordText("Besvarelse med forklaring", f4, "Dette er min forklaring til en spørgsmål.\nDen er lidt lang, da jeg gerne vil være sikker på at få det hele med.");
     StepXML s42 = newStepRecordImage("Besvarelse med billede", f4, "Mit billede", "img01.jpg", PlacementType.ASSETS);
     StepXML s43 = newStepRecordAudio("Besvarelse med audio", f4, "Min lydoptagelse", "aud01.ogg", PlacementType.ASSETS);
     StepXML s44 = newStepRecordVideo("Besvarelse med video", f4, "Min video", ref("vid01"), PlacementType.ASSETS);
