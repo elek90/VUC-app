@@ -9,7 +9,8 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
-import android.widget.TextView;
+
+import dk.lundogbendsen.vuc.domæne.Logik;
 
 
 public class VaelgEmneNiveauFrag extends Fragment implements AbsListView.OnItemClickListener {

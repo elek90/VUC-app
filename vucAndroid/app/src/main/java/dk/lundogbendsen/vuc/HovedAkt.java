@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import dk.lundogbendsen.vuc.domæne.Logik;
+
 public class HovedAkt extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
