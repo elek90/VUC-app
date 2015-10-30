@@ -1,7 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/xnxav_camara" android:icon="@android:drawable/stat_notify_error"
+        android:title="Log ud" />
+
     <group android:checkableBehavior="single">
+        <item android:id="@+id/emner" android:icon="@android:drawable/ic_menu_camera"
+            android:title="Projekter" />
+        <item android:id="@+id/xnav_gallery" android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Galleri" />
+        <item android:id="@+id/xnav_slideshow" android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="Videoer" />
+        <item android:id="@+id/xnav_manage" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group>
+    <item android:title="Gammelt til inspiration">
+        <menu>
+            <item android:id="@+id/qnav_share" android:icon="@android:drawable/ic_menu_share"
+                android:title="Share" />
+            <item android:id="@+id/qnav_send" android:icon="@android:drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+    <item android:title="Gammelt til inspiration">
+        <menu>
+            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
+                android:title="Share" />
+            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+    <item android:title="Communicate">
+
+    <group android:checkableBehavior="single">
+        <menu>
         <item android:id="@+id/nav_camara" android:icon="@android:drawable/ic_menu_camera"
             android:title="Tag billede" />
         <item android:id="@+id/nav_gallery" android:icon="@android:drawable/ic_menu_gallery"
@@ -10,15 +44,8 @@
             android:title="Videoer" />
         <item android:id="@+id/nav_manage" android:icon="@android:drawable/ic_menu_manage"
             android:title="Tools" />
-    </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
-                android:title="Share" />
-            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
-                android:title="Send" />
         </menu>
+    </group>
     </item>
 
 </menu>

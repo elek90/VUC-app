@@ -5,4 +5,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="om_appen">
+
+    Ikoner hentet fra
+    https://www.google.com/design/icons/
+
+    </string>
+
 </resources>
