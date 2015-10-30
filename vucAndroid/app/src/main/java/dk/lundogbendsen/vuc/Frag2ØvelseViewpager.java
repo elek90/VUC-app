@@ -43,6 +43,10 @@ public class Frag2ØvelseViewpager extends Fragment {
         return ll;
     }
 
+    public void næste() {
+        int i = viewPager.getCurrentItem();
+        viewPager.setCurrentItem(i+1, true);
+    }
 
 
     /**
@@ -57,8 +61,8 @@ public class Frag2ØvelseViewpager extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
+            if (position==0) return new Frag21Forside();
+
             return PlaceholderFragment.newInstance(position + 1);
         }
 
@@ -72,7 +76,7 @@ public class Frag2ØvelseViewpager extends Fragment {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Forside";
                 case 1:
                     return "SECTION 2";
                 case 2:
