@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- foreslået fra farveskemaeditor
+    -->
+    <color name="xcolorPrimary">#FF5722</color>
+    <color name="xcolorPrimaryDark">#E64A19</color>
+    <color name="xcolorAccent">#9E9E9E</color>
+
+    <color name="rigtig_vuc_colorPrimary">#fd7802</color>
+
+    <color name="colorPrimary">#fd7802</color>
+    <color name="colorPrimaryDark">#d76500</color>
+    <color name="colorAccent">#9E9E9E</color>
 </resources>
