@@ -21,7 +21,7 @@ public class HovedAkt extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hoved_akt);
+        setContentView(R.layout.hoved_akt);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -43,11 +43,16 @@ public class HovedAkt extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View headerView = navigationView.inflateHeaderView(R.layout.nav_header_hoved_akt);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Logik.i.bru.fag);
+        View headerView = navigationView.inflateHeaderView(R.layout.venstremenu_top);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Logik.i.bru.fagListe);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner = (Spinner) headerView.findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
+
+        if (savedInstanceState==null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.hovedakt_indhold, new VaelgEmneNiveauFrag()).commit();
+        }
 
     }
 

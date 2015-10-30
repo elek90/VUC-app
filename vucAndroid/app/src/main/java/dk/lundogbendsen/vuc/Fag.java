@@ -5,6 +5,11 @@ package dk.lundogbendsen.vuc;
  */
 public class Fag {
     private final String navn;
+    public EmneNiveau[] emner = {
+            new EmneNiveau("Lys G"),
+            new EmneNiveau("Lys F-E-D"),
+            new EmneNiveau("Vejr"),
+            new EmneNiveau("Kemi")};
 
     public Fag(String n) {
         navn = n;

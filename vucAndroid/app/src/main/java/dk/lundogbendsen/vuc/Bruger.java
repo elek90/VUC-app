@@ -6,5 +6,6 @@ package dk.lundogbendsen.vuc;
 public class Bruger {
     String navn = "Hans Hansen";
     String konto = "hans.hansen@gmail.com";
-    public Fag[] fag = { new Fag("Fysik"), new Fag("Kemi")};
+    public Fag[] fagListe = { new Fag("Fysik"), new Fag("Kemi")};
+    public Fag fag = fagListe[0];
 }
