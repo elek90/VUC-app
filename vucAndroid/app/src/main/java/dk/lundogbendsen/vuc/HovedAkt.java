@@ -53,7 +53,7 @@ public class HovedAkt extends AppCompatActivity
 
         if (savedInstanceState==null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.hovedakt_indhold, new VaelgEmneNiveauFrag()).commit();
+                    .add(R.id.hovedakt_indhold, new VælgEmneOgNiveauFrag()).commit();
         }
 
     }
