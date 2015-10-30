@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/xnxav_camara" android:icon="@android:drawable/stat_notify_error"
-        android:title="Log ud" />
+        android:title="Log ud¹" />
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/emner" android:icon="@android:drawable/ic_menu_camera"
-            android:title="Projekter" />
+            android:title="Projekter¹" />
         <item android:id="@+id/xnav_gallery" android:icon="@android:drawable/ic_menu_gallery"
-            android:title="Galleri" />
+            android:title="Galleri¹" />
         <item android:id="@+id/xnav_slideshow" android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="Videoer" />
+            android:title="Videoer¹" />
         <item android:id="@+id/xnav_manage" android:icon="@android:drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Tools¹" />
     </group>
-    <item android:title="Gammelt til inspiration">
+    <item android:title="Gammelt til inspiration¹">
         <menu>
             <item android:id="@+id/qnav_share" android:icon="@android:drawable/ic_menu_share"
                 android:title="Share" />
@@ -23,7 +23,7 @@
         </menu>
     </item>
 
-    <item android:title="Gammelt til inspiration">
+    <item android:title="Gammelt til inspiration¹">
         <menu>
             <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
                 android:title="Share" />
