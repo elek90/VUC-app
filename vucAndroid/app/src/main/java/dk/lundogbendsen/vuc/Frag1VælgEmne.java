@@ -14,7 +14,7 @@ import android.widget.ListView;
 import dk.lundogbendsen.vuc.domæne.Logik;
 
 
-public class Frag1VælgEmneOgNiveau extends Fragment implements AbsListView.OnItemClickListener {
+public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener {
 
     private ListView listView;
 
@@ -23,17 +23,16 @@ public class Frag1VælgEmneOgNiveau extends Fragment implements AbsListView.OnIt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag1_vaelg_emne_og_niveau, container, false);
+        View rod = inflater.inflate(R.layout.frag1_vaelg_emne_niveau, container, false);
 
         adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, Logik.i.bru.fag.emner);
+                android.R.layout.simple_list_item_1, android.R.id.text1, Logik.i.valg.fag.emner);
 
-        listView = (ListView) view.findViewById(android.R.id.list);
+        listView = (ListView) rod.findViewById(android.R.id.list);
         listView.setAdapter(adapter);
-
         listView.setOnItemClickListener(this);
 
-        return view;
+        return rod;
     }
 
 

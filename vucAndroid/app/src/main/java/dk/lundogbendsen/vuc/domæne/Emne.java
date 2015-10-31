@@ -1,13 +1,13 @@
 package dk.lundogbendsen.vuc.domæne;
 
 /**
- * Created by j on 30-10-15.
+ * Created by j on 31-10-15.
  */
-public class EmneNiveau {
+public class Emne {
     private final String navn;
 
-    public EmneNiveau(String n) {
-        navn = n;
+    public Emne(String navn) {
+        this.navn = navn;
     }
 
     @Override

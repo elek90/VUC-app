@@ -3,10 +3,10 @@ package dk.lundogbendsen.vuc.domæne;
 /**
  * Created by j on 30-10-15.
  */
-public class Fag {
+public class Niveau {
     private final String navn;
-    public Emne[] emner;
-    public Fag(String n) {
+
+    public Niveau(String n) {
         navn = n;
     }
 

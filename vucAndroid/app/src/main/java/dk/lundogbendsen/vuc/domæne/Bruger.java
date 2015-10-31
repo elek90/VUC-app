@@ -4,8 +4,12 @@ package dk.lundogbendsen.vuc.domæne;
  * Created by j on 30-10-15.
  */
 public class Bruger {
-    String navn = "Hans Hansen";
-    String konto = "hans.hansen@gmail.com";
-    public Fag[] fagListe = { new Fag("Fysik"), new Fag("Kemi")};
-    public Fag fag = fagListe[0];
+    String navn;
+    String konto;
+    public Fag[] fagListe;
+
+    public Bruger(String navn, String konto) {
+        this.navn = navn;
+        this.konto = konto;
+    }
 }

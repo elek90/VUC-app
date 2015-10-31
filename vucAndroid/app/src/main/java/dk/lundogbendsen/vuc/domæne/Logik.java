@@ -5,5 +5,6 @@ package dk.lundogbendsen.vuc.domæne;
  */
 public class Logik {
     public static Logik i = new Logik();
-    public Bruger bru = new Bruger();
+    public Bruger[] brugere;
+    public Valg valg = new Valg();
 }

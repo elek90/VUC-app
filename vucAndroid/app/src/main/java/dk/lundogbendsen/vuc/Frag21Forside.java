@@ -27,7 +27,7 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
         View rod = inflater.inflate(R.layout.frag21_forside, container, false);
 
         adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, Logik.i.bru.fag.emner);
+                android.R.layout.simple_list_item_1, android.R.id.text1, Logik.i.valg.fag.emner);
 
         listView = (ListView) rod.findViewById(android.R.id.list);
         listView.setAdapter(adapter);
