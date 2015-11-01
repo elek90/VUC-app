@@ -29,7 +29,8 @@ public class Valg {
                 new Aktivitet("3 Gennemfør din egen undersøgelse"),
                 new Aktivitet("3.1 Tag billeder af spektrum"),
                 new Aktivitet("3.2 Tag billeder af lyskilde"),
-                new Aktivitet("3.3 Aflever rapport"),
+                new Aflevering("3.3 Aflever rapport"),
         };
+        l.lavKonsistent();
     }
 }

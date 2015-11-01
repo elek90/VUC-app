@@ -7,7 +7,7 @@
   <com.astuetz.PagerSlidingTabStrip
       android:id="@+id/faneblade"
       android:layout_width="match_parent"
-      android:layout_height="24dip"
+      android:layout_height="36dip"
       />
 <!--
       android:layout_height="wrap_content"

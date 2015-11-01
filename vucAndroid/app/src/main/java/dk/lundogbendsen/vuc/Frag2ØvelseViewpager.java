@@ -26,10 +26,12 @@ public class Frag2ØvelseViewpager extends Fragment {
      */
     private ViewPager viewPager;
     private ArrayList faner;
+    private PagerSlidingTabStrip pagerSlidingTabStrip;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         faner = new ArrayList();
         faner.add(new Frag21Forside());
         faner.addAll(Arrays.asList(Valg.i.emne.aktiviteter));
@@ -38,9 +40,24 @@ public class Frag2ØvelseViewpager extends Fragment {
         viewPager = (ViewPager) rod.findViewById(R.id.viewpager);
         viewPager.setAdapter(new FaneAdapter(getChildFragmentManager()));
 //        viewPager.setPageTransformer(false, new ZoomOutPageTransformer());
-
-        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rod.findViewById(R.id.faneblade);
+        pagerSlidingTabStrip = (PagerSlidingTabStrip) rod.findViewById(R.id.faneblade);
         pagerSlidingTabStrip.setViewPager(viewPager);
+        pagerSlidingTabStrip.setVisibility(View.GONE);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pagerSlidingTabStrip.setVisibility(position==0? View.GONE : View.VISIBLE);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
 
         return rod;
     }
@@ -76,7 +93,7 @@ public class Frag2ØvelseViewpager extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            if (position==0) return "";
+            if (position==0) return "Oversigt";
             Object f = faner.get(position);
             if (f instanceof Aktivitet) return ((Aktivitet)f).navn;
             return "??"+position;

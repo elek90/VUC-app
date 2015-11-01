@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class Aktivitet implements Serializable {
     public final String navn;
+    public transient Emne emne;
 
     public Aktivitet(String navn) {
         this.navn = navn;
