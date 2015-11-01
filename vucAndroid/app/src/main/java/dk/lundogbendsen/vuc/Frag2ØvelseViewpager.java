@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -26,21 +25,15 @@ public class Frag2ØvelseViewpager extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        viewPager = new ViewPager(getActivity());
-        viewPager.setId(android.R.id.list);
+        View rod = inflater.inflate(R.layout.frag2_oevelse_viewpager, container, false);
+        viewPager = (ViewPager) rod.findViewById(R.id.viewpager);
         viewPager.setAdapter(new SectionsPagerAdapter(getChildFragmentManager()));
 //        viewPager.setPageTransformer(false, new ZoomOutPageTransformer());
 
-        PagerSlidingTabStrip pagerSlidingTabStrip = new PagerSlidingTabStrip(getActivity());
+        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rod.findViewById(R.id.faneblade);
         pagerSlidingTabStrip.setViewPager(viewPager);
 
-        LinearLayout ll = new LinearLayout(getActivity());
-        ll.setOrientation(LinearLayout.VERTICAL);
-        ll.addView(pagerSlidingTabStrip);
-        ll.addView(viewPager);
-        ((LinearLayout.LayoutParams) viewPager.getLayoutParams()).weight = 1;
-
-        return ll;
+        return rod;
     }
 
     public void næste() {
@@ -114,7 +107,7 @@ public class Frag2ØvelseViewpager extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.frag2_oevelsexx, container, false);
+            View rootView = inflater.inflate(R.layout.frag2_sxx_oevelsexx, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;

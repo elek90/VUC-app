@@ -8,6 +8,7 @@ public class Valg {
     public Bruger bru;
     public Fag fag;
     public Emne emne;
+    public static Valg i = new Valg();
 
     public void opretTestData(Logik i) {
         i.brugere = new Bruger[] { new Bruger("Hans Hansen", "hans.hansen@gmail.com") };

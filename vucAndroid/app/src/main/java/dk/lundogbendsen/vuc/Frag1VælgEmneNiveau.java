@@ -14,7 +14,7 @@ import android.widget.ListView;
 import dk.lundogbendsen.vuc.domæne.Logik;
 
 
-public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener {
+public class Frag1VælgEmneNiveau extends Fragment implements AbsListView.OnItemClickListener {
 
     private ListView listView;
 
