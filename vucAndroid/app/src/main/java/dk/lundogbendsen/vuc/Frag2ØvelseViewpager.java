@@ -11,9 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
-
 import com.astuetz.PagerSlidingTabStrip;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import dk.lundogbendsen.vuc.domæne.Aktivitet;
+import dk.lundogbendsen.vuc.domæne.Valg;
 
 public class Frag2ØvelseViewpager extends Fragment {
 
@@ -21,13 +25,18 @@ public class Frag2ØvelseViewpager extends Fragment {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager viewPager;
+    private ArrayList faner;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        faner = new ArrayList();
+        faner.add(new Frag21Forside());
+        faner.addAll(Arrays.asList(Valg.i.emne.aktiviteter));
+
         View rod = inflater.inflate(R.layout.frag2_oevelse_viewpager, container, false);
         viewPager = (ViewPager) rod.findViewById(R.id.viewpager);
-        viewPager.setAdapter(new SectionsPagerAdapter(getChildFragmentManager()));
+        viewPager.setAdapter(new FaneAdapter(getChildFragmentManager()));
 //        viewPager.setPageTransformer(false, new ZoomOutPageTransformer());
 
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rod.findViewById(R.id.faneblade);
@@ -38,79 +47,39 @@ public class Frag2ØvelseViewpager extends Fragment {
 
     public void næste() {
         int i = viewPager.getCurrentItem();
-        viewPager.setCurrentItem(i+1, true);
+        viewPager.setCurrentItem(i + 1, true);
+    }
+
+    public void hopTilAktivitet(int position) {
+        viewPager.setCurrentItem(position + 1, true);
     }
 
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class FaneAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public FaneAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            if (position==0) return new Frag21Forside();
-
-            return PlaceholderFragment.newInstance(position + 1);
+            Object f = faner.get(position);
+            if (f instanceof Fragment) return (Fragment) f;
+            if (f instanceof Aktivitet) return Fragmentfabrikering.nytFragment((Aktivitet)f);
+            return new Frag21Forside(); // fejl
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            return faner.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Forside";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
-        }
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.frag2_sxx_oevelsexx, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            if (position==0) return "";
+            Object f = faner.get(position);
+            if (f instanceof Aktivitet) return ((Aktivitet)f).navn;
+            return "??"+position;
         }
     }
 }

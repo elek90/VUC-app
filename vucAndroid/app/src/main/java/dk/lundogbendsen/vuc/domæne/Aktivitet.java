@@ -1,13 +1,14 @@
 package dk.lundogbendsen.vuc.domæne;
 
-/**
- * Created by j on 31-10-15.
- */
-public class Emne {
-    public final String navn;
-    public Aktivitet[] aktiviteter;
+import java.io.Serializable;
 
-    public Emne(String navn) {
+/**
+ * Created by j on 01-11-15.
+ */
+public class Aktivitet implements Serializable {
+    public final String navn;
+
+    public Aktivitet(String navn) {
         this.navn = navn;
     }
 
