@@ -18,16 +18,25 @@
 
             <TextView
                 android:id="@+id/overskrift"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="App om lys" />
 
             <TableRow
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
 
             </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Her kommer noget indhold, knapper indtastniongsfelter etc etc"
+                android:id="@+id/textView3"
+                android:layout_margin="48dp" />
 
         </TableLayout>
 
