@@ -1,13 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
   <com.astuetz.PagerSlidingTabStrip
       android:id="@+id/faneblade"
       android:layout_width="match_parent"
       android:layout_height="36dip"
+      app:pstsIndicatorHeight="2dp"
       />
 <!--
       android:layout_height="wrap_content"
@@ -18,10 +20,6 @@
 
   <android.support.v4.view.ViewPager
     android:id="@+id/viewpager"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="4dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

@@ -40,6 +40,12 @@ public class Valg {
         l.lavKonsistent();
     }
 
+    /*
+    https://github.com/Nimrodda/WizarDroid/
+    http://hackersome.com/p/welshk91/Android-WizardPager
+    https://github.com/str4d/WizardPager
+     */
+
     public void opdaterObservatører() {
         for (Runnable r : observatører) r.run();
     }
