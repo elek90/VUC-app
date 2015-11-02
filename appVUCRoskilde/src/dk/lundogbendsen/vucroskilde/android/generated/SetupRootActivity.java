@@ -143,6 +143,11 @@ public abstract class SetupRootActivity extends RootActivity<VUCRoskildeBusiness
         viewdelegatectx.onViewClickSetupTeacherCheckBox(view, (PayloadCheck)payload);
         break;
       }
+      case CLICKSETUPHIGHQUALITYVIDEOCHECKBOX:
+      {
+        viewdelegatectx.onViewClickSetupHighQualityVideoCheckBox(view, (PayloadCheck)payload);
+        break;
+      }
       case BACKSETUP:
       {
         viewdelegatectx.onViewBackSetup(view, (PayloadBack)payload);

@@ -48,11 +48,11 @@ public interface ActionRecordImageViewDelegate
   public void onViewSaveInstanceStateActionRecordImage(final View view, final PayloadSaveInstanceState payload);
   public void onViewRestoreInstanceStateActionRecordImage(final View view, final PayloadRestoreInstanceState payload);
 
-  public void onReturnFromExternalCameraOK(final Intent data);
-  public void onReturnFromExternalCameraRetryManually(final Intent data);
-  public void onReturnFromExternalCameraCancelled(final Intent data);
-  public void onReturnFromExternalGalleryOK(final Intent data);
-  public void onReturnFromExternalGalleryRetryManually(final Intent data);
-  public void onReturnFromExternalGalleryCancelled(final Intent data);
+  public void onReturnFromExternalImageCameraOK(final Intent data);
+  public void onReturnFromExternalImageCameraRetryManually(final Intent data);
+  public void onReturnFromExternalImageCameraCancelled(final Intent data);
+  public void onReturnFromExternalImageGalleryOK(final Intent data);
+  public void onReturnFromExternalImageGalleryRetryManually(final Intent data);
+  public void onReturnFromExternalImageGalleryCancelled(final Intent data);
 
 }

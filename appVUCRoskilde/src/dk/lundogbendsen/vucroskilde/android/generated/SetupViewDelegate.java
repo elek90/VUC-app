@@ -30,6 +30,7 @@ import dk.schoubo.library.android.ui.framework.PayloadWindowFocusChanged;
 public interface SetupViewDelegate
 {
   public void onViewClickSetupTeacherCheckBox(final View view, final PayloadCheck payload);
+  public void onViewClickSetupHighQualityVideoCheckBox(final View view, final PayloadCheck payload);
   public void onViewBackSetup(final View view, final PayloadBack payload);
   public void onViewRefreshSetup(final View view, final PayloadRefresh payload);
   public void onViewCreateSetup(final View view, final PayloadCreate payload);

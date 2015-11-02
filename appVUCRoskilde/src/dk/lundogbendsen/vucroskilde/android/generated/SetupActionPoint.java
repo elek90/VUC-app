@@ -15,6 +15,7 @@ package dk.lundogbendsen.vucroskilde.android.generated;
 public enum SetupActionPoint
 {
   CLICKSETUPTEACHERCHECKBOX,
+  CLICKSETUPHIGHQUALITYVIDEOCHECKBOX,
   BACKSETUP,
   REFRESHSETUP,
   CREATESETUP,

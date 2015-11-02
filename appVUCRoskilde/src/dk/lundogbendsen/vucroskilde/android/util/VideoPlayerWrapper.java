@@ -20,24 +20,30 @@ public class VideoPlayerWrapper
   private MediaController mp;
 
   private final MediaRefXML videoref;
-  // private final OnCompletionListener onCompletionListener;
   private final Activity activity;
   private final VideoView videoView;
+  private final Runnable onCompletionListener;
 
-  public VideoPlayerWrapper(final MediaRefXML videoref, final Activity activity, final VideoView videoView) // , final
-                                                                                                            // OnCompletionListener
-                                                                                                            // onCompletionListener)
+  public VideoPlayerWrapper(final MediaRefXML videoref, final Activity activity, final VideoView videoView)
   {
+    this(videoref, activity, videoView, null);
+  }
+  
+  public VideoPlayerWrapper(final MediaRefXML videoref, final Activity activity, final VideoView videoView, final Runnable onCompletionListener)
+    {
     this.videoref = videoref;
     this.activity = activity;
     this.videoView = videoView;
-
-    // this.onCompletionListener = onCompletionListener;
+    this.onCompletionListener = onCompletionListener;
   }
 
   private ProgressDialog dialog;
 
   public void createMediaPlayer()
+  {
+  }
+
+  public void startMediaPlayer()
   {
     dialog = new ProgressDialog(activity);
 
@@ -48,7 +54,6 @@ public class VideoPlayerWrapper
 
     try
     {
-
       mp = new MediaController(activity);
       mp.setAnchorView(videoView);
 
@@ -82,7 +87,6 @@ public class VideoPlayerWrapper
       }
 
       videoView.setMediaController(mp);
-
     }
     catch (Exception e)
     {
@@ -95,7 +99,13 @@ public class VideoPlayerWrapper
       @Override
       public void onPrepared(final MediaPlayer mp)
       {
-        dialog.dismiss();
+        Log.w(TAG, "onprepared");
+
+        if (dialog.isShowing())
+        {
+          Log.w(TAG, "onprepared dismiss");
+          dialog.dismiss();
+        }
         videoView.start();
       }
     });
@@ -108,20 +118,23 @@ public class VideoPlayerWrapper
         {
           dialog.dismiss();
         }
+        if (onCompletionListener != null)
+        {
+          onCompletionListener.run();
+        }
       }
     });
 
-  }
-
-  public void startMediaPlayer()
-  {
-    videoView.start();
   }
 
   public void stopMediaPlayer()
   {
     if (mp != null)
     {
+      if (dialog.isShowing())
+      {
+        dialog.dismiss();
+      }
       videoView.stopPlayback();
     }
   }
@@ -131,10 +144,4 @@ public class VideoPlayerWrapper
     stopMediaPlayer();
     mp = null;
   }
-
-  // public int getCurrentPosition()
-  // {
-  // return (mp == null ? 0 : mp.getCurrentPosition());
-  // }
-  //
 }

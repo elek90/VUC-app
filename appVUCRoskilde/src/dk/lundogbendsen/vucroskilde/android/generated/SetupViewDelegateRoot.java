@@ -47,6 +47,9 @@ public abstract class SetupViewDelegateRoot extends CommonViewDelegateRoot imple
   public abstract void onViewClickSetupTeacherCheckBox(final View view, final PayloadCheck payload);
 
   @Override
+  public abstract void onViewClickSetupHighQualityVideoCheckBox(final View view, final PayloadCheck payload);
+
+  @Override
   public void onViewBackSetup(final View view, final PayloadBack payload)
   {
     goReturn(Activity.RESULT_CANCELED);

@@ -1,12 +1,11 @@
-/** THIS FILE IS GENERATED IF NOT FOUND ALREADY.
+/**
+ * THIS FILE IS GENERATED IF NOT FOUND ALREADY.
  * 
  * This is a template that must be filled out by you. Once created it will not be overwritten.
  * The generator class is dk.schoubo.generator.products.templates.TemplateAndroidJava
  * 
  * Author: Lund&Bendsen, Jan Schoubo
  */
-
-
 
 package dk.lundogbendsen.vucroskilde.android;
 
@@ -20,7 +19,6 @@ import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadCheck;
 import dk.schoubo.library.android.ui.framework.PayloadCreate;
 import dk.schoubo.library.android.ui.framework.PayloadRefresh;
-
 
 public class SetupViewDelegateContext extends SetupViewDelegateRoot
 {
@@ -36,29 +34,43 @@ public class SetupViewDelegateContext extends SetupViewDelegateRoot
   }
 
   @Override
-  public void onViewClickSetupTeacherCheckBox(final View view, final PayloadCheck payload)
-  {
-busctx.setRunAsTeacher(guictx.checkBoxSetupTeacher.isChecked());
-  }
-
-  @Override
   public void onViewRefreshSetup(final View view, final PayloadRefresh payload)
   {
     guictx.checkBoxSetupTeacher.setChecked(false);
     guictx.editTextSetupEmail.setText(busctx.getCurrentStudent().getContact().getEmail());
+    guictx.checkBoxSetupHighQualityVideo.setChecked(Constants.DEFAULT_VIDEO_QUALITY_IS_HIGH);
+    guictx.checkBoxSetupHighQualityVideo.setEnabled(false);
+    guictx.editTextSetupMaxVideoSizeBytes.setText("" + busctx.getMaxVideoSizeBytes());
   }
 
   @Override
   public void onViewCreateSetup(final View view, final PayloadCreate payload)
   {
   }
-  
+
   @Override
   public void onViewBackSetup(final View view, final PayloadBack payload)
   {
     String email = guictx.editTextSetupEmail.getText().toString();
     if (!email.isEmpty()) busctx.getCurrentStudent().getContact().setEmail(email);
+
+    String mvst = guictx.editTextSetupMaxVideoSizeBytes.getText().toString();
+    int mvsb = Integer.parseInt(mvst);
+    busctx.setMaxVideoSizeBytes(mvsb);
     
     goReturn(Activity.RESULT_OK);
   }
+
+  @Override
+  public void onViewClickSetupHighQualityVideoCheckBox(final View view, final PayloadCheck payload)
+  {
+    busctx.setVideoQualityHigh(guictx.checkBoxSetupTeacher.isChecked());
+  }
+
+  @Override
+  public void onViewClickSetupTeacherCheckBox(final View view, final PayloadCheck payload)
+  {
+    busctx.setRunAsTeacher(guictx.checkBoxSetupTeacher.isChecked());
+  }
+
 }

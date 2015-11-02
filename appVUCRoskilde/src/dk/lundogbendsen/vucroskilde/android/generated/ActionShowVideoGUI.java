@@ -33,7 +33,7 @@ public class ActionShowVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
 {
 
   public final VideoView videoViewActionShowVideoVideo;
-  public final TextView textViewActionShowVideoText;
+  public final TextView textViewActionShowVideoCaption;
 
   public ActionShowVideoGUI(final RootActivity<VUCRoskildeBusinessContext, ActionShowVideoGUI, ActionShowVideoActionPoint, NavigationPoint> activity)
   {
@@ -42,7 +42,7 @@ public class ActionShowVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
     activity.setContentView(R.layout.layout_actionshowvideo);
 
     videoViewActionShowVideoVideo = (VideoView) activity.findViewById(R.id.videoViewActionShowVideoVideo);
-    textViewActionShowVideoText = (TextView) activity.findViewById(R.id.textViewActionShowVideoText);
+    textViewActionShowVideoCaption = (TextView) activity.findViewById(R.id.textViewActionShowVideoCaption);
   }
 
   public static ActionShowVideoGUI create(final RootActivity<VUCRoskildeBusinessContext, ActionShowVideoGUI, ActionShowVideoActionPoint, NavigationPoint> activity)

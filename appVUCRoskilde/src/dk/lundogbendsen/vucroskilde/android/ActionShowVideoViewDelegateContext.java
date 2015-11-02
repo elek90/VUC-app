@@ -22,7 +22,10 @@ import dk.lundogbendsen.vucroskilde.android.util.DisplayUtil;
 import dk.lundogbendsen.vucroskilde.android.util.VideoPlayerWrapper;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadCreate;
+import dk.schoubo.library.android.ui.framework.PayloadDestroy;
+import dk.schoubo.library.android.ui.framework.PayloadPause;
 import dk.schoubo.library.android.ui.framework.PayloadRefresh;
+import dk.schoubo.library.android.ui.framework.PayloadResume;
 
 public class ActionShowVideoViewDelegateContext extends ActionShowVideoViewDelegateRoot
 {
@@ -58,6 +61,8 @@ public class ActionShowVideoViewDelegateContext extends ActionShowVideoViewDeleg
     videoFileRef.setPlacementType(action.getVideoRef().getPlacementType());
 
     wpw = new VideoPlayerWrapper(videoFileRef, activity, guictx.videoViewActionShowVideoVideo);
+    busctx.setMediaPlaying(false);
+    busctx.setMediaPosition(0);
   }
 
   @Override
@@ -75,6 +80,7 @@ public class ActionShowVideoViewDelegateContext extends ActionShowVideoViewDeleg
     wpw.createMediaPlayer();
     wpw.startMediaPlayer();
 
+    guictx.textViewActionShowVideoCaption.setText(action.getDescription());
   }
 
   // // TODO Use streaming - works
@@ -92,6 +98,42 @@ public class ActionShowVideoViewDelegateContext extends ActionShowVideoViewDeleg
     wpw.destroyMediaPlayer();
 
     goReturn(Activity.RESULT_OK);
+  }
+
+  
+  @Override
+  public void onViewResumeActionShowVideo(final View view, final PayloadResume payload)
+  {
+    wpw.createMediaPlayer();
+    if (busctx.isMediaPlaying())
+    {
+      wpw.startMediaPlayer();
+      busctx.setMediaPlaying(true);
+    }
+
+    activity.refreshGUI();
+  }
+
+  @Override
+  public void onViewPauseActionShowVideo(final View view, final PayloadPause payload)
+  {
+    if (busctx.isMediaPlaying())
+    {
+      wpw.stopMediaPlayer();
+      wpw.destroyMediaPlayer();
+      busctx.setMediaPlaying(true);
+    }
+    else
+    {
+      wpw.destroyMediaPlayer();
+      busctx.setMediaPlaying(false);
+    }
+  }
+
+  @Override
+  public void onViewDestroyActionShowVideo(final View view, final PayloadDestroy payload)
+  {
+    wpw = null;
   }
 
 }

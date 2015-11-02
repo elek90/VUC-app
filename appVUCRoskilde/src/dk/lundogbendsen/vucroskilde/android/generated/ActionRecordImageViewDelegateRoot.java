@@ -121,46 +121,46 @@ public abstract class ActionRecordImageViewDelegateRoot extends CommonViewDelega
   }
 
   @Override
-  public void onReturnFromExternalCameraOK(final Intent data)
+  public void onReturnFromExternalImageCameraOK(final Intent data)
   {
     activity.refreshGUI();
   }
 
   @Override
-  public void onReturnFromExternalCameraRetryManually(final Intent data)
+  public void onReturnFromExternalImageCameraRetryManually(final Intent data)
   {
-    Log.wtf(TAG(), "ActionRecordImageViewDelegateContext.onReturnFromExternalCameraRetryManually not implemented");
+    Log.wtf(TAG(), "ActionRecordImageViewDelegateContext.onReturnFromExternalImageCameraRetryManually not implemented");
   }
 
   @Override
-  public void onReturnFromExternalCameraCancelled(final Intent data)
+  public void onReturnFromExternalImageCameraCancelled(final Intent data)
   {
     activity.refreshGUI();
   }
 
   @Override
-  public void onReturnFromExternalGalleryOK(final Intent data)
+  public void onReturnFromExternalImageGalleryOK(final Intent data)
   {
     activity.refreshGUI();
   }
 
   @Override
-  public void onReturnFromExternalGalleryRetryManually(final Intent data)
+  public void onReturnFromExternalImageGalleryRetryManually(final Intent data)
   {
-    Log.wtf(TAG(), "ActionRecordImageViewDelegateContext.onReturnFromExternalGalleryRetryManually not implemented");
+    Log.wtf(TAG(), "ActionRecordImageViewDelegateContext.onReturnFromExternalImageGalleryRetryManually not implemented");
   }
 
   @Override
-  public void onReturnFromExternalGalleryCancelled(final Intent data)
+  public void onReturnFromExternalImageGalleryCancelled(final Intent data)
   {
     activity.refreshGUI();
   }
-  public void goSubExternalCamera()
+  public void goSubExternalImageCamera()
   {
     Log.wtf(TAG(), "Must be handcrafted....");
   }
 
-  public void goSubExternalGallery()
+  public void goSubExternalImageGallery()
   {
     Log.wtf(TAG(), "Must be handcrafted....");
   }

@@ -18,8 +18,8 @@ import dk.lundogbendsen.vucroskilde.android.generated.ActionShowAudioRootActivit
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowAudioViewDelegate;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowAudioViewDelegateRoot;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionShowAudioXML;
-import dk.lundogbendsen.vucroskilde.android.util.DisplayUtil;
 import dk.lundogbendsen.vucroskilde.android.util.AudioPlayerWrapper;
+import dk.lundogbendsen.vucroskilde.android.util.DisplayUtil;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadClick;
 import dk.schoubo.library.android.ui.framework.PayloadCreate;
@@ -78,7 +78,7 @@ public class ActionShowAudioViewDelegateContext extends ActionShowAudioViewDeleg
   {
     DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
 
-    guictx.textViewActionShowAudioText.setText(action.getDescription());
+    guictx.textViewActionShowAudioCaption.setText(action.getDescription());
 
     if (busctx.isMediaPlaying())
     {

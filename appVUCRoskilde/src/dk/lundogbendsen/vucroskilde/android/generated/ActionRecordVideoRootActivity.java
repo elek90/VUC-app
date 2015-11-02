@@ -17,6 +17,7 @@ import android.view.View;
 import dk.lundogbendsen.vucroskilde.android.ActionRecordVideoViewDelegateContext;
 import dk.lundogbendsen.vucroskilde.android.VUCRoskildeBusinessContext;
 import dk.lundogbendsen.vucroskilde.android.generated.ActionRecordVideoViewDelegate;
+import dk.schoubo.library.android.LibraryConstants;
 import dk.schoubo.library.android.ui.framework.Payload;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadClick;
@@ -138,6 +139,11 @@ public abstract class ActionRecordVideoRootActivity extends RootActivity<VUCRosk
   {
     switch (actionpoint)
     {
+      case CLICKACTIONRECORDVIDEODOSELECTIMAGEBUTTON:
+      {
+        viewdelegatectx.onViewClickActionRecordVideoDoSelectImageButton(view, (PayloadClick)payload);
+        break;
+      }
       case CLICKACTIONRECORDVIDEODORECORDIMAGEBUTTON:
       {
         viewdelegatectx.onViewClickActionRecordVideoDoRecordImageButton(view, (PayloadClick)payload);
@@ -231,6 +237,50 @@ public abstract class ActionRecordVideoRootActivity extends RootActivity<VUCRosk
   {
     switch (requestCode)
     {
+      case EXTERNALVIDEOCAMERA:
+      {
+        switch (resultCode)
+        {
+          case LibraryConstants.RESULT_OK:
+          {
+            viewdelegatectx.onReturnFromExternalVideoCameraOK(data);
+            break;
+          }
+          case LibraryConstants.RESULT_RETRY_MANUALLY:
+          {
+            viewdelegatectx.onReturnFromExternalVideoCameraRetryManually(data);
+            break;
+          }
+          case LibraryConstants.RESULT_CANCELED:
+          {
+            viewdelegatectx.onReturnFromExternalVideoCameraCancelled(data);
+            break;
+          }
+        }
+        break;
+      }
+      case EXTERNALVIDEOGALLERY:
+      {
+        switch (resultCode)
+        {
+          case LibraryConstants.RESULT_OK:
+          {
+            viewdelegatectx.onReturnFromExternalVideoGalleryOK(data);
+            break;
+          }
+          case LibraryConstants.RESULT_RETRY_MANUALLY:
+          {
+            viewdelegatectx.onReturnFromExternalVideoGalleryRetryManually(data);
+            break;
+          }
+          case LibraryConstants.RESULT_CANCELED:
+          {
+            viewdelegatectx.onReturnFromExternalVideoGalleryCancelled(data);
+            break;
+          }
+        }
+        break;
+      }
       default:
       {
         Log.wtf(TAG(), "Navigation to "+requestCode+" should never return to the Activity ActionRecordVideo since that Activity did not declare it?");

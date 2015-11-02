@@ -21,6 +21,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import com.sinkpoint.smoothwheel.OnWheelSpinListener;
 import com.sinkpoint.smoothwheel.WheelAdapter;
 import dk.lundogbendsen.vucroskilde.android.R;
@@ -33,6 +34,7 @@ import dk.schoubo.library.android.ui.framework.RootActivity;
 public class ActionRecordTextGUI extends CommonGUI<VUCRoskildeBusinessContext, ActionRecordTextActionPoint, NavigationPoint> implements OnClickListener, OnItemSelectedListener, OnWheelSpinListener, OnCheckedChangeListener
 {
 
+  public final TextView textViewActionRecordTextCaption;
   public final EditText editTextActionRecordTextText;
   public final ImageButton imageButtonActionRecordTextDoRegret;
   public final ImageButton imageButtonActionRecordTextDoSave;
@@ -43,6 +45,7 @@ public class ActionRecordTextGUI extends CommonGUI<VUCRoskildeBusinessContext, A
     activity.switchLocale();
     activity.setContentView(R.layout.layout_actionrecordtext);
 
+    textViewActionRecordTextCaption = (TextView) activity.findViewById(R.id.textViewActionRecordTextCaption);
     editTextActionRecordTextText = (EditText) activity.findViewById(R.id.editTextActionRecordTextText);
     imageButtonActionRecordTextDoRegret = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordTextDoRegret);
     imageButtonActionRecordTextDoRegret.setOnClickListener(this);

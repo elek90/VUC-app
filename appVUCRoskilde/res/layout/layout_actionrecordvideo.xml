@@ -15,20 +15,78 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
 
     <VideoView
         android:id="@+id/videoViewActionRecordVideoVideo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="fill_parent"
+        android:layout_height="400dp" />
 
     <TextView
-        android:id="@+id/textViewActionRecordVideoText"
+        android:id="@+id/textViewActionRecordVideoCaption"
         style="@style/MA.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/labelActionRecordVideoText" />
+        android:text="@string/labelActionRecordVideoCaption" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_large" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordVideoDoRecord"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/buttonActionRecordVideoDoRecord"
+            android:src="@drawable/ic_videocam_black_24dp"
+            android:text="@string/buttonActionRecordVideoDoRecord" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordVideoDoPlay"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/buttonActionRecordVideoDoPlay"
+            android:src="@drawable/ic_play_arrow_black_24dp"
+            android:text="@string/buttonActionRecordVideoDoPlay" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonActionRecordVideoDoSelect"
+            style="@style/MA.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/buttonActionRecordVideoDoSelect"
+            android:src="@drawable/ic_photo_library_black_24dp"
+            android:text="@string/buttonActionRecordVideoDoSelect" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -72,23 +130,4 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
         </LinearLayout>
     </LinearLayout>
 
-  
-<ImageButton
-    android:contentDescription="@string/buttonActionRecordVideoDoRecord"
-    android:id="@+id/imageButtonActionRecordVideoDoRecord"
-    android:layout_gravity="center_horizontal"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:src="@drawable/vucroskilde_logo_simple_square"
-    android:text="@string/buttonActionRecordVideoDoRecord"
-    style="@style/MA.Button"/>
-  <ImageButton
-    android:contentDescription="@string/buttonActionRecordVideoDoPlay"
-    android:id="@+id/imageButtonActionRecordVideoDoPlay"
-    android:layout_gravity="center_horizontal"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:src="@drawable/vucroskilde_logo_simple_square"
-    android:text="@string/buttonActionRecordVideoDoPlay"
-    style="@style/MA.Button"/>
-  </LinearLayout>
+</LinearLayout>

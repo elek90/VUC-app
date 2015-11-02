@@ -30,7 +30,7 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
   @Override
   public long getSplashTimeMS()
   {
-    return 800;
+    return Constants.DEFAULT_SPLASH_TIME_MS;
   }
 
   public void initializeDuringSplash(final Activity activity)
@@ -343,5 +343,30 @@ public class VUCRoskildeBusinessContext extends VUCRoskildeBusinessContextRoot
   public boolean getRunasTeacher()
   {
     return runAsTeacher;
+  }
+
+  private int maxVideoSizeBytes = Constants.DEFAULT_MAX_VIDEO_SIZE_BYTES;
+
+  public int getMaxVideoSizeBytes()
+  {
+    return maxVideoSizeBytes;
+  }
+
+  public void setMaxVideoSizeBytes(final int maxVideoSizeBytes)
+  {
+    this.maxVideoSizeBytes = maxVideoSizeBytes;
+  }
+
+  private boolean videoQualityHigh = Constants.DEFAULT_VIDEO_QUALITY_IS_HIGH;
+
+  public boolean getVideoQualityHigh()
+  {
+    return videoQualityHigh;
+  }
+
+  public void setVideoQualityHigh(final boolean videoQualityHigh)
+  {
+    this.videoQualityHigh = videoQualityHigh;
+
   }
 }

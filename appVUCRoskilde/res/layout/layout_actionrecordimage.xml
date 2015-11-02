@@ -23,11 +23,11 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
         android:src="@drawable/vucroskilde_logo_simple_square" />
 
     <TextView
-        android:id="@+id/textViewActionRecordImageText"
+        android:id="@+id/textViewActionRecordImageCaption"
         style="@style/MA.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/labelActionRecordImageText" />
+        android:text="@string/labelActionRecordImageCaption" />
 
     <LinearLayout
         android:layout_width="wrap_content"

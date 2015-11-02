@@ -11,6 +11,8 @@
 package dk.lundogbendsen.vucroskilde.android.generated;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import dk.lundogbendsen.vucroskilde.android.VUCRoskildeBusinessContext;
 import dk.schoubo.library.android.CommonViewDelegateRoot;
@@ -42,6 +44,9 @@ public abstract class ActionRecordVideoViewDelegateRoot extends CommonViewDelega
     this.busctx = busctx;
     this.guictx = guictx;
   }
+
+  @Override
+  public abstract void onViewClickActionRecordVideoDoSelectImageButton(final View view, final PayloadClick payload);
 
   @Override
   public abstract void onViewClickActionRecordVideoDoRecordImageButton(final View view, final PayloadClick payload);
@@ -117,4 +122,50 @@ public abstract class ActionRecordVideoViewDelegateRoot extends CommonViewDelega
   public void onViewRestoreInstanceStateActionRecordVideo(final View view, final PayloadRestoreInstanceState payload)
   {
   }
+
+  @Override
+  public void onReturnFromExternalVideoCameraOK(final Intent data)
+  {
+    activity.refreshGUI();
+  }
+
+  @Override
+  public void onReturnFromExternalVideoCameraRetryManually(final Intent data)
+  {
+    Log.wtf(TAG(), "ActionRecordVideoViewDelegateContext.onReturnFromExternalVideoCameraRetryManually not implemented");
+  }
+
+  @Override
+  public void onReturnFromExternalVideoCameraCancelled(final Intent data)
+  {
+    activity.refreshGUI();
+  }
+
+  @Override
+  public void onReturnFromExternalVideoGalleryOK(final Intent data)
+  {
+    activity.refreshGUI();
+  }
+
+  @Override
+  public void onReturnFromExternalVideoGalleryRetryManually(final Intent data)
+  {
+    Log.wtf(TAG(), "ActionRecordVideoViewDelegateContext.onReturnFromExternalVideoGalleryRetryManually not implemented");
+  }
+
+  @Override
+  public void onReturnFromExternalVideoGalleryCancelled(final Intent data)
+  {
+    activity.refreshGUI();
+  }
+  public void goSubExternalVideoCamera()
+  {
+    Log.wtf(TAG(), "Must be handcrafted....");
+  }
+
+  public void goSubExternalVideoGallery()
+  {
+    Log.wtf(TAG(), "Must be handcrafted....");
+  }
+
 }

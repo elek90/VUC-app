@@ -240,7 +240,7 @@ public class ActionRecordAudioViewDelegateContext extends ActionRecordAudioViewD
   {
     DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
 
-    guictx.textViewActionRecordAudioText.setText(action.getDescription());
+    guictx.textViewActionRecordAudioCaption.setText(action.getDescription());
 
     if (busctx.isMediaPlaying())
     {

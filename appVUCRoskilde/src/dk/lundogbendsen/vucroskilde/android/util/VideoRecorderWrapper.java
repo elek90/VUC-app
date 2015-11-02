@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vucroskilde.android;
+package dk.lundogbendsen.vucroskilde.android.util;
 
 import dk.lundogbendsen.vucroskilde.android.generated.MediaRefXML;
 

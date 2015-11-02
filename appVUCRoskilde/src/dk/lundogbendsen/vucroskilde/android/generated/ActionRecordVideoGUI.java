@@ -34,8 +34,9 @@ import dk.schoubo.library.android.ui.framework.RootActivity;
 public class ActionRecordVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, ActionRecordVideoActionPoint, NavigationPoint> implements OnClickListener, OnItemSelectedListener, OnWheelSpinListener, OnCheckedChangeListener
 {
 
+  public final TextView textViewActionRecordVideoCaption;
   public final VideoView videoViewActionRecordVideoVideo;
-  public final TextView textViewActionRecordVideoText;
+  public final ImageButton imageButtonActionRecordVideoDoSelect;
   public final ImageButton imageButtonActionRecordVideoDoRecord;
   public final ImageButton imageButtonActionRecordVideoDoPlay;
   public final ImageButton imageButtonActionRecordVideoDoRegret;
@@ -47,8 +48,10 @@ public class ActionRecordVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, 
     activity.switchLocale();
     activity.setContentView(R.layout.layout_actionrecordvideo);
 
+    textViewActionRecordVideoCaption = (TextView) activity.findViewById(R.id.textViewActionRecordVideoCaption);
     videoViewActionRecordVideoVideo = (VideoView) activity.findViewById(R.id.videoViewActionRecordVideoVideo);
-    textViewActionRecordVideoText = (TextView) activity.findViewById(R.id.textViewActionRecordVideoText);
+    imageButtonActionRecordVideoDoSelect = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordVideoDoSelect);
+    imageButtonActionRecordVideoDoSelect.setOnClickListener(this);
     imageButtonActionRecordVideoDoRecord = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordVideoDoRecord);
     imageButtonActionRecordVideoDoRecord.setOnClickListener(this);
     imageButtonActionRecordVideoDoPlay = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordVideoDoPlay);
@@ -69,6 +72,7 @@ public class ActionRecordVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, 
   {
     switch (view.getId())
     {
+      case R.id.imageButtonActionRecordVideoDoSelect: { activity.onAction(view, ActionRecordVideoActionPoint.CLICKACTIONRECORDVIDEODOSELECTIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       case R.id.imageButtonActionRecordVideoDoRecord: { activity.onAction(view, ActionRecordVideoActionPoint.CLICKACTIONRECORDVIDEODORECORDIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       case R.id.imageButtonActionRecordVideoDoPlay: { activity.onAction(view, ActionRecordVideoActionPoint.CLICKACTIONRECORDVIDEODOPLAYIMAGEBUTTON, PayloadClick.create(-1)); break; } 
       case R.id.imageButtonActionRecordVideoDoRegret: { activity.onAction(view, ActionRecordVideoActionPoint.CLICKACTIONRECORDVIDEODOREGRETIMAGEBUTTON, PayloadClick.create(-1)); break; } 
@@ -154,6 +158,8 @@ public class ActionRecordVideoGUI extends CommonGUI<VUCRoskildeBusinessContext, 
   @Override
   protected void onActivityReturn(final int requestCode, final int resultCode, final Intent data)
   {
+    NavigationPoint rc = NavigationPoint.values()[requestCode];
+    activity.onReturn(rc, resultCode, data);
   }
 
 }

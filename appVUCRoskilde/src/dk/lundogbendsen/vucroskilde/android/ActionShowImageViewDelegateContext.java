@@ -50,7 +50,7 @@ public class ActionShowImageViewDelegateContext extends ActionShowImageViewDeleg
   public void onViewRefreshActionShowImage(final View view, final PayloadRefresh payload)
   {
     DisplayUtil.formatActionbar(activity, busctx.getCurrentStepIfSelected().getStepName());
-    guictx.textViewActionShowImageText.setText(action.getDescription());
+    guictx.textViewActionShowImageCaption.setText(action.getDescription());
 
     switch (action.getImageRef().getPlacementType())
     {

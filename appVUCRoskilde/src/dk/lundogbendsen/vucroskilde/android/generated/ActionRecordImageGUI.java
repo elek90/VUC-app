@@ -34,7 +34,7 @@ import dk.schoubo.library.android.ui.framework.RootActivity;
 public class ActionRecordImageGUI extends CommonGUI<VUCRoskildeBusinessContext, ActionRecordImageActionPoint, NavigationPoint> implements OnClickListener, OnItemSelectedListener, OnWheelSpinListener, OnCheckedChangeListener
 {
 
-  public final TextView textViewActionRecordImageText;
+  public final TextView textViewActionRecordImageCaption;
   public final ImageView imageViewActionRecordImageImage;
   public final ImageButton imageButtonActionRecordImageDoSelect;
   public final ImageButton imageButtonActionRecordImageDoRecord;
@@ -47,7 +47,7 @@ public class ActionRecordImageGUI extends CommonGUI<VUCRoskildeBusinessContext, 
     activity.switchLocale();
     activity.setContentView(R.layout.layout_actionrecordimage);
 
-    textViewActionRecordImageText = (TextView) activity.findViewById(R.id.textViewActionRecordImageText);
+    textViewActionRecordImageCaption = (TextView) activity.findViewById(R.id.textViewActionRecordImageCaption);
     imageViewActionRecordImageImage = (ImageView) activity.findViewById(R.id.imageViewActionRecordImageImage);
     imageButtonActionRecordImageDoSelect = (ImageButton) activity.findViewById(R.id.imageButtonActionRecordImageDoSelect);
     imageButtonActionRecordImageDoSelect.setOnClickListener(this);

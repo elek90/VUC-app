@@ -66,4 +66,11 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
 
     </LinearLayout>
 
-</LinearLayout>
+  
+<TextView
+    android:id="@+id/textViewActionRecordTextCaption"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:text="@string/labelActionRecordTextCaption"
+    style="@style/MA.Text"/>
+  </LinearLayout>

@@ -34,7 +34,7 @@ public class ActionShowAudioGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
 {
 
   public final ImageButton imageButtonActionShowAudioDoPlay;
-  public final TextView textViewActionShowAudioText;
+  public final TextView textViewActionShowAudioCaption;
 
   public ActionShowAudioGUI(final RootActivity<VUCRoskildeBusinessContext, ActionShowAudioGUI, ActionShowAudioActionPoint, NavigationPoint> activity)
   {
@@ -44,7 +44,7 @@ public class ActionShowAudioGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
 
     imageButtonActionShowAudioDoPlay = (ImageButton) activity.findViewById(R.id.imageButtonActionShowAudioDoPlay);
     imageButtonActionShowAudioDoPlay.setOnClickListener(this);
-    textViewActionShowAudioText = (TextView) activity.findViewById(R.id.textViewActionShowAudioText);
+    textViewActionShowAudioCaption = (TextView) activity.findViewById(R.id.textViewActionShowAudioCaption);
   }
 
   public static ActionShowAudioGUI create(final RootActivity<VUCRoskildeBusinessContext, ActionShowAudioGUI, ActionShowAudioActionPoint, NavigationPoint> activity)

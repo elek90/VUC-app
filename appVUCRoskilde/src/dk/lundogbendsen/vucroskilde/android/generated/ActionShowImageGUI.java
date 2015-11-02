@@ -33,7 +33,7 @@ public class ActionShowImageGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
 {
 
   public final ImageView imageViewActionShowImageImage;
-  public final TextView textViewActionShowImageText;
+  public final TextView textViewActionShowImageCaption;
 
   public ActionShowImageGUI(final RootActivity<VUCRoskildeBusinessContext, ActionShowImageGUI, ActionShowImageActionPoint, NavigationPoint> activity)
   {
@@ -42,7 +42,7 @@ public class ActionShowImageGUI extends CommonGUI<VUCRoskildeBusinessContext, Ac
     activity.setContentView(R.layout.layout_actionshowimage);
 
     imageViewActionShowImageImage = (ImageView) activity.findViewById(R.id.imageViewActionShowImageImage);
-    textViewActionShowImageText = (TextView) activity.findViewById(R.id.textViewActionShowImageText);
+    textViewActionShowImageCaption = (TextView) activity.findViewById(R.id.textViewActionShowImageCaption);
   }
 
   public static ActionShowImageGUI create(final RootActivity<VUCRoskildeBusinessContext, ActionShowImageGUI, ActionShowImageActionPoint, NavigationPoint> activity)

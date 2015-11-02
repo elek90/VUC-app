@@ -232,45 +232,45 @@ public abstract class ActionRecordImageRootActivity extends RootActivity<VUCRosk
   {
     switch (requestCode)
     {
-      case EXTERNALCAMERA:
+      case EXTERNALIMAGECAMERA:
       {
         switch (resultCode)
         {
           case LibraryConstants.RESULT_OK:
           {
-            viewdelegatectx.onReturnFromExternalCameraOK(data);
+            viewdelegatectx.onReturnFromExternalImageCameraOK(data);
             break;
           }
           case LibraryConstants.RESULT_RETRY_MANUALLY:
           {
-            viewdelegatectx.onReturnFromExternalCameraRetryManually(data);
+            viewdelegatectx.onReturnFromExternalImageCameraRetryManually(data);
             break;
           }
           case LibraryConstants.RESULT_CANCELED:
           {
-            viewdelegatectx.onReturnFromExternalCameraCancelled(data);
+            viewdelegatectx.onReturnFromExternalImageCameraCancelled(data);
             break;
           }
         }
         break;
       }
-      case EXTERNALGALLERY:
+      case EXTERNALIMAGEGALLERY:
       {
         switch (resultCode)
         {
           case LibraryConstants.RESULT_OK:
           {
-            viewdelegatectx.onReturnFromExternalGalleryOK(data);
+            viewdelegatectx.onReturnFromExternalImageGalleryOK(data);
             break;
           }
           case LibraryConstants.RESULT_RETRY_MANUALLY:
           {
-            viewdelegatectx.onReturnFromExternalGalleryRetryManually(data);
+            viewdelegatectx.onReturnFromExternalImageGalleryRetryManually(data);
             break;
           }
           case LibraryConstants.RESULT_CANCELED:
           {
-            viewdelegatectx.onReturnFromExternalGalleryCancelled(data);
+            viewdelegatectx.onReturnFromExternalImageGalleryCancelled(data);
             break;
           }
         }

@@ -39,7 +39,6 @@ public class ActionRecordImageViewDelegateContext extends ActionRecordImageViewD
   private ActionRecordImageXML action;
   private ActionRecordImageXML answer;
 
-//  private File imageFile;
   private MediaRefXML imageFileRef;
 
   private ActionRecordImageViewDelegateContext(final ActionRecordImageRootActivity activity, final VUCRoskildeBusinessContext busctx, final ActionRecordImageGUI guictx)
@@ -59,20 +58,18 @@ public class ActionRecordImageViewDelegateContext extends ActionRecordImageViewD
     imageFileRef.setPlacementPath(path);
     imageFileRef.setPlacementType(PlacementType.STORAGE);
 
-    goSubExternalCamera();
+    goSubExternalImageCamera();
   }
 
   @Override
   public void onViewClickActionRecordImageDoSelectImageButton(final View view, final PayloadClick payload)
   {
-    goSubExternalGallery();
+    goSubExternalImageGallery();
   }
 
   @Override
-  public void onReturnFromExternalCameraOK(final Intent data)
+  public void onReturnFromExternalImageCameraOK(final Intent data)
   {
-//    answer.getImageRef().setPlacementPath(imageFileRef.getPlacementPath());
-//    answer.getImageRef().setPlacementType(PlacementType.STORAGE);
     Log.i(TAG, "Image from camera: " + imageFileRef.getPlacementPath());
 
     // TODO MediaScannerConnection.scanFile will not work for PRIVATE storage?
@@ -86,35 +83,31 @@ public class ActionRecordImageViewDelegateContext extends ActionRecordImageViewD
   }
 
   @Override
-  public void onReturnFromExternalGalleryOK(final Intent data)
+  public void onReturnFromExternalImageGalleryOK(final Intent data)
   {
     imageFileRef.setPlacementPath(data.getData().toString());
     imageFileRef.setPlacementType(PlacementType.STORAGE);
-//    answer.getImageRef().setPlacementPath(data.getData().toString());
-//    answer.getImageRef().setPlacementType(PlacementType.STORAGE);
     Log.i(TAG, "Image from gallery: " + data.getData().toString());
 
     activity.refreshGUI();
   }
 
   @Override
-  public void goSubExternalCamera()
+  public void goSubExternalImageCamera()
   {
     // Start camera
-
     Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     takePicture.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(imageFileRef.getPlacementPath())));
 
-    activity.startActivityForResult(takePicture, NavigationPoint.EXTERNALCAMERA.ordinal());
+    activity.startActivityForResult(takePicture, NavigationPoint.EXTERNALIMAGECAMERA.ordinal());
   }
 
   @Override
-  public void goSubExternalGallery()
+  public void goSubExternalImageGallery()
   {
     // Pick photo from gallery
-
     Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-    activity.startActivityForResult(pickPhoto, NavigationPoint.EXTERNALGALLERY.ordinal());
+    activity.startActivityForResult(pickPhoto, NavigationPoint.EXTERNALIMAGEGALLERY.ordinal());
   }
 
   @Override
@@ -169,7 +162,7 @@ public class ActionRecordImageViewDelegateContext extends ActionRecordImageViewD
     Uri selectedImage = Uri.parse(imageFileRef.getPlacementPath());
     guictx.imageViewActionRecordImageImage.setImageURI(selectedImage);
 
-    guictx.textViewActionRecordImageText.setText(action.getDescription());
+    guictx.textViewActionRecordImageCaption.setText(action.getDescription());
   }
 
   @Override

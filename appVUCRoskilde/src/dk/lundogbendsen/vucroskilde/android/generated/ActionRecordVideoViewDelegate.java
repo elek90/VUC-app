@@ -10,6 +10,7 @@
 
 package dk.lundogbendsen.vucroskilde.android.generated;
 
+import android.content.Intent;
 import android.view.View;
 import dk.schoubo.library.android.ui.framework.PayloadBack;
 import dk.schoubo.library.android.ui.framework.PayloadClick;
@@ -29,6 +30,7 @@ import dk.schoubo.library.android.ui.framework.PayloadWindowFocusChanged;
 
 public interface ActionRecordVideoViewDelegate
 {
+  public void onViewClickActionRecordVideoDoSelectImageButton(final View view, final PayloadClick payload);
   public void onViewClickActionRecordVideoDoRecordImageButton(final View view, final PayloadClick payload);
   public void onViewClickActionRecordVideoDoPlayImageButton(final View view, final PayloadClick payload);
   public void onViewClickActionRecordVideoDoRegretImageButton(final View view, final PayloadClick payload);
@@ -47,5 +49,11 @@ public interface ActionRecordVideoViewDelegate
   public void onViewSaveInstanceStateActionRecordVideo(final View view, final PayloadSaveInstanceState payload);
   public void onViewRestoreInstanceStateActionRecordVideo(final View view, final PayloadRestoreInstanceState payload);
 
+  public void onReturnFromExternalVideoCameraOK(final Intent data);
+  public void onReturnFromExternalVideoCameraRetryManually(final Intent data);
+  public void onReturnFromExternalVideoCameraCancelled(final Intent data);
+  public void onReturnFromExternalVideoGalleryOK(final Intent data);
+  public void onReturnFromExternalVideoGalleryRetryManually(final Intent data);
+  public void onReturnFromExternalVideoGalleryCancelled(final Intent data);
 
 }

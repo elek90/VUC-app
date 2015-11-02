@@ -144,7 +144,7 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   protected void verifyAllFieldsActionRecordAudio()
   {
     takeComment("Verifying all fields in ActionRecordAudioActivity");
-    getViewActionRecordAudioText();
+    getViewActionRecordAudioCaption();
     getViewActionRecordAudioDoRecord();
     getViewActionRecordAudioDoPlay();
     getViewActionRecordAudioDoRegret();
@@ -153,59 +153,59 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
 
   protected void nullAllFieldsActionRecordAudio()
   {
-    textViewActionRecordAudioText = null;
+    textViewActionRecordAudioCaption = null;
     imageButtonActionRecordAudioDoRecord = null;
     imageButtonActionRecordAudioDoPlay = null;
     imageButtonActionRecordAudioDoRegret = null;
     imageButtonActionRecordAudioDoSave = null;
   }
 
-  private TextView textViewActionRecordAudioText;
+  private TextView textViewActionRecordAudioCaption;
 
-  protected TextView getViewActionRecordAudioText()
+  protected TextView getViewActionRecordAudioCaption()
   {
     assertNotNull("actionRecordAudio not set - did you remember to call setActivityActionRecordAudio(final ActionRecordAudioActivity actionRecordAudio) ?", actionRecordAudio);
-    if (textViewActionRecordAudioText == null)
+    if (textViewActionRecordAudioCaption == null)
     {
-      textViewActionRecordAudioText = (TextView) actionRecordAudio.findViewById(R.id.textViewActionRecordAudioText);
-      assertNotNull("R.id.textViewActionRecordAudioText could not be found via actionRecordAudio", textViewActionRecordAudioText);
+      textViewActionRecordAudioCaption = (TextView) actionRecordAudio.findViewById(R.id.textViewActionRecordAudioCaption);
+      assertNotNull("R.id.textViewActionRecordAudioCaption could not be found via actionRecordAudio", textViewActionRecordAudioCaption);
     }
     setLastActivity(actionRecordAudio);
-    return textViewActionRecordAudioText;
+    return textViewActionRecordAudioCaption;
   }
 
-  protected void clickActionRecordAudioText()
+  protected void clickActionRecordAudioCaption()
   {
-    takeComment("Before click on ActionRecordAudioText");
-    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionRecordAudioText");
-    TouchUtils.clickView(this, getViewActionRecordAudioText());
+    takeComment("Before click on ActionRecordAudioCaption");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionRecordAudioCaption");
+    TouchUtils.clickView(this, getViewActionRecordAudioCaption());
   }
 
-  protected void verifyTextActionRecordAudioText(final int id)
+  protected void verifyTextActionRecordAudioCaption(final int id)
   {
-    assertEquals("Incorrect ActionRecordAudioText.getText()", actionRecordAudio.getString(id), getViewActionRecordAudioText().getText().toString());
+    assertEquals("Incorrect ActionRecordAudioCaption.getText()", actionRecordAudio.getString(id), getViewActionRecordAudioCaption().getText().toString());
   }
 
-  protected void verifyTextActionRecordAudioText(final String text)
+  protected void verifyTextActionRecordAudioCaption(final String text)
   {
-    assertEquals("Incorrect ActionRecordAudioText.getText()", text, getViewActionRecordAudioText().getText().toString());
+    assertEquals("Incorrect ActionRecordAudioCaption.getText()", text, getViewActionRecordAudioCaption().getText().toString());
   }
 
-  protected void setTextActionRecordAudioText(final String text)
+  protected void setTextActionRecordAudioCaption(final String text)
   {
-    takeComment("Setting ActionRecordAudioText to '"+text+"'");
-    final TextView view = getViewActionRecordAudioText();
+    takeComment("Setting ActionRecordAudioCaption to '"+text+"'");
+    final TextView view = getViewActionRecordAudioCaption();
     actionRecordAudio.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
   }
 
-  protected String getTextActionRecordAudioText()
+  protected String getTextActionRecordAudioCaption()
   {
-    return getViewActionRecordAudioText().getText().toString();
+    return getViewActionRecordAudioCaption().getText().toString();
   }
 
-  protected void verifyOnScreenActionRecordAudioText()
+  protected void verifyOnScreenActionRecordAudioCaption()
   {
-    ViewAsserts.assertOnScreen(actionRecordAudio.getWindow().getDecorView(), getViewActionRecordAudioText());
+    ViewAsserts.assertOnScreen(actionRecordAudio.getWindow().getDecorView(), getViewActionRecordAudioCaption());
   }
 
   private ImageButton imageButtonActionRecordAudioDoRecord;
@@ -339,7 +339,7 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   protected void verifyAllFieldsActionRecordImage()
   {
     takeComment("Verifying all fields in ActionRecordImageActivity");
-    getViewActionRecordImageText();
+    getViewActionRecordImageCaption();
     getViewActionRecordImageImage();
     getViewActionRecordImageDoSelect();
     getViewActionRecordImageDoRecord();
@@ -349,7 +349,7 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
 
   protected void nullAllFieldsActionRecordImage()
   {
-    textViewActionRecordImageText = null;
+    textViewActionRecordImageCaption = null;
     imageViewActionRecordImageImage = null;
     imageButtonActionRecordImageDoSelect = null;
     imageButtonActionRecordImageDoRecord = null;
@@ -357,52 +357,52 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     imageButtonActionRecordImageDoSave = null;
   }
 
-  private TextView textViewActionRecordImageText;
+  private TextView textViewActionRecordImageCaption;
 
-  protected TextView getViewActionRecordImageText()
+  protected TextView getViewActionRecordImageCaption()
   {
     assertNotNull("actionRecordImage not set - did you remember to call setActivityActionRecordImage(final ActionRecordImageActivity actionRecordImage) ?", actionRecordImage);
-    if (textViewActionRecordImageText == null)
+    if (textViewActionRecordImageCaption == null)
     {
-      textViewActionRecordImageText = (TextView) actionRecordImage.findViewById(R.id.textViewActionRecordImageText);
-      assertNotNull("R.id.textViewActionRecordImageText could not be found via actionRecordImage", textViewActionRecordImageText);
+      textViewActionRecordImageCaption = (TextView) actionRecordImage.findViewById(R.id.textViewActionRecordImageCaption);
+      assertNotNull("R.id.textViewActionRecordImageCaption could not be found via actionRecordImage", textViewActionRecordImageCaption);
     }
     setLastActivity(actionRecordImage);
-    return textViewActionRecordImageText;
+    return textViewActionRecordImageCaption;
   }
 
-  protected void clickActionRecordImageText()
+  protected void clickActionRecordImageCaption()
   {
-    takeComment("Before click on ActionRecordImageText");
-    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionRecordImageText");
-    TouchUtils.clickView(this, getViewActionRecordImageText());
+    takeComment("Before click on ActionRecordImageCaption");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionRecordImageCaption");
+    TouchUtils.clickView(this, getViewActionRecordImageCaption());
   }
 
-  protected void verifyTextActionRecordImageText(final int id)
+  protected void verifyTextActionRecordImageCaption(final int id)
   {
-    assertEquals("Incorrect ActionRecordImageText.getText()", actionRecordImage.getString(id), getViewActionRecordImageText().getText().toString());
+    assertEquals("Incorrect ActionRecordImageCaption.getText()", actionRecordImage.getString(id), getViewActionRecordImageCaption().getText().toString());
   }
 
-  protected void verifyTextActionRecordImageText(final String text)
+  protected void verifyTextActionRecordImageCaption(final String text)
   {
-    assertEquals("Incorrect ActionRecordImageText.getText()", text, getViewActionRecordImageText().getText().toString());
+    assertEquals("Incorrect ActionRecordImageCaption.getText()", text, getViewActionRecordImageCaption().getText().toString());
   }
 
-  protected void setTextActionRecordImageText(final String text)
+  protected void setTextActionRecordImageCaption(final String text)
   {
-    takeComment("Setting ActionRecordImageText to '"+text+"'");
-    final TextView view = getViewActionRecordImageText();
+    takeComment("Setting ActionRecordImageCaption to '"+text+"'");
+    final TextView view = getViewActionRecordImageCaption();
     actionRecordImage.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
   }
 
-  protected String getTextActionRecordImageText()
+  protected String getTextActionRecordImageCaption()
   {
-    return getViewActionRecordImageText().getText().toString();
+    return getViewActionRecordImageCaption().getText().toString();
   }
 
-  protected void verifyOnScreenActionRecordImageText()
+  protected void verifyOnScreenActionRecordImageCaption()
   {
-    ViewAsserts.assertOnScreen(actionRecordImage.getWindow().getDecorView(), getViewActionRecordImageText());
+    ViewAsserts.assertOnScreen(actionRecordImage.getWindow().getDecorView(), getViewActionRecordImageCaption());
   }
 
   private ImageView imageViewActionRecordImageImage;
@@ -562,6 +562,7 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   protected void verifyAllFieldsActionRecordText()
   {
     takeComment("Verifying all fields in ActionRecordTextActivity");
+    getViewActionRecordTextCaption();
     getViewActionRecordTextText();
     getViewActionRecordTextDoRegret();
     getViewActionRecordTextDoSave();
@@ -569,9 +570,58 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
 
   protected void nullAllFieldsActionRecordText()
   {
+    textViewActionRecordTextCaption = null;
     editTextActionRecordTextText = null;
     imageButtonActionRecordTextDoRegret = null;
     imageButtonActionRecordTextDoSave = null;
+  }
+
+  private TextView textViewActionRecordTextCaption;
+
+  protected TextView getViewActionRecordTextCaption()
+  {
+    assertNotNull("actionRecordText not set - did you remember to call setActivityActionRecordText(final ActionRecordTextActivity actionRecordText) ?", actionRecordText);
+    if (textViewActionRecordTextCaption == null)
+    {
+      textViewActionRecordTextCaption = (TextView) actionRecordText.findViewById(R.id.textViewActionRecordTextCaption);
+      assertNotNull("R.id.textViewActionRecordTextCaption could not be found via actionRecordText", textViewActionRecordTextCaption);
+    }
+    setLastActivity(actionRecordText);
+    return textViewActionRecordTextCaption;
+  }
+
+  protected void clickActionRecordTextCaption()
+  {
+    takeComment("Before click on ActionRecordTextCaption");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionRecordTextCaption");
+    TouchUtils.clickView(this, getViewActionRecordTextCaption());
+  }
+
+  protected void verifyTextActionRecordTextCaption(final int id)
+  {
+    assertEquals("Incorrect ActionRecordTextCaption.getText()", actionRecordText.getString(id), getViewActionRecordTextCaption().getText().toString());
+  }
+
+  protected void verifyTextActionRecordTextCaption(final String text)
+  {
+    assertEquals("Incorrect ActionRecordTextCaption.getText()", text, getViewActionRecordTextCaption().getText().toString());
+  }
+
+  protected void setTextActionRecordTextCaption(final String text)
+  {
+    takeComment("Setting ActionRecordTextCaption to '"+text+"'");
+    final TextView view = getViewActionRecordTextCaption();
+    actionRecordText.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextActionRecordTextCaption()
+  {
+    return getViewActionRecordTextCaption().getText().toString();
+  }
+
+  protected void verifyOnScreenActionRecordTextCaption()
+  {
+    ViewAsserts.assertOnScreen(actionRecordText.getWindow().getDecorView(), getViewActionRecordTextCaption());
   }
 
   private EditText editTextActionRecordTextText;
@@ -694,8 +744,9 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   protected void verifyAllFieldsActionRecordVideo()
   {
     takeComment("Verifying all fields in ActionRecordVideoActivity");
+    getViewActionRecordVideoCaption();
     getViewActionRecordVideoVideo();
-    getViewActionRecordVideoText();
+    getViewActionRecordVideoDoSelect();
     getViewActionRecordVideoDoRecord();
     getViewActionRecordVideoDoPlay();
     getViewActionRecordVideoDoRegret();
@@ -704,12 +755,61 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
 
   protected void nullAllFieldsActionRecordVideo()
   {
+    textViewActionRecordVideoCaption = null;
     videoViewActionRecordVideoVideo = null;
-    textViewActionRecordVideoText = null;
+    imageButtonActionRecordVideoDoSelect = null;
     imageButtonActionRecordVideoDoRecord = null;
     imageButtonActionRecordVideoDoPlay = null;
     imageButtonActionRecordVideoDoRegret = null;
     imageButtonActionRecordVideoDoSave = null;
+  }
+
+  private TextView textViewActionRecordVideoCaption;
+
+  protected TextView getViewActionRecordVideoCaption()
+  {
+    assertNotNull("actionRecordVideo not set - did you remember to call setActivityActionRecordVideo(final ActionRecordVideoActivity actionRecordVideo) ?", actionRecordVideo);
+    if (textViewActionRecordVideoCaption == null)
+    {
+      textViewActionRecordVideoCaption = (TextView) actionRecordVideo.findViewById(R.id.textViewActionRecordVideoCaption);
+      assertNotNull("R.id.textViewActionRecordVideoCaption could not be found via actionRecordVideo", textViewActionRecordVideoCaption);
+    }
+    setLastActivity(actionRecordVideo);
+    return textViewActionRecordVideoCaption;
+  }
+
+  protected void clickActionRecordVideoCaption()
+  {
+    takeComment("Before click on ActionRecordVideoCaption");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionRecordVideoCaption");
+    TouchUtils.clickView(this, getViewActionRecordVideoCaption());
+  }
+
+  protected void verifyTextActionRecordVideoCaption(final int id)
+  {
+    assertEquals("Incorrect ActionRecordVideoCaption.getText()", actionRecordVideo.getString(id), getViewActionRecordVideoCaption().getText().toString());
+  }
+
+  protected void verifyTextActionRecordVideoCaption(final String text)
+  {
+    assertEquals("Incorrect ActionRecordVideoCaption.getText()", text, getViewActionRecordVideoCaption().getText().toString());
+  }
+
+  protected void setTextActionRecordVideoCaption(final String text)
+  {
+    takeComment("Setting ActionRecordVideoCaption to '"+text+"'");
+    final TextView view = getViewActionRecordVideoCaption();
+    actionRecordVideo.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextActionRecordVideoCaption()
+  {
+    return getViewActionRecordVideoCaption().getText().toString();
+  }
+
+  protected void verifyOnScreenActionRecordVideoCaption()
+  {
+    ViewAsserts.assertOnScreen(actionRecordVideo.getWindow().getDecorView(), getViewActionRecordVideoCaption());
   }
 
   private VideoView videoViewActionRecordVideoVideo;
@@ -738,52 +838,30 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     ViewAsserts.assertOnScreen(actionRecordVideo.getWindow().getDecorView(), getViewActionRecordVideoVideo());
   }
 
-  private TextView textViewActionRecordVideoText;
+  private ImageButton imageButtonActionRecordVideoDoSelect;
 
-  protected TextView getViewActionRecordVideoText()
+  protected ImageButton getViewActionRecordVideoDoSelect()
   {
     assertNotNull("actionRecordVideo not set - did you remember to call setActivityActionRecordVideo(final ActionRecordVideoActivity actionRecordVideo) ?", actionRecordVideo);
-    if (textViewActionRecordVideoText == null)
+    if (imageButtonActionRecordVideoDoSelect == null)
     {
-      textViewActionRecordVideoText = (TextView) actionRecordVideo.findViewById(R.id.textViewActionRecordVideoText);
-      assertNotNull("R.id.textViewActionRecordVideoText could not be found via actionRecordVideo", textViewActionRecordVideoText);
+      imageButtonActionRecordVideoDoSelect = (ImageButton) actionRecordVideo.findViewById(R.id.imageButtonActionRecordVideoDoSelect);
+      assertNotNull("R.id.imageButtonActionRecordVideoDoSelect could not be found via actionRecordVideo", imageButtonActionRecordVideoDoSelect);
     }
     setLastActivity(actionRecordVideo);
-    return textViewActionRecordVideoText;
+    return imageButtonActionRecordVideoDoSelect;
   }
 
-  protected void clickActionRecordVideoText()
+  protected void clickActionRecordVideoDoSelect()
   {
-    takeComment("Before click on ActionRecordVideoText");
-    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionRecordVideoText");
-    TouchUtils.clickView(this, getViewActionRecordVideoText());
+    takeComment("Before click on ActionRecordVideoDoSelect");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionRecordVideoDoSelect");
+    TouchUtils.clickView(this, getViewActionRecordVideoDoSelect());
   }
 
-  protected void verifyTextActionRecordVideoText(final int id)
+  protected void verifyOnScreenActionRecordVideoDoSelect()
   {
-    assertEquals("Incorrect ActionRecordVideoText.getText()", actionRecordVideo.getString(id), getViewActionRecordVideoText().getText().toString());
-  }
-
-  protected void verifyTextActionRecordVideoText(final String text)
-  {
-    assertEquals("Incorrect ActionRecordVideoText.getText()", text, getViewActionRecordVideoText().getText().toString());
-  }
-
-  protected void setTextActionRecordVideoText(final String text)
-  {
-    takeComment("Setting ActionRecordVideoText to '"+text+"'");
-    final TextView view = getViewActionRecordVideoText();
-    actionRecordVideo.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
-  }
-
-  protected String getTextActionRecordVideoText()
-  {
-    return getViewActionRecordVideoText().getText().toString();
-  }
-
-  protected void verifyOnScreenActionRecordVideoText()
-  {
-    ViewAsserts.assertOnScreen(actionRecordVideo.getWindow().getDecorView(), getViewActionRecordVideoText());
+    ViewAsserts.assertOnScreen(actionRecordVideo.getWindow().getDecorView(), getViewActionRecordVideoDoSelect());
   }
 
   private ImageButton imageButtonActionRecordVideoDoRecord;
@@ -1007,13 +1085,13 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   {
     takeComment("Verifying all fields in ActionShowAudioActivity");
     getViewActionShowAudioDoPlay();
-    getViewActionShowAudioText();
+    getViewActionShowAudioCaption();
   }
 
   protected void nullAllFieldsActionShowAudio()
   {
     imageButtonActionShowAudioDoPlay = null;
-    textViewActionShowAudioText = null;
+    textViewActionShowAudioCaption = null;
   }
 
   private ImageButton imageButtonActionShowAudioDoPlay;
@@ -1042,52 +1120,52 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     ViewAsserts.assertOnScreen(actionShowAudio.getWindow().getDecorView(), getViewActionShowAudioDoPlay());
   }
 
-  private TextView textViewActionShowAudioText;
+  private TextView textViewActionShowAudioCaption;
 
-  protected TextView getViewActionShowAudioText()
+  protected TextView getViewActionShowAudioCaption()
   {
     assertNotNull("actionShowAudio not set - did you remember to call setActivityActionShowAudio(final ActionShowAudioActivity actionShowAudio) ?", actionShowAudio);
-    if (textViewActionShowAudioText == null)
+    if (textViewActionShowAudioCaption == null)
     {
-      textViewActionShowAudioText = (TextView) actionShowAudio.findViewById(R.id.textViewActionShowAudioText);
-      assertNotNull("R.id.textViewActionShowAudioText could not be found via actionShowAudio", textViewActionShowAudioText);
+      textViewActionShowAudioCaption = (TextView) actionShowAudio.findViewById(R.id.textViewActionShowAudioCaption);
+      assertNotNull("R.id.textViewActionShowAudioCaption could not be found via actionShowAudio", textViewActionShowAudioCaption);
     }
     setLastActivity(actionShowAudio);
-    return textViewActionShowAudioText;
+    return textViewActionShowAudioCaption;
   }
 
-  protected void clickActionShowAudioText()
+  protected void clickActionShowAudioCaption()
   {
-    takeComment("Before click on ActionShowAudioText");
-    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionShowAudioText");
-    TouchUtils.clickView(this, getViewActionShowAudioText());
+    takeComment("Before click on ActionShowAudioCaption");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionShowAudioCaption");
+    TouchUtils.clickView(this, getViewActionShowAudioCaption());
   }
 
-  protected void verifyTextActionShowAudioText(final int id)
+  protected void verifyTextActionShowAudioCaption(final int id)
   {
-    assertEquals("Incorrect ActionShowAudioText.getText()", actionShowAudio.getString(id), getViewActionShowAudioText().getText().toString());
+    assertEquals("Incorrect ActionShowAudioCaption.getText()", actionShowAudio.getString(id), getViewActionShowAudioCaption().getText().toString());
   }
 
-  protected void verifyTextActionShowAudioText(final String text)
+  protected void verifyTextActionShowAudioCaption(final String text)
   {
-    assertEquals("Incorrect ActionShowAudioText.getText()", text, getViewActionShowAudioText().getText().toString());
+    assertEquals("Incorrect ActionShowAudioCaption.getText()", text, getViewActionShowAudioCaption().getText().toString());
   }
 
-  protected void setTextActionShowAudioText(final String text)
+  protected void setTextActionShowAudioCaption(final String text)
   {
-    takeComment("Setting ActionShowAudioText to '"+text+"'");
-    final TextView view = getViewActionShowAudioText();
+    takeComment("Setting ActionShowAudioCaption to '"+text+"'");
+    final TextView view = getViewActionShowAudioCaption();
     actionShowAudio.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
   }
 
-  protected String getTextActionShowAudioText()
+  protected String getTextActionShowAudioCaption()
   {
-    return getViewActionShowAudioText().getText().toString();
+    return getViewActionShowAudioCaption().getText().toString();
   }
 
-  protected void verifyOnScreenActionShowAudioText()
+  protected void verifyOnScreenActionShowAudioCaption()
   {
-    ViewAsserts.assertOnScreen(actionShowAudio.getWindow().getDecorView(), getViewActionShowAudioText());
+    ViewAsserts.assertOnScreen(actionShowAudio.getWindow().getDecorView(), getViewActionShowAudioCaption());
   }
 
   private ActionShowImageActivity actionShowImage;
@@ -1118,13 +1196,13 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   {
     takeComment("Verifying all fields in ActionShowImageActivity");
     getViewActionShowImageImage();
-    getViewActionShowImageText();
+    getViewActionShowImageCaption();
   }
 
   protected void nullAllFieldsActionShowImage()
   {
     imageViewActionShowImageImage = null;
-    textViewActionShowImageText = null;
+    textViewActionShowImageCaption = null;
   }
 
   private ImageView imageViewActionShowImageImage;
@@ -1153,52 +1231,52 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     ViewAsserts.assertOnScreen(actionShowImage.getWindow().getDecorView(), getViewActionShowImageImage());
   }
 
-  private TextView textViewActionShowImageText;
+  private TextView textViewActionShowImageCaption;
 
-  protected TextView getViewActionShowImageText()
+  protected TextView getViewActionShowImageCaption()
   {
     assertNotNull("actionShowImage not set - did you remember to call setActivityActionShowImage(final ActionShowImageActivity actionShowImage) ?", actionShowImage);
-    if (textViewActionShowImageText == null)
+    if (textViewActionShowImageCaption == null)
     {
-      textViewActionShowImageText = (TextView) actionShowImage.findViewById(R.id.textViewActionShowImageText);
-      assertNotNull("R.id.textViewActionShowImageText could not be found via actionShowImage", textViewActionShowImageText);
+      textViewActionShowImageCaption = (TextView) actionShowImage.findViewById(R.id.textViewActionShowImageCaption);
+      assertNotNull("R.id.textViewActionShowImageCaption could not be found via actionShowImage", textViewActionShowImageCaption);
     }
     setLastActivity(actionShowImage);
-    return textViewActionShowImageText;
+    return textViewActionShowImageCaption;
   }
 
-  protected void clickActionShowImageText()
+  protected void clickActionShowImageCaption()
   {
-    takeComment("Before click on ActionShowImageText");
-    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionShowImageText");
-    TouchUtils.clickView(this, getViewActionShowImageText());
+    takeComment("Before click on ActionShowImageCaption");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionShowImageCaption");
+    TouchUtils.clickView(this, getViewActionShowImageCaption());
   }
 
-  protected void verifyTextActionShowImageText(final int id)
+  protected void verifyTextActionShowImageCaption(final int id)
   {
-    assertEquals("Incorrect ActionShowImageText.getText()", actionShowImage.getString(id), getViewActionShowImageText().getText().toString());
+    assertEquals("Incorrect ActionShowImageCaption.getText()", actionShowImage.getString(id), getViewActionShowImageCaption().getText().toString());
   }
 
-  protected void verifyTextActionShowImageText(final String text)
+  protected void verifyTextActionShowImageCaption(final String text)
   {
-    assertEquals("Incorrect ActionShowImageText.getText()", text, getViewActionShowImageText().getText().toString());
+    assertEquals("Incorrect ActionShowImageCaption.getText()", text, getViewActionShowImageCaption().getText().toString());
   }
 
-  protected void setTextActionShowImageText(final String text)
+  protected void setTextActionShowImageCaption(final String text)
   {
-    takeComment("Setting ActionShowImageText to '"+text+"'");
-    final TextView view = getViewActionShowImageText();
+    takeComment("Setting ActionShowImageCaption to '"+text+"'");
+    final TextView view = getViewActionShowImageCaption();
     actionShowImage.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
   }
 
-  protected String getTextActionShowImageText()
+  protected String getTextActionShowImageCaption()
   {
-    return getViewActionShowImageText().getText().toString();
+    return getViewActionShowImageCaption().getText().toString();
   }
 
-  protected void verifyOnScreenActionShowImageText()
+  protected void verifyOnScreenActionShowImageCaption()
   {
-    ViewAsserts.assertOnScreen(actionShowImage.getWindow().getDecorView(), getViewActionShowImageText());
+    ViewAsserts.assertOnScreen(actionShowImage.getWindow().getDecorView(), getViewActionShowImageCaption());
   }
 
   private ActionShowTextActivity actionShowText;
@@ -1228,12 +1306,62 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   protected void verifyAllFieldsActionShowText()
   {
     takeComment("Verifying all fields in ActionShowTextActivity");
+    getViewActionShowTextCaption();
     getViewActionShowTextText();
   }
 
   protected void nullAllFieldsActionShowText()
   {
+    textViewActionShowTextCaption = null;
     textViewActionShowTextText = null;
+  }
+
+  private TextView textViewActionShowTextCaption;
+
+  protected TextView getViewActionShowTextCaption()
+  {
+    assertNotNull("actionShowText not set - did you remember to call setActivityActionShowText(final ActionShowTextActivity actionShowText) ?", actionShowText);
+    if (textViewActionShowTextCaption == null)
+    {
+      textViewActionShowTextCaption = (TextView) actionShowText.findViewById(R.id.textViewActionShowTextCaption);
+      assertNotNull("R.id.textViewActionShowTextCaption could not be found via actionShowText", textViewActionShowTextCaption);
+    }
+    setLastActivity(actionShowText);
+    return textViewActionShowTextCaption;
+  }
+
+  protected void clickActionShowTextCaption()
+  {
+    takeComment("Before click on ActionShowTextCaption");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionShowTextCaption");
+    TouchUtils.clickView(this, getViewActionShowTextCaption());
+  }
+
+  protected void verifyTextActionShowTextCaption(final int id)
+  {
+    assertEquals("Incorrect ActionShowTextCaption.getText()", actionShowText.getString(id), getViewActionShowTextCaption().getText().toString());
+  }
+
+  protected void verifyTextActionShowTextCaption(final String text)
+  {
+    assertEquals("Incorrect ActionShowTextCaption.getText()", text, getViewActionShowTextCaption().getText().toString());
+  }
+
+  protected void setTextActionShowTextCaption(final String text)
+  {
+    takeComment("Setting ActionShowTextCaption to '"+text+"'");
+    final TextView view = getViewActionShowTextCaption();
+    actionShowText.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextActionShowTextCaption()
+  {
+    return getViewActionShowTextCaption().getText().toString();
+  }
+
+  protected void verifyOnScreenActionShowTextCaption()
+  {
+    ViewAsserts.assertOnScreen(actionShowText.getWindow().getDecorView(), getViewActionShowTextCaption());
   }
 
   private TextView textViewActionShowTextText;
@@ -1312,13 +1440,13 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   {
     takeComment("Verifying all fields in ActionShowVideoActivity");
     getViewActionShowVideoVideo();
-    getViewActionShowVideoText();
+    getViewActionShowVideoCaption();
   }
 
   protected void nullAllFieldsActionShowVideo()
   {
     videoViewActionShowVideoVideo = null;
-    textViewActionShowVideoText = null;
+    textViewActionShowVideoCaption = null;
   }
 
   private VideoView videoViewActionShowVideoVideo;
@@ -1347,52 +1475,52 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     ViewAsserts.assertOnScreen(actionShowVideo.getWindow().getDecorView(), getViewActionShowVideoVideo());
   }
 
-  private TextView textViewActionShowVideoText;
+  private TextView textViewActionShowVideoCaption;
 
-  protected TextView getViewActionShowVideoText()
+  protected TextView getViewActionShowVideoCaption()
   {
     assertNotNull("actionShowVideo not set - did you remember to call setActivityActionShowVideo(final ActionShowVideoActivity actionShowVideo) ?", actionShowVideo);
-    if (textViewActionShowVideoText == null)
+    if (textViewActionShowVideoCaption == null)
     {
-      textViewActionShowVideoText = (TextView) actionShowVideo.findViewById(R.id.textViewActionShowVideoText);
-      assertNotNull("R.id.textViewActionShowVideoText could not be found via actionShowVideo", textViewActionShowVideoText);
+      textViewActionShowVideoCaption = (TextView) actionShowVideo.findViewById(R.id.textViewActionShowVideoCaption);
+      assertNotNull("R.id.textViewActionShowVideoCaption could not be found via actionShowVideo", textViewActionShowVideoCaption);
     }
     setLastActivity(actionShowVideo);
-    return textViewActionShowVideoText;
+    return textViewActionShowVideoCaption;
   }
 
-  protected void clickActionShowVideoText()
+  protected void clickActionShowVideoCaption()
   {
-    takeComment("Before click on ActionShowVideoText");
-    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionShowVideoText");
-    TouchUtils.clickView(this, getViewActionShowVideoText());
+    takeComment("Before click on ActionShowVideoCaption");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickActionShowVideoCaption");
+    TouchUtils.clickView(this, getViewActionShowVideoCaption());
   }
 
-  protected void verifyTextActionShowVideoText(final int id)
+  protected void verifyTextActionShowVideoCaption(final int id)
   {
-    assertEquals("Incorrect ActionShowVideoText.getText()", actionShowVideo.getString(id), getViewActionShowVideoText().getText().toString());
+    assertEquals("Incorrect ActionShowVideoCaption.getText()", actionShowVideo.getString(id), getViewActionShowVideoCaption().getText().toString());
   }
 
-  protected void verifyTextActionShowVideoText(final String text)
+  protected void verifyTextActionShowVideoCaption(final String text)
   {
-    assertEquals("Incorrect ActionShowVideoText.getText()", text, getViewActionShowVideoText().getText().toString());
+    assertEquals("Incorrect ActionShowVideoCaption.getText()", text, getViewActionShowVideoCaption().getText().toString());
   }
 
-  protected void setTextActionShowVideoText(final String text)
+  protected void setTextActionShowVideoCaption(final String text)
   {
-    takeComment("Setting ActionShowVideoText to '"+text+"'");
-    final TextView view = getViewActionShowVideoText();
+    takeComment("Setting ActionShowVideoCaption to '"+text+"'");
+    final TextView view = getViewActionShowVideoCaption();
     actionShowVideo.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
   }
 
-  protected String getTextActionShowVideoText()
+  protected String getTextActionShowVideoCaption()
   {
-    return getViewActionShowVideoText().getText().toString();
+    return getViewActionShowVideoCaption().getText().toString();
   }
 
-  protected void verifyOnScreenActionShowVideoText()
+  protected void verifyOnScreenActionShowVideoCaption()
   {
-    ViewAsserts.assertOnScreen(actionShowVideo.getWindow().getDecorView(), getViewActionShowVideoText());
+    ViewAsserts.assertOnScreen(actionShowVideo.getWindow().getDecorView(), getViewActionShowVideoCaption());
   }
 
   private TextView textViewAnswerDetailStepNumber;
@@ -2317,6 +2445,9 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     getViewSetupTeacher();
     getViewSetupEmailLabel();
     getViewSetupEmail();
+    getViewSetupHighQualityVideo();
+    getViewSetupMaxVideoSizeBytesLabel();
+    getViewSetupMaxVideoSizeBytes();
   }
 
   protected void nullAllFieldsSetup()
@@ -2324,6 +2455,9 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
     checkBoxSetupTeacher = null;
     textViewSetupEmailLabel = null;
     editTextSetupEmail = null;
+    checkBoxSetupHighQualityVideo = null;
+    textViewSetupMaxVideoSizeBytesLabel = null;
+    editTextSetupMaxVideoSizeBytes = null;
   }
 
   private CheckBox checkBoxSetupTeacher;
@@ -2461,6 +2595,143 @@ public class TestCaseRoot extends ActivityInstrumentationTestCase2Root<Flowchart
   protected void verifyOnScreenSetupEmail()
   {
     ViewAsserts.assertOnScreen(setup.getWindow().getDecorView(), getViewSetupEmail());
+  }
+
+  private CheckBox checkBoxSetupHighQualityVideo;
+
+  protected CheckBox getViewSetupHighQualityVideo()
+  {
+    assertNotNull("setup not set - did you remember to call setActivitySetup(final SetupActivity setup) ?", setup);
+    if (checkBoxSetupHighQualityVideo == null)
+    {
+      checkBoxSetupHighQualityVideo = (CheckBox) setup.findViewById(R.id.checkBoxSetupHighQualityVideo);
+      assertNotNull("R.id.checkBoxSetupHighQualityVideo could not be found via setup", checkBoxSetupHighQualityVideo);
+    }
+    setLastActivity(setup);
+    return checkBoxSetupHighQualityVideo;
+  }
+
+  protected void clickSetupHighQualityVideo()
+  {
+    takeComment("Before click on SetupHighQualityVideo");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickSetupHighQualityVideo");
+    TouchUtils.clickView(this, getViewSetupHighQualityVideo());
+  }
+
+  protected void verifyTextSetupHighQualityVideo(final int id)
+  {
+    assertEquals("Incorrect SetupHighQualityVideo.getText()", setup.getString(id), getViewSetupHighQualityVideo().getText().toString());
+  }
+
+  protected void verifyTextSetupHighQualityVideo(final String text)
+  {
+    assertEquals("Incorrect SetupHighQualityVideo.getText()", text, getViewSetupHighQualityVideo().getText().toString());
+  }
+
+  protected void setTextSetupHighQualityVideo(final String text)
+  {
+    takeComment("Setting SetupHighQualityVideo to '"+text+"'");
+    final CheckBox view = getViewSetupHighQualityVideo();
+    setup.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextSetupHighQualityVideo()
+  {
+    return getViewSetupHighQualityVideo().getText().toString();
+  }
+
+  protected void verifyOnScreenSetupHighQualityVideo()
+  {
+    ViewAsserts.assertOnScreen(setup.getWindow().getDecorView(), getViewSetupHighQualityVideo());
+  }
+
+  private TextView textViewSetupMaxVideoSizeBytesLabel;
+
+  protected TextView getViewSetupMaxVideoSizeBytesLabel()
+  {
+    assertNotNull("setup not set - did you remember to call setActivitySetup(final SetupActivity setup) ?", setup);
+    if (textViewSetupMaxVideoSizeBytesLabel == null)
+    {
+      textViewSetupMaxVideoSizeBytesLabel = (TextView) setup.findViewById(R.id.textViewSetupMaxVideoSizeBytesLabel);
+      assertNotNull("R.id.textViewSetupMaxVideoSizeBytesLabel could not be found via setup", textViewSetupMaxVideoSizeBytesLabel);
+    }
+    setLastActivity(setup);
+    return textViewSetupMaxVideoSizeBytesLabel;
+  }
+
+  protected void clickSetupMaxVideoSizeBytesLabel()
+  {
+    takeComment("Before click on SetupMaxVideoSizeBytesLabel");
+    if (isScreenshotsAutomatic()) takeScreenshot("Before clickSetupMaxVideoSizeBytesLabel");
+    TouchUtils.clickView(this, getViewSetupMaxVideoSizeBytesLabel());
+  }
+
+  protected void verifyTextSetupMaxVideoSizeBytesLabel(final int id)
+  {
+    assertEquals("Incorrect SetupMaxVideoSizeBytesLabel.getText()", setup.getString(id), getViewSetupMaxVideoSizeBytesLabel().getText().toString());
+  }
+
+  protected void verifyTextSetupMaxVideoSizeBytesLabel(final String text)
+  {
+    assertEquals("Incorrect SetupMaxVideoSizeBytesLabel.getText()", text, getViewSetupMaxVideoSizeBytesLabel().getText().toString());
+  }
+
+  protected void setTextSetupMaxVideoSizeBytesLabel(final String text)
+  {
+    takeComment("Setting SetupMaxVideoSizeBytesLabel to '"+text+"'");
+    final TextView view = getViewSetupMaxVideoSizeBytesLabel();
+    setup.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextSetupMaxVideoSizeBytesLabel()
+  {
+    return getViewSetupMaxVideoSizeBytesLabel().getText().toString();
+  }
+
+  protected void verifyOnScreenSetupMaxVideoSizeBytesLabel()
+  {
+    ViewAsserts.assertOnScreen(setup.getWindow().getDecorView(), getViewSetupMaxVideoSizeBytesLabel());
+  }
+
+  private EditText editTextSetupMaxVideoSizeBytes;
+
+  protected EditText getViewSetupMaxVideoSizeBytes()
+  {
+    assertNotNull("setup not set - did you remember to call setActivitySetup(final SetupActivity setup) ?", setup);
+    if (editTextSetupMaxVideoSizeBytes == null)
+    {
+      editTextSetupMaxVideoSizeBytes = (EditText) setup.findViewById(R.id.editTextSetupMaxVideoSizeBytes);
+      assertNotNull("R.id.editTextSetupMaxVideoSizeBytes could not be found via setup", editTextSetupMaxVideoSizeBytes);
+    }
+    setLastActivity(setup);
+    return editTextSetupMaxVideoSizeBytes;
+  }
+
+  protected void verifyTextSetupMaxVideoSizeBytes(final int id)
+  {
+    assertEquals("Incorrect SetupMaxVideoSizeBytes.getText()", setup.getString(id), getViewSetupMaxVideoSizeBytes().getText().toString());
+  }
+
+  protected void verifyTextSetupMaxVideoSizeBytes(final String text)
+  {
+    assertEquals("Incorrect SetupMaxVideoSizeBytes.getText()", text, getViewSetupMaxVideoSizeBytes().getText().toString());
+  }
+
+  protected void setTextSetupMaxVideoSizeBytes(final String text)
+  {
+    takeComment("Setting SetupMaxVideoSizeBytes to '"+text+"'");
+    final EditText view = getViewSetupMaxVideoSizeBytes();
+    setup.runOnUiThread(new Runnable() { @Override public void run() { view.setText(text); } });
+  }
+
+  protected String getTextSetupMaxVideoSizeBytes()
+  {
+    return getViewSetupMaxVideoSizeBytes().getText().toString();
+  }
+
+  protected void verifyOnScreenSetupMaxVideoSizeBytes()
+  {
+    ViewAsserts.assertOnScreen(setup.getWindow().getDecorView(), getViewSetupMaxVideoSizeBytes());
   }
 
   private SplashActivity splash;

@@ -37,6 +37,9 @@ public class SetupGUI extends CommonGUI<VUCRoskildeBusinessContext, SetupActionP
   public final CheckBox checkBoxSetupTeacher;
   public final TextView textViewSetupEmailLabel;
   public final EditText editTextSetupEmail;
+  public final CheckBox checkBoxSetupHighQualityVideo;
+  public final TextView textViewSetupMaxVideoSizeBytesLabel;
+  public final EditText editTextSetupMaxVideoSizeBytes;
 
   public SetupGUI(final RootActivity<VUCRoskildeBusinessContext, SetupGUI, SetupActionPoint, NavigationPoint> activity)
   {
@@ -48,6 +51,10 @@ public class SetupGUI extends CommonGUI<VUCRoskildeBusinessContext, SetupActionP
     checkBoxSetupTeacher.setOnClickListener(this);
     textViewSetupEmailLabel = (TextView) activity.findViewById(R.id.textViewSetupEmailLabel);
     editTextSetupEmail = (EditText) activity.findViewById(R.id.editTextSetupEmail);
+    checkBoxSetupHighQualityVideo = (CheckBox) activity.findViewById(R.id.checkBoxSetupHighQualityVideo);
+    checkBoxSetupHighQualityVideo.setOnClickListener(this);
+    textViewSetupMaxVideoSizeBytesLabel = (TextView) activity.findViewById(R.id.textViewSetupMaxVideoSizeBytesLabel);
+    editTextSetupMaxVideoSizeBytes = (EditText) activity.findViewById(R.id.editTextSetupMaxVideoSizeBytes);
   }
 
   public static SetupGUI create(final RootActivity<VUCRoskildeBusinessContext, SetupGUI, SetupActionPoint, NavigationPoint> activity)
@@ -61,6 +68,7 @@ public class SetupGUI extends CommonGUI<VUCRoskildeBusinessContext, SetupActionP
     switch (view.getId())
     {
       case R.id.checkBoxSetupTeacher: { activity.onAction(view, SetupActionPoint.CLICKSETUPTEACHERCHECKBOX, PayloadCheck.create(-1, ((CheckBox)view).isChecked())); break; } 
+      case R.id.checkBoxSetupHighQualityVideo: { activity.onAction(view, SetupActionPoint.CLICKSETUPHIGHQUALITYVIDEOCHECKBOX, PayloadCheck.create(-1, ((CheckBox)view).isChecked())); break; } 
       default: { throw new RuntimeException("Serious error in generated code: onClick not covered..."); } 
     }
   }

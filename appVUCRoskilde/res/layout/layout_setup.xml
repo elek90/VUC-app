@@ -17,6 +17,7 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
         android:id="@+id/checkBoxSetupTeacher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_medium"
         android:text="@string/labelSetupTeacher" />
 
     <TextView
@@ -30,5 +31,28 @@ THIS FILE IS GENERATED IF NOT FOUND ALREADY.
         android:id="@+id/editTextSetupEmail"
         style="@style/MA.EditText.EMail"
         android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/padding_medium"
         android:layout_height="wrap_content" />
-  </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkBoxSetupHighQualityVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_medium"
+        android:text="@string/labelSetupHighQualityVideo" />
+
+    <TextView
+        android:id="@+id/textViewSetupMaxVideoSizeBytesLabel"
+        style="@style/MA.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelSetupMaxVideoSizeBytesLabel" />
+
+    <EditText
+        android:id="@+id/editTextSetupMaxVideoSizeBytes"
+        style="@style/MA.EditText.Integer"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/padding_medium"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

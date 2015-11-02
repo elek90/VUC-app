@@ -299,9 +299,15 @@ model VUCRoskilde
   view client Setup doc "Setup|da:Indstillinger", "" option ANDROIDGUI
   {
     field CheckBox Teacher doc "Run teacher app|da:Kør lærerens program";
+ 
     field TextView EmailLabel doc "Email Address:|da:Email adresse:";
     field EditText Email doc "Email Address|da:Email adresse"
         option EMAIL;
+ 
+    field CheckBox HighQualityVideo doc "Capture video in high quality|da:Optag video i høj opløsning";
+ 
+    field TextView MaxVideoSizeBytesLabel doc "Maximum size of captured video (bytes)|da:Max. størrelse af optaget video (i bytes)";
+    field EditText MaxVideoSizeBytes doc "Maximum size of captured video (bytes)|da:Max. størrelse af optaget video (i bytes)";
   }
 
   view client About doc "About|da:Om", "" option ANDROIDGUI
@@ -331,40 +337,42 @@ model VUCRoskilde
 
   view client ActionShowText doc "Show Text|da:Vis forklaring", "" option ANDROIDGUI
   {
-    field TextView Text doc "Text|da:Forklaring";
+    field TextView Caption doc "Caption|da:Forklaring";
+    field TextView Text doc "Text|da:Tekst";
   }
 
   view client ActionShowImage doc "Show Image|da:Vis billede", "" option ANDROIDGUI
   {
     field ImageView Image doc "Image|da:Billede";
-    field TextView Text doc "Text|da:Forklaring";
+    field TextView Caption doc "Caption|da:Forklaring";
   }
 
   view client ActionShowAudio doc "Play Audio|da:Afspil lyd", "" option ANDROIDGUI
   {
     field ImageButton DoPlay doc "Play Audio|da:Afspil lyd";
-    field TextView Text doc "Text|da:Forklaring";
+    field TextView Caption doc "Caption|da:Forklaring";
   }
 
   view client ActionShowVideo doc "Show Video|da:Afspil video", "" option ANDROIDGUI
   {
     field VideoView Video doc "Video|da:Video";
-    field TextView Text doc "Text|da:Forklaring";
-  }
+    field TextView Caption doc "Caption|da:Forklaring";
+ }
 
   view client ActionRecordText doc "Record Text|da:Registrer forklaring", "" option ANDROIDGUI
   {
-    field EditText Text doc "Text|da:Forklaring";
+    field TextView Caption doc "Caption|da:Forklaring";
+    field EditText Text doc "Text|da:Tekst";
     field ImageButton DoRegret doc "Regret|da:Fortryd";
     field ImageButton DoSave doc "Save|da:Gem";
   }
 
   view client ActionRecordImage doc "Record Image|da:Tag billede", "" option ANDROIDGUI
   {
-    calls ExternalCamera option EXTERNAL;
-    calls ExternalGallery option EXTERNAL;
-    
-    field TextView Text doc "Text|da:Forklaring";
+    calls ExternalImageCamera option EXTERNAL;
+    calls ExternalImageGallery option EXTERNAL;
+     
+    field TextView Caption doc "Caption|da:Forklaring";
     field ImageView Image doc "Image|da:Billede";
     field ImageButton DoSelect doc "Select|da:Vælg";
     field ImageButton DoRecord doc "Record|da:Tag";
@@ -374,7 +382,7 @@ model VUCRoskilde
 
   view client ActionRecordAudio doc "Record Audio|da:Indspil lyd", "" option ANDROIDGUI
   {
-    field TextView Text doc "Text|da:Forklaring";
+    field TextView Caption doc "Caption|da:Forklaring";
     field ImageButton DoRecord doc "Record Audio|da:Indspil lyd";
     field ImageButton DoPlay doc "Play|da:Afspil";
     field ImageButton DoRegret doc "Regret|da:Fortryd";
@@ -383,8 +391,12 @@ model VUCRoskilde
 
   view client ActionRecordVideo doc "Record Video|da:Indspil video", "" option ANDROIDGUI
   {
+    calls ExternalVideoCamera option EXTERNAL;
+    calls ExternalVideoGallery option EXTERNAL;
+  
+    field TextView Caption doc "Caption|da:Forklaring";
     field VideoView Video doc "Video|da:Video";
-    field TextView Text doc "Text|da:Forklaring";
+    field ImageButton DoSelect doc "Select|da:Vælg";
     field ImageButton DoRecord doc "Record Video|da:Indspil video";
     field ImageButton DoPlay doc "Play|da:Afspil";
     field ImageButton DoRegret doc "Regret|da:Fortryd";

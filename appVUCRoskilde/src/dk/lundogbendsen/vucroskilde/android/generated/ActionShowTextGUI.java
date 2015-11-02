@@ -31,6 +31,7 @@ import dk.schoubo.library.android.ui.framework.RootActivity;
 public class ActionShowTextGUI extends CommonGUI<VUCRoskildeBusinessContext, ActionShowTextActionPoint, NavigationPoint> implements OnClickListener, OnItemSelectedListener, OnWheelSpinListener, OnCheckedChangeListener
 {
 
+  public final TextView textViewActionShowTextCaption;
   public final TextView textViewActionShowTextText;
 
   public ActionShowTextGUI(final RootActivity<VUCRoskildeBusinessContext, ActionShowTextGUI, ActionShowTextActionPoint, NavigationPoint> activity)
@@ -39,6 +40,7 @@ public class ActionShowTextGUI extends CommonGUI<VUCRoskildeBusinessContext, Act
     activity.switchLocale();
     activity.setContentView(R.layout.layout_actionshowtext);
 
+    textViewActionShowTextCaption = (TextView) activity.findViewById(R.id.textViewActionShowTextCaption);
     textViewActionShowTextText = (TextView) activity.findViewById(R.id.textViewActionShowTextText);
   }
 
