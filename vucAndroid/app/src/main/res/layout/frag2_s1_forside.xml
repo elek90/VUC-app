@@ -10,6 +10,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_height="wrap_content"
         android:text="App om lys"
+        android:drawableRight="@drawable/ta_mimetypes_x_office_presentation"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         />
 
     <ListView android:id="@android:id/list" android:layout_width="match_parent"

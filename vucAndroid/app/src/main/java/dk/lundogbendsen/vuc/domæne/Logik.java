@@ -1,5 +1,6 @@
 package dk.lundogbendsen.vuc.domæne;
 
+import static dk.lundogbendsen.vuc.domæne.Ikon.*;
 /**
  * Roden i træet af objekter, der repræsenterer data i app'en.
  * 
@@ -29,32 +30,32 @@ public class Logik {
         };
         
         naturfag.emner[0].aktiviteter = new Aktivitet[] {
-                new Aktivitet("Bliv klog på lys"),
-                new Aktivitet("Sådan laver du eksperimenter"),
-                new Aktivitet("Byg selv dit udstyr"),
-                new Aktivitet("Tag et billede af den blå himmel"),
-                new Aktivitet("Tag et billede af en elektrisk pære"),
-                new Aktivitet("Gennemfør din egen undersøgelse"),
-                new Aktivitet("Tag billeder af spektrum"),
-                new Aktivitet("Tag billeder af lyskilde"),
+                new Aktivitet("Bliv klog på lys", bog),
+                new Aktivitet("Sådan laver du eksperimenter", hjælp),
+                new Aktivitet("Byg selv dit udstyr", værktøj),
+                new Aktivitet("Tag et billede af den blå himmel", foto),
+                new Aktivitet("Tag et billede af en elektrisk pære", foto),
+                new Aktivitet("Gennemfør din egen undersøgelse", video),
+                new Aktivitet("Tag billeder af spektrum", foto),
+                new Aktivitet("Tag billeder af lyskilde", foto),
                 new Aflevering("Send rapport"),
         };
 
         naturfag.emner[1].aktiviteter = new Aktivitet[] {
-                new Aktivitet("Bliv klog på lys"),
-                new Aktivitet("Sådan bruger du udstyret"),
-                new Aktivitet("Tag et billede af den blå himmel"),
-                new Aktivitet("Gennemfør din egen undersøgelse"),
-                new Aktivitet("Tag billeder af lyskilde"),
+                new Aktivitet("Bliv klog på lys", bog),
+                new Aktivitet("Sådan bruger du udstyret", hjælp),
+                new Aktivitet("Tag et billede af den blå himmel", foto),
+                new Aktivitet("Gennemfør din egen undersøgelse", værktøj),
+                new Aktivitet("Tag billeder af lyskilde", foto),
                 new Aflevering("Send rapport"),
         };
 
         naturfag.emner[2].aktiviteter = new Aktivitet[] {
-                new Aktivitet("Kemi i køkkenet"),
-                new Aktivitet("Forberedelse"),
-                new Aktivitet("Mel og vand"),
-                new Aktivitet("Gennemfør din egen undersøgelse"),
-                new Aktivitet("Tag billeder af blanding"),
+                new Aktivitet("Kemi i køkkenet", bog),
+                new Aktivitet("Forberedelse", værktøj),
+                new Aktivitet("Mel og vand", bog),
+                new Aktivitet("Gennemfør din egen undersøgelse", værktøj),
+                new Aktivitet("Tag billeder af blanding", foto),
                 new Aflevering("Send rapport"),
         };
 
@@ -76,7 +77,10 @@ public class Logik {
             for (Fag f : b.fagListe) {
                 if (f.emner==null) f.emner = new Emne[] { new Emne("Et emne")};
                 for (Emne e : f.emner) {
-                    if (e.aktiviteter==null) e.aktiviteter = new Aktivitet[] { new Aktivitet("Aktivitet 1"), new Aktivitet("Aktivitet 2"), new Aflevering("Aflevering")};
+                    if (e.aktiviteter==null) {
+                        e.aktiviteter = new Aktivitet[] { new Aktivitet("Aktivitet 1"), new Aktivitet("Aktivitet 2"), new Aktivitet("Aktivitet 3"), new Aktivitet("Aktivitet 4"), new Aflevering("Aflevering")};
+                        for (Aktivitet a : e.aktiviteter) a.ikon = Ikon.values()[(int)(Math.random()*Ikon.values().length)];
+                    }
                     for (Aktivitet a : e.aktiviteter) {
                         a.emne = e;
                     }
