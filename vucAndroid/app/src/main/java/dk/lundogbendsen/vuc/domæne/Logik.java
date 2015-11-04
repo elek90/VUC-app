@@ -24,7 +24,7 @@ public class Logik {
         naturfag.emner = new Emne[]{
                 new Emne("Lys - Niveau G"),
                 new Emne("Lys - Niveau F-E-D"),
-                new Emne("Husholdningskemi"),
+                new Emne("Husholdningskemi - Niveau G"),
                 new Emne("Syrer og baser"),
         };
         
