@@ -18,15 +18,17 @@ public class Valg {
         bru = l.brugere[0];
         bru.fagListe = new Fag[] {
                 new Fag("Naturfag"),
-                new Fag("Matematik")
+                new Fag("Matematik"),
+                new Fag("Engelsk"),
         };
         fag = bru.fagListe[0];
         fag.emner = new Emne[]{
                 new Emne("Lys - Niveau G"),
                 new Emne("Lys - Niveau F-E-D"),
+                new Emne("Husholdningskemi"),
+                new Emne("Syrer og baser"),
         };
-        emne = fag.emner[0];
-        emne.aktiviteter = new Aktivitet[] {
+        fag.emner[0].aktiviteter = new Aktivitet[] {
                 new Aktivitet("Bliv klog på lys"),
                 new Aktivitet("Sådan laver du eksperimenter"),
                 new Aktivitet("Byg selv dit udstyr"),
@@ -37,6 +39,34 @@ public class Valg {
                 new Aktivitet("Tag billeder af lyskilde"),
                 new Aflevering("Send rapport"),
         };
+
+        fag.emner[1].aktiviteter = new Aktivitet[] {
+                new Aktivitet("Bliv klog på lys"),
+                new Aktivitet("Sådan bruger du udstyret"),
+                new Aktivitet("Tag et billede af den blå himmel"),
+                new Aktivitet("Gennemfør din egen undersøgelse"),
+                new Aktivitet("Tag billeder af lyskilde"),
+                new Aflevering("Send rapport"),
+        };
+
+        fag.emner[2].aktiviteter = new Aktivitet[] {
+                new Aktivitet("Kemi i køkkenet"),
+                new Aktivitet("Forberedelse"),
+                new Aktivitet("Mel og vand"),
+                new Aktivitet("Gennemfør din egen undersøgelse"),
+                new Aktivitet("Tag billeder af blanding"),
+                new Aflevering("Send rapport"),
+        };
+
+        fag.emner[3].aktiviteter = new Aktivitet[] {
+                new Aktivitet("Om PH-værdi"),
+                new Aktivitet("Sikkerhed"),
+                new Aktivitet("Mål PH-værdien af saltsyre"),
+                new Aktivitet("Mål PH-værdien af fortyndet saltsyre"),
+                new Aktivitet("Tag billeder af lakmuspapir"),
+                new Aflevering("Send rapport"),
+        };
+        emne = fag.emner[0];
         l.lavKonsistent();
     }
 
