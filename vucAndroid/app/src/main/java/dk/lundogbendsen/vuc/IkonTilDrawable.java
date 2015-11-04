@@ -1,9 +1,11 @@
 package dk.lundogbendsen.vuc;
 
+
 import java.util.HashMap;
 
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Ikon;
+import dk.lundogbendsen.vuc.diverse.Log;
 
 /**
  * Created by j on 04-11-15.
@@ -17,6 +19,7 @@ public class IkonTilDrawable {
         ikonTilDrawable.put(Ikon.tavle, R.drawable.ta_mimetypes_x_office_presentation);
         ikonTilDrawable.put(Ikon.kamera, R.drawable.ta_devices_camera_photo);
         ikonTilDrawable.put(Ikon.mikrofon, R.drawable.ta_devices_audio_input_microphone);
+        ikonTilDrawable.put(Ikon.foto, R.drawable.ta_devices_camera_photo);
 
         ikonTilDrawable.put(Ikon.noter_i_felten, R.drawable.ta_actions_edit_paste);
         ikonTilDrawable.put(Ikon.notesblok, R.drawable.ta_apps_accessories_text_editor);
@@ -30,6 +33,12 @@ public class IkonTilDrawable {
         ikonTilDrawable.put(Ikon.pære, R.drawable.ta_status_dialog_information);
         ikonTilDrawable.put(Ikon.advarsel, R.drawable.ta_status_dialog_warning);
         ikonTilDrawable.put(Ikon.vedhæft, R.drawable.ta_status_mail_attachment);
+
+        for (Ikon i : Ikon.values()) {
+            if  (ikonTilDrawable.get(i)==null) {
+                Log.d("Ikon " + i + " mangler en drawable");
+            }
+        }
     }
 
 }
