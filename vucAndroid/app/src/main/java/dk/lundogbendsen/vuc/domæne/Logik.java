@@ -1,7 +1,9 @@
 package dk.lundogbendsen.vuc.domæne;
 
 /**
- * Roden i træet af objekter, der repræsenterer data i app'en
+ * Roden i træet af objekter, der repræsenterer data i app'en.
+ * 
+ * Retter du via github så husk at skrive til Jacob (nordfalk@lundogbendsen.dk) bagefter.
  * Jacob Nordfalk 31-10-15.
  */
 public class Logik {
@@ -11,11 +13,13 @@ public class Logik {
     public static void opretTestData(Logik l) {
         l.brugere = new Bruger[] { new Bruger("Hans Hansen", "hans.hansen@gmail.com") };
         Bruger hansHansen = l.brugere[0];
+        
         hansHansen.fagListe = new Fag[] {
                 new Fag("Naturfag"),
                 new Fag("Matematik"),
                 new Fag("Engelsk"),
         };
+        
         Fag naturfag = hansHansen.fagListe[0];
         naturfag.emner = new Emne[]{
                 new Emne("Lys - Niveau G"),
@@ -23,6 +27,7 @@ public class Logik {
                 new Emne("Husholdningskemi"),
                 new Emne("Syrer og baser"),
         };
+        
         naturfag.emner[0].aktiviteter = new Aktivitet[] {
                 new Aktivitet("Bliv klog på lys"),
                 new Aktivitet("Sådan laver du eksperimenter"),
