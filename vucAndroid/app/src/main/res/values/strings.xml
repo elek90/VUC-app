@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VUC Bliv klog</string>
+    <string name="app_name">VUC - Bliv klog</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -10,6 +10,10 @@
 
     Ikoner hentet fra
     https://www.google.com/design/icons/
+
+Andre ikonerne kommer fra et sæt af billedfiler kaldet: tango-icon-theme-0.8.90
+Billederne er frigivet i public domain.
+Se http://tango.freedesktop.org/Tango_Icon_Library
 
     </string>
     <string name="title_activity_oevelse">OevelseActivity</string>

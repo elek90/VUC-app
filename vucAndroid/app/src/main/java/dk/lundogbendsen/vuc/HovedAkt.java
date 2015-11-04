@@ -31,7 +31,8 @@ public class HovedAkt extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Logik.i.valg.opretTestData(Logik.i);
+        Logik.opretTestData(Logik.i);
+        Valg.i.initTestData(Logik.i);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -43,7 +44,7 @@ public class HovedAkt extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.inflateHeaderView(R.layout.venstremenu_top);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Logik.i.valg.bru.fagListe);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Valg.i.bru.fagListe);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner = (Spinner) headerView.findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
