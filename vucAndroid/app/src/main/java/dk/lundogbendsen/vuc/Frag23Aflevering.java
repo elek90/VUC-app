@@ -13,14 +13,12 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import dk.lundogbendsen.vuc.Frag2ØvelseViewpager;
-import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Aktivitet;
-import dk.lundogbendsen.vuc.domæne.Valg;
+import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 
 public class Frag23Aflevering extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
-    private Frag2ØvelseViewpager ejerFragment;
+    private Frag2EmneViewpager ejerFragment;
     private Aktivitet aktivitet;
 
     private TextView overskrift;
@@ -35,14 +33,14 @@ public class Frag23Aflevering extends Fragment implements View.OnClickListener, 
 
 
         aktivitet = (Aktivitet) getArguments().getSerializable(Frag22Aktivitet.AKTIVITET);
-        ejerFragment = (Frag2ØvelseViewpager) getParentFragment();
+        ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
         View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
         overskrift = (TextView) rod.findViewById(R.id.overskrift);
         overskrift.setText(aktivitet.navn);
 
         adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, Valg.i.emne.aktiviteter);
+                android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.emne.aktiviteter);
 
         listView = (ListView) rod.findViewById(android.R.id.list);
         listView.setAdapter(adapter);

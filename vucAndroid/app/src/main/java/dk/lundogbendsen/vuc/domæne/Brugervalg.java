@@ -6,11 +6,11 @@ import java.util.ArrayList;
  * De valg, brugeren aktuelt har taget
  * Jacob Nordfalk 31-10-15.
  */
-public class Valg {
+public class Brugervalg {
     public Bruger bru;
     public Fag fag;
     public Emne emne;
-    public static Valg i = new Valg();
+    public static Brugervalg instans = new Brugervalg();
     public ArrayList<Runnable> observatører = new ArrayList<Runnable>();
 
     public void initTestData(Logik l) {

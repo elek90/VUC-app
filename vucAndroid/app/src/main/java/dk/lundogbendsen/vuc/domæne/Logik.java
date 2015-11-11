@@ -8,20 +8,20 @@ import static dk.lundogbendsen.vuc.domæne.Ikon.*;
  * Jacob Nordfalk 31-10-15.
  */
 public class Logik {
-    public static Logik i = new Logik();
+    public static Logik instans = new Logik();
     public Bruger[] brugere;
 
-    public static void opretTestData(Logik l) {
-        l.brugere = new Bruger[] { new Bruger("Hans Hansen", "hans.hansen@gmail.com") };
-        Bruger hansHansen = l.brugere[0];
+    public void lavTestdata() {
+        brugere = new Bruger[] { new Bruger("Hans Hansen", "hans.hansen@gmail.com") };
+        Bruger nans = brugere[0];
         
-        hansHansen.fagListe = new Fag[] {
+        nans.fagListe = new Fag[] {
                 new Fag("Naturfag"),
                 new Fag("Matematik"),
                 new Fag("Engelsk"),
         };
         
-        Fag naturfag = hansHansen.fagListe[0];
+        Fag naturfag = nans.fagListe[0];
         naturfag.emner = new Emne[]{
                 new Emne("Lys - Niveau G"),
                 new Emne("Lys - Niveau F-E-D"),
@@ -67,7 +67,7 @@ public class Logik {
                 new Aktivitet("Tag billeder af lakmuspapir"),
                 new Aflevering("Send rapport"),
         };
-        l.lavKonsistent();
+        lavKonsistent();
     }
 
 

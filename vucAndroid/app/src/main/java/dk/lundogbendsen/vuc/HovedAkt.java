@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import dk.lundogbendsen.vuc.domæne.Logik;
-import dk.lundogbendsen.vuc.domæne.Valg;
+import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 public class HovedAkt extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
@@ -30,8 +30,8 @@ public class HovedAkt extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Logik.opretTestData(Logik.i);
-        Valg.i.initTestData(Logik.i);
+        Logik.instans.lavTestdata();
+        Brugervalg.instans.initTestData(Logik.instans);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -43,7 +43,7 @@ public class HovedAkt extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.inflateHeaderView(R.layout.venstremenu_top);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Valg.i.bru.fagListe);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.fagListe);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner = (Spinner) headerView.findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
@@ -51,15 +51,15 @@ public class HovedAkt extends AppCompatActivity
 
         if (savedInstanceState==null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.hovedakt_indhold, new Frag1VælgEmneNiveau()).commit();
+                    .add(R.id.hovedakt_indhold, new Frag1VælgEmne()).commit();
         }
     }
 
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Valg.i.fag = Valg.i.bru.fagListe[position];
-        Valg.i.opdaterObservatører();
+        Brugervalg.instans.fag = Brugervalg.instans.bru.fagListe[position];
+        Brugervalg.instans.opdaterObservatører();
         drawer.closeDrawer(GravityCompat.START);
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }

@@ -13,11 +13,11 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import dk.lundogbendsen.vuc.domæne.Valg;
+import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 
 public class Frag21Forside extends Fragment implements AbsListView.OnItemClickListener, View.OnClickListener {
-    private Frag2ØvelseViewpager ejerFragment;
+    private Frag2EmneViewpager ejerFragment;
 
     private TextView overskrift;
 
@@ -29,15 +29,15 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ejerFragment = (Frag2ØvelseViewpager) getParentFragment();
+        ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
         View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
 
         overskrift = (TextView) rod.findViewById(R.id.overskrift);
-        overskrift.setText(Valg.i.emne.navn);
+        overskrift.setText(Brugervalg.instans.emne.navn);
 
         adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, Valg.i.emne.aktiviteter);
+                android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.emne.aktiviteter);
 
         listView = (ListView) rod.findViewById(android.R.id.list);
         listView.setAdapter(adapter);

@@ -5,19 +5,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import dk.lundogbendsen.vuc.domæne.Aktivitet;
-import dk.lundogbendsen.vuc.domæne.Valg;
 
 
 public class Frag22Aktivitet extends Fragment implements View.OnClickListener {
     static String AKTIVITET = "AKTIVITET";
 
-    private Frag2ØvelseViewpager ejerFragment;
+    private Frag2EmneViewpager ejerFragment;
     private TextView overskrift;
     private Aktivitet aktivitet;
     private ImageView billede;
@@ -39,7 +36,7 @@ public class Frag22Aktivitet extends Fragment implements View.OnClickListener {
         //else billede.setVisibility(View.GONE);
 
         rod.findViewById(R.id.næste).setOnClickListener(this);
-        ejerFragment = (Frag2ØvelseViewpager) getParentFragment();
+        ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
         return rod;
     }

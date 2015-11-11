@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import dk.lundogbendsen.vuc.domæne.Aktivitet;
-import dk.lundogbendsen.vuc.domæne.Valg;
+import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
-public class Frag2ØvelseViewpager extends Fragment {
+public class Frag2EmneViewpager extends Fragment {
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -34,7 +34,7 @@ public class Frag2ØvelseViewpager extends Fragment {
 
         faner = new ArrayList();
         faner.add(new Frag21Forside());
-        faner.addAll(Arrays.asList(Valg.i.emne.aktiviteter));
+        faner.addAll(Arrays.asList(Brugervalg.instans.emne.aktiviteter));
 
         View rod = inflater.inflate(R.layout.frag2_oevelse_viewpager, container, false);
         viewPager = (ViewPager) rod.findViewById(R.id.viewpager);

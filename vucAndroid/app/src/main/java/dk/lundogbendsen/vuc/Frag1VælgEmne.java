@@ -11,11 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import dk.lundogbendsen.vuc.domæne.Logik;
-import dk.lundogbendsen.vuc.domæne.Valg;
+import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 
-public class Frag1VælgEmneNiveau extends Fragment implements AbsListView.OnItemClickListener, Runnable {
+public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener, Runnable {
 
     private ListView listView;
 
@@ -25,7 +24,7 @@ public class Frag1VælgEmneNiveau extends Fragment implements AbsListView.OnItem
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rod = inflater.inflate(R.layout.frag1_vaelg_emne_niveau, container, false);
-        Valg.i.observatører.add(this);
+        Brugervalg.instans.observatører.add(this);
 
         listView = (ListView) rod.findViewById(android.R.id.list);
         listView.setOnItemClickListener(this);
@@ -37,21 +36,21 @@ public class Frag1VælgEmneNiveau extends Fragment implements AbsListView.OnItem
 
     @Override
     public void onDestroyView() {
-        Valg.i.observatører.remove(this);
+        Brugervalg.instans.observatører.remove(this);
         super.onDestroyView();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Valg.i.emne = Valg.i.fag.emner[position];
+        Brugervalg.instans.emne = Brugervalg.instans.fag.emner[position];
         getFragmentManager().beginTransaction()
-                .replace(R.id.hovedakt_indhold, new Frag2ØvelseViewpager()).addToBackStack(null).commit();
+                .replace(R.id.hovedakt_indhold, new Frag2EmneViewpager()).addToBackStack(null).commit();
     }
 
     @Override
     public void run() {
         adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, Valg.i.fag.emner);
+                android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.fag.emner);
         listView.setAdapter(adapter);
     }
 }
