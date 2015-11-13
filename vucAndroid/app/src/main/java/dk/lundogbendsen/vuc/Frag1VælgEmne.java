@@ -42,7 +42,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Brugervalg.instans.emne = Brugervalg.instans.fag.emner[position];
+        Brugervalg.instans.emne = Brugervalg.instans.hold.emner[position];
         getFragmentManager().beginTransaction()
                 .replace(R.id.hovedakt_indhold, new Frag2EmneViewpager()).addToBackStack(null).commit();
     }
@@ -50,7 +50,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
     @Override
     public void run() {
         adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.fag.emner);
+                android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.hold.emner);
         listView.setAdapter(adapter);
     }
 }

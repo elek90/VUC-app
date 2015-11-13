@@ -43,7 +43,7 @@ public class HovedAkt extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.inflateHeaderView(R.layout.venstremenu_top);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.fagListe);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.holdListe);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner = (Spinner) headerView.findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
@@ -58,7 +58,7 @@ public class HovedAkt extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Brugervalg.instans.fag = Brugervalg.instans.bru.fagListe[position];
+        Brugervalg.instans.hold = Brugervalg.instans.bru.holdListe[position];
         Brugervalg.instans.opdaterObservatører();
         drawer.closeDrawer(GravityCompat.START);
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);

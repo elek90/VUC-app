@@ -6,7 +6,7 @@ package dk.lundogbendsen.vuc.domæne;
 public class Bruger {
     String navn;
     String konto;
-    public Fag[] fagListe;
+    public Hold[] holdListe;
 
     public Bruger(String navn, String konto) {
         this.navn = navn;

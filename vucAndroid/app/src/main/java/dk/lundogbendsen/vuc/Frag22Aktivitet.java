@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import dk.lundogbendsen.vuc.domæne.Aktivitet;
+import dk.lundogbendsen.vuc.domæne.Opgave;
 
 
 public class Frag22Aktivitet extends Fragment implements View.OnClickListener {
@@ -16,7 +16,7 @@ public class Frag22Aktivitet extends Fragment implements View.OnClickListener {
 
     private Frag2EmneViewpager ejerFragment;
     private TextView overskrift;
-    private Aktivitet aktivitet;
+    private Opgave aktivitet;
     private ImageView billede;
 
     @Override
@@ -24,7 +24,7 @@ public class Frag22Aktivitet extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
 
-        aktivitet = (Aktivitet) getArguments().getSerializable(AKTIVITET);
+        aktivitet = (Opgave) getArguments().getSerializable(AKTIVITET);
 
         View rod = inflater.inflate(R.layout.frag2_s2_aktivitet, container, false);
         overskrift = (TextView) rod.findViewById(R.id.overskrift);

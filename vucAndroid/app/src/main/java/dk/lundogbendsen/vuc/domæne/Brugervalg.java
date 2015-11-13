@@ -8,15 +8,15 @@ import java.util.ArrayList;
  */
 public class Brugervalg {
     public Bruger bru;
-    public Fag fag;
+    public Hold hold;
     public Emne emne;
     public static Brugervalg instans = new Brugervalg();
     public ArrayList<Runnable> observatører = new ArrayList<Runnable>();
 
     public void initTestData(Logik l) {
         bru = l.brugere[0];
-        fag = bru.fagListe[0];
-        emne = fag.emner[0];
+        hold = bru.holdListe[0];
+        emne = hold.emner[0];
     }
     /*
     https://github.com/Nimrodda/WizarDroid/

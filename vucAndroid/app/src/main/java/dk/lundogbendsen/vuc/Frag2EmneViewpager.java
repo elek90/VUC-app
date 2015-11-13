@@ -16,7 +16,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import dk.lundogbendsen.vuc.domæne.Aktivitet;
+import dk.lundogbendsen.vuc.domæne.Opgave;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 public class Frag2EmneViewpager extends Fragment {
@@ -34,7 +34,7 @@ public class Frag2EmneViewpager extends Fragment {
 
         faner = new ArrayList();
         faner.add(new Frag21Forside());
-        faner.addAll(Arrays.asList(Brugervalg.instans.emne.aktiviteter));
+        faner.addAll(Arrays.asList(Brugervalg.instans.emne.opgaver));
 
         View rod = inflater.inflate(R.layout.frag2_oevelse_viewpager, container, false);
         viewPager = (ViewPager) rod.findViewById(R.id.viewpager);
@@ -82,7 +82,7 @@ public class Frag2EmneViewpager extends Fragment {
         public Fragment getItem(int position) {
             Object f = faner.get(position);
             if (f instanceof Fragment) return (Fragment) f;
-            if (f instanceof Aktivitet) return Fragmentfabrikering.nytFragment((Aktivitet)f);
+            if (f instanceof Opgave) return Fragmentfabrikering.nytFragment((Opgave)f);
             return new Frag21Forside(); // fejl
         }
 
@@ -95,7 +95,7 @@ public class Frag2EmneViewpager extends Fragment {
         public CharSequence getPageTitle(int position) {
             if (position==0) return "Oversigt";
             Object f = faner.get(position);
-            if (f instanceof Aktivitet) return ((Aktivitet)f).navn;
+            if (f instanceof Opgave) return ((Opgave)f).navn;
             return "??"+position;
         }
     }

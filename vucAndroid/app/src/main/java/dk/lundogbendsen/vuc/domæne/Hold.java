@@ -3,10 +3,10 @@ package dk.lundogbendsen.vuc.domæne;
 /**
  * Created by j on 30-10-15.
  */
-public class Niveau {
+public class Hold {
     private final String navn;
-
-    public Niveau(String n) {
+    public Emne[] emner;
+    public Hold(String n) {
         navn = n;
     }
 

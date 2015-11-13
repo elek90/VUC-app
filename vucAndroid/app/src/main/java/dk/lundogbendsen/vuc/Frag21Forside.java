@@ -37,7 +37,7 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
         overskrift.setText(Brugervalg.instans.emne.navn);
 
         adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.emne.aktiviteter);
+                android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.emne.opgaver);
 
         listView = (ListView) rod.findViewById(android.R.id.list);
         listView.setAdapter(adapter);

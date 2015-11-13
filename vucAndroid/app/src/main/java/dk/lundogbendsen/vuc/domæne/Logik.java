@@ -1,5 +1,17 @@
 package dk.lundogbendsen.vuc.domæne;
 
+/*
+Få implementeret at
+ 1) en opgave kan vises (incl videoer, lyd og tekst)
+ 2) en opgave kan besvares
+        (ikke kun med kamera, også med billeder fra galleri)
+        (incl videoer, lyd og tekst)
+        (bare en mail)
+ 3) en ny opgve kan oprettes og redigeres
+ 4) redigere en eksisterende opgave, evt "klone" den først
+
+ */
+
 import static dk.lundogbendsen.vuc.domæne.Ikon.*;
 /**
  * Roden i træet af objekter, der repræsenterer data i app'en.
@@ -13,15 +25,15 @@ public class Logik {
 
     public void lavTestdata() {
         brugere = new Bruger[] { new Bruger("Hans Hansen", "hans.hansen@gmail.com") };
-        Bruger nans = brugere[0];
-        
-        nans.fagListe = new Fag[] {
-                new Fag("Naturfag"),
-                new Fag("Matematik"),
-                new Fag("Engelsk"),
+        Bruger hans = brugere[0];
+
+        hans.holdListe = new Hold[] {
+                new Hold("Naturfag"),
+                new Hold("Matematik"),
+                new Hold("Engelsk I"),
         };
         
-        Fag naturfag = nans.fagListe[0];
+        Hold naturfag = hans.holdListe[0];
         naturfag.emner = new Emne[]{
                 new Emne("Lys - Niveau G"),
                 new Emne("Lys - Niveau F-E-D"),
@@ -29,42 +41,42 @@ public class Logik {
                 new Emne("Syrer og baser"),
         };
         
-        naturfag.emner[0].aktiviteter = new Aktivitet[] {
-                new Aktivitet("Bliv klog på lys", bog),
-                new Aktivitet("Sådan laver du eksperimenter", hjælp),
-                new Aktivitet("Byg selv dit udstyr", værktøj),
-                new Aktivitet("Tag et billede af den blå himmel", foto),
-                new Aktivitet("Tag et billede af en elektrisk pære", foto),
-                new Aktivitet("Gennemfør din egen undersøgelse", video),
-                new Aktivitet("Tag billeder af spektrum", foto),
-                new Aktivitet("Tag billeder af lyskilde", foto),
+        naturfag.emner[0].opgaver = new Opgave[] {
+                new Opgave("Bliv klog på lys", bog),
+                new Opgave("Sådan laver du eksperimenter", hjælp),
+                new Opgave("Byg selv dit udstyr", værktøj),
+                new Opgave("Tag et billede af den blå himmel", foto),
+                new Opgave("Tag et billede af en elektrisk pære", foto),
+                new Opgave("Gennemfør din egen undersøgelse", video),
+                new Opgave("Tag billeder af spektrum", foto),
+                new Opgave("Tag billeder af lyskilde", foto),
                 new Aflevering("Send rapport"),
         };
 
-        naturfag.emner[1].aktiviteter = new Aktivitet[] {
-                new Aktivitet("Bliv klog på lys", bog),
-                new Aktivitet("Sådan bruger du udstyret", hjælp),
-                new Aktivitet("Tag et billede af den blå himmel", foto),
-                new Aktivitet("Gennemfør din egen undersøgelse", værktøj),
-                new Aktivitet("Tag billeder af lyskilde", foto),
+        naturfag.emner[1].opgaver = new Opgave[] {
+                new Opgave("Bliv klog på lys", bog),
+                new Opgave("Sådan bruger du udstyret", hjælp),
+                new Opgave("Tag et billede af den blå himmel", foto),
+                new Opgave("Gennemfør din egen undersøgelse", værktøj),
+                new Opgave("Tag billeder af lyskilde", foto),
                 new Aflevering("Send rapport"),
         };
 
-        naturfag.emner[2].aktiviteter = new Aktivitet[] {
-                new Aktivitet("Kemi i køkkenet", bog),
-                new Aktivitet("Forberedelse", værktøj),
-                new Aktivitet("Mel og vand", bog),
-                new Aktivitet("Gennemfør din egen undersøgelse", værktøj),
-                new Aktivitet("Tag billeder af blanding", foto),
+        naturfag.emner[2].opgaver = new Opgave[] {
+                new Opgave("Kemi i køkkenet", bog),
+                new Opgave("Forberedelse", værktøj),
+                new Opgave("Mel og vand", bog),
+                new Opgave("Gennemfør din egen undersøgelse", værktøj),
+                new Opgave("Tag billeder af blanding", foto),
                 new Aflevering("Send rapport"),
         };
 
-        naturfag.emner[3].aktiviteter = new Aktivitet[] {
-                new Aktivitet("Om PH-værdi"),
-                new Aktivitet("Sikkerhed"),
-                new Aktivitet("Mål PH-værdien af saltsyre"),
-                new Aktivitet("Mål PH-værdien af fortyndet saltsyre"),
-                new Aktivitet("Tag billeder af lakmuspapir"),
+        naturfag.emner[3].opgaver = new Opgave[] {
+                new Opgave("Om PH-værdi"),
+                new Opgave("Sikkerhed"),
+                new Opgave("Mål PH-værdien af saltsyre"),
+                new Opgave("Mål PH-værdien af fortyndet saltsyre"),
+                new Opgave("Tag billeder af lakmuspapir"),
                 new Aflevering("Send rapport"),
         };
         lavKonsistent();
@@ -73,15 +85,15 @@ public class Logik {
 
     public void lavKonsistent() {
         for (Bruger b : brugere) {
-            if (b.fagListe==null) b.fagListe = new Fag[] { new Fag("Et fag")};
-            for (Fag f : b.fagListe) {
+            if (b.holdListe ==null) b.holdListe = new Hold[] { new Hold("Et hold")};
+            for (Hold f : b.holdListe) {
                 if (f.emner==null) f.emner = new Emne[] { new Emne("Et emne")};
                 for (Emne e : f.emner) {
-                    if (e.aktiviteter==null) {
-                        e.aktiviteter = new Aktivitet[] { new Aktivitet("Aktivitet 1"), new Aktivitet("Aktivitet 2"), new Aktivitet("Aktivitet 3"), new Aktivitet("Aktivitet 4"), new Aflevering("Aflevering")};
-                        for (Aktivitet a : e.aktiviteter) a.ikon = Ikon.values()[(int)(Math.random()*Ikon.values().length)];
+                    if (e.opgaver ==null) {
+                        e.opgaver = new Opgave[] { new Opgave("Opgave 1"), new Opgave("Opgave 2"), new Opgave("Opgave 3"), new Opgave("Opgave 4"), new Aflevering("Aflevering")};
+                        for (Opgave a : e.opgaver) a.ikon = Ikon.values()[(int)(Math.random()*Ikon.values().length)];
                     }
-                    for (Aktivitet a : e.aktiviteter) {
+                    for (Opgave a : e.opgaver) {
                         a.emne = e;
                     }
                 }
