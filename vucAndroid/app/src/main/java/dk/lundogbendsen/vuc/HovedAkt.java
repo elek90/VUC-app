@@ -15,6 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import dk.lundogbendsen.vuc.domæne.Logik;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
@@ -32,6 +37,22 @@ public class HovedAkt extends AppCompatActivity
 
         Logik.instans.lavTestdata();
         Brugervalg.instans.initTestData(Logik.instans);
+        Firebase.setAndroidContext(this);
+        Firebase firebaseRef = new Firebase("https://vuc.firebaseio.com/");
+        firebaseRef.child("logik").setValue(Logik.instans);
+
+        firebaseRef.child("logik").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Logik nyLogik = dataSnapshot.getValue(Logik.class);
+                System.out.println(nyLogik.brugere);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

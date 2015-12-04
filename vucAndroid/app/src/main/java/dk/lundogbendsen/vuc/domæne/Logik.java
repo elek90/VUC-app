@@ -15,7 +15,7 @@ Få implementeret at
 import static dk.lundogbendsen.vuc.domæne.Ikon.*;
 /**
  * Roden i træet af objekter, der repræsenterer data i app'en.
- * 
+ *
  * Retter du via github så husk at skrive til Jacob (nordfalk@lundogbendsen.dk) bagefter.
  * Jacob Nordfalk 31-10-15.
  */
