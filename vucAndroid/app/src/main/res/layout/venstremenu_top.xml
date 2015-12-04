@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+                android:layout_width="match_parent" android:layout_height="@dimen/nav_header_height"
+                android:background="@drawable/venstremenu_baggrundsfarve"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:src="@drawable/ic_account_circle_48dp" android:id="@+id/imageView"
-        android:tint="@color/hvid"
-        android:layout_above="@+id/fag"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+               android:src="@drawable/vuc_logo" android:id="@+id/imageView"
+               android:paddingTop="@dimen/nav_header_vertical_spacing"
+               android:layout_alignParentTop="true"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentStart="true" />
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:text="Hans Hansen"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/textView2"
-        android:layout_above="@+id/textView"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
-
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="hans.hansen@gmail.com" android:id="@+id/textView"
-        android:layout_alignBottom="@+id/imageView"
-        android:paddingBottom="8dp"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
+              android:text="Hans Hansen"
+              android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+              android:id="@+id/brugernavn"
+              android:layout_toRightOf="@+id/imageView"
+              android:layout_toEndOf="@+id/imageView"
+              android:layout_marginLeft="8dp"
+              android:layout_alignBottom="@+id/imageView"/>
+<!--
+              android:layout_alignParentRight="true"
+              android:layout_alignParentEnd="true"
+              android:layout_alignBottom="@+id/imageView"
+-->
 
     <Spinner
         android:id="@+id/fag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme"
-        android:paddingTop="4dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

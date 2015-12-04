@@ -25,6 +25,7 @@
 
         </android.support.design.widget.AppBarLayout>
 
+
         <FrameLayout
             android:id="@+id/hovedakt_indhold"
             android:layout_width="match_parent"
@@ -33,7 +34,7 @@
             tools:context=".HovedAkt">
 
         </FrameLayout>
-<!--
+        <!--
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -46,7 +47,7 @@
 
     <android.support.design.widget.NavigationView android:id="@+id/nav_view"
         android:layout_width="wrap_content" android:layout_height="match_parent"
-        android:layout_gravity="start" android:fitsSystemWindows="true"
+        android:layout_gravity="start" android:fitsSystemWindows="false"
         app:menu="@menu/venstremenu" />
 
 </android.support.v4.widget.DrawerLayout>
