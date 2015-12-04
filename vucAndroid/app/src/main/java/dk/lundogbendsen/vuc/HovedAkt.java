@@ -66,7 +66,7 @@ public class HovedAkt extends AppCompatActivity
         View headerView = navigationView.inflateHeaderView(R.layout.venstremenu_top);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.holdListe);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner spinner = (Spinner) headerView.findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) headerView.findViewById(R.id.fag);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
