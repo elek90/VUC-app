@@ -40,6 +40,7 @@ public class FilCache {
 
   /**
    * Henter en fil fra cachen eller fra webserveren
+   *
    * @param url
    * @param ændrerSigIkke Hvis true vil cachen aldrig forsøge at kontakte serveren hvis der er en lokal fil.
    *                      God til f.eks. billeder og andre ting der ikke ændrer sig
@@ -55,6 +56,7 @@ public class FilCache {
    * Sker der en netværksfejl bliver der forsøgt 2 gange mere.
    * Dette løser et kendt problem med at URLConnection fejler engang imellem på visse enheder.
    * Tjekker om data er komprimeret ("Content-Encoding: gzip") og dekomprimerer dem.
+   *
    * @param url
    * @param ændrerSigIkke Hvis true vil cachen aldrig forsøge at kontakte serveren hvis der er en lokal fil.
    *                      God til f.eks. billeder og andre ting der ikke ændrer sig
@@ -67,7 +69,8 @@ public class FilCache {
     String cacheFilnavn = findLokaltFilnavn(url);
     File cacheFil = new File(cacheFilnavn);
 
-    if (App.fejlsøgning) log("cacheFil lastModified " + new Date(cacheFil.lastModified()) + " for " + url);
+    if (App.fejlsøgning)
+      log("cacheFil lastModified " + new Date(cacheFil.lastModified()) + " for " + url);
     long nu = System.currentTimeMillis();
 
     if (cacheFil.exists() && ændrerSigIkke) {
@@ -125,7 +128,8 @@ public class FilCache {
           return cacheFilnavn;
         }
         if (responseCode != 200) {
-          if (prøvIgen == 0) throw new IOException(responseCode + " " + httpForb.getResponseMessage() + " for " + url);
+          if (prøvIgen == 0)
+            throw new IOException(responseCode + " " + httpForb.getResponseMessage() + " for " + url);
           // Prøv igen
           log("Netværksfejl, vi venter lidt og prøver igen");
           log(responseCode + " " + httpForb.getResponseMessage() + " for " + url);
@@ -167,6 +171,7 @@ public class FilCache {
    * Giver filnavn på hvor URL er gemt i cachet.
    * Hvis filen ikke findes i cachen vil der stadig blive returneret et filnavn.
    * Brug new File(FilCache.findLokaltFilnavn(url)).exists() for at afgøre om en URL findes cachet lokalt
+   *
    * @param url
    * @return Stien til hvor filen (muligvis) findes lokalt.
    */
@@ -174,10 +179,10 @@ public class FilCache {
     // String cacheFilnavn = url.substring(url.lastIndexOf('/') +
     // 1).replace('?', '_').replace('/', '_').replace('&', '_'); // f.eks.
     // byvejr_dag1?by=2500&mode=long
-    String cacheFilnavn = url.replaceFirst("http://","").replace('=', '_').replace('?', '_').replace('/', '_').replace('&', '_'); // f.eks.
+    String cacheFilnavn = url.replaceFirst("http://", "").replace('=', '_').replace('?', '_').replace('/', '_').replace('&', '_'); // f.eks.
     // byvejr_dag1?by=2500&mode=long
-    String suf = url.substring(url.lastIndexOf('.')+1);
-    if ("txt jpg gif png".indexOf(suf)==-1) cacheFilnavn+=".xml";
+    String suf = url.substring(url.lastIndexOf('.') + 1);
+    if ("txt jpg gif png".indexOf(suf) == -1) cacheFilnavn += ".xml";
     cacheFilnavn = lagerDir + "/" + cacheFilnavn;
     if (App.fejlsøgning) log("URL: " + url + "  -> " + cacheFilnavn);
     return cacheFilnavn;

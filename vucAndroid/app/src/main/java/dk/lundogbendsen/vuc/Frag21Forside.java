@@ -17,47 +17,47 @@ import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 
 public class Frag21Forside extends Fragment implements AbsListView.OnItemClickListener, View.OnClickListener {
-    private Frag2EmneViewpager ejerFragment;
+  private Frag2EmneViewpager ejerFragment;
 
-    private TextView overskrift;
+  private TextView overskrift;
 
-    private ListView listView;
-    private ListAdapter adapter;
-    private Button næste;
+  private ListView listView;
+  private ListAdapter adapter;
+  private Button næste;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                           Bundle savedInstanceState) {
 
-        ejerFragment = (Frag2EmneViewpager) getParentFragment();
+    ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
-        View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
+    View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
 
-        overskrift = (TextView) rod.findViewById(R.id.overskrift);
-        overskrift.setText(Brugervalg.instans.emne.navn);
+    overskrift = (TextView) rod.findViewById(R.id.overskrift);
+    overskrift.setText(Brugervalg.instans.emne.navn);
 
-        adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.emne.opgaver);
+    adapter = new ArrayAdapter(getActivity(),
+            android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.emne.opgaver);
 
-        listView = (ListView) rod.findViewById(android.R.id.list);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
-
-
-        næste = (Button) rod.findViewById(R.id.næste);
-        næste.setOnClickListener(this);
-
-        return rod;
-    }
+    listView = (ListView) rod.findViewById(android.R.id.list);
+    listView.setAdapter(adapter);
+    listView.setOnItemClickListener(this);
 
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ejerFragment.hopTilAktivitet(position);
-    }
+    næste = (Button) rod.findViewById(R.id.næste);
+    næste.setOnClickListener(this);
 
-    @Override
-    public void onClick(View v) {
-        ejerFragment.næste();
-    }
+    return rod;
+  }
+
+
+  @Override
+  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    ejerFragment.hopTilAktivitet(position);
+  }
+
+  @Override
+  public void onClick(View v) {
+    ejerFragment.næste();
+  }
 }

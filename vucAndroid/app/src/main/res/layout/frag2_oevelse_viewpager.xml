@@ -1,27 +1,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
 
-  <com.astuetz.PagerSlidingTabStrip
-      android:id="@+id/faneblade"
-      android:layout_width="match_parent"
-      android:layout_height="36dip"
-      app:pstsIndicatorHeight="2dp"
-      />
-<!--
-      android:layout_height="wrap_content"
-      android:layout_height="48dip"
-      android:background="@drawable/kanalindikator_bg"/>
--->
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/faneblade"
+        android:layout_width="match_parent"
+        android:layout_height="36dip"
+        app:pstsIndicatorHeight="2dp"
+        />
+    <!--
+          android:layout_height="wrap_content"
+          android:layout_height="48dip"
+          android:background="@drawable/kanalindikator_bg"/>
+    -->
 
 
-  <android.support.v4.view.ViewPager
-    android:id="@+id/viewpager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  </android.support.v4.view.ViewPager>
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

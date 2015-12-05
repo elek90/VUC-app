@@ -1,22 +1,17 @@
 package dk.lundogbendsen.vuc.diverse;
 
 /**
- *
  * @author j
  */
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -24,19 +19,15 @@ import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
 import com.bugsense.trace.BugSenseHandler;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Date;
-import java.util.LinkedHashMap;
 
 import dk.lundogbendsen.vuc.BuildConfig;
 import dk.lundogbendsen.vuc.R;
@@ -69,7 +60,8 @@ public class App extends Application {
     instans = this;
     netværk = new Netvaerksstatus();
     EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
-    if (!EMULATOR) BugSenseHandler.initAndStartSession(this, getString(PRODUKTION ? R.string.bugsense_nøgle : R.string.bugsense_testnøgle));
+    if (!EMULATOR)
+      BugSenseHandler.initAndStartSession(this, getString(PRODUKTION ? R.string.bugsense_nøgle : R.string.bugsense_testnøgle));
     super.onCreate();
 
     forgrundstråd = new Handler();
@@ -104,12 +96,11 @@ public class App extends Application {
     }
 
 
-
     FilCache.init(new File(getCacheDir(), "FilCache"));
 
 
-  registerReceiver(netværk, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-  netværk.onReceive(this, null); // Få opdateret netværksstatus
+    registerReceiver(netværk, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    netværk.onReceive(this, null); // Få opdateret netværksstatus
 
     try {
       skrift = Typeface.createFromAsset(getAssets(), "skrifttype-mangler-endnu.otf");
@@ -153,7 +144,8 @@ public class App extends Application {
       @Override
       public void run() {
         // lange toasts bør blive hængende
-        if (forrigeToast!=null && forrigeToast.getDuration()== Toast.LENGTH_SHORT && !App.fejlsøgning && !App.EMULATOR) forrigeToast.cancel();
+        if (forrigeToast != null && forrigeToast.getDuration() == Toast.LENGTH_SHORT && !App.fejlsøgning && !App.EMULATOR)
+          forrigeToast.cancel();
         forrigeToast = Toast.makeText(instans, txt2, Toast.LENGTH_LONG);
         forrigeToast.show();
       }
@@ -165,19 +157,24 @@ public class App extends Application {
     if (aktivitetIForgrunden == null) txt = "VUC:\n" + txt;
     final String txt2 = txt;
     forgrundstråd.post(new Runnable() {
-        @Override
-        public void run() {
-            // lange toasts bør blive hængende
-            if (forrigeToast != null && forrigeToast.getDuration() == Toast.LENGTH_SHORT && !App.fejlsøgning && !App.EMULATOR)
-                forrigeToast.cancel();
-            forrigeToast = Toast.makeText(instans, txt2, Toast.LENGTH_SHORT);
-            forrigeToast.show();
-        }
+      @Override
+      public void run() {
+        // lange toasts bør blive hængende
+        if (forrigeToast != null && forrigeToast.getDuration() == Toast.LENGTH_SHORT && !App.fejlsøgning && !App.EMULATOR)
+          forrigeToast.cancel();
+        forrigeToast = Toast.makeText(instans, txt2, Toast.LENGTH_SHORT);
+        forrigeToast.show();
+      }
     });
   }
 
-  public static void kortToast(int resId) { kortToast(instans.getResources().getString(resId));}
-  public static void langToast(int resId) { langToast(instans.getResources().getString(resId));}
+  public static void kortToast(int resId) {
+    kortToast(instans.getResources().getString(resId));
+  }
+
+  public static void langToast(int resId) {
+    langToast(instans.getResources().getString(resId));
+  }
 
   public static void kontakt(Activity akt, String emne, String txt, String vedhæftning) {
     String[] modtagere = new String[]{"nordfalk@lundogbendsen.dk"};
