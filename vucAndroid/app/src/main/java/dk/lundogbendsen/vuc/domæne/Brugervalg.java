@@ -12,6 +12,7 @@ public class Brugervalg {
     public Emne emne;
     public static Brugervalg instans = new Brugervalg();
     public ArrayList<Runnable> observatører = new ArrayList<Runnable>();
+    public boolean redigeringstilstand;
 
     public void initTestData(Logik l) {
         bru = l.brugere[0];
@@ -26,5 +27,10 @@ public class Brugervalg {
 
     public void opdaterObservatører() {
         for (Runnable r : observatører) r.run();
+    }
+
+    public void observatørerTilføjOgKør(Runnable runnable) {
+        observatører.add(runnable);
+        runnable.run();
     }
 }

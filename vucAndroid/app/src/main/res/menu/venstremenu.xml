@@ -9,11 +9,13 @@
             android:title="Emner" />
         <item android:id="@+id/xnav_gallery" android:icon="@android:drawable/ic_menu_gallery"
             android:title="Galleri¹" />
-        <item android:id="@+id/xnav_slideshow" android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="Videoer¹" />
+        <item android:id="@+id/hent_ny_version" android:icon="@android:drawable/ic_menu_save"
+            android:title="Hent ny version af appen" />
         <item android:id="@+id/xnav_manage" android:icon="@android:drawable/ic_menu_manage"
             android:title="Tools¹" />
     </group>
+    <item android:id="@+id/redigeringstilstand" android:icon="@android:drawable/ic_menu_edit"
+          android:title="Skift redigeringstilstand" />
     <item android:title="Gammelt til inspiration¹">
         <menu>
             <item android:id="@+id/qnav_share" android:icon="@android:drawable/ic_menu_share"

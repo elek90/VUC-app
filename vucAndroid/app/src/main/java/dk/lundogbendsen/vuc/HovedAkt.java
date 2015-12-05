@@ -1,6 +1,9 @@
 package dk.lundogbendsen.vuc;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -27,8 +30,10 @@ public class HovedAkt extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
     private DrawerLayout drawer;
+  private FloatingActionButton fab;
+  private NavigationView navigationView;
 
-    @Override
+  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hoved_akt);
@@ -60,7 +65,7 @@ public class HovedAkt extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.inflateHeaderView(R.layout.venstremenu_top);
@@ -74,10 +79,36 @@ public class HovedAkt extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.hovedakt_indhold, new Frag1VælgEmne()).commit();
         }
+
+      fab = (FloatingActionButton) findViewById(R.id.fab);
+      fab.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                  .setAction("Action", null).show();
+        }
+      });
+
+      Brugervalg.instans.observatørerTilføjOgKør(brugervalgtObservatør);
     }
 
+  @Override
+  protected void onDestroy() {
+    Brugervalg.instans.observatører.remove(brugervalgtObservatør);
+    super.onDestroy();
+  }
 
+  Runnable brugervalgtObservatør = new Runnable() {
     @Override
+    public void run() {
+      fab.setVisibility(Brugervalg.instans.redigeringstilstand?View.VISIBLE:View.GONE);
+      navigationView.getMenu().findItem(R.id.redigeringstilstand).setTitle(
+              Brugervalg.instans.redigeringstilstand ?
+                      "Se som elev" : "Se som lærer");
+    }
+  };
+
+  @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Brugervalg.instans.hold = Brugervalg.instans.bru.holdListe[position];
         Brugervalg.instans.opdaterObservatører();
@@ -106,7 +137,12 @@ public class HovedAkt extends AppCompatActivity
 
         if (id == R.id.emner) {
             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.redigeringstilstand) {
+          Brugervalg.instans.redigeringstilstand = !Brugervalg.instans.redigeringstilstand;
+          Brugervalg.instans.opdaterObservatører();
+        } else if (id == R.id.hent_ny_version) {
+          startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://android.lundogbendsen.dk/VUC.apk")));
+
             /*
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
