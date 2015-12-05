@@ -1,5 +1,7 @@
 package dk.lundogbendsen.vuc;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -101,7 +103,14 @@ public class HovedAkt extends AppCompatActivity
   Runnable brugervalgtObservatør = new Runnable() {
     @Override
     public void run() {
-      fab.setVisibility(Brugervalg.instans.redigeringstilstand ? View.VISIBLE : View.GONE);
+      fab.setVisibility(View.VISIBLE);
+      fab.animate().alpha(Brugervalg.instans.redigeringstilstand ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+        @Override
+        public void onAnimationEnd(Animator animation) {
+          fab.setVisibility(Brugervalg.instans.redigeringstilstand ? View.VISIBLE : View.GONE);
+        }
+      });
+      //fab.setVisibility(Brugervalg.instans.redigeringstilstand ? View.VISIBLE : View.GONE);
       navigationView.getMenu().findItem(R.id.redigeringstilstand).setTitle(
               Brugervalg.instans.redigeringstilstand ?
                       "Se som elev" : "Se som lærer");
