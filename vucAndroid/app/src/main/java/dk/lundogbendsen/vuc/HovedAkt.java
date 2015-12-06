@@ -42,24 +42,6 @@ public class HovedAkt extends AppCompatActivity
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    Logik.instans.lavTestdata();
-    Brugervalg.instans.initTestData(Logik.instans);
-    Firebase.setAndroidContext(this);
-    Firebase firebaseRef = new Firebase("https://vuc.firebaseio.com/");
-    firebaseRef.child("logik").setValue(Logik.instans);
-
-    firebaseRef.child("logik").addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange(DataSnapshot dataSnapshot) {
-        Logik nyLogik = dataSnapshot.getValue(Logik.class);
-        System.out.println(nyLogik.brugere);
-      }
-
-      @Override
-      public void onCancelled(FirebaseError firebaseError) {
-
-      }
-    });
 
     drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -86,7 +68,7 @@ public class HovedAkt extends AppCompatActivity
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Skærmbillede skifter til redigering af emnet", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
       }
     });
@@ -113,7 +95,7 @@ public class HovedAkt extends AppCompatActivity
       //fab.setVisibility(Brugervalg.instans.redigeringstilstand ? View.VISIBLE : View.GONE);
       navigationView.getMenu().findItem(R.id.redigeringstilstand).setTitle(
               Brugervalg.instans.redigeringstilstand ?
-                      "Se som elev" : "Se som lærer");
+                      "Se som elev" : "Redigér som lærer");
     }
   };
 
@@ -152,16 +134,6 @@ public class HovedAkt extends AppCompatActivity
     } else if (id == R.id.hent_ny_version) {
       startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://android.lundogbendsen.dk/VUC.apk")));
 
-            /*
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-            });
-            */
     } else {
       Snackbar.make(findViewById(R.id.hovedakt_indhold), "Emner med ¹ er ikke implementeret endnu", Snackbar.LENGTH_LONG).show();
     }

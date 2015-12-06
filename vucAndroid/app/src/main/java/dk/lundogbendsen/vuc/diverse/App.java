@@ -25,12 +25,18 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.bugsense.trace.BugSenseHandler;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
 
 import dk.lundogbendsen.vuc.BuildConfig;
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.domæne.Brugervalg;
+import dk.lundogbendsen.vuc.domæne.Logik;
 
 
 public class App extends Application {
@@ -109,6 +115,24 @@ public class App extends Application {
       skrift = Typeface.DEFAULT;
     }
 
+    Logik.instans.lavTestdata();
+    Brugervalg.instans.initTestData(Logik.instans);
+    Firebase.setAndroidContext(this);
+    Firebase firebaseRef = new Firebase("https://vuc.firebaseio.com/").child("v1");
+    firebaseRef.child("logik").setValue(Logik.instans);
+
+    firebaseRef.child("logik").addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(DataSnapshot dataSnapshot) {
+        Logik nyLogik = dataSnapshot.getValue(Logik.class);
+        System.out.println(nyLogik.brugere);
+      }
+
+      @Override
+      public void onCancelled(FirebaseError firebaseError) {
+
+      }
+    });
     Log.d("onCreate tog " + (System.currentTimeMillis() - TIDSSTEMPEL_VED_OPSTART) + " ms");
   }
 
