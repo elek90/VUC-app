@@ -11,12 +11,12 @@ import android.widget.TextView;
 import dk.lundogbendsen.vuc.domæne.Opgave;
 
 
-public class Frag22Aktivitet extends Fragment implements View.OnClickListener {
-  static String AKTIVITET = "AKTIVITET";
+public class Frag22Opgave extends Fragment implements View.OnClickListener {
+  static String OPGAVE = "OPGAVE";
 
   private Frag2EmneViewpager ejerFragment;
   private TextView overskrift;
-  private Opgave aktivitet;
+  private Opgave opgave;
   private ImageView billede;
 
   @Override
@@ -24,14 +24,14 @@ public class Frag22Aktivitet extends Fragment implements View.OnClickListener {
                            Bundle savedInstanceState) {
 
 
-    aktivitet = (Opgave) getArguments().getSerializable(AKTIVITET);
+    opgave = (Opgave) getArguments().getSerializable(OPGAVE);
 
     View rod = inflater.inflate(R.layout.frag2_s2_aktivitet, container, false);
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
-    overskrift.setText(aktivitet.navn);
+    overskrift.setText(opgave.navn);
 
     billede = (ImageView) rod.findViewById(R.id.billede);
-    Integer resId = IkonTilDrawable.ikonTilDrawable.get(aktivitet.ikon);
+    Integer resId = IkonTilDrawable.ikonTilDrawable.get(opgave.ikon);
     if (resId != null) billede.setImageResource(resId);
     //else billede.setVisibility(View.GONE);
 

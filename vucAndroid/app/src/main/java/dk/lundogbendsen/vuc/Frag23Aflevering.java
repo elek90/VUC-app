@@ -32,7 +32,7 @@ public class Frag23Aflevering extends Fragment implements View.OnClickListener, 
                            Bundle savedInstanceState) {
 
 
-    aktivitet = (Opgave) getArguments().getSerializable(Frag22Aktivitet.AKTIVITET);
+    aktivitet = (Opgave) getArguments().getSerializable(Frag22Opgave.OPGAVE);
     ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
