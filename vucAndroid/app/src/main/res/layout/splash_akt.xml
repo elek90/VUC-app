@@ -31,10 +31,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="labelSplashForAndroid" />
+        android:text="" />
 
     <TextView
-        android:id="@+id/textViewSplashVersion"
+        android:id="@+id/version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

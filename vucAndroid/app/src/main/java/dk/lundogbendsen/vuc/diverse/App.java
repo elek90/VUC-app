@@ -57,6 +57,7 @@ public class App extends Application {
   /** Tidsstempel der kan bruges til at afgøre hvilke filer der faktisk er brugt efter denne opstart */
   private static long TIDSSTEMPEL_VED_OPSTART;
   private static SharedPreferences grunddata_prefs;
+  private static String versionsnavnDetaljer;
 
 
   @SuppressLint("NewApi")
@@ -84,17 +85,18 @@ public class App extends Application {
     }
     String packageName = getPackageName();
     try {
-      if ("dk.lundogbendsen.vuc.prod".equals(packageName)) {
+      if ("dk.lundogbendsen.vuc".equals(packageName)) {
         if (!PRODUKTION) App.langToast("Sæt PRODUKTIONs-flaget");
       } else {
         if (PRODUKTION) App.langToast("Testudgave - fjern PRODUKTIONs-flaget");
       }
       //noinspection ConstantConditions
       PackageInfo pi = getPackageManager().getPackageInfo(packageName, 0);
-      App.versionsnavn = packageName + "/" + pi.versionName;
+      App.versionsnavn = pi.versionName;
+      App.versionsnavnDetaljer = packageName + "/" + pi.versionName;
       //while (PRODUKTION_PÅ_PRØVE && App.versionsnavn.endsWith("x")) App.versionsnavn = App.versionsnavn.substring(0, App.versionsnavn.length()-1);
-      if (EMULATOR) App.versionsnavn += " EMU";
-      Log.d("App.versionsnavn=" + App.versionsnavn);
+      if (EMULATOR) App.versionsnavnDetaljer += " EMU";
+      Log.d("App.versionsnavn=" + App.versionsnavnDetaljer);
 
       Class.forName("android.os.AsyncTask"); // Fix for http://code.google.com/p/android/issues/detail?id=20915
     } catch (Exception e) {
@@ -134,6 +136,8 @@ public class App extends Application {
       }
     });
     Log.d("onCreate tog " + (System.currentTimeMillis() - TIDSSTEMPEL_VED_OPSTART) + " ms");
+
+    AppOpdatering.tjekForNyAPK(this);
   }
 
   /*

@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "0.1 (7. december)"
     }
     buildTypes {
         release {
@@ -33,6 +33,9 @@ Youtube - registrér publiceringsnøgle på
 https://console.developers.google.com/apis/credentials/key?type=CLIENT_SIDE_ANDROID&project=vuc-roskilde&authuser=0
 
 Jacobs udviklernøgle til AIzaSyCq0w9sCXxhLFTzAakN4H99pBuwcZvUQAM
+
+
+scp /home/j/Projekter/VUC/VUC-app/vucAndroid/app/build/outputs/apk/app-debug.apk  j2:../lundogbendsen/hjemmeside/VUC.apk
  */
 
 dependencies {

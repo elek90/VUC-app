@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import com.androidquery.AQuery;
+
+import dk.lundogbendsen.vuc.diverse.App;
+
 public class Splash_akt extends Activity implements Runnable {
 
   static Splash_akt aktivitetDerVisesNu = null;
@@ -17,10 +21,11 @@ public class Splash_akt extends Activity implements Runnable {
 
     Log.d("Splash_akt", "aktiviteten blev startet!");
     setContentView(R.layout.splash_akt);
+    new AQuery(this).id(R.id.version).text(App.versionsnavn);
 
     // Hvis savedInstanceState ikke er null er det en aktivitet der er ved at blive genstartet
     if (savedInstanceState == null) {
-      handler.postDelayed(this, 3000); // <1> Kør run() om 3 sekunder
+      handler.postDelayed(this, 2000); // <1> Kør run() om 3 sekunder
     }
     aktivitetDerVisesNu = this;
   }

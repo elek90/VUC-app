@@ -1,0 +1,71 @@
+package dk.lundogbendsen.vuc.diverse;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Date;
+
+import dk.lundogbendsen.vuc.BuildConfig;
+
+/**
+ * Hjælpeklasse, der tjekker om der er kommet en ny version af APK'en.
+ * Bruges til udvikling - kald ignoreres i produktion
+ * Created by j on 07-12-15.
+ */
+public class AppOpdatering {
+
+  public static final String APK_URL = "http://android.lundogbendsen.dk/VUC.apk";
+  private static Date nyApkErTilgængelig;
+
+  public static Long findTidsstempelForSenesteAPK() throws Exception {
+    /*
+    final PackageManager pm = getPackageManager();
+    String apkName = "example.apk";
+    String fullPath = Environment.getExternalStorageDirectory() + "/" + apkName;
+    PackageInfo info = pm.getPackageArchiveInfo(fullPath, 0);
+    Toast.makeText(this, "VersionCode : " + info.versionCode + ", VersionName : " + info.versionName , Toast.LENGTH_LONG).show();
+    */
+    URL url = new URL(APK_URL);
+    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+    if (urlConnection.getResponseCode()!=HttpURLConnection.HTTP_OK) return null;
+    if (!url.getHost().equals(urlConnection.getURL().getHost())) return null; // ingen omdirigeringer
+    long lm = urlConnection.getLastModified();
+    return lm;
+  }
+
+  public static void tjekForNyAPK(final Context ctx) {
+    if (!BuildConfig.DEBUG) return; // kun når APKen ikke er signeret med en publiceringsnøgle
+    final SharedPreferences prefs = ctx.getSharedPreferences("AppOpdatering",0);
+    new AsyncTask<Long,Long,Long>() {
+      @Override
+      protected Long doInBackground(Long... params) {
+        try {
+          return AppOpdatering.findTidsstempelForSenesteAPK();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        return null;
+      };
+
+      @Override
+      protected void onPostExecute(Long tidsstempel) {
+        if (tidsstempel==null) return;
+        String NØGLE = "tidsstempelForSenesteAPK";
+        long glTidsstempel = prefs.getLong(NØGLE, 0);
+        App.langToast(tidsstempel+ " > "+glTidsstempel);
+        if (tidsstempel>glTidsstempel && glTidsstempel>0) {
+          Toast.makeText(ctx, "Der er kommet en ny version af app'en.\nDu kan hente en ny version i venstremenuen.", Toast.LENGTH_LONG).show();
+          nyApkErTilgængelig = new Date(tidsstempel);
+        }
+        if (tidsstempel>glTidsstempel || glTidsstempel==0) {
+          prefs.edit().putLong(NØGLE, tidsstempel).commit();
+        }
+      }
+    }.execute();
+  }
+}

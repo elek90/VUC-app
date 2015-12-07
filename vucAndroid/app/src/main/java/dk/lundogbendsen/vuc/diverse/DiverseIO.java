@@ -23,7 +23,7 @@ public class DiverseIO {
 
   /**
    * Tjek for om vi er på et netværk der kræver login eller lignende.
-   * Se 'Handling Network Sign-On' i http://developer.android.com/reference/java/net/HttpHttpURLConnection.html
+   * Se 'Handling Network Sign-On' i http://developer.android.com/reference/java/net/HttpURLConnection.html
    */
   private static void tjekOmdirigering(URL u, HttpURLConnection urlConnection) throws IOException {
     URL u2 = urlConnection.getURL();

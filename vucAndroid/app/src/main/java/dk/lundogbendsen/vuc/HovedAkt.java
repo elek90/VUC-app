@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import dk.lundogbendsen.vuc.diverse.App;
+import dk.lundogbendsen.vuc.diverse.AppOpdatering;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 public class HovedAkt extends AppCompatActivity
@@ -133,7 +134,7 @@ public class HovedAkt extends AppCompatActivity
       Brugervalg.instans.redigeringstilstand = !Brugervalg.instans.redigeringstilstand;
       Brugervalg.instans.opdaterObservatører();
     } else if (id == R.id.hent_ny_version) {
-      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://android.lundogbendsen.dk/VUC.apk")));
+      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(AppOpdatering.APK_URL)));
 
     } else {
       Snackbar.make(findViewById(R.id.hovedakt_indhold), "Emner med ¹ er ikke implementeret endnu", Snackbar.LENGTH_LONG).show();
