@@ -16,6 +16,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            applicationIdSuffix 'beta'
+        }
     }
 
     packagingOptions {
@@ -25,6 +28,13 @@ android {
     }
 }
 
+/*
+Youtube - registrér publiceringsnøgle på
+https://console.developers.google.com/apis/credentials/key?type=CLIENT_SIDE_ANDROID&project=vuc-roskilde&authuser=0
+
+Jacobs udviklernøgle til AIzaSyCq0w9sCXxhLFTzAakN4H99pBuwcZvUQAM
+ */
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -33,4 +43,5 @@ dependencies {
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.firebase:firebase-client-android:2.3.1'
     compile files('libs/bugsense-3.6.jar')
+    compile 'com.github.androidquery:androidquery:0.26.9'
 }

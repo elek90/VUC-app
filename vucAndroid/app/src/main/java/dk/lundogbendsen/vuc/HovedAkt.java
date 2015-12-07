@@ -20,13 +20,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-
+import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
-import dk.lundogbendsen.vuc.domæne.Logik;
 
 public class HovedAkt extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
@@ -99,11 +94,17 @@ public class HovedAkt extends AppCompatActivity
     }
   };
 
+  boolean førsteGang = true;
   @Override
   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    if (førsteGang) {
+      førsteGang = false;
+      return;
+    }
     Brugervalg.instans.hold = Brugervalg.instans.bru.holdListe[position];
     Brugervalg.instans.opdaterObservatører();
     drawer.closeDrawer(GravityCompat.START);
+    App.kortToast("onItemSelected "+position);
     getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
   }
 
