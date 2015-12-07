@@ -16,6 +16,7 @@ import com.google.android.youtube.player.YouTubeIntents;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 
+import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.domæne.Opgave;
 
@@ -25,7 +26,7 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
 
   private Frag2EmneViewpager ejerFragment;
   private TextView overskrift;
-  private Opgave opgave;
+  public Opgave opgave;
   private ImageView billede;
   private YouTubeThumbnailView yttn;
   private AQuery aq;
@@ -35,7 +36,7 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
                            Bundle savedInstanceState) {
 
 
-    opgave = (Opgave) getArguments().getSerializable(OPGAVE);
+    if (opgave==null) opgave = (Opgave) getArguments().getSerializable(OPGAVE);
 
     View rod = inflater.inflate(R.layout.frag2_s2_opgave, container, false);
     aq = new AQuery(rod);
@@ -60,17 +61,24 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
           startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), opgave.videoUrl, false, true));
         }
       });
-      aq.id(R.id.tekst).text(opgave.videoUrl);
+      aq.id(R.id.tekst).text(""); //opgave.videoUrl);
     } else
     if (opgave.tekst != null) {
       aq.id(R.id.tekst).text(opgave.tekst);
       Linkify.addLinks(aq.getTextView(), Linkify.ALL);
     }
 
-
     return rod;
   }
 
+
+  @Override
+  public void setUserVisibleHint(boolean isVisibleToUser) {
+    super.setUserVisibleHint(isVisibleToUser);
+    if (isVisibleToUser) {
+      opgave.udført = true;
+    }
+  }
 
   @Override
   public void onClick(View v) {

@@ -13,6 +13,7 @@ public class Opgave implements Serializable {
   public String videoUrl = null;//"Bke9CE59c-A";
   //public String url;
   public String tekst;
+  public transient boolean udført;
   public transient Emne emne;
 
   public Opgave() {

@@ -11,12 +11,16 @@ import dk.lundogbendsen.vuc.domæne.Opgave;
  */
 public class Fragmentfabrikering {
 
-  public static Fragment nytFragment(Opgave a) {
+  public static Fragment nytFragment(Opgave opg) {
     Fragment fragment;
-    if (a instanceof Aflevering) fragment = new Frag23Aflevering();
-    else fragment = new Frag22Opgave();
+    if (opg instanceof Aflevering) fragment = new Frag23Aflevering();
+    else {
+      Frag22Opgave f = new Frag22Opgave();
+      f.opgave = opg;
+      fragment = f;
+    }
     Bundle args = new Bundle();
-    args.putSerializable(Frag22Opgave.OPGAVE, a);
+    args.putSerializable(Frag22Opgave.OPGAVE, opg);
     fragment.setArguments(args);
     return fragment;
   }

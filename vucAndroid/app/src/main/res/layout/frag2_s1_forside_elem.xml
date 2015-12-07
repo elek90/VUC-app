@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:gravity="center"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleType="centerInside"
+        android:id="@+id/ikon"
+        android:src="@drawable/ta_apps_internet_mail"/>
+
+    <TextView
+        android:id="@+id/tekst"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:text="Tag et billede af en lyskilde"
+              android:textAppearance="?android:attr/textAppearanceListItemSmall"
+              android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        />
+
+    <ImageView
+        android:id="@+id/status"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/oi_actions_dialog_yes"
+        android:paddingRight="?android:attr/listPreferredItemPaddingRight"/>
+
+
+
+</LinearLayout>
