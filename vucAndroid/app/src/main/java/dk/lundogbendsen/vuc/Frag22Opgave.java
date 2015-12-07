@@ -64,9 +64,6 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
     } else
     if (opgave.tekst != null) {
       aq.id(R.id.tekst).text(opgave.tekst);
-    }
-    else if (opgave.url != null) {
-      aq.id(R.id.tekst).text("Læs mere på:\n"+opgave.url);
       Linkify.addLinks(aq.getTextView(), Linkify.ALL);
     }
 

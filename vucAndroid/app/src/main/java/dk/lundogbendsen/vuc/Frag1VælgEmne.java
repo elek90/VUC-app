@@ -44,6 +44,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Brugervalg.instans.emne = Brugervalg.instans.hold.emner[position];
     getFragmentManager().beginTransaction()
+            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
             .replace(R.id.hovedakt_indhold, new Frag2EmneViewpager()).addToBackStack(null).commit();
   }
 

@@ -11,7 +11,7 @@ public class Opgave implements Serializable {
   public String navn;
   public Ikon ikon;
   public String videoUrl = null;//"Bke9CE59c-A";
-  public String url;
+  //public String url;
   public String tekst;
   public transient Emne emne;
 
@@ -35,7 +35,7 @@ public class Opgave implements Serializable {
     else if (ekstra.startsWith("https://www.youtube.com")) {
       videoUrl =  Uri.parse(ekstra).getQueryParameter("v");
     }
-    else if (ekstra.startsWith("http")) url = ekstra;
+    //else if (ekstra.startsWith("http")) url = ekstra;
     else tekst = ekstra;
   }
 
