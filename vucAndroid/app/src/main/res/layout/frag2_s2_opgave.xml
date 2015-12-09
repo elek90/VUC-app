@@ -14,9 +14,10 @@
         android:layout_weight="1"
         android:layout_height="wrap_content">
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -42,16 +43,27 @@
                     android:text="Bliv klog på lys og og og og og og og meget meget andet"/>
 
             </FrameLayout>
-
-
             <com.google.android.youtube.player.YouTubeThumbnailView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:id="@+id/opgave_multimedie"
                 android:adjustViewBounds="true"
                 >
             </com.google.android.youtube.player.YouTubeThumbnailView>
+            <!--
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <ImageView android:id="@+id/btnYoutube_player"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:scaleType="center"
+                                       android:src="@drawable/oi_apps_niceplayer"/>
+                        </FrameLayout>
+            -->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,9 +72,10 @@
                 android:text="Her kommer noget indhold, knapper indtastningsfelter etc etc"
                 android:id="@+id/tekst"
                 android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="56dp"
                 android:layout_margin="16dp"/>
 
-        </TableLayout>
+        </LinearLayout>
 
     </ScrollView>
 

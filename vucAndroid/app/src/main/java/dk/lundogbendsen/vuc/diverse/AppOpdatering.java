@@ -3,7 +3,6 @@ package dk.lundogbendsen.vuc.diverse;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import java.net.HttpURLConnection;
@@ -20,7 +19,7 @@ import dk.lundogbendsen.vuc.BuildConfig;
 public class AppOpdatering {
 
   public static final String APK_URL = "http://android.lundogbendsen.dk/VUC.apk";
-  private static Date nyApkErTilgængelig;
+  public static Date nyApkErTilgængelig;
 
   public static Long findTidsstempelForSenesteAPK() throws Exception {
     /*
@@ -57,7 +56,6 @@ public class AppOpdatering {
         if (tidsstempel==null) return;
         String NØGLE = "tidsstempelForSenesteAPK";
         long glTidsstempel = prefs.getLong(NØGLE, 0);
-        App.langToast(tidsstempel+ " > "+glTidsstempel);
         if (tidsstempel>glTidsstempel && glTidsstempel>0) {
           Toast.makeText(ctx, "Der er kommet en ny version af app'en.\nDu kan hente en ny version i venstremenuen.", Toast.LENGTH_LONG).show();
           nyApkErTilgængelig = new Date(tidsstempel);

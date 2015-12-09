@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.bugsense.trace.BugSenseHandler;
@@ -58,6 +59,8 @@ public class App extends Application {
   private static long TIDSSTEMPEL_VED_OPSTART;
   private static SharedPreferences grunddata_prefs;
   private static String versionsnavnDetaljer;
+  public static Fragment synligtFragment;
+  public Firebase firebaseRefLogik;
 
 
   @SuppressLint("NewApi")
@@ -120,19 +123,23 @@ public class App extends Application {
     Logik.instans.lavTestdata();
     Brugervalg.instans.initTestData(Logik.instans);
     Firebase.setAndroidContext(this);
-    Firebase firebaseRef = new Firebase("https://vuc.firebaseio.com/").child("v1");
-    firebaseRef.child("logik").setValue(Logik.instans);
+    firebaseRefLogik = new Firebase("https://vuc.firebaseio.com/").child("v1").child("logik");
+    //firebaseRefLogik.child("logik").setValue(Logik.instans);
 
-    firebaseRef.child("logik").addValueEventListener(new ValueEventListener() {
+    firebaseRefLogik.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {
-        Logik nyLogik = dataSnapshot.getValue(Logik.class);
-        System.out.println(nyLogik.brugere);
+        if (!dataSnapshot.exists()) return;
+        Logik.instans = dataSnapshot.getValue(Logik.class);
+        Logik.instans.lavKonsistent();
+        App.kortToast("Data er blevet opdateret\n(ud i hovedmenuen for at se ændringerne)");
+        if (App.fejlsøgning) App.kortToast("Firebase data "+Logik.instans);
+        Brugervalg.instans.initTestData(Logik.instans);
+        Brugervalg.instans.opdaterObservatører();
       }
 
       @Override
       public void onCancelled(FirebaseError firebaseError) {
-
       }
     });
     Log.d("onCreate tog " + (System.currentTimeMillis() - TIDSSTEMPEL_VED_OPSTART) + " ms");

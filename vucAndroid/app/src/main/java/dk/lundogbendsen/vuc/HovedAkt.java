@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -64,7 +65,17 @@ public class HovedAkt extends AppCompatActivity
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Skærmbillede skifter til redigering af emnet", Snackbar.LENGTH_LONG)
+        if (App.synligtFragment instanceof Frag22Opgave) {
+          Frag22RedigerOpgave f2 = new Frag22RedigerOpgave();
+          f2.opgave = ((Frag22Opgave) App.synligtFragment).opgave;
+          f2.setArguments(App.synligtFragment.getArguments());
+          getSupportFragmentManager().beginTransaction()
+                  .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+                  .replace(R.id.hovedakt_indhold, f2)
+                  .addToBackStack(null).commit();
+          return;
+        }
+        Snackbar.make(view, "Kun opgaver kan p.t. redigeres", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
       }
     });
@@ -81,11 +92,14 @@ public class HovedAkt extends AppCompatActivity
   Runnable brugervalgtObservatør = new Runnable() {
     @Override
     public void run() {
+      boolean synlig = Brugervalg.instans.redigeringstilstand && !Brugervalg.instans.redigererNu;
+      final int vis = synlig ? View.VISIBLE : View.GONE;
+      if (fab.getVisibility()==vis) return;
       fab.setVisibility(View.VISIBLE);
-      fab.animate().alpha(Brugervalg.instans.redigeringstilstand ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+      fab.animate().alpha(synlig ? 1 : 0).setListener(new AnimatorListenerAdapter() {
         @Override
         public void onAnimationEnd(Animator animation) {
-          fab.setVisibility(Brugervalg.instans.redigeringstilstand ? View.VISIBLE : View.GONE);
+          fab.setVisibility(vis);
         }
       });
       //fab.setVisibility(Brugervalg.instans.redigeringstilstand ? View.VISIBLE : View.GONE);
@@ -105,7 +119,7 @@ public class HovedAkt extends AppCompatActivity
     Brugervalg.instans.hold = Brugervalg.instans.bru.holdListe[position];
     Brugervalg.instans.opdaterObservatører();
     drawer.closeDrawer(GravityCompat.START);
-    App.kortToast("onItemSelected "+position);
+    if (App.fejlsøgning) App.kortToast("onItemSelected "+position);
     getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
   }
 

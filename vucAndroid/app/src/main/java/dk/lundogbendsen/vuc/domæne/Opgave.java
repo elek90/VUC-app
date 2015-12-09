@@ -32,9 +32,11 @@ public class Opgave implements Serializable {
     this(navn, ikon);
     if (ekstra.startsWith("https://youtu.be")) {
       videoUrl =  Uri.parse(ekstra).getPath().substring(1);
+      tekst = "\n(Klik på videoen ovenfor)";
     }
     else if (ekstra.startsWith("https://www.youtube.com")) {
       videoUrl =  Uri.parse(ekstra).getQueryParameter("v");
+      tekst = "\n(Klik på videoen ovenfor)";
     }
     //else if (ekstra.startsWith("http")) url = ekstra;
     else tekst = ekstra;

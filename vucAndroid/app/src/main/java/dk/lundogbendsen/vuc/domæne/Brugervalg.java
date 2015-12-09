@@ -13,6 +13,7 @@ public class Brugervalg {
   public static Brugervalg instans = new Brugervalg();
   public ArrayList<Runnable> observatører = new ArrayList<Runnable>();
   public boolean redigeringstilstand;
+  public boolean redigererNu;
 
   public void initTestData(Logik l) {
     bru = l.brugere[0];

@@ -37,21 +37,18 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
 
 
     if (opgave==null) opgave = (Opgave) getArguments().getSerializable(OPGAVE);
+    ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s2_opgave, container, false);
     aq = new AQuery(rod);
-    overskrift = (TextView) rod.findViewById(R.id.overskrift);
-    overskrift.setText(opgave.navn);
+    aq.id(R.id.næste).clicked(this);
 
-    billede = (ImageView) rod.findViewById(R.id.billede);
+    aq.id(R.id.overskrift).text(opgave.navn);
     Integer resId = IkonTilDrawable.ikonTilDrawable.get(opgave.ikon);
-    if (resId != null) billede.setImageResource(resId);
-    //else billede.setVisibility(View.GONE);
+    if (resId != null) aq.id(R.id.billede).image(resId);
 
-    rod.findViewById(R.id.næste).setOnClickListener(this);
-    ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
-    if (opgave.videoUrl!=null) {
+    if (opgave.videoUrl!=null && opgave.videoUrl.length()>5) {
       yttn = (YouTubeThumbnailView) rod.findViewById(R.id.opgave_multimedie);
       yttn.initialize(Diverse.YOUTUBE_NØGLE, this);
       yttn.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +58,7 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
           startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), opgave.videoUrl, false, true));
         }
       });
-      aq.id(R.id.tekst).text(""); //opgave.videoUrl);
-    } else
+    }
     if (opgave.tekst != null) {
       aq.id(R.id.tekst).text(opgave.tekst);
       Linkify.addLinks(aq.getTextView(), Linkify.ALL);
@@ -77,7 +73,8 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
     super.setUserVisibleHint(isVisibleToUser);
     if (isVisibleToUser) {
       opgave.udført = true;
-    }
+      App.synligtFragment = this;
+    } else if (App.synligtFragment == this) App.synligtFragment = null;
   }
 
   @Override

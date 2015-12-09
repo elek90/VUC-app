@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
-        versionName "0.1 (7. december)"
+        versionName "0.1.1 (9. december) lærerredigering"
     }
     buildTypes {
         release {
