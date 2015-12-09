@@ -4,8 +4,8 @@ package dk.lundogbendsen.vuc.domæne;
  * Created by j on 30-10-15.
  */
 public class Bruger {
-  String navn;
-  String konto;
+  public String navn;
+  public String konto;
   public Hold[] holdListe;
 
   public Bruger() {

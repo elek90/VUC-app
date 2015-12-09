@@ -2,47 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/xnxav_camara"
-        android:icon="@android:drawable/stat_notify_error"
-        android:title="Log ud¹"/>
-
+        android:id="@+id/redigeringstilstand"
+        android:icon="@drawable/oi_apps_kedit_2"
+        android:title="Skift redigeringstilstand"/>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/emner"
-            android:icon="@android:drawable/ic_menu_camera"
-            android:title="Emner"/>
-        <item
-            android:id="@+id/xnav_gallery"
             android:icon="@android:drawable/ic_menu_gallery"
-            android:title="Galleri¹"/>
+            android:title="Emner"/>
         <item
             android:id="@+id/hent_ny_version"
             android:icon="@android:drawable/ic_menu_save"
             android:title="Hent ny version af appen"/>
-        <item
-            android:id="@+id/xnav_manage"
-            android:icon="@android:drawable/ic_menu_manage"
-            android:title="Tools¹"/>
     </group>
     <item
-        android:id="@+id/redigeringstilstand"
-        android:icon="@android:drawable/ic_menu_edit"
-        android:title="Skift redigeringstilstand"/>
-    <item android:title="Gammelt til inspiration¹">
-        <menu>
-            <item
-                android:id="@+id/qnav_share"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="Share"/>
-            <item
-                android:id="@+id/qnav_send"
-                android:icon="@android:drawable/ic_menu_send"
-                android:title="Send"/>
-        </menu>
-    </item>
+        android:id="@+id/xnxav_camara"
+        android:icon="@android:drawable/stat_notify_error"
+        android:title="Log ud¹"/>
 
     <item android:title="Gammelt til inspiration¹">
         <menu>
+            <item
+                android:id="@+id/xnav_manage"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Tools¹"/>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@android:drawable/ic_menu_share"
