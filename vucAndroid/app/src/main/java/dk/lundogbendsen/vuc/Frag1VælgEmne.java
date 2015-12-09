@@ -24,13 +24,13 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View rod = inflater.inflate(R.layout.frag1_vaelg_emne_niveau, container, false);
-    Brugervalg.instans.observatører.add(this);
 
     listView = (ListView) rod.findViewById(android.R.id.list);
     listView.setOnItemClickListener(this);
 
-    run();
 
+    Brugervalg.instans.observatører.add(this);
+    run();
     return rod;
   }
 

@@ -24,13 +24,13 @@ import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Opgave;
 
 
-public class Frag21Forside extends Fragment implements AbsListView.OnItemClickListener, View.OnClickListener {
+public class Frag21Forside extends Fragment implements AbsListView.OnItemClickListener, View.OnClickListener, Runnable {
   private Frag2EmneViewpager ejerFragment;
 
   private TextView overskrift;
 
   private ListView listView;
-  private ListAdapter adapter;
+  private BaseAdapter adapter;
   private Button næste;
   private ArrayList<Opgave> liste;
 
@@ -84,9 +84,21 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
     næste = (Button) rod.findViewById(R.id.næste);
     næste.setOnClickListener(this);
 
+    Brugervalg.instans.observatører.add(this);
     return rod;
   }
 
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    Brugervalg.instans.observatører.remove(this);
+  }
+
+  @Override
+  public void run() {
+    liste = new ArrayList<Opgave>(Arrays.asList(Brugervalg.instans.emne.opgaver));
+    adapter.notifyDataSetChanged();
+  }
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
