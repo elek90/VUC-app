@@ -69,11 +69,16 @@ public class Frag22RedigerOpgave extends Fragment implements View.OnClickListene
 
         return view;
       }
+
+      @Override
+      public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        return getView(position, convertView, parent);
+      }
     };
 
 
     spinner = aq.id(R.id.billede).getSpinner();
-    adapter.setDropDownViewResource(R.layout.ikon_listeelement);
+    //adapter.setDropDownViewResource(R.layout.ikon_listeelement);
     spinner.setAdapter(adapter);
     spinner.setSelection(ikoner.indexOf(opgave.ikon));
 
