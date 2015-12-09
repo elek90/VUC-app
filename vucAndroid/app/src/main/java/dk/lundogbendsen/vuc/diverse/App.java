@@ -60,7 +60,7 @@ public class App extends Application {
   private static SharedPreferences grunddata_prefs;
   private static String versionsnavnDetaljer;
   public static Fragment synligtFragment;
-  public Firebase firebaseRefLogik;
+  public static Firebase firebaseRefLogik;
 
 
   @SuppressLint("NewApi")
@@ -124,7 +124,7 @@ public class App extends Application {
     Brugervalg.instans.initTestData(Logik.instans);
     Firebase.setAndroidContext(this);
     firebaseRefLogik = new Firebase("https://vuc.firebaseio.com/").child("v1").child("logik");
-    //firebaseRefLogik.child("logik").setValue(Logik.instans);
+    //firebaseRefLogik.setValue(Logik.instans);
 
     firebaseRefLogik.addValueEventListener(new ValueEventListener() {
       @Override
