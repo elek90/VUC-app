@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:text="Her skriver eleven noget"
+    android:hint="Skriv dit svar her"
+    android:gravity="top"
+    android:id="@+id/tekst"
+    android:minLines="6"
+    xmlns:android="http://schemas.android.com/apk/res/android"/>

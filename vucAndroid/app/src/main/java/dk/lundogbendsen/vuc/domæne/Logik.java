@@ -50,6 +50,7 @@ public class Logik {
             new Opgave("Brug af hjemmelavet spektroskop", video, "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
             new Opgave("Tag billeder af spektrum", foto),
             new Opgave("Tag billeder af lyskilde", foto),
+            new Opgave("Beskriv dine observationer", notesblok),
             new Aflevering("Send rapport"),
     };
 

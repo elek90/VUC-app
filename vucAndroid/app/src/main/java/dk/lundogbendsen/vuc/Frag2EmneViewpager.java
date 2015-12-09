@@ -81,7 +81,7 @@ public class Frag2EmneViewpager extends Fragment {
     public Fragment getItem(int position) {
       Object f = faner.get(position);
       if (f instanceof Fragment) return (Fragment) f;
-      if (f instanceof Opgave) return Fragmentfabrikering.nytFragment((Opgave) f);
+      if (f instanceof Opgave) return Fragmentfabrikering.nytFragment((Opgave) f, position==getCount()-1);
       return new Frag21Forside(); // fejl
     }
 

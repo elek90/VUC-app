@@ -11,9 +11,9 @@ import dk.lundogbendsen.vuc.domæne.Opgave;
  */
 public class Fragmentfabrikering {
 
-  public static Fragment nytFragment(Opgave opg) {
+  public static Fragment nytFragment(Opgave opg, boolean sidste) {
     Fragment fragment;
-    if (opg instanceof Aflevering) fragment = new Frag23Aflevering();
+    if (opg instanceof Aflevering || sidste) fragment = new Frag23Aflevering();
     else {
       Frag22Opgave f = new Frag22Opgave();
       f.opgave = opg;

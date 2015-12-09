@@ -15,6 +15,7 @@ public class Opgave implements Serializable {
   public String tekst;
   public transient boolean udført;
   public transient Emne emne;
+  public transient Svar svar;
 
   public Opgave() {
   }

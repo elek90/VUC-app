@@ -16,9 +16,14 @@ import com.google.android.youtube.player.YouTubeIntents;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 
+import java.util.List;
+
 import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.Diverse;
+import dk.lundogbendsen.vuc.diverse.Log;
+import dk.lundogbendsen.vuc.domæne.Ikon;
 import dk.lundogbendsen.vuc.domæne.Opgave;
+import dk.lundogbendsen.vuc.domæne.Svar;
 
 
 public class Frag22Opgave extends Fragment implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
@@ -30,6 +35,7 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
   private ImageView billede;
   private YouTubeThumbnailView yttn;
   private AQuery aq;
+  private boolean besvarelsesfragOprettet;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,11 +68,33 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
     if (opgave.tekst != null) {
       aq.id(R.id.tekst).text(opgave.tekst);
       Linkify.addLinks(aq.getTextView(), Linkify.ALL);
+    } else {
+      if (savedInstanceState==null && !besvarelsesfragOprettet) {
+        besvarelsesfragOprettet = true;
+        if (opgave.svar==null) opgave.svar = new Svar();
+
+        if (opgave.ikon == Ikon.notesblok || opgave.ikon == Ikon.pen_og_blyant) {
+          Fragment f = SkrivTekstFrag.nytFragment(opgave.svar.tekst);
+          getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
+        }
+      }
     }
 
     return rod;
   }
 
+  @Override
+  public void onDestroyView() {
+    List<Fragment> svarfragmenter = getChildFragmentManager().getFragments();
+    if (svarfragmenter != null) for (Fragment f : svarfragmenter) {
+      Log.d("onDestroyView f = " + f);
+      if (f instanceof SvarFrag) {
+        SvarFrag sf = (SvarFrag) f;
+        sf.opdaterBesvarelse(opgave);
+      }
+    }
+    super.onDestroyView();
+  }
 
   @Override
   public void setUserVisibleHint(boolean isVisibleToUser) {
