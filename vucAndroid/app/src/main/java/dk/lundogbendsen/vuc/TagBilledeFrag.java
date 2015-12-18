@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.ContactsContract;
@@ -24,10 +25,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.cloudinary.utils.ObjectUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.Log;
@@ -108,11 +111,26 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
     if (resultCode == Activity.RESULT_OK) {
       try {
         if (requestCode == VÆLG_BILLEDE) {
-          AssetFileDescriptor filDS = cr.openAssetFileDescriptor(resIntent.getData(), "r");
-          Bitmap bmp = BitmapFactory.decodeStream(filDS.createInputStream());
-          ImageView iv = new ImageView(getActivity());
-          iv.setImageBitmap(bmp);
-          resultatHolder.addView(iv);
+          final AssetFileDescriptor filDS = cr.openAssetFileDescriptor(resIntent.getData(), "r");
+          //Bitmap bmp = BitmapFactory.decodeStream(filDS.createInputStream());
+          //ImageView iv = new ImageView(getActivity());
+          //iv.setImageBitmap(bmp);
+          //resultatHolder.addView(iv);
+
+          new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+              Map m = null;
+              try {
+                m = App.cloudinary.uploader().upload(filDS.createInputStream(), ObjectUtils.asMap("public_id", "sample_remote"));
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+              Log.d("cliudinary map="+m);
+              return null;
+            }
+          }.execute();
+
         } else if (requestCode == TAG_BILLEDE) {
           ImageView iv = new ImageView(getActivity());
           if (filPåEksterntLager==null) {

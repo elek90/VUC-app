@@ -11,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.androidquery.AQuery;
+import com.cloudinary.Transformation;
+
+import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 

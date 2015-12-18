@@ -2,4 +2,8 @@
 <resources>
     <string name="bugsense_nøgle">00000000</string>
     <string name="bugsense_testnøgle">00000000</string>
+
+    <string name="cloudinary_cloud_name">00000000</string>
+    <string name="cloudinary_api_key">00000000</string>
+    <string name="cloudinary_api_secret">00000000</string>
 </resources>

@@ -26,6 +26,7 @@ import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.bugsense.trace.BugSenseHandler;
+import com.cloudinary.Cloudinary;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -34,6 +35,8 @@ import com.firebase.client.ValueEventListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import dk.lundogbendsen.vuc.BuildConfig;
 import dk.lundogbendsen.vuc.R;
@@ -63,6 +66,7 @@ public class App extends Application {
   public static Fragment synligtFragment;
   public static Firebase firebaseRefLogik;
   public static ArrayList<Fragment> onActivityResultListe = new ArrayList<>();
+  public static Cloudinary cloudinary;
 
 
   @SuppressLint("NewApi")
@@ -147,6 +151,14 @@ public class App extends Application {
     Log.d("onCreate tog " + (System.currentTimeMillis() - TIDSSTEMPEL_VED_OPSTART) + " ms");
 
     AppOpdatering.tjekForNyAPK(this);
+
+
+    Map config = new HashMap();
+    config.put("cloud_name", res.getString(R.string.cloudinary_cloud_name));
+    config.put("api_key",  res.getString(R.string.cloudinary_api_key));
+    config.put("api_secret", res.getString(R.string.cloudinary_api_secret));
+    cloudinary = new Cloudinary(config);
+
   }
 
   /*
