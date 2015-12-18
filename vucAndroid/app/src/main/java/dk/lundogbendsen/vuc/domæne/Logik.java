@@ -40,17 +40,21 @@ public class Logik {
             new Emne("Husholdningskemi - Niveau G"),
             new Emne("Syrer og baser"),
     };
-
+// Opgave -> Trin
+    // OpgaveKategori -> TrinOverskrift
     naturfag.emner[0].opgaver = new Opgave[]{
-            new Opgave("Bliv klog på lys", bog, "Øjet kan se forskellige farver. De forskellige farver skyldes, at lyset kan have forskellige bølgelængder. \nBølgelængden af synligt lys ligger i intervallet fra ca. 380 nm (violet lys) til ca. 740 nm (rødt lys). De mellemliggende bølgelængder ses som blå, grøn, gul og orange. \n\nMere kortbølget stråling kaldes ultraviolet lys eller UV, og mere langbølget stråling kaldes infrarødt lys eller IR. I huden findes varmefølsomme receptorer som omdanner IR til varme. I huden findes endvidere pigment som aktiveres når huden udsættes for UV. Nogle dyr, f.eks. bier, kan se UV, mens andre dyr, f.eks. klapperslanger, kan se IR.\n\nLæs mere på https://da.wikipedia.org/wiki/Lys"),
-            new Opgave("Optag et spektrum med et spektrometer", video, "https://www.youtube.com/watch?v=ZWZYtfT0ZZk&list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi&index=2"),
-            new Opgave("Tag et billede af den blå himmel", foto),
-            new Opgave("Tag et billede af en elektrisk pære", foto),
-            new Opgave("Lav dit eget spektroskop", video, "https://www.youtube.com/watch?v=Bke9CE59c-A&list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi&index=2"),
-            new Opgave("Brug af hjemmelavet spektroskop", video, "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
-            new Opgave("Tag billeder af spektrum", foto),
-            new Opgave("Tag billeder af lyskilde", foto),
-            new Opgave("Beskriv dine observationer", notesblok),
+      /* VO */      new Opgave("VIDEN OM", tavle),
+      /* VO */      new Opgave("Bliv klog på lys", bog, "Øjet kan se forskellige farver. De forskellige farver skyldes, at lyset kan have forskellige bølgelængder. \nBølgelængden af synligt lys ligger i intervallet fra ca. 380 nm (violet lys) til ca. 740 nm (rødt lys). De mellemliggende bølgelængder ses som blå, grøn, gul og orange. \n\nMere kortbølget stråling kaldes ultraviolet lys eller UV, og mere langbølget stråling kaldes infrarødt lys eller IR. I huden findes varmefølsomme receptorer som omdanner IR til varme. I huden findes endvidere pigment som aktiveres når huden udsættes for UV. Nogle dyr, f.eks. bier, kan se UV, mens andre dyr, f.eks. klapperslanger, kan se IR.\n\nLæs mere på https://da.wikipedia.org/wiki/Lys"),
+      /* UD */      new Opgave("UDSTYR", værktøj),
+      /* UD */      new Opgave("Optag et spektrum med et spektrometer", video, "https://www.youtube.com/watch?v=ZWZYtfT0ZZk&list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi&index=2"),
+      /* UD */      new Opgave("Lav dit eget spektroskop", video, "https://www.youtube.com/watch?v=Bke9CE59c-A&list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi&index=2"),
+      /* UD */      new Opgave("Brug af hjemmelavet spektroskop", video, "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
+      /* FO */      new Opgave("FORSØG", pen_og_blyant),
+      /* FO */      new Opgave("Tag et billede af den blå himmel", foto),
+      /* FO */      new Opgave("Tag et billede af en elektrisk pære", foto),
+      /* FO */      new Opgave("Tag billeder af spektrum", foto),
+      /* FO */      new Opgave("Tag billeder af lyskilde", foto),
+      /* FO */      new Opgave("Beskriv dine observationer", notesblok),
             new Aflevering("Send rapport"),
     };
 

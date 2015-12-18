@@ -46,7 +46,7 @@ public class AppOpdatering {
         try {
           return AppOpdatering.findTidsstempelForSenesteAPK();
         } catch (Exception e) {
-          e.printStackTrace();
+          Log.d("AppOpdatering kunne ikke tjekke for ny version:"+e);
         }
         return null;
       };

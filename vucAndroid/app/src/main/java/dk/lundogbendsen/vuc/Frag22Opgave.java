@@ -30,9 +30,7 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
   static String OPGAVE = "OPGAVE";
 
   private Frag2EmneViewpager ejerFragment;
-  private TextView overskrift;
   public Opgave opgave;
-  private ImageView billede;
   private YouTubeThumbnailView yttn;
   private AQuery aq;
   private boolean besvarelsesfragOprettet;
@@ -75,6 +73,11 @@ public class Frag22Opgave extends Fragment implements View.OnClickListener, YouT
 
         if (opgave.ikon == Ikon.notesblok || opgave.ikon == Ikon.pen_og_blyant) {
           Fragment f = SkrivTekstFrag.nytFragment(opgave.svar.tekst);
+          getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
+        }
+
+        if (opgave.ikon == Ikon.kamera || opgave.ikon == Ikon.foto) {
+          Fragment f = TagBilledeFrag.nytFragment(opgave);
           getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
         }
       }

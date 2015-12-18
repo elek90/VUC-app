@@ -161,4 +161,11 @@ public class HovedAkt extends AppCompatActivity
     drawer.closeDrawer(GravityCompat.START);
     return true;
   }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    System.out.println("onActivityResult AKT"+ requestCode + " gav resultat " + resultCode + " med data=" + data);
+    super.onActivityResult(requestCode, resultCode, data);
+    for (Fragment f : App.onActivityResultListe) f.onActivityResult(requestCode, resultCode, data);
+  }
 }

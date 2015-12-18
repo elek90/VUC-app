@@ -33,6 +33,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 import dk.lundogbendsen.vuc.BuildConfig;
 import dk.lundogbendsen.vuc.R;
@@ -61,6 +62,7 @@ public class App extends Application {
   private static String versionsnavnDetaljer;
   public static Fragment synligtFragment;
   public static Firebase firebaseRefLogik;
+  public static ArrayList<Fragment> onActivityResultListe = new ArrayList<>();
 
 
   @SuppressLint("NewApi")
