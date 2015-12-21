@@ -15,15 +15,15 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import dk.lundogbendsen.vuc.diverse.Diverse;
-import dk.lundogbendsen.vuc.domæne.Opgave;
+import dk.lundogbendsen.vuc.domæne.Trin;
 
 
-public class Frag22OpgaveYTFragment extends Fragment implements View.OnClickListener, YouTubePlayer.OnInitializedListener {
-  static String OPGAVE = "OPGAVE";
+public class Frag22TrinYTFragment extends Fragment implements View.OnClickListener, YouTubePlayer.OnInitializedListener {
+  static String TRIN = "TRIN";
 
   private Frag2EmneViewpager ejerFragment;
   private TextView overskrift;
-  private Opgave opgave;
+  private Trin trin;
   private ImageView billede;
 
   @Override
@@ -31,27 +31,27 @@ public class Frag22OpgaveYTFragment extends Fragment implements View.OnClickList
                            Bundle savedInstanceState) {
 
 
-    opgave = (Opgave) getArguments().getSerializable(OPGAVE);
+    trin = (Trin) getArguments().getSerializable(TRIN);
 
-    View rod = inflater.inflate(R.layout.frag2_s2_opgave, container, false);
+    View rod = inflater.inflate(R.layout.frag2_s2_trin, container, false);
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
-    overskrift.setText(opgave.navn);
+    overskrift.setText(trin.navn);
 
     billede = (ImageView) rod.findViewById(R.id.billede);
-    Integer resId = IkonTilDrawable.ikonTilDrawable.get(opgave.ikon);
+    Integer resId = IkonTilDrawable.ikonTilDrawable.get(trin.ikon);
     if (resId != null) billede.setImageResource(resId);
     //else billede.setVisibility(View.GONE);
 
     rod.findViewById(R.id.næste).setOnClickListener(this);
     ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
-    if (opgave.videoUrl!=null) {
+    if (trin.videoUrl!=null) {
       if (savedInstanceState==null) {
         youTubePlayerSupportFragment = new YouTubePlayerSupportFragment();
-        getChildFragmentManager().beginTransaction().add(R.id.opgave_multimedie, youTubePlayerSupportFragment).commit();
+        getChildFragmentManager().beginTransaction().add(R.id.trin_multimedie, youTubePlayerSupportFragment).commit();
         youTubePlayerSupportFragment.initialize(Diverse.YOUTUBE_NØGLE, this);
       } else {
-        youTubePlayerSupportFragment = (YouTubePlayerSupportFragment) getChildFragmentManager().findFragmentById(R.id.opgave_multimedie);
+        youTubePlayerSupportFragment = (YouTubePlayerSupportFragment) getChildFragmentManager().findFragmentById(R.id.trin_multimedie);
       }
     }
 

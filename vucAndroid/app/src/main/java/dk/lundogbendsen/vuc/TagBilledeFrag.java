@@ -2,40 +2,33 @@ package dk.lundogbendsen.vuc;
 
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.cloudinary.utils.ObjectUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
 
 import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.Log;
-import dk.lundogbendsen.vuc.domæne.Opgave;
-import dk.lundogbendsen.vuc.domæne.Svar;
+import dk.lundogbendsen.vuc.domæne.Trin;
 
 
 public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
@@ -46,12 +39,12 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
   private TextView resultatTextView;
   private LinearLayout resultatHolder;
 
-  public static Fragment nytFragment(Opgave opgave) {
+  public static Fragment nytFragment(Trin trin) {
     TagBilledeFrag fragment = new TagBilledeFrag();
     Bundle args = new Bundle();
     //args.putSerializable(TagBilledeFrag.TEKST, tekst);
     fragment.setArguments(args);
-    fragment.opgave = opgave;
+    fragment.trin = trin;
     return fragment;
   }
 
@@ -74,8 +67,8 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
   }
 
   @Override
-  public void opdaterBesvarelse(Opgave opgave) {
-    //opgave.svar.tekst = tekst.getText().toString();
+  public void opdaterBesvarelse(Trin trin) {
+    //trin.svar.tekst = tekst.getText().toString();
   }
 
   @Override

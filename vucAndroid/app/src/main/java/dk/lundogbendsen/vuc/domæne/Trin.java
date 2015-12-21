@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by j on 01-11-15.
  */
-public class Opgave implements Serializable {
+public class Trin implements Serializable {
   public String navn;
   public Ikon ikon;
   public String videoUrl = null;//"Bke9CE59c-A";
@@ -17,19 +17,19 @@ public class Opgave implements Serializable {
   public transient Emne emne;
   public transient Svar svar;
 
-  public Opgave() {
+  public Trin() {
   }
 
-  public Opgave(String navn) {
+  public Trin(String navn) {
     this(navn, Ikon.bog);
   }
 
-  public Opgave(String navn, Ikon ikon) {
+  public Trin(String navn, Ikon ikon) {
     this.navn = navn;
     this.ikon = ikon;
   }
 
-  public Opgave(String navn, Ikon ikon, String ekstra) {
+  public Trin(String navn, Ikon ikon, String ekstra) {
     this(navn, ikon);
     if (ekstra.startsWith("https://youtu.be")) {
       videoUrl =  Uri.parse(ekstra).getPath().substring(1);

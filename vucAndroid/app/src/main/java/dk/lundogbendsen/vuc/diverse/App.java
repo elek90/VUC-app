@@ -129,7 +129,7 @@ public class App extends Application {
     Logik.instans.lavTestdata();
     Brugervalg.instans.initTestData(Logik.instans);
     Firebase.setAndroidContext(this);
-    firebaseRefLogik = new Firebase("https://vuc.firebaseio.com/").child("v1").child("logik");
+    firebaseRefLogik = new Firebase("https://vuc.firebaseio.com/").child("v2").child("logik");
     //firebaseRefLogik.setValue(Logik.instans);
 
     firebaseRefLogik.addValueEventListener(new ValueEventListener() {

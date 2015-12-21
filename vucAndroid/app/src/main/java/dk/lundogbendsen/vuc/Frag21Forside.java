@@ -2,16 +2,13 @@ package dk.lundogbendsen.vuc;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
-import dk.lundogbendsen.vuc.domæne.Opgave;
+import dk.lundogbendsen.vuc.domæne.Trin;
 
 
 public class Frag21Forside extends Fragment implements AbsListView.OnItemClickListener, View.OnClickListener, Runnable {
@@ -32,7 +29,7 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
   private ListView listView;
   private BaseAdapter adapter;
   private Button næste;
-  private ArrayList<Opgave> liste;
+  private ArrayList<Trin> liste;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +42,7 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
     overskrift.setText(Brugervalg.instans.emne.navn);
 
-    liste = new ArrayList<Opgave>(Arrays.asList(Brugervalg.instans.emne.opgaver));
+    liste = new ArrayList<Trin>(Arrays.asList(Brugervalg.instans.emne.trin));
     adapter = new BaseAdapter() {
       @Override
       public int getCount() {
@@ -67,10 +64,10 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
       public View getView(int position, View v, ViewGroup parent) {
         if (v==null) v = inflater.inflate(R.layout.frag2_s1_forside_elem, null);
         AQuery aq = new AQuery(v);
-        Opgave opgave = liste.get(position);
-        aq.id(R.id.ikon).image(IkonTilDrawable.ikonTilDrawable.get(opgave.ikon));
-        aq.id(R.id.tekst).text(opgave.navn);
-        aq.id(R.id.status).visibility(opgave.udført?View.VISIBLE:View.GONE);
+        Trin trin = liste.get(position);
+        aq.id(R.id.ikon).image(IkonTilDrawable.ikonTilDrawable.get(trin.ikon));
+        aq.id(R.id.tekst).text(trin.navn);
+        aq.id(R.id.status).visibility(trin.udført?View.VISIBLE:View.GONE);
 
         return v;
       }
@@ -96,7 +93,7 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
 
   @Override
   public void run() {
-    liste = new ArrayList<Opgave>(Arrays.asList(Brugervalg.instans.emne.opgaver));
+    liste = new ArrayList<Trin>(Arrays.asList(Brugervalg.instans.emne.trin));
     adapter.notifyDataSetChanged();
   }
 

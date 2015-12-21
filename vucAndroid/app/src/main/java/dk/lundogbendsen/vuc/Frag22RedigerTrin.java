@@ -1,6 +1,5 @@
 package dk.lundogbendsen.vuc;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,14 +19,14 @@ import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Ikon;
 import dk.lundogbendsen.vuc.domæne.Logik;
-import dk.lundogbendsen.vuc.domæne.Opgave;
+import dk.lundogbendsen.vuc.domæne.Trin;
 
 
-public class Frag22RedigerOpgave extends Fragment implements View.OnClickListener {
-  static String OPGAVE = "OPGAVE";
+public class Frag22RedigerTrin extends Fragment implements View.OnClickListener {
+  static String TRIN = "TRIN";
 
   private Frag2EmneViewpager ejerFragment;
-  public Opgave opgave;
+  public Trin trin;
   private ImageView billede;
   private YouTubeThumbnailView yttn;
   private AQuery aq;
@@ -39,16 +38,16 @@ public class Frag22RedigerOpgave extends Fragment implements View.OnClickListene
                            Bundle savedInstanceState) {
 
 
-    if (opgave==null) opgave = (Opgave) getArguments().getSerializable(OPGAVE);
+    if (trin ==null) trin = (Trin) getArguments().getSerializable(TRIN);
     ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
-    View rod = inflater.inflate(R.layout.frag2_s2_rediger_opgave, container, false);
+    View rod = inflater.inflate(R.layout.frag2_s2_trin_rediger, container, false);
     aq = new AQuery(rod);
     aq.id(R.id.næste).clicked(this);
 
-    aq.id(R.id.overskrift).text(opgave.navn);
-    aq.id(R.id.opgave_multimedie).text(opgave.videoUrl);
-    aq.id(R.id.tekst).text(opgave.tekst);
+    aq.id(R.id.overskrift).text(trin.navn);
+    aq.id(R.id.trin_multimedie).text(trin.videoUrl);
+    aq.id(R.id.tekst).text(trin.tekst);
 
 
     ikoner = new ArrayList(IkonTilDrawable.ikonTilDrawable.keySet());
@@ -80,7 +79,7 @@ public class Frag22RedigerOpgave extends Fragment implements View.OnClickListene
     spinner = aq.id(R.id.billede).getSpinner();
     //adapter.setDropDownViewResource(R.layout.ikon_listeelement);
     spinner.setAdapter(adapter);
-    spinner.setSelection(ikoner.indexOf(opgave.ikon));
+    spinner.setSelection(ikoner.indexOf(trin.ikon));
 
 
     Brugervalg.instans.redigererNu = true;
@@ -97,10 +96,10 @@ public class Frag22RedigerOpgave extends Fragment implements View.OnClickListene
 
   @Override
   public void onClick(View v) {
-    opgave.navn = aq.id(R.id.overskrift).getText().toString();
-    opgave.tekst = aq.id(R.id.tekst).getText().toString();
-    opgave.videoUrl = aq.id(R.id.opgave_multimedie).getText().toString();
-    opgave.ikon = (Ikon) spinner.getSelectedItem();
+    trin.navn = aq.id(R.id.overskrift).getText().toString();
+    trin.tekst = aq.id(R.id.tekst).getText().toString();
+    trin.videoUrl = aq.id(R.id.trin_multimedie).getText().toString();
+    trin.ikon = (Ikon) spinner.getSelectedItem();
     App.instans.firebaseRefLogik.setValue(Logik.instans);
     App.kortToast("Data gemt");
     getFragmentManager().popBackStack();

@@ -66,9 +66,9 @@ public class HovedAkt extends AppCompatActivity
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (App.synligtFragment instanceof Frag22Opgave) {
-          Frag22RedigerOpgave f2 = new Frag22RedigerOpgave();
-          f2.opgave = ((Frag22Opgave) App.synligtFragment).opgave;
+        if (App.synligtFragment instanceof Frag22Trin) {
+          Frag22RedigerTrin f2 = new Frag22RedigerTrin();
+          f2.trin = ((Frag22Trin) App.synligtFragment).trin;
           f2.setArguments(App.synligtFragment.getArguments());
           getSupportFragmentManager().beginTransaction()
                   .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
@@ -76,7 +76,7 @@ public class HovedAkt extends AppCompatActivity
                   .addToBackStack(null).commit();
           return;
         }
-        Snackbar.make(view, "Kun opgaver kan p.t. redigeres", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Kun trin kan p.t. redigeres", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
       }
     });

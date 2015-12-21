@@ -6,7 +6,7 @@
               android:orientation="vertical"
               android:paddingTop="@dimen/activity_vertical_margin"
               android:paddingLeft="@dimen/activity_horizontal_margin"
-              tools:context=".Frag22Opgave">
+              tools:context=".Frag22Trin">
 
 
     <ScrollView
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:id="@+id/opgave_multimedie"
+                android:id="@+id/trin_multimedie"
                 android:adjustViewBounds="true"
                 >
             </com.google.android.youtube.player.YouTubeThumbnailView>

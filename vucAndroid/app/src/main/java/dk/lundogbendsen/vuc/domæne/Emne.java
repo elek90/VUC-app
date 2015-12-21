@@ -5,7 +5,7 @@ package dk.lundogbendsen.vuc.domæne;
  */
 public class Emne {
   public String navn;
-  public Opgave[] opgaver;
+  public Trin[] trin;
 
   public Emne() {
   }

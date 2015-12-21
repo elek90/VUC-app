@@ -2,24 +2,12 @@ package dk.lundogbendsen.vuc;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.androidquery.AQuery;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubeIntents;
-import com.google.android.youtube.player.YouTubeThumbnailLoader;
-import com.google.android.youtube.player.YouTubeThumbnailView;
-
-import dk.lundogbendsen.vuc.diverse.App;
-import dk.lundogbendsen.vuc.diverse.Diverse;
-import dk.lundogbendsen.vuc.domæne.Opgave;
+import dk.lundogbendsen.vuc.domæne.Trin;
 
 
 public class SkrivTekstFrag extends SvarFrag {
@@ -47,7 +35,7 @@ public class SkrivTekstFrag extends SvarFrag {
   }
 
   @Override
-  public void opdaterBesvarelse(Opgave opgave) {
-    opgave.svar.tekst = tekst.getText().toString();
+  public void opdaterBesvarelse(Trin trin) {
+    trin.svar.tekst = tekst.getText().toString();
   }
 }

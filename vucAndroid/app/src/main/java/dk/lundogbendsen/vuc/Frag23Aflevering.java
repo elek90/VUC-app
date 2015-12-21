@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -20,34 +19,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
-import dk.lundogbendsen.vuc.domæne.Opgave;
+import dk.lundogbendsen.vuc.domæne.Trin;
 
 
 public class Frag23Aflevering extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
   private Frag2EmneViewpager ejerFragment;
-  private Opgave opgave;
+  private Trin trin;
 
   private TextView overskrift;
 
   private ListView listView;
   private ListAdapter adapter;
   private Button næste;
-  private ArrayList<Opgave> liste;
+  private ArrayList<Trin> liste;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
 
-    opgave = (Opgave) getArguments().getSerializable(Frag22Opgave.OPGAVE);
+    trin = (Trin) getArguments().getSerializable(Frag22Trin.TRIN);
     ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
-    overskrift.setText(opgave.navn);
+    overskrift.setText(trin.navn);
 
-    liste = new ArrayList<Opgave>(Arrays.asList(Brugervalg.instans.emne.opgaver));
-    liste.remove(opgave);
+    liste = new ArrayList<Trin>(Arrays.asList(Brugervalg.instans.emne.trin));
+    liste.remove(trin);
     adapter = new BaseAdapter() {
       @Override
       public int getCount() {
@@ -69,10 +68,10 @@ public class Frag23Aflevering extends Fragment implements View.OnClickListener, 
       public View getView(int position, View v, ViewGroup parent) {
         if (v==null) v = inflater.inflate(R.layout.frag2_s1_forside_elem, null);
         AQuery aq = new AQuery(v);
-        Opgave opgave = liste.get(position);
-        aq.id(R.id.ikon).image(IkonTilDrawable.ikonTilDrawable.get(opgave.ikon));
-        aq.id(R.id.tekst).text(opgave.navn);
-        aq.id(R.id.status).visibility(opgave.udført?View.VISIBLE:View.GONE);
+        Trin trin = liste.get(position);
+        aq.id(R.id.ikon).image(IkonTilDrawable.ikonTilDrawable.get(trin.ikon));
+        aq.id(R.id.tekst).text(trin.navn);
+        aq.id(R.id.status).visibility(trin.udført?View.VISIBLE:View.GONE);
 
         return v;
       }

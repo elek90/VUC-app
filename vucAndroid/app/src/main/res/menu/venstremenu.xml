@@ -18,7 +18,7 @@
     <item
         android:id="@+id/nulstil_data"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="Nulstil alle opgaver"/>
+        android:title="Nulstil alt"/>
     <item
         android:id="@+id/xnxav_camara"
         android:icon="@android:drawable/stat_notify_error"
