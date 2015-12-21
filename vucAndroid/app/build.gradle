@@ -45,6 +45,5 @@ dependencies {
     compile 'com.android.support:design:23.1.0'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.firebase:firebase-client-android:2.3.1'
-    compile files('libs/bugsense-3.6.jar')
     compile 'com.github.androidquery:androidquery:0.26.9'
 }

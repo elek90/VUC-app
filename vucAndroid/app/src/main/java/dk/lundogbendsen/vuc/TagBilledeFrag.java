@@ -58,7 +58,6 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-
     View rod = inflater.inflate(R.layout.tag_billede_frag, container, false);
     aq = new AQuery(rod);
     aq.id(R.id.tag_billede).clicked(this);
@@ -88,13 +87,10 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
     }
     if (v.getId() == R.id.tag_billede) {
 
-      // Bemærk at jeg måtte have android:configChanges="orientation" for at aktiviteten
-      // ikke blev vendt og jeg mistede billedet. I et rigtigt ville jeg forsyne mine views med
-      // ID'er så deres indhold overlevede at skærmen skiftede orientering
       Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
       // Hvis vi vil læse billedet i fuld opløsning fra ekstern lager/SD-kort skal vi give en URI
-      //filPåEksterntLager = new File(Environment.getExternalStorageDirectory(), "billede.jpg");
-      //i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filPåEksterntLager));
+      filPåEksterntLager = new File(Environment.getExternalStorageDirectory(), "billede.jpg");
+      i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filPåEksterntLager));
       App.onActivityResultListe.add(this);
       getActivity().startActivityForResult(i, TAG_BILLEDE);
     }
@@ -120,13 +116,14 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
           new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-              Map m = null;
               try {
-                m = App.cloudinary.uploader().upload(filDS.createInputStream(), ObjectUtils.asMap("public_id", "sample_remote"));
+                Map m = App.cloudinary.uploader().upload(filDS.createInputStream(), ObjectUtils.asMap("public_id", "sample_remote"));
+                Log.d("cliudinary map="+m);
+                // map={resource_type=image, etag=441f1307c34a040d0746927f36bca2df, signature=9e0b8cd6d7956176b096e489ab916fab87568f63, url=http://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, format=jpg, public_id=sample_remote, version=1450452511, original_filename=file, width=640, created_at=2015-12-18T15:28:31Z, tags=[], bytes=114102, type=upload}
+                return m;
               } catch (IOException e) {
                 e.printStackTrace();
               }
-              Log.d("cliudinary map="+m);
               return null;
             }
           }.execute();
