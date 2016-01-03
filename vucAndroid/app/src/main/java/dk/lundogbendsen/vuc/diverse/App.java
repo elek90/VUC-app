@@ -20,9 +20,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import com.bugsense.trace.BugSenseHandler;
@@ -67,6 +69,7 @@ public class App extends Application {
   public static Firebase firebaseRefLogik;
   public static ArrayList<Fragment> onActivityResultListe = new ArrayList<>();
   public static Cloudinary cloudinary;
+  public static File fillager;
 
 
   @SuppressLint("NewApi")
@@ -87,6 +90,8 @@ public class App extends Application {
     prefs = PreferenceManager.getDefaultSharedPreferences(this);
     fejlsøgning = prefs.getBoolean("fejlsøgning", false);
     res = App.instans.getResources();
+
+    fillager = ContextCompat.getExternalFilesDirs(this, Environment.DIRECTORY_PICTURES)[0];
 
     // HTTP-forbindelser havde en fejl præ froyo, men jeg har også set problemet på Xperia Play, der er 2.3.4 (!)
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {

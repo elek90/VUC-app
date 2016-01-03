@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import dk.lundogbendsen.vuc.diverse.App;
+import dk.lundogbendsen.vuc.diverse.DiverseIO;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Trin;
 
@@ -82,7 +83,7 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
 
       Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
       // Hvis vi vil læse billedet i fuld opløsning fra ekstern lager/SD-kort skal vi give en URI
-      filPåEksterntLager = new File(Environment.getExternalStorageDirectory(), "billede.jpg");
+      filPåEksterntLager = new File(App.fillager, "billede.jpg");
       i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filPåEksterntLager));
       App.onActivityResultListe.add(this);
       getActivity().startActivityForResult(i, TAG_BILLEDE);
@@ -101,10 +102,15 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
       try {
         if (requestCode == VÆLG_BILLEDE) {
           final AssetFileDescriptor filDS = cr.openAssetFileDescriptor(resIntent.getData(), "r");
-          //Bitmap bmp = BitmapFactory.decodeStream(filDS.createInputStream());
-          //ImageView iv = new ImageView(getActivity());
-          //iv.setImageBitmap(bmp);
-          //resultatHolder.addView(iv);
+//          filPåEksterntLager = new File()
+//          DiverseIO.kopier(filDS.createInputStream(), App.fillager);
+
+          Bitmap bmp = BitmapFactory.decodeStream(filDS.createInputStream());
+          ImageView iv = new ImageView(getActivity());
+          iv.setImageBitmap(bmp);
+          resultatHolder.addView(iv);
+
+          /*
 
           new AsyncTask() {
             @Override
@@ -120,7 +126,7 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
               return null;
             }
           }.execute();
-
+          */
         } else if (requestCode == TAG_BILLEDE) {
           ImageView iv = new ImageView(getActivity());
           if (filPåEksterntLager==null) {

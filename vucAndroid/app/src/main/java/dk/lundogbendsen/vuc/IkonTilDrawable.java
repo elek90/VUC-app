@@ -11,7 +11,7 @@ import dk.lundogbendsen.vuc.domæne.Ikon;
  * Created by j on 04-11-15.
  */
 public class IkonTilDrawable {
-  static HashMap<Ikon, Integer> ikonTilDrawable = new LinkedHashMap<>();
+  public static HashMap<Ikon, Integer> ikonTilDrawable = new LinkedHashMap<>();
 
   static {
     ikonTilDrawable.put(Ikon.mail, R.drawable.ta_apps_internet_mail);
