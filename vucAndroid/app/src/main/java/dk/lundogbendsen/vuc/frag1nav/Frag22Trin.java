@@ -29,11 +29,9 @@ import dk.lundogbendsen.vuc.fragtrin.TrinTekstFrag;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 
-public class Frag22Trin extends Fragment implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
-  static String TRIN = "TRIN";
+public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
 
   private Frag2EmneViewpager ejerFragment;
-  public Trin trin;
   private YouTubeThumbnailView yttn;
   private AQuery aq;
   private boolean besvarelsesfragOprettet;
@@ -43,7 +41,6 @@ public class Frag22Trin extends Fragment implements View.OnClickListener, YouTub
                            Bundle savedInstanceState) {
 
 
-    if (trin ==null) trin = (Trin) getArguments().getSerializable(TRIN);
     ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s2_trin, container, false);
@@ -73,33 +70,14 @@ public class Frag22Trin extends Fragment implements View.OnClickListener, YouTub
       if (savedInstanceState==null && !besvarelsesfragOprettet) {
         besvarelsesfragOprettet = true;
         if (trin.svar==null) trin.svar = new Svar();
-
-        if (trin.ikon == Ikon.notesblok || trin.ikon == Ikon.pen_og_blyant) {
-          Fragment f = TrinTekstFrag.nytFragment(trin.svar.tekst);
-          getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
-        }
-
-        if (trin.ikon == Ikon.kamera || trin.ikon == Ikon.foto) {
-          Fragment f = TrinBillederFrag.nytFragment(trin);
+        Fragment f = TrinFrag.nytFragment(trin);
+        if (f!=null) {
           getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
         }
       }
     }
 
     return rod;
-  }
-
-  @Override
-  public void onDestroyView() {
-    List<Fragment> svarfragmenter = getChildFragmentManager().getFragments();
-    if (svarfragmenter != null) for (Fragment f : svarfragmenter) {
-      Log.d("onDestroyView f = " + f);
-      if (f instanceof TrinFrag) {
-        TrinFrag sf = (TrinFrag) f;
-        sf.opdaterBesvarelse(trin);
-      }
-    }
-    super.onDestroyView();
   }
 
   @Override

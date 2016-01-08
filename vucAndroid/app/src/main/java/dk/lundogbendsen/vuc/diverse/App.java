@@ -194,6 +194,7 @@ public class App extends Application {
                 emneliste.add(dataSnapshot.getValue(Emne.class));
                 if (emneliste.size()<h.emneIdListe.size()) return; // flere emner
                 h.emner = emneliste.toArray(h.emner);
+                for (Emne e : h.emner) for (Trin t : e.trin) Trin.idref.put(t.id, t);
                 holdNr++;
                 if (holdNr<Brugervalg.instans.bru.holdListe.length) return; // flere hold
                 Brugervalg.instans.opdaterObservatører();

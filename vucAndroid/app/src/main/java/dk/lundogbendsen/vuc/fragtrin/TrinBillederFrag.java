@@ -47,15 +47,6 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   private boolean ændret;
   private Firebase firebaseTrinSvar;
 
-  public static Fragment nytFragment(Trin trin) {
-    TrinBillederFrag fragment = new TrinBillederFrag();
-    Bundle args = new Bundle();
-    //args.putSerializable(TrinBillederFrag.TEKST, tekst);
-    fragment.setArguments(args);
-    fragment.trin = trin;
-    return fragment;
-  }
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
@@ -103,11 +94,6 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
       firebaseTrinSvar.setValue(svar);
     }
     super.onDestroyView();
-  }
-
-  @Override
-  public void opdaterBesvarelse(Trin trin) {
-    //trin.svar.tekst = tekst.getText().toString();
   }
 
   @Override

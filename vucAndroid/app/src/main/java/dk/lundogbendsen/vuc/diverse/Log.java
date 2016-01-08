@@ -186,4 +186,8 @@ public class Log {
       Log.e(e);
     }
   }
+
+  public static void rapporterFejl(String s) {
+    rapporterFejl(new IllegalStateException(s));
+  }
 }

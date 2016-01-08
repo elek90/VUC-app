@@ -22,11 +22,11 @@ import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
+import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 
-public class Frag23Aflevering extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, AdapterView.OnItemClickListener {
   private Frag2EmneViewpager ejerFragment;
-  private Trin trin;
 
   private TextView overskrift;
 
@@ -40,7 +40,6 @@ public class Frag23Aflevering extends Fragment implements View.OnClickListener, 
                            Bundle savedInstanceState) {
 
 
-    trin = (Trin) getArguments().getSerializable(Frag22Trin.TRIN);
     ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);

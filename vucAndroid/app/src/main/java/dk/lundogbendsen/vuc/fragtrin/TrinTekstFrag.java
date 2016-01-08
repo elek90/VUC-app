@@ -12,16 +12,7 @@ import dk.lundogbendsen.vuc.domæne.Trin;
 
 
 public class TrinTekstFrag extends TrinFrag {
-  static String TEKST = "TEKST";
   private EditText tekst;
-
-  public static Fragment nytFragment(String tekst) {
-    Fragment fragment = new TrinTekstFrag();
-    Bundle args = new Bundle();
-    args.putString(TrinTekstFrag.TEKST, tekst);
-    fragment.setArguments(args);
-    return fragment;
-  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,13 +21,14 @@ public class TrinTekstFrag extends TrinFrag {
 
     View rod = inflater.inflate(R.layout.svar_tekst_frag, container, false);
     tekst = (EditText) rod.findViewById(R.id.tekst);
-    tekst.setText(getArguments().getString(TEKST));
-
+    tekst.setText(trin.tekst);
     return rod;
   }
 
   @Override
-  public void opdaterBesvarelse(Trin trin) {
-    trin.svar.tekst = tekst.getText().toString();
+  public void onDestroyView() {
+    trin.tekst = tekst.getText().toString();
+    //Observatører.ændret(trin):
+    super.onDestroyView();
   }
 }
