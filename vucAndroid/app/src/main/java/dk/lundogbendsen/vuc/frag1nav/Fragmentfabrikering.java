@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.frag1nav;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -92,6 +92,7 @@ public class App extends Application {
           for (Trin trin : emne.trin) {
             trin.emne = emne;
             trin.id = emne.id+"t"+nTrin++;
+            Trin.idref.put(trin.id, trin);
           }
           hold.emneIdListe.add(emne.id);
           //firebaseEmner.child(emne.id).setValue(emne);

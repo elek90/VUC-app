@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.fragsvar;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,17 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Trin;
 
 
-public class SkrivTekstFrag extends SvarFrag {
+public class SvarTekstFrag extends SvarFrag {
   static String TEKST = "TEKST";
   private EditText tekst;
 
   public static Fragment nytFragment(String tekst) {
-    Fragment fragment = new SkrivTekstFrag();
+    Fragment fragment = new SvarTekstFrag();
     Bundle args = new Bundle();
-    args.putString(SkrivTekstFrag.TEKST, tekst);
+    args.putString(SvarTekstFrag.TEKST, tekst);
     fragment.setArguments(args);
     return fragment;
   }
@@ -27,7 +28,7 @@ public class SkrivTekstFrag extends SvarFrag {
                            Bundle savedInstanceState) {
 
 
-    View rod = inflater.inflate(R.layout.skriv_tekst_frag, container, false);
+    View rod = inflater.inflate(R.layout.svar_tekst_frag, container, false);
     tekst = (EditText) rod.findViewById(R.id.tekst);
     tekst.setText(getArguments().getString(TEKST));
 

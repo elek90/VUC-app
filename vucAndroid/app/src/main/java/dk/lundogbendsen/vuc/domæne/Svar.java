@@ -2,8 +2,6 @@ package dk.lundogbendsen.vuc.domæne;
 
 import java.util.ArrayList;
 
-import dk.lundogbendsen.vuc.LydBillede;
-
 /**
  * Created by j on 09-12-15.
  */

@@ -14,8 +14,8 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
-import dk.lundogbendsen.vuc.Frag2EmneViewpager;
-import dk.lundogbendsen.vuc.IkonTilDrawable;
+import dk.lundogbendsen.vuc.frag1nav.Frag2EmneViewpager;
+import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.domæne.Trin;

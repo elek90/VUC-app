@@ -24,7 +24,9 @@ import android.widget.Spinner;
 import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
-import dk.lundogbendsen.vuc.domæne.Logik;
+import dk.lundogbendsen.vuc.frag1nav.Frag1VælgEmne;
+import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
+import dk.lundogbendsen.vuc.frag1nav.Frag22Trin;
 
 public class HovedAkt extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {

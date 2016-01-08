@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.fragsvar;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -28,14 +28,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
+import dk.lundogbendsen.vuc.domæne.LydBillede;
 import dk.lundogbendsen.vuc.domæne.Svar;
 import dk.lundogbendsen.vuc.domæne.Trin;
 
 
-public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
+public class SvarBillederFrag extends SvarFrag implements View.OnClickListener {
   private static final int VÆLG_BILLEDE = 1;
   private static final int TAG_BILLEDE = 2;
   private AQuery aq;
@@ -46,9 +48,9 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
   private Firebase firebaseTrinSvar;
 
   public static Fragment nytFragment(Trin trin) {
-    TagBilledeFrag fragment = new TagBilledeFrag();
+    SvarBillederFrag fragment = new SvarBillederFrag();
     Bundle args = new Bundle();
-    //args.putSerializable(TagBilledeFrag.TEKST, tekst);
+    //args.putSerializable(SvarBillederFrag.TEKST, tekst);
     fragment.setArguments(args);
     fragment.trin = trin;
     return fragment;
@@ -57,14 +59,11 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View rod = inflater.inflate(R.layout.tag_billede_frag, container, false);
+    View rod = inflater.inflate(R.layout.svar_billeder_frag, container, false);
     aq = new AQuery(rod);
     aq.id(R.id.tag_billede).clicked(this);
     aq.id(R.id.galleri).clicked(this);
     recyclerView = (RecyclerView) rod.findViewById(R.id.recyclerView);
-
-    // use this setting to improve performance if you know that changes
-    // in content do not change the layout size of the RecyclerView
     recyclerView.setHasFixedSize(false);
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
     recyclerView.setAdapter(adapter);
@@ -224,7 +223,7 @@ public class TagBilledeFrag extends SvarFrag implements View.OnClickListener {
                                                    int viewType) {
       // create a new view
       View v = LayoutInflater.from(parent.getContext())
-              .inflate(R.layout.tag_billede_listeelem, null, false);
+              .inflate(R.layout.svar_billeder_listeelem, null, false);
       // set the view's size, margins, paddings and layout parameters
       ViewHolder vh = new ViewHolder(v);
       return vh;

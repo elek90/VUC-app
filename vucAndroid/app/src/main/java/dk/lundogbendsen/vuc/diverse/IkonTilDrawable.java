@@ -1,9 +1,10 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.diverse;
 
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Ikon;
 

@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.frag1nav;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,12 +16,17 @@ import com.google.android.youtube.player.YouTubeThumbnailView;
 
 import java.util.List;
 
+import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Ikon;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.domæne.Svar;
+import dk.lundogbendsen.vuc.fragsvar.SvarBillederFrag;
+import dk.lundogbendsen.vuc.fragsvar.SvarTekstFrag;
+import dk.lundogbendsen.vuc.fragsvar.SvarFrag;
 
 
 public class Frag22Trin extends Fragment implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
@@ -70,12 +75,12 @@ public class Frag22Trin extends Fragment implements View.OnClickListener, YouTub
         if (trin.svar==null) trin.svar = new Svar();
 
         if (trin.ikon == Ikon.notesblok || trin.ikon == Ikon.pen_og_blyant) {
-          Fragment f = SkrivTekstFrag.nytFragment(trin.svar.tekst);
+          Fragment f = SvarTekstFrag.nytFragment(trin.svar.tekst);
           getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
         }
 
         if (trin.ikon == Ikon.kamera || trin.ikon == Ikon.foto) {
-          Fragment f = TagBilledeFrag.nytFragment(trin);
+          Fragment f = SvarBillederFrag.nytFragment(trin);
           getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
         }
       }

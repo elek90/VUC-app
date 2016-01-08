@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.domæne;
 
 /**
  * Created by j on 07-01-16.

@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.fragsvar;
 
 import android.support.v4.app.Fragment;
 

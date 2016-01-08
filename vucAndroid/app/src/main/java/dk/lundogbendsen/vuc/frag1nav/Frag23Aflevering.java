@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.frag1nav;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import com.androidquery.AQuery;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 

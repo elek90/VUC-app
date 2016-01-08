@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.frag1nav;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +14,8 @@ import com.google.android.youtube.player.YouTubeThumbnailView;
 
 import java.util.ArrayList;
 
+import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;

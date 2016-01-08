@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.frag1nav;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,10 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.androidquery.AQuery;
-import com.cloudinary.Transformation;
-
-import dk.lundogbendsen.vuc.diverse.App;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 
