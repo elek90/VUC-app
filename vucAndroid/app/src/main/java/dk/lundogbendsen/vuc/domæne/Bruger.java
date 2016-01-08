@@ -7,6 +7,7 @@ public class Bruger {
   public String navn;
   public String konto;
   public Hold[] holdListe;
+  public String id = "b0";
 
   public Bruger() {
   }

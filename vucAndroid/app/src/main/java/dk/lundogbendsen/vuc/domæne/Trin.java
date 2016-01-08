@@ -16,6 +16,7 @@ public class Trin implements Serializable {
   public transient boolean udført;
   public transient Emne emne;
   public transient Svar svar;
+  public String id;
 
   public Trin() {
   }

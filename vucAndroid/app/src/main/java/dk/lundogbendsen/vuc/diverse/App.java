@@ -42,8 +42,12 @@ import java.util.Map;
 
 import dk.lundogbendsen.vuc.BuildConfig;
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.domæne.Bruger;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
+import dk.lundogbendsen.vuc.domæne.Emne;
+import dk.lundogbendsen.vuc.domæne.Hold;
 import dk.lundogbendsen.vuc.domæne.Logik;
+import dk.lundogbendsen.vuc.domæne.Trin;
 
 
 public class App extends Application {
@@ -67,9 +71,37 @@ public class App extends Application {
   private static String versionsnavnDetaljer;
   public static Fragment synligtFragment;
   public static Firebase firebaseRefLogik;
+  public static Firebase firebaseEmner;
+  public static Firebase firebaseSvar;
+  public static boolean opstartTest = true;
   public static ArrayList<Fragment> onActivityResultListe = new ArrayList<>();
   public static Cloudinary cloudinary;
   public static File fillager;
+
+  public void nulstilData() {
+    Logik.instans.lavTestdata();
+    Brugervalg.instans.initTestData(Logik.instans);
+    int nEmne = 1;
+    for (Bruger b : Logik.instans.brugere) {
+      for (Hold hold : b.holdListe) {
+        for (Emne emne : hold.emner) {
+          Firebase fbTilføjEmne = firebaseEmner.push();
+          emne.id = fbTilføjEmne.getKey();
+          //emne.id = "e"+nEmne++;
+          int nTrin = 1;
+          for (Trin trin : emne.trin) {
+            trin.emne = emne;
+            trin.id = emne.id+"t"+nTrin++;
+          }
+          hold.emneIdListe.add(emne.id);
+          //firebaseEmner.child(emne.id).setValue(emne);
+          fbTilføjEmne.setValue(emne);
+
+        }
+      }
+    }
+    App.firebaseRefLogik.setValue(Logik.instans);
+  }
 
 
   @SuppressLint("NewApi")
@@ -134,19 +166,44 @@ public class App extends Application {
     Logik.instans.lavTestdata();
     Brugervalg.instans.initTestData(Logik.instans);
     Firebase.setAndroidContext(this);
-    firebaseRefLogik = new Firebase("https://vuc.firebaseio.com/").child("v2").child("logik");
-    //firebaseRefLogik.setValue(Logik.instans);
+    Firebase firebaseRef = new Firebase("https://vuc.firebaseio.com/v2");
+    firebaseRefLogik = firebaseRef.child("_logik");
+    firebaseEmner = firebaseRef.child("emner");
+    firebaseSvar = firebaseRef.child("svar");
 
     firebaseRefLogik.addValueEventListener(new ValueEventListener() {
+      int holdNr = 0;
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {
-        if (!dataSnapshot.exists()) return;
+        if (!dataSnapshot.exists()) {
+          nulstilData();
+          return;
+        }
         Logik.instans = dataSnapshot.getValue(Logik.class);
-        Logik.instans.lavKonsistent();
-        App.kortToast("Data er blevet opdateret\n(ud i hovedmenuen for at se ændringerne)");
+        Brugervalg.instans.bru = Logik.instans.brugere[0];
+        Brugervalg.instans.hold = Brugervalg.instans.bru.holdListe[0];
+
+        for (final Hold h : Brugervalg.instans.bru.holdListe) {
+          h.emner = new Emne[h.emneIdListe.size()];
+          final ArrayList<Emne> emneliste = new ArrayList<Emne>(h.emner.length);
+          for (String emneId : h.emneIdListe) {
+            firebaseEmner.child(emneId).addListenerForSingleValueEvent(new FbLytter() {
+              @Override
+              public void onDataChange(DataSnapshot dataSnapshot) {
+                emneliste.add(dataSnapshot.getValue(Emne.class));
+                if (emneliste.size()<h.emneIdListe.size()) return; // flere emner
+                h.emner = emneliste.toArray(h.emner);
+                holdNr++;
+                if (holdNr<Brugervalg.instans.bru.holdListe.length) return; // flere hold
+                Brugervalg.instans.opdaterObservatører();
+                App.kortToast("Data er blevet opdateret\n(ud i hovedmenuen for at se ændringerne)");
+              }
+            });
+          }
+        }
+
+        //Logik.instans.lavKonsistent();
         if (App.fejlsøgning) App.kortToast("Firebase data "+Logik.instans);
-        Brugervalg.instans.initTestData(Logik.instans);
-        Brugervalg.instans.opdaterObservatører();
       }
 
       @Override
@@ -163,8 +220,8 @@ public class App extends Application {
     config.put("api_key",  res.getString(R.string.cloudinary_api_key));
     config.put("api_secret", res.getString(R.string.cloudinary_api_secret));
     cloudinary = new Cloudinary(config);
-
   }
+
 
   /*
    * Kilde: http://developer.android.com/training/basics/network-ops/managing.html

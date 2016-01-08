@@ -151,9 +151,7 @@ public class HovedAkt extends AppCompatActivity
     } else if (id == R.id.hent_ny_version) {
       startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(AppOpdatering.APK_URL)));
     } else if (id == R.id.nulstil_data) {
-      Logik.instans.lavTestdata();
-      Brugervalg.instans.initTestData(Logik.instans);
-      App.firebaseRefLogik.setValue(Logik.instans);
+      App.instans.nulstilData();
     } else {
       Snackbar.make(findViewById(R.id.hovedakt_indhold), "Emner med ¹ er ikke implementeret endnu", Snackbar.LENGTH_LONG).show();
     }
