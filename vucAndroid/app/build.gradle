@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
-        versionName "0.1.2 (9. december) lærerredigering"
+        versionName "0.1.4 (8. januar)"
     }
     buildTypes {
         release {
@@ -41,8 +41,9 @@ scp /home/j/Projekter/VUC/VUC-app/vucAndroid/app/build/outputs/apk/app-debug.apk
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:design:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.firebase:firebase-client-android:2.3.1'
     compile 'com.github.androidquery:androidquery:0.26.9'
