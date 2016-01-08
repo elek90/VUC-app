@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc.fragsvar;
+package dk.lundogbendsen.vuc.fragtrin;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -37,7 +37,7 @@ import dk.lundogbendsen.vuc.domæne.Svar;
 import dk.lundogbendsen.vuc.domæne.Trin;
 
 
-public class SvarBillederFrag extends SvarFrag implements View.OnClickListener {
+public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   private static final int VÆLG_BILLEDE = 1;
   private static final int TAG_BILLEDE = 2;
   private AQuery aq;
@@ -48,9 +48,9 @@ public class SvarBillederFrag extends SvarFrag implements View.OnClickListener {
   private Firebase firebaseTrinSvar;
 
   public static Fragment nytFragment(Trin trin) {
-    SvarBillederFrag fragment = new SvarBillederFrag();
+    TrinBillederFrag fragment = new TrinBillederFrag();
     Bundle args = new Bundle();
-    //args.putSerializable(SvarBillederFrag.TEKST, tekst);
+    //args.putSerializable(TrinBillederFrag.TEKST, tekst);
     fragment.setArguments(args);
     fragment.trin = trin;
     return fragment;

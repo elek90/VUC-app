@@ -24,9 +24,9 @@ import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Ikon;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.domæne.Svar;
-import dk.lundogbendsen.vuc.fragsvar.SvarBillederFrag;
-import dk.lundogbendsen.vuc.fragsvar.SvarTekstFrag;
-import dk.lundogbendsen.vuc.fragsvar.SvarFrag;
+import dk.lundogbendsen.vuc.fragtrin.TrinBillederFrag;
+import dk.lundogbendsen.vuc.fragtrin.TrinTekstFrag;
+import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 
 public class Frag22Trin extends Fragment implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
@@ -75,12 +75,12 @@ public class Frag22Trin extends Fragment implements View.OnClickListener, YouTub
         if (trin.svar==null) trin.svar = new Svar();
 
         if (trin.ikon == Ikon.notesblok || trin.ikon == Ikon.pen_og_blyant) {
-          Fragment f = SvarTekstFrag.nytFragment(trin.svar.tekst);
+          Fragment f = TrinTekstFrag.nytFragment(trin.svar.tekst);
           getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
         }
 
         if (trin.ikon == Ikon.kamera || trin.ikon == Ikon.foto) {
-          Fragment f = SvarBillederFrag.nytFragment(trin);
+          Fragment f = TrinBillederFrag.nytFragment(trin);
           getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
         }
       }
@@ -94,8 +94,8 @@ public class Frag22Trin extends Fragment implements View.OnClickListener, YouTub
     List<Fragment> svarfragmenter = getChildFragmentManager().getFragments();
     if (svarfragmenter != null) for (Fragment f : svarfragmenter) {
       Log.d("onDestroyView f = " + f);
-      if (f instanceof SvarFrag) {
-        SvarFrag sf = (SvarFrag) f;
+      if (f instanceof TrinFrag) {
+        TrinFrag sf = (TrinFrag) f;
         sf.opdaterBesvarelse(trin);
       }
     }

@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc.fragsvar;
+package dk.lundogbendsen.vuc.fragtrin;
 
 import android.support.v4.app.Fragment;
 
@@ -7,7 +7,7 @@ import dk.lundogbendsen.vuc.domæne.Trin;
 /**
  * Created by j on 09-12-15.
  */
-public abstract class SvarFrag extends Fragment {
+public abstract class TrinFrag extends Fragment {
 
   public Trin trin;
 

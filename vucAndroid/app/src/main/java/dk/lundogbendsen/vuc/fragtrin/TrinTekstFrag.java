@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc.fragsvar;
+package dk.lundogbendsen.vuc.fragtrin;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,14 +11,14 @@ import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Trin;
 
 
-public class SvarTekstFrag extends SvarFrag {
+public class TrinTekstFrag extends TrinFrag {
   static String TEKST = "TEKST";
   private EditText tekst;
 
   public static Fragment nytFragment(String tekst) {
-    Fragment fragment = new SvarTekstFrag();
+    Fragment fragment = new TrinTekstFrag();
     Bundle args = new Bundle();
-    args.putString(SvarTekstFrag.TEKST, tekst);
+    args.putString(TrinTekstFrag.TEKST, tekst);
     fragment.setArguments(args);
     return fragment;
   }
