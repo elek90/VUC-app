@@ -9,6 +9,8 @@ import android.net.NetworkInfo;
 import java.util.ArrayList;
 import java.util.List;
 
+import dk.lundogbendsen.vuc.App;
+
 /**
  * Created by j on 06-03-14.
  */

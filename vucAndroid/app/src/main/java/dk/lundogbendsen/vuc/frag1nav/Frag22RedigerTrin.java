@@ -1,7 +1,6 @@
 package dk.lundogbendsen.vuc.frag1nav;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +15,17 @@ import java.util.ArrayList;
 
 import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.R;
-import dk.lundogbendsen.vuc.diverse.App;
+import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Ikon;
 import dk.lundogbendsen.vuc.domæne.Logik;
-import dk.lundogbendsen.vuc.domæne.Trin;
+import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 
-public class Frag22RedigerTrin extends Fragment implements View.OnClickListener {
-  static String TRIN = "TRIN";
+public class Frag22RedigerTrin extends TrinFrag implements View.OnClickListener {
 
   private Frag2EmneViewpager ejerFragment;
-  public Trin trin;
   private ImageView billede;
   private YouTubeThumbnailView yttn;
   private AQuery aq;
@@ -40,7 +37,6 @@ public class Frag22RedigerTrin extends Fragment implements View.OnClickListener 
                            Bundle savedInstanceState) {
 
 
-    if (trin ==null) trin = (Trin) getArguments().getSerializable(TRIN);
     ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s2_trin_rediger, container, false);

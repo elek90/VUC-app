@@ -14,18 +14,11 @@ import com.google.android.youtube.player.YouTubeIntents;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 
-import java.util.List;
-
 import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.R;
-import dk.lundogbendsen.vuc.diverse.App;
+import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.diverse.Diverse;
-import dk.lundogbendsen.vuc.diverse.Log;
-import dk.lundogbendsen.vuc.domæne.Ikon;
-import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.domæne.Svar;
-import dk.lundogbendsen.vuc.fragtrin.TrinBillederFrag;
-import dk.lundogbendsen.vuc.fragtrin.TrinTekstFrag;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 

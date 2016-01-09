@@ -21,7 +21,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import dk.lundogbendsen.vuc.diverse.App;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.frag1nav.Frag1VælgEmne;
@@ -70,7 +69,6 @@ public class HovedAkt extends AppCompatActivity
       public void onClick(View view) {
         if (App.synligtFragment instanceof Frag22Trin) {
           Frag22RedigerTrin f2 = new Frag22RedigerTrin();
-          f2.trin = ((Frag22Trin) App.synligtFragment).trin;
           f2.setArguments(App.synligtFragment.getArguments());
           getSupportFragmentManager().beginTransaction()
                   .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
@@ -149,6 +147,7 @@ public class HovedAkt extends AppCompatActivity
       getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     } else if (id == R.id.redigeringstilstand) {
       Brugervalg.instans.redigeringstilstand = !Brugervalg.instans.redigeringstilstand;
+      App.prefs.edit().putBoolean("redigeringstilstand",Brugervalg.instans.redigeringstilstand).commit();
       Brugervalg.instans.opdaterObservatører();
     } else if (id == R.id.hent_ny_version) {
       startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(AppOpdatering.APK_URL)));

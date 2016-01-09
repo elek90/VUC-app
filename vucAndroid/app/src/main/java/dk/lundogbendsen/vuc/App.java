@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc.diverse;
+package dk.lundogbendsen.vuc;
 
 /**
  * @author j
@@ -40,8 +40,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import dk.lundogbendsen.vuc.BuildConfig;
-import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.diverse.AppOpdatering;
+import dk.lundogbendsen.vuc.diverse.FbLytter;
+import dk.lundogbendsen.vuc.diverse.FilCache;
+import dk.lundogbendsen.vuc.diverse.Log;
+import dk.lundogbendsen.vuc.diverse.Netvaerksstatus;
 import dk.lundogbendsen.vuc.domæne.Bruger;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Emne;
@@ -56,7 +59,7 @@ public class App extends Application {
   public static App instans;
   public static SharedPreferences prefs;
   public static ConnectivityManager connectivityManager;
-  public static String versionsnavn = "(ukendt)";
+  public static String versionsnavn = BuildConfig.VERSION_NAME;
   public static NotificationManager notificationManager;
   public static AudioManager audioManager;
   public static boolean fejlsøgning = false;
@@ -73,7 +76,7 @@ public class App extends Application {
   public static Firebase firebaseRefLogik;
   public static Firebase firebaseEmner;
   public static Firebase firebaseSvar;
-  public static boolean opstartTest = true;
+  public static boolean opstartTest = false;
   public static ArrayList<Fragment> onActivityResultListe = new ArrayList<>();
   public static Cloudinary cloudinary;
   public static File fillager;
@@ -85,9 +88,9 @@ public class App extends Application {
     for (Bruger b : Logik.instans.brugere) {
       for (Hold hold : b.holdListe) {
         for (Emne emne : hold.emner) {
-          Firebase fbTilføjEmne = firebaseEmner.push();
-          emne.id = fbTilføjEmne.getKey();
-          //emne.id = "e"+nEmne++;
+          //Firebase fbTilføjEmne = firebaseEmner.push();
+          //emne.id = fbTilføjEmne.getKey();
+          emne.id = "e"+nEmne++;
           int nTrin = 1;
           for (Trin trin : emne.trin) {
             trin.emne = emne;
@@ -96,7 +99,7 @@ public class App extends Application {
           }
           hold.emneIdListe.add(emne.id);
           //firebaseEmner.child(emne.id).setValue(emne);
-          fbTilføjEmne.setValue(emne);
+          //fbTilføjEmne.setValue(emne);
 
         }
       }
@@ -139,7 +142,7 @@ public class App extends Application {
       }
       //noinspection ConstantConditions
       PackageInfo pi = getPackageManager().getPackageInfo(packageName, 0);
-      App.versionsnavn = pi.versionName;
+      //App.versionsnavn = pi.versionName;
       App.versionsnavnDetaljer = packageName + "/" + pi.versionName;
       //while (PRODUKTION_PÅ_PRØVE && App.versionsnavn.endsWith("x")) App.versionsnavn = App.versionsnavn.substring(0, App.versionsnavn.length()-1);
       if (EMULATOR) App.versionsnavnDetaljer += " EMU";
@@ -215,6 +218,7 @@ public class App extends Application {
     Log.d("onCreate tog " + (System.currentTimeMillis() - TIDSSTEMPEL_VED_OPSTART) + " ms");
 
     AppOpdatering.tjekForNyAPK(this);
+    Brugervalg.instans.redigeringstilstand = App.prefs.getBoolean("redigeringstilstand",false);
 
 
     Map config = new HashMap();

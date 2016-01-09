@@ -12,6 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 
@@ -32,6 +33,12 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
 
     Brugervalg.instans.observatører.add(this);
     run();
+    Brugervalg.instans.observatører.add(new Runnable() {
+      @Override
+      public void run() {
+        if (App.opstartTest) onItemClick(null, null, 0, 0);
+      }
+    });
     return rod;
   }
 

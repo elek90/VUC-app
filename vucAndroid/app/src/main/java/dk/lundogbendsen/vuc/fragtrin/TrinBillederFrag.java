@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,12 +28,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import dk.lundogbendsen.vuc.R;
-import dk.lundogbendsen.vuc.diverse.App;
+import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.LydBillede;
 import dk.lundogbendsen.vuc.domæne.Svar;
-import dk.lundogbendsen.vuc.domæne.Trin;
 
 
 public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {

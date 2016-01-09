@@ -11,6 +11,8 @@ import java.net.URL;
 import java.util.Date;
 import java.util.zip.GZIPInputStream;
 
+import dk.lundogbendsen.vuc.App;
+
 /**
  * @author Jacob Nordfalk
  */

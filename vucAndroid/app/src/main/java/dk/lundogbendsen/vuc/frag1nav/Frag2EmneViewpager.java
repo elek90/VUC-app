@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 
@@ -58,6 +59,11 @@ public class Frag2EmneViewpager extends Fragment {
       public void onPageScrollStateChanged(int state) {
       }
     });
+
+    if (App.opstartTest) {
+      App.opstartTest = false;
+      viewPager.setCurrentItem(faner.size()-2);
+    }
 
     return rod;
   }
