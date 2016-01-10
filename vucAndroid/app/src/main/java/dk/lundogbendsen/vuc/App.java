@@ -29,10 +29,6 @@ import android.widget.Toast;
 
 import com.bugsense.trace.BugSenseHandler;
 import com.cloudinary.Cloudinary;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,16 +37,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
-import dk.lundogbendsen.vuc.diverse.FbLytter;
+import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.diverse.FilCache;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.diverse.Netvaerksstatus;
-import dk.lundogbendsen.vuc.domæne.Bruger;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
-import dk.lundogbendsen.vuc.domæne.Emne;
-import dk.lundogbendsen.vuc.domæne.Hold;
 import dk.lundogbendsen.vuc.domæne.Logik;
-import dk.lundogbendsen.vuc.domæne.Trin;
 
 
 public class App extends Application {
@@ -73,38 +65,16 @@ public class App extends Application {
   private static SharedPreferences grunddata_prefs;
   private static String versionsnavnDetaljer;
   public static Fragment synligtFragment;
-  public static Firebase firebaseRefLogik;
-  public static Firebase firebaseEmner;
-  public static Firebase firebaseSvar;
   public static boolean opstartTest = true;
   public static ArrayList<Fragment> onActivityResultListe = new ArrayList<>();
   public static Cloudinary cloudinary;
   public static File fillager;
+  public static int erIgang;
 
   public void nulstilData() {
     Logik.instans.lavTestdata();
-    Brugervalg.instans.initTestData(Logik.instans);
-    int nEmne = 1;
-    for (Bruger b : Logik.instans.brugere) {
-      for (Hold hold : b.holdListe) {
-        for (Emne emne : hold.emner) {
-          //Firebase fbTilføjEmne = firebaseEmner.push();
-          //emne.id = fbTilføjEmne.getKey();
-          emne.id = "e"+nEmne++;
-          int nTrin = 1;
-          for (Trin trin : emne.trin) {
-            trin.emne = emne;
-            trin.id = emne.id+"t"+nTrin++;
-            Trin.idref.put(trin.id, trin);
-          }
-          hold.emneIdListe.add(emne.id);
-          firebaseEmner.child(emne.id).setValue(emne);
-          //fbTilføjEmne.setValue(emne);
-
-        }
-      }
-    }
-    App.firebaseRefLogik.setValue(Logik.instans);
+    Brugervalg.instans.initTestdata(Logik.instans);
+    Fb.gemTestdata();
   }
 
 
@@ -168,59 +138,8 @@ public class App extends Application {
     }
 
     Logik.instans.lavTestdata();
-    Brugervalg.instans.initTestData(Logik.instans);
-    Firebase.setAndroidContext(this);
-    Firebase firebaseRef = new Firebase("https://vuc.firebaseio.com/v2");
-    firebaseRefLogik = firebaseRef.child("_logik");
-    firebaseEmner = firebaseRef.child("emner");
-    firebaseSvar = firebaseRef.child("svar");
-
-    firebaseRefLogik.addValueEventListener(new ValueEventListener() {
-      int holdNr = 0;
-      @Override
-      public void onDataChange(DataSnapshot dataSnapshot) {
-        if (!dataSnapshot.exists()) {
-          nulstilData();
-          return;
-        }
-        Logik.instans = dataSnapshot.getValue(Logik.class);
-        Brugervalg.instans.bru = Logik.instans.brugere[0];
-        Brugervalg.instans.hold = Brugervalg.instans.bru.holdListe[0];
-
-        for (final Hold h : Brugervalg.instans.bru.holdListe) {
-          h.emner = new Emne[h.emneIdListe.size()];
-          final ArrayList<Emne> emneliste = new ArrayList<Emne>(h.emner.length);
-          for (final String emneId : h.emneIdListe) {
-            firebaseEmner.child(emneId).addListenerForSingleValueEvent(new FbLytter() {
-              @Override
-              public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.exists()) {
-                  Log.d("Emne "+emneId+" fandtes ikke i "+firebaseEmner);
-                  App.opstartTest = false;
-                  h.emner = new Emne[0];
-                  return;
-                }
-                emneliste.add(dataSnapshot.getValue(Emne.class));
-                if (emneliste.size()<h.emneIdListe.size()) return; // flere emner
-                h.emner = emneliste.toArray(h.emner);
-                for (Emne e : h.emner) for (Trin t : e.trin) Trin.idref.put(t.id, t);
-                holdNr++;
-                if (holdNr<Brugervalg.instans.bru.holdListe.length) return; // flere hold
-                Brugervalg.instans.opdaterObservatører();
-                App.kortToast("Data er blevet opdateret\n(ud i hovedmenuen for at se ændringerne)");
-              }
-            });
-          }
-        }
-
-        //Logik.instans.lavKonsistent();
-        if (App.fejlsøgning) App.kortToast("Firebase data "+Logik.instans);
-      }
-
-      @Override
-      public void onCancelled(FirebaseError firebaseError) {
-      }
-    });
+    Brugervalg.instans.initTestdata(Logik.instans);
+    Fb.initFb();
     Log.d("onCreate tog " + (System.currentTimeMillis() - TIDSSTEMPEL_VED_OPSTART) + " ms");
 
     AppOpdatering.tjekForNyAPK(this);
@@ -332,12 +251,20 @@ public class App extends Application {
   }
 
 
-  /** Kan kaldet til at afgøre om vi er igang med at teste noget fra en main()-metode eller app'en rent faktisk kører */
+  /** Kan kaldes for at afgøre om vi er igang med at teste noget fra en main()-metode eller app'en rent faktisk kører */
   public static boolean testFraMain() {
     return instans == null;
   }
 
   public static void udestår(String hvad) {
     langToast("UDESTÅR:\n"+hvad);
+  }
+
+  public static void sætErIGang(boolean iGang) {
+    erIgang += iGang?1:-1;
+    Log.d("erIgang="+erIgang + "  "+aktivitetIForgrunden);
+    if (aktivitetIForgrunden instanceof HovedAkt) {
+      ((HovedAkt) aktivitetIForgrunden).opdaterErIGang();
+    }
   }
 }

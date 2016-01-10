@@ -19,9 +19,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
+import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.frag1nav.Frag1VælgEmne;
 import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
@@ -33,6 +35,7 @@ public class HovedAkt extends AppCompatActivity
   private DrawerLayout drawer;
   private FloatingActionButton fab;
   private NavigationView navigationView;
+  private ProgressBar progressBar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class HovedAkt extends AppCompatActivity
     setContentView(R.layout.hoved_akt);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 
     drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -166,5 +170,23 @@ public class HovedAkt extends AppCompatActivity
     System.out.println("onActivityResult AKT"+ requestCode + " gav resultat " + resultCode + " med data=" + data);
     super.onActivityResult(requestCode, resultCode, data);
     for (Fragment f : App.onActivityResultListe) f.onActivityResult(requestCode, resultCode, data);
+  }
+
+  public void opdaterErIGang() {
+    Log.d("erIgang XX="+(App.erIgang>0));
+    progressBar.setVisibility(App.erIgang>0?View.VISIBLE:View.GONE);
+  }
+
+  @Override
+  protected void onResume() {
+    opdaterErIGang();
+    App.instans.aktivitetStartet(this);
+    super.onResume();
+  }
+
+  @Override
+  protected void onPause() {
+    App.instans.aktivitetStoppet(this);
+    super.onPause();
   }
 }

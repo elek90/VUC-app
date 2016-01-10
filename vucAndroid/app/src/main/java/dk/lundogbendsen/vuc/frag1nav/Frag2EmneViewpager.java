@@ -19,6 +19,7 @@ import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
+import dk.lundogbendsen.vuc.firebase.Fb;
 
 public class Frag2EmneViewpager extends Fragment {
 
@@ -60,12 +61,23 @@ public class Frag2EmneViewpager extends Fragment {
       }
     });
 
-    if (App.opstartTest) {
-      App.opstartTest = false;
-      viewPager.setCurrentItem(faner.size()-2);
-    }
-
+    Fb.indlæsSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne, new Runnable() {
+      @Override
+      public void run() {
+        viewPager.getAdapter().notifyDataSetChanged();
+        if (App.opstartTest) {
+          App.opstartTest = false;
+          viewPager.setCurrentItem(faner.size()-2);
+        }
+      }
+    });
     return rod;
+  }
+
+  @Override
+  public void onPause() {
+    Fb.gemSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne);
+    super.onPause();
   }
 
   public void næste() {

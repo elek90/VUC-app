@@ -17,17 +17,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.androidquery.AQuery;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.ValueEventListener;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.DiverseIO;
-import dk.lundogbendsen.vuc.diverse.FbLytter;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Optagelse;
@@ -40,7 +36,6 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   private AQuery aq;
   private File filPåEksterntLager;
   private RecyclerView recyclerView;
-  private Firebase firebaseTrinSvar;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,8 +48,6 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
     recyclerView.setHasFixedSize(false);
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
     recyclerView.setAdapter(adapter);
-    firebaseTrinSvar = App.firebaseSvar.child(Brugervalg.instans.bru.id).child(trin.id);
-    firebaseTrinSvar.addValueEventListener(firebaseRefListener);
     if (trin.svar ==null) {
       trin.svar = new Svar(Brugervalg.instans.bru, trin);
     }
@@ -62,27 +55,9 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
     return rod;
   }
 
-  ValueEventListener firebaseRefListener = new FbLytter() {
-    @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
-      if (!dataSnapshot.exists()) {
-        // ok, så bruger vi den vi har
-        return;
-      }
-      trin.svar = dataSnapshot.getValue(Svar.class);
-      adapter.notifyDataSetChanged();
-    }
-  };
-
   @Override
   public void onDestroyView() {
     App.onActivityResultListe.remove(this);
-    firebaseTrinSvar.removeEventListener(firebaseRefListener);
-    if (trin.svar.ændretSkalGemmes) {
-      // Gem i Firebase
-      firebaseTrinSvar.setValue(trin.svar);
-      trin.svar.ændretSkalGemmes = false;
-    }
     super.onDestroyView();
   }
 
@@ -200,6 +175,7 @@ XXX efter gebnstart
     @Override
     public void onClick(View v) {
       if (v==slet) {
+        trin.svar.ændretSkalGemmes = true;
         trin.svar.optagelser.remove(getAdapterPosition());
         adapter.notifyItemRemoved(getAdapterPosition());
       } else {
