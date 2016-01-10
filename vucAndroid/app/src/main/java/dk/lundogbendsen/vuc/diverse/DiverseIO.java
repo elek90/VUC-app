@@ -15,7 +15,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import dk.lundogbendsen.vuc.App;
 
 
 public class DiverseIO {
@@ -131,5 +135,16 @@ public class DiverseIO {
     }
     Log.d("sletFilerÆldreEnd: " + mappe.getName() + ": " + antalFilerDerBlevSlettet + " filer blev slettet, og " + antalByteDerBlevSlettet / 1000 + " kb frigivet");
     return antalByteDerBlevSlettet;
+  }
+
+  public static File opretUnikFil(String filnavn, String endelse) {
+    String tidsstempel = new SimpleDateFormat("MMdd_HHmm").format(new Date());
+    int n = 0;
+    File fil;
+    do { // lav unikt filnavn
+      fil = new File(App.fillager, filnavn+"_"+tidsstempel+(n++==0?"":"_"+n) + endelse);
+    } while (fil.exists());
+    fil.getParentFile().mkdirs();
+    return fil;
   }
 }

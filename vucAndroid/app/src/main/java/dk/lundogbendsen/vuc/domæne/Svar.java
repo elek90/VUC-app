@@ -7,13 +7,14 @@ import java.util.ArrayList;
  */
 public class Svar {
   public String tekst = "";
-  public ArrayList<LydBillede> lydBilleder;
+  public ArrayList<Optagelse> optagelser;
   public String trinId;
   public String brugerId;
 
   public transient String id;
   public transient Trin trin;
   public transient Bruger bruger;
+  public transient boolean ændretSkalGemmes;
 
   public Svar() {
   }

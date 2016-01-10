@@ -76,7 +76,7 @@ public class App extends Application {
   public static Firebase firebaseRefLogik;
   public static Firebase firebaseEmner;
   public static Firebase firebaseSvar;
-  public static boolean opstartTest = false;
+  public static boolean opstartTest = true;
   public static ArrayList<Fragment> onActivityResultListe = new ArrayList<>();
   public static Cloudinary cloudinary;
   public static File fillager;
@@ -98,7 +98,7 @@ public class App extends Application {
             Trin.idref.put(trin.id, trin);
           }
           hold.emneIdListe.add(emne.id);
-          //firebaseEmner.child(emne.id).setValue(emne);
+          firebaseEmner.child(emne.id).setValue(emne);
           //fbTilføjEmne.setValue(emne);
 
         }
@@ -190,10 +190,16 @@ public class App extends Application {
         for (final Hold h : Brugervalg.instans.bru.holdListe) {
           h.emner = new Emne[h.emneIdListe.size()];
           final ArrayList<Emne> emneliste = new ArrayList<Emne>(h.emner.length);
-          for (String emneId : h.emneIdListe) {
+          for (final String emneId : h.emneIdListe) {
             firebaseEmner.child(emneId).addListenerForSingleValueEvent(new FbLytter() {
               @Override
               public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                  Log.d("Emne "+emneId+" fandtes ikke i "+firebaseEmner);
+                  App.opstartTest = false;
+                  h.emner = new Emne[0];
+                  return;
+                }
                 emneliste.add(dataSnapshot.getValue(Emne.class));
                 if (emneliste.size()<h.emneIdListe.size()) return; // flere emner
                 h.emner = emneliste.toArray(h.emner);

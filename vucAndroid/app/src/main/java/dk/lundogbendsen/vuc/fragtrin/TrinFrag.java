@@ -41,7 +41,7 @@ public abstract class TrinFrag extends Fragment {
     String id = getArguments().getString(TRINID);
     trin = Trin.idref.get(id);
     if (trin==null) {
-      trin = new Trin(Ikon.advarsel, "trin mangler for "+getArguments());
+      trin = new Trin(Ikon.advarsel, "trin mangler for "+id+" "+getArguments());
       Log.rapporterFejl(trin.navn);
     }
   }

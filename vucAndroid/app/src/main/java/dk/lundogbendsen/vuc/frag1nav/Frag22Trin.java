@@ -56,17 +56,15 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
         }
       });
     }
-    if (trin.tekst != null) {
-      aq.id(R.id.tekst).text(trin.tekst);
-      Linkify.addLinks(aq.getTextView(), Linkify.ALL);
-    } else {
-      if (savedInstanceState==null && !besvarelsesfragOprettet) {
-        besvarelsesfragOprettet = true;
+
+    aq.id(R.id.tekst).text(trin.tekst).visibility(aq.getText().length()>0?View.VISIBLE:View.GONE);
+    Linkify.addLinks(aq.getTextView(), Linkify.ALL);
+    if (savedInstanceState==null && !besvarelsesfragOprettet) {
+      besvarelsesfragOprettet = true;
+      Fragment f = TrinFrag.nytFragment(trin);
+      if (f!=null) {
         if (trin.svar==null) trin.svar = new Svar();
-        Fragment f = TrinFrag.nytFragment(trin);
-        if (f!=null) {
-          getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
-        }
+        getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
       }
     }
 

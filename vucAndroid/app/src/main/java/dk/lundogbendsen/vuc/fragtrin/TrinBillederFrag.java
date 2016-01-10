@@ -3,35 +3,34 @@ package dk.lundogbendsen.vuc.fragtrin;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.androidquery.AQuery;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.diverse.DiverseIO;
+import dk.lundogbendsen.vuc.diverse.FbLytter;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
-import dk.lundogbendsen.vuc.domæne.LydBillede;
+import dk.lundogbendsen.vuc.domæne.Optagelse;
 import dk.lundogbendsen.vuc.domæne.Svar;
 
 
@@ -42,7 +41,6 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   private File filPåEksterntLager;
   private RecyclerView recyclerView;
   private Svar svar;
-  private boolean ændret;
   private Firebase firebaseTrinSvar;
 
   @Override
@@ -62,12 +60,11 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
       trin.svar = new Svar(Brugervalg.instans.bru, trin);
     }
     svar = trin.svar;
-    if (svar.lydBilleder==null) svar.lydBilleder = new ArrayList<LydBillede>();
-    ændret = false;
+    if (svar.optagelser ==null) svar.optagelser = new ArrayList<Optagelse>();
     return rod;
   }
 
-  ValueEventListener firebaseRefListener = new ValueEventListener() {
+  ValueEventListener firebaseRefListener = new FbLytter() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
       if (!dataSnapshot.exists()) {
@@ -77,19 +74,16 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
       svar = trin.svar = dataSnapshot.getValue(Svar.class);
       adapter.notifyDataSetChanged();
     }
-
-    @Override
-    public void onCancelled(FirebaseError firebaseError) {
-    }
   };
 
   @Override
   public void onDestroyView() {
     App.onActivityResultListe.remove(this);
     firebaseTrinSvar.removeEventListener(firebaseRefListener);
-    if (ændret) {
+    if (svar.ændretSkalGemmes) {
       // Gem i Firebase
       firebaseTrinSvar.setValue(svar);
+      svar.ændretSkalGemmes = false;
     }
     super.onDestroyView();
   }
@@ -105,26 +99,28 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
 
       Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
       // Hvis vi vil læse billedet i fuld opløsning fra ekstern lager/SD-kort skal vi give en URI
-      filPåEksterntLager = createImageFile();// new File(App.fillager, "billede.jpg");
+      filPåEksterntLager = DiverseIO.opretUnikFil("TRIN_" + trin.id, ".jpg");
       i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filPåEksterntLager));
       App.onActivityResultListe.add(this);
       getActivity().startActivityForResult(i, TAG_BILLEDE);
     } catch (Exception e) { Log.rapporterFejl(e); }
   }
 
-  private File createImageFile() throws IOException {
-    // Create an image file name
-    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-    String imageFileName = "JPEG_" + timeStamp + "_";
-    File storageDir = Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES);
-    File image = File.createTempFile(
-            imageFileName,  /* prefix */
-            ".jpg",         /* suffix */
-            storageDir      /* directory */
-    );
-    return image;
-  }
+/*
+01-09 17:34:19.728 8921-8921/dk.lundogbendsen.vuc.beta W/ImageView: Unable to open content: content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Fimages%2Fmedia%2F15476/ACTUAL/2062263558
+                                                                    java.lang.SecurityException: Permission Denial: opening provider com.google.android.apps.photos.contentprovider.MediaContentProvider from ProcessRecord{5c649a8 8921:dk.lundogbendsen.vuc.beta/u0a284} (pid=8921, uid=10284) that is not exported from uid 10257
+
+
+01-09 17:35:06.947 8921-8921/dk.lundogbendsen.vuc.beta I/System.out: onActivityResult AKT1 gav resultat -1 med data=Intent { dat=content://com.google.android.apps.photos.contentprovider/-1/1/content://media/external/images/media/15400/ACTUAL/962249955 flg=0x1 (has clip) }
+XXX efter gebnstart
+01-09 17:38:25.481 13325-13325/dk.lundogbendsen.vuc.beta W/ImageView: Unable to open content: content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Fimages%2Fmedia%2F15400/ACTUAL/962249955
+                                                                      java.lang.SecurityException: Permission Denial: opening provider com.google.android.apps.photos.contentprovider.MediaContentProvider from ProcessRecord{1b914d75 13325:dk.lundogbendsen.vuc.beta/u0a284} (pid=13325, uid=10284) that is not exported from uid 10257
+
+
+01-09 17:39:05.559 13325-13325/dk.lundogbendsen.vuc.beta D/VUC: storageDir=/storage/emulated/0/Pictures true true
+
+   */
+
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent resIntent) {
     System.out.println("onActivityResult FRAG"+ requestCode + " gav resultat " + resultCode + " med data=" + resIntent);
@@ -135,20 +131,12 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
 
     if (resultCode == Activity.RESULT_OK) {
       try {
-        LydBillede lydBillede = new LydBillede();
+        Optagelse optagelse = new Optagelse();
         if (requestCode == VÆLG_BILLEDE) {
-          final AssetFileDescriptor filDS = cr.openAssetFileDescriptor(resIntent.getData(), "r");
-          Log.d("resIntent.getData() "+resIntent.getData());
-
-          lydBillede.filLokalt = resIntent.getData().toString();
+          optagelse.lokalUri = resIntent.getData().toString();
 
           /*
-          int n = 0;
-          do { // lav unikt filnavn
-            svar.filLokalt = App.fillager + "/svarLokalt/" + trin.id + n++ + ".jpg";
-          } while (new File(svar.filLokalt).exists());
-          File fil = new File(svar.filLokalt);
-          fil.getParentFile().mkdirs();
+          final AssetFileDescriptor filDS = cr.openAssetFileDescriptor(resIntent.getData(), "r");
           FilCache.kopierOgLuk(filDS.createInputStream(), new FileOutputStream(fil));
 
           new AsyncTask() {
@@ -167,13 +155,19 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
           }.execute();
           */
         } else if (requestCode == TAG_BILLEDE) {
-          lydBillede.filLokalt = filPåEksterntLager.toString();
+          optagelse.lokalUri = Uri.fromFile(filPåEksterntLager).toString();
         }
-        svar.lydBilleder.add(lydBillede);
-        ændret = true;
-        adapter.notifyDataSetChanged();
-        recyclerView.fling(recyclerView.getMaxFlingVelocity()/4, 0);
-      } catch (IOException e) {
+        Log.d("optagelse.lokalUri="+ optagelse.lokalUri);
+        svar.optagelser.add(optagelse);
+        svar.ændretSkalGemmes = true;
+        adapter.notifyItemInserted(adapter.getItemCount()-1);
+        App.forgrundstråd.post(new Runnable() {
+          @Override
+          public void run() {
+            recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
+          }
+        });
+      } catch (Exception e) {
         Log.rapporterFejl(e);
       }
     }
@@ -184,19 +178,35 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final ImageView billede;
     private final ImageView slet;
-    public int pos;
+    private final EditText billedetekst;
+    public boolean billedetekstUnderOpdatering;
 
     public ViewHolder(View v) {
       super(v);
       billede = (ImageView) v.findViewById(R.id.billede);
+      billede.setOnClickListener(this);
+      billedetekst = (EditText) v.findViewById(R.id.billedetekst);
+      billedetekst.addTextChangedListener(new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        public void afterTextChanged(Editable s) {
+          if (billedetekstUnderOpdatering) return;
+          svar.ændretSkalGemmes = true;
+          svar.optagelser.get(getAdapterPosition()).tekst = billedetekst.getText().toString();
+        }
+      });
       slet = (ImageView) v.findViewById(R.id.slet);
       slet.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-      svar.lydBilleder.remove(pos);
-      adapter.notifyDataSetChanged();
+      if (v==slet) {
+        svar.optagelser.remove(getAdapterPosition());
+        adapter.notifyItemRemoved(getAdapterPosition());
+      } else {
+
+      }
     }
   }
   RecyclerView.Adapter<ViewHolder> adapter = new RecyclerView.Adapter<ViewHolder>() {
@@ -208,7 +218,6 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
       // create a new view
       View v = LayoutInflater.from(parent.getContext())
               .inflate(R.layout.svar_billeder_listeelem, null, false);
-      // set the view's size, margins, paddings and layout parameters
       ViewHolder vh = new ViewHolder(v);
       return vh;
     }
@@ -216,14 +225,16 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-      holder.billede.setImageURI(Uri.parse(svar.lydBilleder.get(position).filLokalt));
-      holder.pos = position;
+      holder.billede.setImageURI(Uri.parse(svar.optagelser.get(position).lokalUri));
+      holder.billedetekstUnderOpdatering = true;
+      holder.billedetekst.setText(svar.optagelser.get(position).tekst);
+      holder.billedetekstUnderOpdatering = false;
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-      return svar.lydBilleder.size();
+      return svar.optagelser.size();
     }
   };
 }
