@@ -337,4 +337,7 @@ public class App extends Application {
     return instans == null;
   }
 
+  public static void udestår(String hvad) {
+    langToast("UDESTÅR:\n"+hvad);
+  }
 }

@@ -101,7 +101,7 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    ejerFragment.hopTilAktivitet(position);
+    ejerFragment.hopTilEmne(position);
   }
 
   @Override

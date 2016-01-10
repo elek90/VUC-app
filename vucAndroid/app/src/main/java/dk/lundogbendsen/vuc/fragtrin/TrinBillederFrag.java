@@ -40,7 +40,6 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   private AQuery aq;
   private File filPåEksterntLager;
   private RecyclerView recyclerView;
-  private Svar svar;
   private Firebase firebaseTrinSvar;
 
   @Override
@@ -59,8 +58,7 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
     if (trin.svar ==null) {
       trin.svar = new Svar(Brugervalg.instans.bru, trin);
     }
-    svar = trin.svar;
-    if (svar.optagelser ==null) svar.optagelser = new ArrayList<Optagelse>();
+    if (trin.svar.optagelser ==null) trin.svar.optagelser = new ArrayList<Optagelse>();
     return rod;
   }
 
@@ -71,7 +69,7 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
         // ok, så bruger vi den vi har
         return;
       }
-      svar = trin.svar = dataSnapshot.getValue(Svar.class);
+      trin.svar = dataSnapshot.getValue(Svar.class);
       adapter.notifyDataSetChanged();
     }
   };
@@ -80,10 +78,10 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   public void onDestroyView() {
     App.onActivityResultListe.remove(this);
     firebaseTrinSvar.removeEventListener(firebaseRefListener);
-    if (svar.ændretSkalGemmes) {
+    if (trin.svar.ændretSkalGemmes) {
       // Gem i Firebase
-      firebaseTrinSvar.setValue(svar);
-      svar.ændretSkalGemmes = false;
+      firebaseTrinSvar.setValue(trin.svar);
+      trin.svar.ændretSkalGemmes = false;
     }
     super.onDestroyView();
   }
@@ -158,8 +156,8 @@ XXX efter gebnstart
           optagelse.lokalUri = Uri.fromFile(filPåEksterntLager).toString();
         }
         Log.d("optagelse.lokalUri="+ optagelse.lokalUri);
-        svar.optagelser.add(optagelse);
-        svar.ændretSkalGemmes = true;
+        trin.svar.optagelser.add(optagelse);
+        trin.svar.ændretSkalGemmes = true;
         adapter.notifyItemInserted(adapter.getItemCount()-1);
         App.forgrundstråd.post(new Runnable() {
           @Override
@@ -175,13 +173,13 @@ XXX efter gebnstart
 
 
 
-  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+  public class OptagelseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final ImageView billede;
     private final ImageView slet;
     private final EditText billedetekst;
     public boolean billedetekstUnderOpdatering;
 
-    public ViewHolder(View v) {
+    public OptagelseViewHolder(View v) {
       super(v);
       billede = (ImageView) v.findViewById(R.id.billede);
       billede.setOnClickListener(this);
@@ -191,8 +189,8 @@ XXX efter gebnstart
         public void onTextChanged(CharSequence s, int start, int before, int count) {}
         public void afterTextChanged(Editable s) {
           if (billedetekstUnderOpdatering) return;
-          svar.ændretSkalGemmes = true;
-          svar.optagelser.get(getAdapterPosition()).tekst = billedetekst.getText().toString();
+          trin.svar.ændretSkalGemmes = true;
+          trin.svar.optagelser.get(getAdapterPosition()).tekst = billedetekst.getText().toString();
         }
       });
       slet = (ImageView) v.findViewById(R.id.slet);
@@ -202,39 +200,34 @@ XXX efter gebnstart
     @Override
     public void onClick(View v) {
       if (v==slet) {
-        svar.optagelser.remove(getAdapterPosition());
+        trin.svar.optagelser.remove(getAdapterPosition());
         adapter.notifyItemRemoved(getAdapterPosition());
       } else {
-
+        App.udestår("vis popop med billede");
       }
     }
   }
-  RecyclerView.Adapter<ViewHolder> adapter = new RecyclerView.Adapter<ViewHolder>() {
-
-    // Create new views (invoked by the layout manager)
+  RecyclerView.Adapter<OptagelseViewHolder> adapter = new RecyclerView.Adapter<OptagelseViewHolder>() {
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
-      // create a new view
+    public OptagelseViewHolder onCreateViewHolder(ViewGroup parent,
+                                                  int viewType) {
       View v = LayoutInflater.from(parent.getContext())
               .inflate(R.layout.svar_billeder_listeelem, null, false);
-      ViewHolder vh = new ViewHolder(v);
+      OptagelseViewHolder vh = new OptagelseViewHolder(v);
       return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-      holder.billede.setImageURI(Uri.parse(svar.optagelser.get(position).lokalUri));
+    public void onBindViewHolder(OptagelseViewHolder holder, int position) {
+      holder.billede.setImageURI(Uri.parse(trin.svar.optagelser.get(position).lokalUri));
       holder.billedetekstUnderOpdatering = true;
-      holder.billedetekst.setText(svar.optagelser.get(position).tekst);
+      holder.billedetekst.setText(trin.svar.optagelser.get(position).tekst);
       holder.billedetekstUnderOpdatering = false;
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-      return svar.optagelser.size();
+      return trin.svar.optagelser.size();
     }
   };
 }

@@ -73,7 +73,7 @@ public class Frag2EmneViewpager extends Fragment {
     viewPager.setCurrentItem(i + 1, true);
   }
 
-  public void hopTilAktivitet(int position) {
+  public void hopTilEmne(int position) {
     viewPager.setCurrentItem(position + 1, true);
   }
 

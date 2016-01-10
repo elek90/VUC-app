@@ -32,6 +32,7 @@ public class TrinTekstFrag extends TrinFrag {
     String t = tekst.getText().toString();
     if (!t.equals(trin.svar.tekst)) {
       trin.svar.tekst = t;
+      trin.svar.ændretSkalGemmes = true;
     }
     //Observatører.ændret(trin):
     super.onDestroyView();
