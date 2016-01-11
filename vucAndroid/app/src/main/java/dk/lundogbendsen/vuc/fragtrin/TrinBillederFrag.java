@@ -239,6 +239,9 @@ XXX efter gebnstart
       holder.billede.setImageDrawable(null);
       int højde = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
       int bredde = (int) (højde*optagelse.aspektRatio);
+      holder.billede.getLayoutParams().height = højde;
+      holder.billede.getLayoutParams().width = bredde==0? ViewGroup.LayoutParams.WRAP_CONTENT : bredde;
+      holder.billede.setAdjustViewBounds(false);
 
       // Vis billedet. Først prøver vi med lokal URI
       if (optagelse.lokalUri!=null && !optagelse.ignorerLokalUri) {
