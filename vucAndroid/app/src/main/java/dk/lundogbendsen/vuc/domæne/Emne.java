@@ -1,10 +1,13 @@
 package dk.lundogbendsen.vuc.domæne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 
 /**
  * Created by j on 31-10-15.
  */
+@JsonIgnoreProperties
 public class Emne {
   public String navn;
   public Trin[] trin;

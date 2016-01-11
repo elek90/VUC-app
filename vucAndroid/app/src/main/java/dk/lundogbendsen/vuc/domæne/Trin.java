@@ -2,6 +2,8 @@ package dk.lundogbendsen.vuc.domæne;
 
 import android.net.Uri;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -10,6 +12,7 @@ import dk.lundogbendsen.vuc.diverse.Log;
 /**
  * Created by j on 01-11-15.
  */
+@JsonIgnoreProperties
 public class Trin implements Serializable {
   public static HashMap<String, Trin> idref = new HashMap<>();
   public String navn;

@@ -1,10 +1,13 @@
 package dk.lundogbendsen.vuc.domæne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 
 /**
  * Created by j on 30-10-15.
  */
+@JsonIgnoreProperties
 public class Hold {
   public String navn;
   public transient Emne[] emner;

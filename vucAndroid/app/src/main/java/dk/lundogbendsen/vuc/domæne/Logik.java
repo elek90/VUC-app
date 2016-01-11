@@ -12,6 +12,8 @@ Få implementeret at
 
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import static dk.lundogbendsen.vuc.domæne.Ikon.*;
 /**
  * Roden i træet af objekter, der repræsenterer data i app'en.
@@ -19,6 +21,7 @@ import static dk.lundogbendsen.vuc.domæne.Ikon.*;
  * Retter du via github så husk at skrive til Jacob (nordfalk@lundogbendsen.dk) bagefter.
  * Jacob Nordfalk 31-10-15.
  */
+@JsonIgnoreProperties
 public class Logik {
   public static Logik instans = new Logik();
   public Bruger[] brugere;

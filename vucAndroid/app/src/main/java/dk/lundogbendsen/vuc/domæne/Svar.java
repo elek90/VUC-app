@@ -1,10 +1,13 @@
 package dk.lundogbendsen.vuc.domæne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 
 /**
  * Created by j on 09-12-15.
  */
+@JsonIgnoreProperties
 public class Svar {
   public String tekst = "";
   public ArrayList<Optagelse> optagelser;

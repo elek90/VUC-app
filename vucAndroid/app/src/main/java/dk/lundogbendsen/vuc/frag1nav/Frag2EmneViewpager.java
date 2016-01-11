@@ -67,7 +67,7 @@ public class Frag2EmneViewpager extends Fragment {
         viewPager.getAdapter().notifyDataSetChanged();
         if (App.opstartTest) {
           App.opstartTest = false;
-          viewPager.setCurrentItem(faner.size()-2);
+          viewPager.setCurrentItem(8);
         }
       }
     });

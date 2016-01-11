@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:id="@+id/billede"
-            android:src="@drawable/oi_apps_kedit_2"
+            android:src="@drawable/vucroskilde_logo"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"/>
 

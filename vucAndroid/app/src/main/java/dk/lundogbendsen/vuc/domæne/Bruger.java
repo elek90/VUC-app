@@ -1,8 +1,11 @@
 package dk.lundogbendsen.vuc.domæne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by j on 30-10-15.
  */
+@JsonIgnoreProperties
 public class Bruger {
   public String navn;
   public String konto;

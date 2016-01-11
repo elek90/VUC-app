@@ -111,7 +111,7 @@ public class Fb {
     });
   }
 
-  public static void indlæsSvarForEmne(Bruger bru, final Emne emne, final Runnable callback) {
+  public static void indlæsSvarForEmne(Bruger bru, final Emne emne, final Runnable observatør) {
     Log.d("Fb.indlæsSvarForEmne("+emne+" med id="+emne.id);
     App.sætErIGang(true, "Fb.indlæsSvarForEmne("+emne+" med id="+emne.id);
     firebaseSvar.child(bru.id).child(emne.id).addListenerForSingleValueEvent(new FbLytter() {
@@ -124,12 +124,15 @@ public class Fb {
         }
         for (Trin t : emne.trin) {
           DataSnapshot fbsvar = dataSnapshot.child(t.id);
+          Log.d("Fb.indlæsSvarForEmne t.id="+t.id+" har "+fbsvar);
           if (fbsvar==null) continue;
           Svar svar = fbsvar.getValue(Svar.class);
+          if (svar==null) continue;
           t.svar = svar;
+          svar.trin = t;
         }
         Log.d("Fb.indlæsSvarForEmne() svar "+dataSnapshot);
-        callback.run();
+        observatør.run();
       }
     });
   }

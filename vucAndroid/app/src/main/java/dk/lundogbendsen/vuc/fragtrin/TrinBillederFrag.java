@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +21,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.androidquery.AQuery;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -104,7 +111,6 @@ XXX efter gebnstart
     System.out.println("onActivityResult FRAG"+ requestCode + " gav resultat " + resultCode + " med data=" + resIntent);
 
     //resultatHolder.removeAllViews();
-    ContentResolver cr = getActivity().getContentResolver();
     App.onActivityResultListe.remove(this);
 
     if (resultCode == Activity.RESULT_OK) {
@@ -125,7 +131,13 @@ XXX efter gebnstart
             recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
           }
         });
-        final AssetFileDescriptor filDS = cr.openAssetFileDescriptor(Uri.parse(optagelse.lokalUri), "r");
+        final ContentResolver cr = getActivity().getContentResolver();
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        FileInputStream is = cr.openAssetFileDescriptor(Uri.parse(optagelse.lokalUri), "r").createInputStream();
+        BitmapFactory.decodeStream(is, null, bmOptions);
+        is.close();
+        optagelse.aspektRatio = (float) bmOptions.outWidth / bmOptions.outHeight;
         App.sætErIGang(true, "cloudinary");
         new AsyncTask() {
           @Override
@@ -133,9 +145,15 @@ XXX efter gebnstart
             try {
               //uploadParams.put("resource_type", "video");
               //uploadParams.put("resource_type", "auto");
-              Map m = App.cloudinary.uploader().upload(filDS.createInputStream(), ObjectUtils.asMap("public_id", "sample_remote"));
+              FileInputStream is = cr.openAssetFileDescriptor(Uri.parse(optagelse.lokalUri), "r").createInputStream();
+              Map m = App.cloudinary.uploader().upload(is, ObjectUtils.emptyMap());//ObjectUtils.asMap("public_id", "TRIN_" + trin.id));
+              is.close();
               Log.d("cloudinary map="+m);
+              Log.d("App.cloudinary.signedPreloadedImage(m) "+App.cloudinary.signedPreloadedImage(m));
+              App.cloudinary.signedPreloadedImage(m);
               // map={resource_type=image, etag=441f1307c34a040d0746927f36bca2df, signature=9e0b8cd6d7956176b096e489ab916fab87568f63, url=http://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, format=jpg, public_id=sample_remote, version=1450452511, original_filename=file, width=640, created_at=2015-12-18T15:28:31Z, tags=[], bytes=114102, type=upload}
+              // map={resource_type=image, etag=52012cde897d0095befa9809accc07a9, signature=2099119561879b4eb6be40af3d3f6502aabdb4e4, url=http://res.cloudinary.com/vuc/image/upload/v1452530538/rqlpprmolxx9gckaza3o.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1452530538/rqlpprmolxx9gckaza3o.jpg, format=jpg, public_id=rqlpprmolxx9gckaza3o, version=1452530538, original_filename=file, width=640, created_at=2016-01-11T16:42:18Z, tags=[], bytes=96149, type=upload}
+
               return m;
             } catch (Exception e) {
               App.langToast("Det lykkedes ikke at oploade billedet.\n"+e);
@@ -150,6 +168,7 @@ XXX efter gebnstart
             if (o instanceof Map) {
               Map m = (Map) o;
               optagelse.url = (String) m.get("url");
+              optagelse.cloudinary_id = (String) m.get("public_id");
               trin.svar.ændretSkalGemmes = true;
               Fb.gemSvarForEmne(Brugervalg.instans.bru, trin.emne);
             }
@@ -166,6 +185,7 @@ XXX efter gebnstart
 
   public class OptagelseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final ImageView billede;
+    private final AQuery billedeaq;
     private final ImageView slet;
     private final EditText billedetekst;
     public boolean billedetekstUnderOpdatering;
@@ -174,7 +194,7 @@ XXX efter gebnstart
       super(v);
       billede = (ImageView) v.findViewById(R.id.billede);
       billede.setOnClickListener(this);
-//      new AQuery(billede).image()
+      billedeaq = new AQuery(billede);
       billedetekst = (EditText) v.findViewById(R.id.billedetekst);
       billedetekst.addTextChangedListener(new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -213,21 +233,48 @@ XXX efter gebnstart
     @Override
     public void onBindViewHolder(OptagelseViewHolder holder, int position) {
       Optagelse optagelse = trin.svar.optagelser.get(position);
-      Uri lokalUri = Uri.parse(optagelse.lokalUri);
-      /* xxxx
-      String scheme = lokalUri.getScheme();
-      if (ContentResolver.SCHEME_CONTENT.equals(scheme) || ContentResolver.SCHEME_FILE.equals(scheme))
-      try {
-        InputStream stream = App.instans.getContentResolver().openInputStream(lokalUri);
-      } catch (Exception e) {
-        lokalUri
-      }
-      if (lokalUri.get)
-      */
-      holder.billede.setImageURI(lokalUri);
       holder.billedetekstUnderOpdatering = true;
       holder.billedetekst.setText(trin.svar.optagelser.get(position).tekst);
       holder.billedetekstUnderOpdatering = false;
+      holder.billede.setImageDrawable(null);
+      int højde = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+      int bredde = (int) (højde*optagelse.aspektRatio);
+
+      // Vis billedet. Først prøver vi med lokal URI
+      if (optagelse.lokalUri!=null && !optagelse.ignorerLokalUri) {
+        Uri lokalUri = Uri.parse(optagelse.lokalUri+1);
+        try {
+          // Tjek om den kan læses
+          InputStream stream = App.instans.getContentResolver().openInputStream(lokalUri);
+          stream.close();
+          Picasso.with(getContext()).load(lokalUri).resize(bredde,højde).into(holder.billede);
+          //Glide.with(getContext()).load(lokalUri).into(holder.billede);
+          Log.d("onBindViewHolder("+position+ ": bruger lokalUri=" +lokalUri);
+          //holder.billedeaq.image(url, true, true, bredde, R.drawable.vucroskilde_logo, null, AQuery.FADE_IN_NETWORK, AQuery.RATIO_PRESERVE);
+          // Hurra, det gik godt. Hop ud
+          return;
+        } catch (Exception e) {
+          optagelse.ignorerLokalUri = true; // URI dur ikke på denne maskine, den kommer nok fra en anden, øv bøv
+          Log.d("ignorerLokalUri for optagelse "+position+ ": " + e);
+        }
+      }
+      // OK, vi henter den over nettet og cacher den hist og pist
+
+      String url = optagelse.url;
+      if (optagelse.cloudinary_id!=null) {
+        url = App.cloudinary.url().transformation(new Transformation().height(højde)).generate(optagelse.cloudinary_id);
+        //Log.d("cloudinary_id => "+url+ " i stedet for "+optagelse.url);
+      }
+      Picasso.with(getContext()).load(url).resize(bredde,højde).into(holder.billede);
+      /*
+      Log.d("onBindViewHolder("+position+ ": bruger URL for optagelse "+position+ ": " + url+"  "+optagelse.aspektRatio);
+      if (optagelse.aspektRatio>0 && false) {
+        // Billedet er 200dp højt
+        holder.billedeaq.image(url, true, true, (int) (200/optagelse.aspektRatio), R.drawable.vucroskilde_logo, null, AQuery.FADE_IN_NETWORK, optagelse.aspektRatio);
+      } else {
+        holder.billedeaq.image(url, true, true, bredde, R.drawable.vucroskilde_logo, null, AQuery.FADE_IN_NETWORK, AQuery.RATIO_PRESERVE);
+      }
+      */
     }
 
     @Override
