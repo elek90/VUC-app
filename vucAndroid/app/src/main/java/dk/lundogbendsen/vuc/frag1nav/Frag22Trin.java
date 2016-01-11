@@ -98,6 +98,6 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
   public void onInitializationFailure(YouTubeThumbnailView view, YouTubeInitializationResult errorReason) {
     view.setImageResource(R.drawable.no_thumbnail);
     String errorMessage = "Youtube kunne ikke startes: "+errorReason.toString();
-    Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+    Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
   }
 }

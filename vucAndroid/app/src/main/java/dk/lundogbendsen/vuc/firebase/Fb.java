@@ -50,7 +50,7 @@ public class Fb {
   }
 
   public static void initFb() {
-    App.sætErIGang(true);
+    App.sætErIGang(true, "initFb");
     Firebase.setAndroidContext(App.instans);
     Firebase firebaseRef = new Firebase("https://vuc.firebaseio.com/v2");
     firebaseRefLogik = firebaseRef.child("_logik");
@@ -87,11 +87,14 @@ public class Fb {
                 emneliste.add(dataSnapshot.getValue(Emne.class));
                 if (emneliste.size()<h.emneIdListe.size()) return; // flere emner
                 h.emner = emneliste.toArray(h.emner);
-                for (Emne e : h.emner) for (Trin t : e.trin) Trin.idref.put(t.id, t);
+                for (Emne e : h.emner) for (Trin t : e.trin) {
+                  t.emne = e;
+                  Trin.idref.put(t.id, t);
+                }
                 holdNr++;
                 if (holdNr<Brugervalg.instans.bru.holdListe.length) return; // flere hold
                 Brugervalg.instans.opdaterObservatører();
-                if (kaldNummer++ == 1) App.sætErIGang(false);
+                if (kaldNummer++ == 1) App.sætErIGang(false, "initFb");
                 else App.kortToast("Data er blevet opdateret\n(ud i hovedmenuen for at se ændringerne)");
               }
             });
@@ -110,11 +113,11 @@ public class Fb {
 
   public static void indlæsSvarForEmne(Bruger bru, final Emne emne, final Runnable callback) {
     Log.d("Fb.indlæsSvarForEmne("+emne+" med id="+emne.id);
-    App.sætErIGang(true);
-    ValueEventListener firebaseRefListener = new FbLytter() {
+    App.sætErIGang(true, "Fb.indlæsSvarForEmne("+emne+" med id="+emne.id);
+    firebaseSvar.child(bru.id).child(emne.id).addListenerForSingleValueEvent(new FbLytter() {
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {
-        App.sætErIGang(false);
+        App.sætErIGang(false, "Fb.indlæsSvarForEmne("+emne+" med id="+emne.id);
         if (!dataSnapshot.exists()) {
           // ok, så bruger vi den vi har
           return;
@@ -128,8 +131,7 @@ public class Fb {
         Log.d("Fb.indlæsSvarForEmne() svar "+dataSnapshot);
         callback.run();
       }
-    };
-    firebaseSvar.child(bru.id).child(emne.id).addListenerForSingleValueEvent(firebaseRefListener);
+    });
   }
 
   public static void gemSvarForEmne(Bruger bru, final Emne emne) {

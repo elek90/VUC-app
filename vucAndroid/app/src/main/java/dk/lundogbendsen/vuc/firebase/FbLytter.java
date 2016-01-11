@@ -14,5 +14,6 @@ public abstract class FbLytter implements ValueEventListener {
   @Override
   public void onCancelled(FirebaseError firebaseError) {
     Log.d("Der kom en FB fejl: "+firebaseError);
+    Log.e(firebaseError.toException());
   }
 }

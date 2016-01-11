@@ -145,11 +145,11 @@ public class Logik {
         for (Emne e : f.emner) {
           if (e.trin == null) {
             e.trin = new Trin[]{new Trin("Trin 1"), new Trin("Trin 2"), new Trin("Trin 3"), new Trin("Trin 4"), new Aflevering("Aflevering")};
-            for (Trin a : e.trin)
-              a.ikon = Ikon.values()[(int) (Math.random() * Ikon.values().length)];
+            for (Trin trin : e.trin)
+              trin.ikon = Ikon.values()[(int) (Math.random() * Ikon.values().length)];
           }
-          for (Trin a : e.trin) {
-            a.emne = e;
+          for (Trin trin : e.trin) {
+            trin.emne = e;
           }
         }
       }

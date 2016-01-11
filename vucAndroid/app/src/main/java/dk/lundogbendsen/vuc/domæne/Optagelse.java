@@ -7,4 +7,5 @@ public class Optagelse {
   public transient String id;
   public String lokalUri;
   public String tekst;
+  public String url;
 }

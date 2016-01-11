@@ -3,7 +3,9 @@ package dk.lundogbendsen.vuc.fragtrin;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,9 +19,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.androidquery.AQuery;
+import com.cloudinary.utils.ObjectUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
@@ -28,6 +32,7 @@ import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Optagelse;
 import dk.lundogbendsen.vuc.domæne.Svar;
+import dk.lundogbendsen.vuc.firebase.Fb;
 
 
 public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
@@ -104,29 +109,9 @@ XXX efter gebnstart
 
     if (resultCode == Activity.RESULT_OK) {
       try {
-        Optagelse optagelse = new Optagelse();
+        final Optagelse optagelse = new Optagelse();
         if (requestCode == VÆLG_BILLEDE) {
           optagelse.lokalUri = resIntent.getData().toString();
-
-          /*
-          final AssetFileDescriptor filDS = cr.openAssetFileDescriptor(resIntent.getData(), "r");
-          FilCache.kopierOgLuk(filDS.createInputStream(), new FileOutputStream(fil));
-
-          new AsyncTask() {
-            @Override
-            protected Object doInBackground(Object[] params) {
-              try {
-                Map m = App.cloudinary.uploader().upload(filDS.createInputStream(), ObjectUtils.asMap("public_id", "sample_remote"));
-                Log.d("cliudinary map="+m);
-                // map={resource_type=image, etag=441f1307c34a040d0746927f36bca2df, signature=9e0b8cd6d7956176b096e489ab916fab87568f63, url=http://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, format=jpg, public_id=sample_remote, version=1450452511, original_filename=file, width=640, created_at=2015-12-18T15:28:31Z, tags=[], bytes=114102, type=upload}
-                return m;
-              } catch (IOException e) {
-                e.printStackTrace();
-              }
-              return null;
-            }
-          }.execute();
-          */
         } else if (requestCode == TAG_BILLEDE) {
           optagelse.lokalUri = Uri.fromFile(filPåEksterntLager).toString();
         }
@@ -140,6 +125,37 @@ XXX efter gebnstart
             recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
           }
         });
+        final AssetFileDescriptor filDS = cr.openAssetFileDescriptor(Uri.parse(optagelse.lokalUri), "r");
+        App.sætErIGang(true, "cloudinary");
+        new AsyncTask() {
+          @Override
+          protected Object doInBackground(Object[] params) {
+            try {
+              //uploadParams.put("resource_type", "video");
+              //uploadParams.put("resource_type", "auto");
+              Map m = App.cloudinary.uploader().upload(filDS.createInputStream(), ObjectUtils.asMap("public_id", "sample_remote"));
+              Log.d("cloudinary map="+m);
+              // map={resource_type=image, etag=441f1307c34a040d0746927f36bca2df, signature=9e0b8cd6d7956176b096e489ab916fab87568f63, url=http://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, format=jpg, public_id=sample_remote, version=1450452511, original_filename=file, width=640, created_at=2015-12-18T15:28:31Z, tags=[], bytes=114102, type=upload}
+              return m;
+            } catch (Exception e) {
+              App.langToast("Det lykkedes ikke at oploade billedet.\n"+e);
+              e.printStackTrace();
+            }
+            return null;
+          }
+
+          @Override
+          protected void onPostExecute(Object o) {
+            App.sætErIGang(false, "cloudinary");
+            if (o instanceof Map) {
+              Map m = (Map) o;
+              optagelse.url = (String) m.get("url");
+              trin.svar.ændretSkalGemmes = true;
+              Fb.gemSvarForEmne(Brugervalg.instans.bru, trin.emne);
+            }
+          }
+        }.execute();
+
       } catch (Exception e) {
         Log.rapporterFejl(e);
       }
@@ -158,6 +174,7 @@ XXX efter gebnstart
       super(v);
       billede = (ImageView) v.findViewById(R.id.billede);
       billede.setOnClickListener(this);
+//      new AQuery(billede).image()
       billedetekst = (EditText) v.findViewById(R.id.billedetekst);
       billedetekst.addTextChangedListener(new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -195,7 +212,19 @@ XXX efter gebnstart
 
     @Override
     public void onBindViewHolder(OptagelseViewHolder holder, int position) {
-      holder.billede.setImageURI(Uri.parse(trin.svar.optagelser.get(position).lokalUri));
+      Optagelse optagelse = trin.svar.optagelser.get(position);
+      Uri lokalUri = Uri.parse(optagelse.lokalUri);
+      /* xxxx
+      String scheme = lokalUri.getScheme();
+      if (ContentResolver.SCHEME_CONTENT.equals(scheme) || ContentResolver.SCHEME_FILE.equals(scheme))
+      try {
+        InputStream stream = App.instans.getContentResolver().openInputStream(lokalUri);
+      } catch (Exception e) {
+        lokalUri
+      }
+      if (lokalUri.get)
+      */
+      holder.billede.setImageURI(lokalUri);
       holder.billedetekstUnderOpdatering = true;
       holder.billedetekst.setText(trin.svar.optagelser.get(position).tekst);
       holder.billedetekstUnderOpdatering = false;

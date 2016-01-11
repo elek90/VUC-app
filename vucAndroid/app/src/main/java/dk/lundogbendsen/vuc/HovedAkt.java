@@ -173,7 +173,7 @@ public class HovedAkt extends AppCompatActivity
   }
 
   public void opdaterErIGang() {
-    Log.d("erIgang XX="+(App.erIgang>0));
+    //Log.d("erIgang XX="+(App.erIgang>0));
     progressBar.setVisibility(App.erIgang>0?View.VISIBLE:View.GONE);
   }
 

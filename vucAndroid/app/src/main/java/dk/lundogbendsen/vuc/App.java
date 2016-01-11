@@ -260,9 +260,9 @@ public class App extends Application {
     langToast("UDESTÅR:\n"+hvad);
   }
 
-  public static void sætErIGang(boolean iGang) {
+  public static void sætErIGang(boolean iGang, String hvad) {
     erIgang += iGang?1:-1;
-    Log.d("erIgang="+erIgang + "  "+aktivitetIForgrunden);
+    Log.d("erIgang="+erIgang +" for "+hvad+ "  "+aktivitetIForgrunden+" "+iGang);
     if (aktivitetIForgrunden instanceof HovedAkt) {
       ((HovedAkt) aktivitetIForgrunden).opdaterErIGang();
     }
