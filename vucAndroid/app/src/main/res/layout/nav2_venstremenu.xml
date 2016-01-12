@@ -5,6 +5,7 @@
     android:paddingTop="?attr/actionBarSize"
     android:fitsSystemWindows="false"
     android:clickable="false"
+    android:scrollbars="none"
     android:layout_width="80dp"
     android:layout_height="match_parent"
     >
@@ -17,32 +18,18 @@
         android:clickable="false"
         android:orientation="vertical"
         android:paddingTop="16dp"
+        android:background="@color/hvid"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/vuc_logo"
-            android:id="@+id/imageView2"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hans Hansen"
-            android:id="@+id/brugernavn"
-            android:layout_toRightOf="@+id/imageView"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_alignBottom="@+id/imageView"/>
+            android:src="@drawable/vuc_logo"/>
 
         <Spinner
             android:id="@+id/fag"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -53,7 +40,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:gravity="center"
             android:background="@color/kgul"
-            android:id="@+id/menu1VidenOm"/>
+            android:id="@+id/menu1Viden"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -88,20 +75,35 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:gravity="center"
             android:background="@color/klblå"
-            android:id="@+id/menu3Rapport"/>
+            android:id="@+id/menu4Rapport"/>
 
-        <TextView
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:clickable="false"
-            android:id="@+id/button2"/>
+            android:text="Rediger som lærer"
+            android:id="@+id/redigeringstilstand"
+            android:checked="false"/>
 
-        <TextView
+        <Button
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New RadioButton"
-            android:id="@+id/radioButton"/>
+            android:text="Nulstil alt"
+            android:id="@+id/nulstil_data"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hent ny version af appen"
+            android:id="@+id/hent_ny_version"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Emner"
+            android:id="@+id/emner"/>
 
 
     </LinearLayout>

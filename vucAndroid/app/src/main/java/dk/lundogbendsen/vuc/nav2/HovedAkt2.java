@@ -5,11 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,16 +18,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.androidquery.AQuery;
 
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
@@ -38,7 +43,7 @@ import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
 import dk.lundogbendsen.vuc.frag1nav.Frag22Trin;
 
 public class HovedAkt2 extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
+        implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
   private DrawerLayout drawer;
   private FloatingActionButton fab;
@@ -93,6 +98,28 @@ public class HovedAkt2 extends AppCompatActivity
 
     //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN, navigationView);
     drawer.setScrimColor(Color.TRANSPARENT);
+    View.OnTouchListener farvKnapNårDenErTrykketNed = new View.OnTouchListener() {
+      public boolean onTouch(View view, MotionEvent me) {
+        Log.d("onTouch()", me.toString());
+        TextView ib = (TextView) view;
+        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+          ib.setAlpha(0.5f);
+        } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
+        } else {
+          ib.setAlpha(1);
+        }
+        return false;
+      }
+    };
+
+
+    AQuery aq = new AQuery(this);
+    for (int id : new int[]{R.id.menu1Viden, R.id.menu2Udstyr, R.id.menu3Forsøg, R.id.menu4Rapport, }) {
+      aq.id(id).clicked(this).getView().setOnTouchListener(farvKnapNårDenErTrykketNed);
+    }
+    aq.id(R.id.redigeringstilstand).clicked(this).checked(Brugervalg.instans.redigeringstilstand);
+    aq.id(R.id.nulstil_data).clicked(this);
+
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
@@ -173,12 +200,10 @@ public class HovedAkt2 extends AppCompatActivity
     }
   }
 
-  @SuppressWarnings("StatementWithEmptyBody")
-  @Override
-  public boolean onNavigationItemSelected(MenuItem item) {
-    // Handle navigation view item clicks here.
-    int id = item.getItemId();
 
+  @Override
+  public void onClick(View v) {
+    int id = v.getId();
     if (id == R.id.emner) {
       getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     } else if (id == R.id.redigeringstilstand) {
@@ -190,11 +215,11 @@ public class HovedAkt2 extends AppCompatActivity
     } else if (id == R.id.nulstil_data) {
       App.instans.nulstilData();
     } else {
+      //v.setAlpha(1); // hack fordi farvKnapNårDenErTrykketNed ikke altid slipper farven
       Snackbar.make(findViewById(R.id.hovedakt_indhold), "Emner med ¹ er ikke implementeret endnu", Snackbar.LENGTH_LONG).show();
     }
 
     drawer.closeDrawer(GravityCompat.START);
-    return true;
   }
 
   @Override

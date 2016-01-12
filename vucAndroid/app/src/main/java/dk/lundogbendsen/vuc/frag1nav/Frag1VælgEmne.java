@@ -37,6 +37,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
       @Override
       public void run() {
         if (getActivity()!=null) onItemClick(null, null, 0, 0);
+        Brugervalg.instans.observatører.remove(this);
       }
     });
     return rod;
