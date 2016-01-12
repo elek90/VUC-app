@@ -43,6 +43,7 @@ import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.diverse.Netvaerksstatus;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Logik;
+import dk.lundogbendsen.vuc.nav2.HovedAkt2;
 
 
 public class App extends Application {
@@ -265,6 +266,9 @@ public class App extends Application {
     Log.d("erIgang="+erIgang +" for "+hvad+ "  "+aktivitetIForgrunden+" "+iGang);
     if (aktivitetIForgrunden instanceof HovedAkt) {
       ((HovedAkt) aktivitetIForgrunden).opdaterErIGang();
+    }
+    if (aktivitetIForgrunden instanceof HovedAkt2) {
+      ((HovedAkt2) aktivitetIForgrunden).opdaterErIGang();
     }
   }
 }

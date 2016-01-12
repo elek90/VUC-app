@@ -28,6 +28,10 @@
             android:name=".HovedAkt"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".nav2.HovedAkt2"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

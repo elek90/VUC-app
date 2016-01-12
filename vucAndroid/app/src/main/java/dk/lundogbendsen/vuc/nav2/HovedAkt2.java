@@ -1,9 +1,10 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.nav2;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,42 +20,43 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 
+import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
-import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.frag1nav.Frag1VælgEmne;
 import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
 import dk.lundogbendsen.vuc.frag1nav.Frag22Trin;
 
-public class HovedAkt extends AppCompatActivity
+public class HovedAkt2 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
   private DrawerLayout drawer;
   private FloatingActionButton fab;
-  private NavigationView navigationView;
   private ProgressBar progressBar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.hoved_akt);
+    setContentView(R.layout.hoved_akt2);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-    navigationView = (NavigationView) findViewById(R.id.nav_view);
-    navigationView.setNavigationItemSelectedListener(this);
+    final ScrollView navigationView = (ScrollView) findViewById(R.id.nav_view);
 
 
     drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-    final FrameLayout frame = (FrameLayout) findViewById(R.id.hovedakt_indhold);
+    final ViewGroup frame = (ViewGroup) findViewById(R.id.koordlayout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
       public float lastTranslate;
@@ -81,13 +83,9 @@ public class HovedAkt extends AppCompatActivity
     };
     drawer.setDrawerListener(toggle);
     toggle.syncState();
+    //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN, navigationView);
+    drawer.setScrimColor(Color.TRANSPARENT);
 
-    View headerView = navigationView.inflateHeaderView(R.layout.venstremenu_top);
-    ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.holdListe);
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    Spinner spinner = (Spinner) headerView.findViewById(R.id.fag);
-    spinner.setAdapter(adapter);
-    spinner.setOnItemSelectedListener(this);
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
@@ -134,10 +132,10 @@ public class HovedAkt extends AppCompatActivity
           fab.setVisibility(vis);
         }
       });
-      //fab.setVisibility(Brugervalg.instans.redigeringstilstand ? View.VISIBLE : View.GONE);
-      navigationView.getMenu().findItem(R.id.redigeringstilstand).setTitle(
+/*      navigationView.getMenu().findItem(R.id.redigeringstilstand).setTitle(
               Brugervalg.instans.redigeringstilstand ?
                       "Se som elev" : "Redigér som lærer");
+                      */
     }
   };
 
