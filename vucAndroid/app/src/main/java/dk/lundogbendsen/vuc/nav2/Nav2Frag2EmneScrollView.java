@@ -36,8 +36,9 @@ public class Nav2Frag2EmneScrollView extends Fragment {
     View rod = inflater.inflate(R.layout.nav2_frag2_emne_scrollview, container, false);
     viewPager = (LinearLayout) rod.findViewById(R.id.viewpager);
     FragmentManager fm = getChildFragmentManager();
-    for (Trin t: Brugervalg.instans.emne.trin) {
-      Fragment f = Fragmentfabrikering.nytFragment(t, false);
+    for (int n=0; n<Brugervalg.instans.emne.trin.length; n++) {
+      Trin t = Brugervalg.instans.emne.trin[n];
+      Fragment f = Nav2Fragmentfabrikering.nytFragment(t, n==Brugervalg.instans.emne.trin.length-1);
       fm.beginTransaction().add(R.id.viewpager, f, "frag_trin_"+t.id).commit();
       fm.executePendingTransactions();
     }
