@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc.frag1nav;
+package dk.lundogbendsen.vuc.nav2;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,18 +15,21 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
+import dk.lundogbendsen.vuc.frag1nav.Frag21Forside;
+import dk.lundogbendsen.vuc.frag1nav.Fragmentfabrikering;
+import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
-public class Frag2EmneViewpager extends Fragment {
+public class Nav2Frag2EmneHorisontalViewpager extends Fragment {
 
   /**
    * The {@link ViewPager} that will host the section contents.
    */
-  private ViewPager viewPager;
+  private VerticalViewPager viewPager;
   private ArrayList faner;
   private PagerSlidingTabStrip pagerSlidingTabStrip;
 
@@ -35,32 +38,11 @@ public class Frag2EmneViewpager extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
     faner = new ArrayList();
-    faner.add(new Frag21Forside());
     faner.addAll(Arrays.asList(Brugervalg.instans.emne.trin));
 
-    View rod = inflater.inflate(R.layout.frag2_emne_viewpager, container, false);
-    viewPager = (ViewPager) rod.findViewById(R.id.viewpager);
+    View rod = inflater.inflate(R.layout.nav2_frag2_emne_viewpager, container, false);
+    viewPager = (VerticalViewPager) rod.findViewById(R.id.viewpager);
     viewPager.setAdapter(new FaneAdapter(getChildFragmentManager()));
-//        viewPager.setPageTransformer(false, new ZoomOutPageTransformer());
-    pagerSlidingTabStrip = (PagerSlidingTabStrip) rod.findViewById(R.id.faneblade);
-    pagerSlidingTabStrip.setViewPager(viewPager);
-    pagerSlidingTabStrip.setVisibility(View.GONE);
-
-    viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-      @Override
-      public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-      }
-
-      @Override
-      public void onPageSelected(int position) {
-        pagerSlidingTabStrip.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
-      }
-
-      @Override
-      public void onPageScrollStateChanged(int state) {
-      }
-    });
-
     Fb.indlæsSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne, new Runnable() {
       @Override
       public void run() {
@@ -88,7 +70,6 @@ public class Frag2EmneViewpager extends Fragment {
   public void hopTilEmne(int position) {
     viewPager.setCurrentItem(position + 1, true);
   }
-
 
   public class FaneAdapter extends FragmentPagerAdapter {
 

@@ -23,7 +23,7 @@ import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
-import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneViewpager;
+import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneHorisontalViewpager;
 
 
 public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -105,6 +105,6 @@ public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, 
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Fragment ejerFragment = getParentFragment();
     if (ejerFragment instanceof Frag2EmneViewpager) ((Frag2EmneViewpager) ejerFragment).hopTilEmne(position);;
-    if (ejerFragment instanceof Nav2Frag2EmneViewpager) ((Nav2Frag2EmneViewpager) ejerFragment).hopTilEmne(position);;
+    if (ejerFragment instanceof Nav2Frag2EmneHorisontalViewpager) ((Nav2Frag2EmneHorisontalViewpager) ejerFragment).hopTilEmne(position);;
   }
 }

@@ -20,7 +20,7 @@ import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.domæne.Svar;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
-import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneViewpager;
+import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneHorisontalViewpager;
 
 
 public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
@@ -82,7 +82,7 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
   public void onClick(View v) {
     Fragment ejerFragment = getParentFragment();
     if (ejerFragment instanceof Frag2EmneViewpager) ((Frag2EmneViewpager) ejerFragment).næste();
-    if (ejerFragment instanceof Nav2Frag2EmneViewpager) ((Nav2Frag2EmneViewpager) ejerFragment).næste();
+    if (ejerFragment instanceof Nav2Frag2EmneHorisontalViewpager) ((Nav2Frag2EmneHorisontalViewpager) ejerFragment).næste();
   }
 
 

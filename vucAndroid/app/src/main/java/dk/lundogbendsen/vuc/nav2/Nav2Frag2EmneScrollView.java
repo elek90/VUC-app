@@ -24,11 +24,8 @@ import dk.lundogbendsen.vuc.frag1nav.Frag21Forside;
 import dk.lundogbendsen.vuc.frag1nav.Fragmentfabrikering;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
-public class Nav2Frag2EmneViewpager extends Fragment {
+public class Nav2Frag2EmneScrollView extends Fragment {
 
-  /**
-   * The {@link ViewPager} that will host the section contents.
-   */
   private VerticalViewPager viewPager;
   private ArrayList faner;
   private PagerSlidingTabStrip pagerSlidingTabStrip;
@@ -40,7 +37,7 @@ public class Nav2Frag2EmneViewpager extends Fragment {
     faner = new ArrayList();
     faner.addAll(Arrays.asList(Brugervalg.instans.emne.trin));
 
-    View rod = inflater.inflate(R.layout.nav2_frag2_oevelse_viewpager, container, false);
+    View rod = inflater.inflate(R.layout.nav2_frag2_emne_scrollview, container, false);
     viewPager = (VerticalViewPager) rod.findViewById(R.id.viewpager);
     viewPager.setAdapter(new FaneAdapter(getChildFragmentManager()));
     Fb.indlæsSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne, new Runnable() {

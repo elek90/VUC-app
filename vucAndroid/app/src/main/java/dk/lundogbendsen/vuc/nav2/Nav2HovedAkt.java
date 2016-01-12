@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,14 +18,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -39,7 +36,6 @@ import dk.lundogbendsen.vuc.HovedAkt;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
-import dk.lundogbendsen.vuc.frag1nav.Frag1VælgEmne;
 import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
 import dk.lundogbendsen.vuc.frag1nav.Frag22Trin;
 
@@ -125,7 +121,7 @@ public class Nav2HovedAkt extends AppCompatActivity
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-              .add(R.id.hovedakt_indhold, new Nav2Frag2EmneViewpager()).commit();
+              .add(R.id.hovedakt_indhold, new Nav2Frag2EmneHorisontalViewpager()).commit();
     }
 
     fab = (FloatingActionButton) findViewById(R.id.fab);
