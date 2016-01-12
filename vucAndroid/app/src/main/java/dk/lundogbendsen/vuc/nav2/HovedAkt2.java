@@ -56,7 +56,7 @@ public class HovedAkt2 extends AppCompatActivity
 
 
     drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-    final ViewGroup frame = (ViewGroup) findViewById(R.id.koordlayout);
+    final ViewGroup frame = (ViewGroup) findViewById(R.id.hovedakt_indhold);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
       public float lastTranslate;
@@ -83,9 +83,16 @@ public class HovedAkt2 extends AppCompatActivity
     };
     drawer.setDrawerListener(toggle);
     toggle.syncState();
+
+    ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.holdListe);
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    Spinner spinner = (Spinner) findViewById(R.id.fag);
+    spinner.setAdapter(adapter);
+    spinner.setOnItemSelectedListener(this);
+
+
     //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN, navigationView);
     drawer.setScrimColor(Color.TRANSPARENT);
-
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()

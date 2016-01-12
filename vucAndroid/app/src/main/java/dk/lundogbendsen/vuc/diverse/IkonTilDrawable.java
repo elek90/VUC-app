@@ -35,6 +35,11 @@ public class IkonTilDrawable {
     ikonTilDrawable.put(Ikon.advarsel, R.drawable.ta_status_dialog_warning);
     ikonTilDrawable.put(Ikon.vedhæft, R.drawable.ta_status_mail_attachment);
 
+    ikonTilDrawable.put(Ikon.pipette, R.drawable.oi_actions_color_picker_black);
+    ikonTilDrawable.put(Ikon.hammer, R.drawable.oi_apps_development_2);
+    ikonTilDrawable.put(Ikon.reagensglas, R.drawable.oi_categories_applications_science_3);
+
+
     for (Ikon i : Ikon.values()) {
       if (ikonTilDrawable.get(i) == null) {
         Log.d("Ikon " + i + " mangler en drawable");

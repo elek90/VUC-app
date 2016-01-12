@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_view"
+    android:paddingTop="?attr/actionBarSize"
+    android:fitsSystemWindows="false"
+    android:clickable="false"
+    android:layout_width="80dp"
+    android:layout_height="match_parent"
+    >
+
+    <!--
+    android:paddingTop="@dimen/design_navigation_padding_top_default">
+                android:clickable="false"
+-->
+    <LinearLayout
+        android:clickable="false"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vuc_logo"
+            android:id="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hans Hansen"
+            android:id="@+id/brugernavn"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_alignBottom="@+id/imageView"/>
+
+        <Spinner
+            android:id="@+id/fag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Viden"
+            android:padding="10dp"
+            android:drawableTop="@drawable/ta_mimetypes_x_office_presentation"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:background="@color/kgul"
+            android:id="@+id/menu1VidenOm"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Udstyr"
+            android:padding="10dp"
+            android:drawableTop="@drawable/ta_categories_preferences_system"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:background="@color/klgrøn"
+            android:id="@+id/menu2Udstyr"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forsøg"
+            android:padding="10dp"
+            android:drawableTop="@drawable/oi_categories_applications_science_3"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:background="@color/klrød"
+            android:id="@+id/menu3Forsøg"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rapport"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:drawableTop="@drawable/ta_apps_accessories_text_editor"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:background="@color/klblå"
+            android:id="@+id/menu3Rapport"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:clickable="false"
+            android:id="@+id/button2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New RadioButton"
+            android:id="@+id/radioButton"/>
+
+
+    </LinearLayout>
+</ScrollView>

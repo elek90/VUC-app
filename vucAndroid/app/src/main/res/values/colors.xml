@@ -13,4 +13,15 @@
     <color name="org_colorAccent">#FF4081</color>
     <color name="colorAccent">#E64A19</color>
     <color name="hvid">#ffffffff</color>
+
+
+    <color name="kgul">#fff479</color>
+    <color name="kmgrøn">#33a155</color>
+    <color name="klgrøn">#a6c955</color>
+    <color name="kmrød">#c81b53</color>
+    <color name="klrød">#e880a4</color>
+    <color name="klblå">#00a2d2</color>
+    <color name="kmblå">#174881</color>
+    <color name="korange">#ed954e</color>
+
 </resources>
