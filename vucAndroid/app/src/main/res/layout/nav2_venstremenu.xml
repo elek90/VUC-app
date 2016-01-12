@@ -105,6 +105,13 @@
             android:text="Emner"
             android:id="@+id/emner"/>
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skift navigation"
+            android:id="@+id/skift_navigation"/>
+
 
     </LinearLayout>
 </ScrollView>

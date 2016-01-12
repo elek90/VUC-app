@@ -14,6 +14,8 @@ Få implementeret at
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import dk.lundogbendsen.vuc.diverse.Log;
+
 import static dk.lundogbendsen.vuc.domæne.Ikon.*;
 /**
  * Roden i træet af objekter, der repræsenterer data i app'en.
@@ -139,20 +141,34 @@ public class Logik {
   }
 
 
-  public void lavKonsistent() {
+  private void lavKonsistent() {
+    int nEmne = 1;
     if (brugere==null) lavTestdata();
     for (Bruger b : brugere) {
       if (b.holdListe == null) b.holdListe = new Hold[]{new Hold("Et hold")};
-      for (Hold f : b.holdListe) {
-        if (f.emner == null) f.emner = new Emne[]{new Emne("Et emne")};
-        for (Emne e : f.emner) {
-          if (e.trin == null) {
-            e.trin = new Trin[]{new Trin("Trin 1"), new Trin("Trin 2"), new Trin("Trin 3"), new Trin("Trin 4"), new Aflevering("Aflevering")};
-            for (Trin trin : e.trin)
-              trin.ikon = Ikon.values()[(int) (Math.random() * Ikon.values().length)];
+      for (Hold hold : b.holdListe) {
+        hold.emneIdListe.clear();
+        if (hold.emner == null) hold.emner = new Emne[]{new Emne("Et emne")};
+        for (Emne emne : hold.emner) {
+          if (emne.id==null) {
+            emne.id = "e"+nEmne++;
+            Log.d("Tildelt ID emne.id="+emne.id);
           }
-          for (Trin trin : e.trin) {
-            trin.emne = e;
+          hold.emneIdListe.add(emne.id);
+          int nTrin = 1;
+          if (emne.trin == null) {
+            emne.trin = new Trin[]{new Trin("Trin 1"), new Trin("Trin 2"), new Trin("Trin 3"), new Trin("Trin 4"), new Aflevering("Aflevering")};
+            for (Trin trin : emne.trin) {
+              trin.ikon = Ikon.values()[(int) (Math.random() * Ikon.values().length)];
+            }
+          }
+          for (Trin trin : emne.trin) {
+            trin.emne = emne;
+            if (trin.id==null) {
+              trin.id = emne.id+"t"+nTrin++;
+              Log.d("Tildelt ID trin.id="+trin.id);
+            }
+            Trin.idref.put(trin.id, trin);
           }
         }
       }

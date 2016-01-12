@@ -35,6 +35,7 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 
 import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.HovedAkt;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
@@ -42,7 +43,7 @@ import dk.lundogbendsen.vuc.frag1nav.Frag1VælgEmne;
 import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
 import dk.lundogbendsen.vuc.frag1nav.Frag22Trin;
 
-public class HovedAkt2 extends AppCompatActivity
+public class Nav2HovedAkt extends AppCompatActivity
         implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
   private DrawerLayout drawer;
@@ -96,7 +97,6 @@ public class HovedAkt2 extends AppCompatActivity
     spinner.setOnItemSelectedListener(this);
 
 
-    //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN, navigationView);
     drawer.setScrimColor(Color.TRANSPARENT);
     View.OnTouchListener farvKnapNårDenErTrykketNed = new View.OnTouchListener() {
       public boolean onTouch(View view, MotionEvent me) {
@@ -119,11 +119,13 @@ public class HovedAkt2 extends AppCompatActivity
     }
     aq.id(R.id.redigeringstilstand).clicked(this).checked(Brugervalg.instans.redigeringstilstand);
     aq.id(R.id.nulstil_data).clicked(this);
+    aq.id(R.id.emner).clicked(this);
+    aq.id(R.id.skift_navigation).clicked(this);
 
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-              .add(R.id.hovedakt_indhold, new Frag1VælgEmne()).commit();
+              .add(R.id.hovedakt_indhold, new Nav2Frag2EmneViewpager()).commit();
     }
 
     fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -214,6 +216,9 @@ public class HovedAkt2 extends AppCompatActivity
       startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(AppOpdatering.APK_URL)));
     } else if (id == R.id.nulstil_data) {
       App.instans.nulstilData();
+    } else if (id == R.id.skift_navigation) {
+//      finish();
+      startActivity(new Intent(this, HovedAkt.class));
     } else {
       //v.setAlpha(1); // hack fordi farvKnapNårDenErTrykketNed ikke altid slipper farven
       Snackbar.make(findViewById(R.id.hovedakt_indhold), "Emner med ¹ er ikke implementeret endnu", Snackbar.LENGTH_LONG).show();

@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.androidquery.AQuery;
 
-import dk.lundogbendsen.vuc.nav2.HovedAkt2;
+import dk.lundogbendsen.vuc.nav2.Nav2HovedAkt;
 
 public class Splash_akt extends Activity implements Runnable {
 
@@ -32,7 +32,7 @@ public class Splash_akt extends Activity implements Runnable {
   }
 
   public void run() {
-    startActivity(new Intent(this, HovedAkt2.class));
+    startActivity(new Intent(this, Nav2HovedAkt.class));
     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     aktivitetDerVisesNu.finish();  // <2> Luk velkomsaktiviteten

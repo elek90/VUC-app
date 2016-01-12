@@ -27,23 +27,10 @@ public class Fb {
 
   public static void gemTestdata() {
     firebaseRefLogik.setValue(Logik.instans);
-    int nEmne = 1;
     for (Bruger b : Logik.instans.brugere) {
       for (Hold hold : b.holdListe) {
         for (Emne emne : hold.emner) {
-          //Firebase fbTilføjEmne = firebaseEmner.push();
-          //emne.id = fbTilføjEmne.getKey();
-          emne.id = "e"+nEmne++;
-          int nTrin = 1;
-          for (Trin trin : emne.trin) {
-            trin.emne = emne;
-            trin.id = emne.id+"t"+nTrin++;
-            Trin.idref.put(trin.id, trin);
-          }
-          hold.emneIdListe.add(emne.id);
           firebaseEmner.child(emne.id).setValue(emne);
-          //fbTilføjEmne.setValue(emne);
-
         }
       }
     }
@@ -140,11 +127,12 @@ public class Fb {
 
   public static void gemSvarForEmne(Bruger bru, final Emne emne) {
     Firebase fbemne = firebaseSvar.child(bru.id).child(emne.id);
+    Log.d("Fb.gemSvarForEmne("+emne+") "+fbemne.toString());
     for (Trin t : emne.trin) {
       if (t.svar==null || !t.svar.ændretSkalGemmes) continue;
       fbemne.child(t.id).setValue(t.svar);
       t.svar.ændretSkalGemmes = false;
+      Log.d("Fb.gemSvarForEmne("+emne+") gemt t.id "+t.id);
     }
-    Log.d("Fb.gemSvarForEmne("+emne+") "+fbemne.toString());
   }
 }

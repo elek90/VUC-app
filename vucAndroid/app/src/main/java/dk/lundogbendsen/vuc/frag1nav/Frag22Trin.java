@@ -20,11 +20,11 @@ import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.domæne.Svar;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
+import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneViewpager;
 
 
 public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
 
-  private Frag2EmneViewpager ejerFragment;
   private YouTubeThumbnailView yttn;
   private AQuery aq;
   private boolean besvarelsesfragOprettet;
@@ -33,8 +33,6 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-
-    ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s2_trin, container, false);
     aq = new AQuery(rod);
@@ -82,7 +80,9 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
 
   @Override
   public void onClick(View v) {
-    ejerFragment.næste();
+    Fragment ejerFragment = getParentFragment();
+    if (ejerFragment instanceof Frag2EmneViewpager) ((Frag2EmneViewpager) ejerFragment).næste();
+    if (ejerFragment instanceof Nav2Frag2EmneViewpager) ((Nav2Frag2EmneViewpager) ejerFragment).næste();
   }
 
 

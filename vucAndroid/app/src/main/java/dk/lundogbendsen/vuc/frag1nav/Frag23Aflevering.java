@@ -2,6 +2,7 @@ package dk.lundogbendsen.vuc.frag1nav;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,10 @@ import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
+import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneViewpager;
 
 
 public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, AdapterView.OnItemClickListener {
-  private Frag2EmneViewpager ejerFragment;
 
   private TextView overskrift;
 
@@ -38,8 +39,6 @@ public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, 
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-
-    ejerFragment = (Frag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
@@ -104,6 +103,8 @@ public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, 
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    ejerFragment.hopTilEmne(position);
+    Fragment ejerFragment = getParentFragment();
+    if (ejerFragment instanceof Frag2EmneViewpager) ((Frag2EmneViewpager) ejerFragment).hopTilEmne(position);;
+    if (ejerFragment instanceof Nav2Frag2EmneViewpager) ((Nav2Frag2EmneViewpager) ejerFragment).hopTilEmne(position);;
   }
 }

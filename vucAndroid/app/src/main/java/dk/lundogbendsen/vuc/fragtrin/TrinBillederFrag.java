@@ -245,12 +245,12 @@ XXX efter gebnstart
 
       // Vis billedet. Først prøver vi med lokal URI
       if (optagelse.lokalUri!=null && !optagelse.ignorerLokalUri) {
-        Uri lokalUri = Uri.parse(optagelse.lokalUri+1);
+        Uri lokalUri = Uri.parse(optagelse.lokalUri);
         try {
           // Tjek om den kan læses
           InputStream stream = App.instans.getContentResolver().openInputStream(lokalUri);
           stream.close();
-          Picasso.with(getContext()).load(lokalUri).resize(bredde,højde).into(holder.billede);
+          Picasso.with(getContext()).load(lokalUri).resize(bredde, højde).into(holder.billede);
           //Glide.with(getContext()).load(lokalUri).into(holder.billede);
           Log.d("onBindViewHolder("+position+ ": bruger lokalUri=" +lokalUri);
           //holder.billedeaq.image(url, true, true, bredde, R.drawable.vucroskilde_logo, null, AQuery.FADE_IN_NETWORK, AQuery.RATIO_PRESERVE);
