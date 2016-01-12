@@ -1,5 +1,6 @@
 package dk.lundogbendsen.vuc.nav2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.util.Linkify;
@@ -49,7 +50,8 @@ public class Nav2Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnI
         @Override
         public void onClick(View v) {
           // public static Intent createPlayVideoIntentWithOptions (Context context, String videoId, boolean fullscreen, boolean finishOnEnd)
-          startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), trin.videoUrl, false, true));
+          Intent i = YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), trin.videoUrl, false, true);
+          if (App.tjekIntent(i)) startActivity(i);
         }
       });
     }

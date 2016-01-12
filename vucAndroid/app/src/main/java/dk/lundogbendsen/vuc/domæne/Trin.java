@@ -42,11 +42,11 @@ public class Trin implements Serializable {
     this(ikon, navn);
     if (ekstra.startsWith("https://youtu.be")) {
       videoUrl =  Uri.parse(ekstra).getPath().substring(1);
-      if (tekst==null) tekst = "(video)";
+      //if (tekst==null) tekst = "(video)";
     }
     else if (ekstra.startsWith("https://www.youtube.com")) {
       videoUrl =  Uri.parse(ekstra).getQueryParameter("v");
-      if (tekst==null) tekst = "(video)";
+      //if (tekst==null) tekst = "(video)";
     }
     //else if (ekstra.startsWith("http")) url = ekstra;
     else tekst = ekstra;

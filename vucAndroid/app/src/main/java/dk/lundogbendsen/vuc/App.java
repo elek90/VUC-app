@@ -271,4 +271,10 @@ public class App extends Application {
       ((Nav2HovedAkt) aktivitetIForgrunden).opdaterErIGang();
     }
   }
+
+  public static boolean tjekIntent(Intent i) {
+      if (i.resolveActivity(instans.getPackageManager()) != null) return true;
+      App.langToast("Program kan ikke startes");
+      return false;
+  }
 }
