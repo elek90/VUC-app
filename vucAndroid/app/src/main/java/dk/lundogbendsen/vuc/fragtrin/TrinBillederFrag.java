@@ -65,6 +65,7 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
       trin.svar = new Svar(Brugervalg.instans.bru, trin);
     }
     if (trin.svar.optagelser ==null) trin.svar.optagelser = new ArrayList<Optagelse>();
+    if (trin.svar.optagelser.isEmpty()) recyclerView.setVisibility(View.GONE);
     return rod;
   }
 
@@ -126,6 +127,7 @@ XXX efter gebnstart
         Log.d("optagelse.lokalUri="+ optagelse.lokalUri);
         trin.svar.optagelser.add(optagelse);
         trin.svar.ændretSkalGemmes = true;
+        recyclerView.setVisibility(View.VISIBLE);
         adapter.notifyItemInserted(adapter.getItemCount()-1);
         App.forgrundstråd.post(new Runnable() {
           @Override
