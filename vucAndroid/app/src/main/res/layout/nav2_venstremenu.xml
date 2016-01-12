@@ -112,6 +112,13 @@
             android:text="Skift navigation"
             android:id="@+id/skift_navigation"/>
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skift til gammel navigation"
+            android:id="@+id/skift_navigation2"/>
+
 
     </LinearLayout>
 </ScrollView>

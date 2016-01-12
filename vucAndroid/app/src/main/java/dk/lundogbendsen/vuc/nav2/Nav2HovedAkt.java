@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,7 +122,7 @@ public class Nav2HovedAkt extends AppCompatActivity
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-              .add(R.id.hovedakt_indhold, new Nav2Frag2EmneHorisontalViewpager()).commit();
+              .add(R.id.hovedakt_indhold, new Nav2Frag2EmneScrollView()).commit();
     }
 
     fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -189,13 +190,38 @@ public class Nav2HovedAkt extends AppCompatActivity
   public void onNothingSelected(AdapterView<?> parent) {
   }
 
-  @Override
-  public void onBackPressed() {
-    if (drawer.isDrawerOpen(GravityCompat.START)) {
-      drawer.closeDrawer(GravityCompat.START);
+  /**
+   * Om tilbageknappen skal afslutte programmet eller toggle MenuDraweren
+   */
+  static boolean tilbageknapSkalToggleMenu = true; // hack - static, ellers skulle den gemmes i savedInstanceState
+
+  public void xxxonBackPressed() {
+    if (!tilbageknapSkalToggleMenu && drawer.isDrawerOpen(GravityCompat.START)) {
+      finish();
     } else {
       super.onBackPressed();
     }
+  }
+
+  public void xxxfinish() {
+    if (tilbageknapSkalToggleMenu && !drawer.isDrawerOpen(GravityCompat.START)) {
+      drawer.openDrawer(GravityCompat.START);
+    } else {
+      super.finish();
+    }
+    tilbageknapSkalToggleMenu = false;
+  }
+
+  @Override
+  public boolean dispatchTouchEvent(MotionEvent ev) {
+    tilbageknapSkalToggleMenu = true;
+    return super.dispatchTouchEvent(ev);
+  }
+
+  @Override
+  public boolean dispatchTrackballEvent(MotionEvent ev) {
+    tilbageknapSkalToggleMenu = true;
+    return super.dispatchTrackballEvent(ev);
   }
 
 
@@ -213,7 +239,9 @@ public class Nav2HovedAkt extends AppCompatActivity
     } else if (id == R.id.nulstil_data) {
       App.instans.nulstilData();
     } else if (id == R.id.skift_navigation) {
-//      finish();
+      getSupportFragmentManager().beginTransaction()
+              .replace(R.id.hovedakt_indhold, new Nav2Frag2EmneHorisontalViewpager()).addToBackStack(null).commit();
+    } else if (id == R.id.skift_navigation2) {
       startActivity(new Intent(this, HovedAkt.class));
     } else {
       //v.setAlpha(1); // hack fordi farvKnapNårDenErTrykketNed ikke altid slipper farven

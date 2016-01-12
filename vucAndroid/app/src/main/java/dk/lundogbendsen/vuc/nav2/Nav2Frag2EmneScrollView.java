@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -26,30 +28,19 @@ import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
 public class Nav2Frag2EmneScrollView extends Fragment {
 
-  private VerticalViewPager viewPager;
-  private ArrayList faner;
-  private PagerSlidingTabStrip pagerSlidingTabStrip;
+  private LinearLayout viewPager;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-    faner = new ArrayList();
-    faner.addAll(Arrays.asList(Brugervalg.instans.emne.trin));
-
     View rod = inflater.inflate(R.layout.nav2_frag2_emne_scrollview, container, false);
-    viewPager = (VerticalViewPager) rod.findViewById(R.id.viewpager);
-    viewPager.setAdapter(new FaneAdapter(getChildFragmentManager()));
-    Fb.indlæsSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne, new Runnable() {
-      @Override
-      public void run() {
-        viewPager.getAdapter().notifyDataSetChanged();
-        if (App.opstartTest) {
-          App.opstartTest = false;
-          viewPager.setCurrentItem(8);
-        }
-      }
-    });
+    viewPager = (LinearLayout) rod.findViewById(R.id.viewpager);
+    FragmentManager fm = getChildFragmentManager();
+    for (Trin t: Brugervalg.instans.emne.trin) {
+      Fragment f = Fragmentfabrikering.nytFragment(t, false);
+      fm.beginTransaction().add(R.id.viewpager, f, "frag_trin_"+t.id).commit();
+      fm.executePendingTransactions();
+    }
     return rod;
   }
 
@@ -58,7 +49,7 @@ public class Nav2Frag2EmneScrollView extends Fragment {
     Fb.gemSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne);
     super.onPause();
   }
-
+/*
   public void næste() {
     int i = viewPager.getCurrentItem();
     viewPager.setCurrentItem(i + 1, true);
@@ -66,33 +57,5 @@ public class Nav2Frag2EmneScrollView extends Fragment {
 
   public void hopTilEmne(int position) {
     viewPager.setCurrentItem(position + 1, true);
-  }
-
-  public class FaneAdapter extends FragmentPagerAdapter {
-
-    public FaneAdapter(FragmentManager fm) {
-      super(fm);
-    }
-
-    @Override
-    public Fragment getItem(int position) {
-      Object f = faner.get(position);
-      if (f instanceof Fragment) return (Fragment) f;
-      if (f instanceof Trin) return Fragmentfabrikering.nytFragment((Trin) f, position==getCount()-1);
-      return new Frag21Forside(); // fejl
-    }
-
-    @Override
-    public int getCount() {
-      return faner.size();
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-      if (position == 0) return "Oversigt";
-      Object f = faner.get(position);
-      if (f instanceof Trin) return ((Trin) f).navn;
-      return "??" + position;
-    }
-  }
+  }*/
 }

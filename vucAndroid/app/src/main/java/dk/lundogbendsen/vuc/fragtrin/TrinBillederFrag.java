@@ -52,6 +52,7 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
+    Log.d("onCreateView "+this);
     View rod = inflater.inflate(R.layout.svar_billeder_frag, container, false);
     aq = new AQuery(rod);
     aq.id(R.id.tag_billede).clicked(this);
@@ -69,6 +70,7 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
 
   @Override
   public void onDestroyView() {
+    Log.d("onDestroyView "+this);
     App.onActivityResultListe.remove(this);
     super.onDestroyView();
   }

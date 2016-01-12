@@ -66,7 +66,7 @@ public class App extends Application {
   private static SharedPreferences grunddata_prefs;
   private static String versionsnavnDetaljer;
   public static Fragment synligtFragment;
-  public static boolean opstartTest = true;
+  public static boolean opstartTest = false;
   public static ArrayList<Fragment> onActivityResultListe = new ArrayList<>();
   public static Cloudinary cloudinary;
   public static File fillager;

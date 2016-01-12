@@ -45,4 +45,9 @@ public abstract class TrinFrag extends Fragment {
       Log.rapporterFejl(trin.navn);
     }
   }
+
+  @Override
+  public String toString() {
+    return trin.id + " " + super.toString();
+  }
 }
