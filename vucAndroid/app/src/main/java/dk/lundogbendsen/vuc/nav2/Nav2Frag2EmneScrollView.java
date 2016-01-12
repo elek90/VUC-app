@@ -19,6 +19,7 @@ import java.util.Arrays;
 
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
@@ -42,6 +43,15 @@ public class Nav2Frag2EmneScrollView extends Fragment {
       fm.beginTransaction().add(R.id.viewpager, f, "frag_trin_"+t.id).commit();
       fm.executePendingTransactions();
     }
+    App.forgrundstråd.post(new Runnable() {
+      @Override
+      public void run() {
+        Log.d("viewPager.getChildCount() = "+viewPager.getChildCount());
+        for (int n = 0; n<viewPager.getChildCount(); n++) {
+          Log.d("viewPager.getChild() = "+viewPager.getChildAt(n).getTag());
+        }
+      }
+    });
     return rod;
   }
 

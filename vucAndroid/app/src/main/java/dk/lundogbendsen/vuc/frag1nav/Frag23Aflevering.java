@@ -41,6 +41,7 @@ public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, 
 
 
     View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
+    rod.setTag(this);
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
     overskrift.setText(trin.navn);
 

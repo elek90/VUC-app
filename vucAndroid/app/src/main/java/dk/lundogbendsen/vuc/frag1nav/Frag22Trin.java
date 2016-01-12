@@ -35,6 +35,7 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
 
 
     View rod = inflater.inflate(R.layout.frag2_s2_trin, container, false);
+    rod.setTag(this);
     aq = new AQuery(rod);
     aq.id(R.id.næste).clicked(this);
 

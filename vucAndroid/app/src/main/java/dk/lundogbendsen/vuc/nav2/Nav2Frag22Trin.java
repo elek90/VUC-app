@@ -23,7 +23,7 @@ import dk.lundogbendsen.vuc.frag1nav.Frag2EmneViewpager;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 
-public class Nav2Frag22Trin extends TrinFrag implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
+public class Nav2Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnInitializedListener {
 
   private YouTubeThumbnailView yttn;
   private AQuery aq;
@@ -34,8 +34,8 @@ public class Nav2Frag22Trin extends TrinFrag implements View.OnClickListener, Yo
                            Bundle savedInstanceState) {
 
     View rod = inflater.inflate(R.layout.nav2_frag2_s2_trin, container, false);
+    rod.setTag(this);
     aq = new AQuery(rod);
-    aq.id(R.id.næste).clicked(this);
 
     aq.id(R.id.overskrift).text(trin.navn);
     Integer resId = IkonTilDrawable.ikonTilDrawable.get(trin.ikon);
@@ -75,13 +75,6 @@ public class Nav2Frag22Trin extends TrinFrag implements View.OnClickListener, Yo
       trin.udført = true;
       App.synligtFragment = this;
     } else if (App.synligtFragment == this) App.synligtFragment = null;
-  }
-
-  @Override
-  public void onClick(View v) {
-    Fragment ejerFragment = getParentFragment();
-    if (ejerFragment instanceof Frag2EmneViewpager) ((Frag2EmneViewpager) ejerFragment).næste();
-    if (ejerFragment instanceof Nav2Frag2EmneHorisontalViewpager) ((Nav2Frag2EmneHorisontalViewpager) ejerFragment).næste();
   }
 
 
