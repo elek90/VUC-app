@@ -61,6 +61,15 @@ public class Nav2Frag2EmneScrollView extends Fragment {
         }
       }
     });
+    if (savedInstanceState==null && !kategorier.isEmpty()) {
+      App.forgrundstråd.postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          ((Nav2HovedAkt) getActivity()).visMenu();
+        }
+      }, 100);
+
+    }
     return rod;
   }
 

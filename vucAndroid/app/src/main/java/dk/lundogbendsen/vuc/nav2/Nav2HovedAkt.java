@@ -112,20 +112,8 @@ public class Nav2HovedAkt extends AppCompatActivity
 
 
     if (savedInstanceState == null) {
-      if (savedInstanceState == null) {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.hovedakt_indhold, new Nav2Frag1VælgEmne()).commit();
-        /*
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.hovedakt_indhold, new Nav2Frag2EmneScrollView()).commit();
-        App.forgrundstråd.postDelayed(new Runnable() {
-          @Override
-          public void run() {
-            drawer.openDrawer(GravityCompat.START);
-          }
-        }, 100);
-        */
-      }
+      getSupportFragmentManager().beginTransaction()
+              .add(R.id.hovedakt_indhold, new Nav2Frag1VælgEmne()).commit();
     }
 
     fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -282,5 +270,9 @@ public class Nav2HovedAkt extends AppCompatActivity
   protected void onPause() {
     App.instans.aktivitetStoppet(this);
     super.onPause();
+  }
+
+  public void visMenu() {
+    drawer.openDrawer(GravityCompat.START);
   }
 }

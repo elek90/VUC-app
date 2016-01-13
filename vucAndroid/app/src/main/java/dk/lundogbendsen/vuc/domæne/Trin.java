@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import dk.lundogbendsen.vuc.diverse.Log;
+import dk.lundogbendsen.vuc.fragtrin.TrinBillederFrag;
 
 /**
  * Created by j on 01-11-15.
@@ -24,6 +24,7 @@ public class Trin implements Serializable {
   public transient Emne emne;
   public transient Svar svar;
   public String id;
+  public transient TrinBillederFrag tmpHackTrinBillederFrag;
 
   public Trin() {
   }

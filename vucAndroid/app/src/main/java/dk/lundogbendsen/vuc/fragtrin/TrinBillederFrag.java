@@ -3,7 +3,6 @@ package dk.lundogbendsen.vuc.fragtrin;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -23,7 +22,6 @@ import android.widget.ImageView;
 import com.androidquery.AQuery;
 import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -39,6 +37,7 @@ import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Optagelse;
 import dk.lundogbendsen.vuc.domæne.Svar;
+import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
 
 
@@ -70,9 +69,20 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   }
 
   @Override
+  public void onResume() {
+    trin.tmpHackTrinBillederFrag = this;
+    super.onResume();
+  }
+
+  @Override
+  public void onPause() {
+    trin.tmpHackTrinBillederFrag = null;
+    super.onPause();
+  }
+
+  @Override
   public void onDestroyView() {
     Log.d("onDestroyView "+this);
-    App.onActivityResultListe.remove(this);
     super.onDestroyView();
   }
 
@@ -117,74 +127,81 @@ XXX efter gebnstart
     App.onActivityResultListe.remove(this);
 
     if (resultCode == Activity.RESULT_OK) {
-      try {
-        final Optagelse optagelse = new Optagelse();
-        if (requestCode == VÆLG_BILLEDE) {
-          optagelse.lokalUri = resIntent.getData().toString();
-        } else if (requestCode == TAG_BILLEDE) {
-          optagelse.lokalUri = Uri.fromFile(filPåEksterntLager).toString();
-        }
-        Log.d("optagelse.lokalUri="+ optagelse.lokalUri);
-        trin.svar.optagelser.add(optagelse);
-        trin.svar.ændretSkalGemmes = true;
-        recyclerView.setVisibility(View.VISIBLE);
-        adapter.notifyItemInserted(adapter.getItemCount()-1);
-        App.forgrundstråd.post(new Runnable() {
-          @Override
-          public void run() {
-            recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
-          }
-        });
-        final ContentResolver cr = getActivity().getContentResolver();
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        FileInputStream is = cr.openAssetFileDescriptor(Uri.parse(optagelse.lokalUri), "r").createInputStream();
-        BitmapFactory.decodeStream(is, null, bmOptions);
-        is.close();
-        optagelse.aspektRatio = (float) bmOptions.outWidth / bmOptions.outHeight;
-        App.sætErIGang(true, "cloudinary");
-        new AsyncTask() {
-          @Override
-          protected Object doInBackground(Object[] params) {
-            try {
-              //uploadParams.put("resource_type", "video");
-              //uploadParams.put("resource_type", "auto");
-              FileInputStream is = cr.openAssetFileDescriptor(Uri.parse(optagelse.lokalUri), "r").createInputStream();
-              Map m = App.cloudinary.uploader().upload(is, ObjectUtils.emptyMap());//ObjectUtils.asMap("public_id", "TRIN_" + trin.id));
-              is.close();
-              Log.d("cloudinary map="+m);
-              Log.d("App.cloudinary.signedPreloadedImage(m) "+App.cloudinary.signedPreloadedImage(m));
-              App.cloudinary.signedPreloadedImage(m);
-              // map={resource_type=image, etag=441f1307c34a040d0746927f36bca2df, signature=9e0b8cd6d7956176b096e489ab916fab87568f63, url=http://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, format=jpg, public_id=sample_remote, version=1450452511, original_filename=file, width=640, created_at=2015-12-18T15:28:31Z, tags=[], bytes=114102, type=upload}
-              // map={resource_type=image, etag=52012cde897d0095befa9809accc07a9, signature=2099119561879b4eb6be40af3d3f6502aabdb4e4, url=http://res.cloudinary.com/vuc/image/upload/v1452530538/rqlpprmolxx9gckaza3o.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1452530538/rqlpprmolxx9gckaza3o.jpg, format=jpg, public_id=rqlpprmolxx9gckaza3o, version=1452530538, original_filename=file, width=640, created_at=2016-01-11T16:42:18Z, tags=[], bytes=96149, type=upload}
-
-              return m;
-            } catch (Exception e) {
-              App.langToast("Det lykkedes ikke at oploade billedet.\n"+e);
-              e.printStackTrace();
-            }
-            return null;
-          }
-
-          @Override
-          protected void onPostExecute(Object o) {
-            App.sætErIGang(false, "cloudinary");
-            if (o instanceof Map) {
-              Map m = (Map) o;
-              optagelse.url = (String) m.get("url");
-              optagelse.cloudinary_id = (String) m.get("public_id");
-              trin.svar.ændretSkalGemmes = true;
-              Fb.gemSvarForEmne(Brugervalg.instans.bru, trin.emne);
-            }
-          }
-        }.execute();
-
-      } catch (Exception e) {
-        Log.rapporterFejl(e);
+      final Optagelse optagelse = new Optagelse();
+      if (requestCode == VÆLG_BILLEDE) {
+        optagelse.lokalUri = resIntent.getData().toString();
+      } else if (requestCode == TAG_BILLEDE) {
+        optagelse.lokalUri = Uri.fromFile(filPåEksterntLager).toString();
       }
+      gemOptagelse(trin, optagelse);
     }
   }
 
+  public static void gemOptagelse(final Trin trin, final Optagelse optagelse) {
+    try {
+      Log.d("optagelse.lokalUri="+ optagelse.lokalUri);
+      trin.svar.optagelser.add(optagelse);
+      trin.svar.ændretSkalGemmes = true;
+
+      if (trin.tmpHackTrinBillederFrag != null) {
+        final TrinBillederFrag f = trin.tmpHackTrinBillederFrag;
+        f.recyclerView.setVisibility(View.VISIBLE);
+        f.adapter.notifyItemInserted(f.adapter.getItemCount()-1);
+        App.forgrundstråd.post(new Runnable() {
+          @Override
+          public void run() {
+            f.recyclerView.smoothScrollToPosition(f.adapter.getItemCount()-1);
+          }
+        });
+      }
+      final ContentResolver cr = App.instans.getContentResolver();
+      BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+      bmOptions.inJustDecodeBounds = true;
+      FileInputStream is = cr.openAssetFileDescriptor(Uri.parse(optagelse.lokalUri), "r").createInputStream();
+      BitmapFactory.decodeStream(is, null, bmOptions);
+      is.close();
+      optagelse.aspektRatio = (float) bmOptions.outWidth / bmOptions.outHeight;
+      App.sætErIGang(true, "cloudinary");
+      new AsyncTask() {
+        @Override
+        protected Object doInBackground(Object[] params) {
+          try {
+            //uploadParams.put("resource_type", "video");
+            //uploadParams.put("resource_type", "auto");
+            FileInputStream is = cr.openAssetFileDescriptor(Uri.parse(optagelse.lokalUri), "r").createInputStream();
+            Map m = App.cloudinary.uploader().upload(is, ObjectUtils.emptyMap());//ObjectUtils.asMap("public_id", "TRIN_" + trin.id));
+            is.close();
+            Log.d("cloudinary map="+m);
+            Log.d("App.cloudinary.signedPreloadedImage(m) "+App.cloudinary.signedPreloadedImage(m));
+            App.cloudinary.signedPreloadedImage(m);
+            // map={resource_type=image, etag=441f1307c34a040d0746927f36bca2df, signature=9e0b8cd6d7956176b096e489ab916fab87568f63, url=http://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1450452511/sample_remote.jpg, format=jpg, public_id=sample_remote, version=1450452511, original_filename=file, width=640, created_at=2015-12-18T15:28:31Z, tags=[], bytes=114102, type=upload}
+            // map={resource_type=image, etag=52012cde897d0095befa9809accc07a9, signature=2099119561879b4eb6be40af3d3f6502aabdb4e4, url=http://res.cloudinary.com/vuc/image/upload/v1452530538/rqlpprmolxx9gckaza3o.jpg, height=480, secure_url=https://res.cloudinary.com/vuc/image/upload/v1452530538/rqlpprmolxx9gckaza3o.jpg, format=jpg, public_id=rqlpprmolxx9gckaza3o, version=1452530538, original_filename=file, width=640, created_at=2016-01-11T16:42:18Z, tags=[], bytes=96149, type=upload}
+
+            return m;
+          } catch (Exception e) {
+            App.langToast("Det lykkedes ikke at oploade billedet.\n"+e);
+            e.printStackTrace();
+          }
+          return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+          App.sætErIGang(false, "cloudinary");
+          if (o instanceof Map) {
+            Map m = (Map) o;
+            optagelse.url = (String) m.get("url");
+            optagelse.cloudinary_id = (String) m.get("public_id");
+            trin.svar.ændretSkalGemmes = true;
+            Fb.gemSvarForEmne(Brugervalg.instans.bru, trin.emne);
+          }
+        }
+      }.execute();
+
+    } catch (Exception e) {
+      Log.rapporterFejl(e);
+    }
+  }
 
 
   public class OptagelseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
