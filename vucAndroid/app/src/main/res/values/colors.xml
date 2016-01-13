@@ -12,7 +12,6 @@
     <color name="colorPrimaryDark">#d76500</color>
     <color name="org_colorAccent">#FF4081</color>
     <color name="colorAccent">#E64A19</color>
-    <color name="hvid">#ffffffff</color>
 
 
     <color name="kgul">#fff479</color>
@@ -23,5 +22,20 @@
     <color name="klblå">#00a2d2</color>
     <color name="kmblå">#174881</color>
     <color name="korange">#ed954e</color>
+
+    <!-- Eksempel på hvordan et farveskema kan defineres -->
+    <color name="rød">#ff0000</color>
+    <color name="hvid">#ffffff</color>
+    <color name="grå10">#E5E5E5</color>
+    <color name="grå20">#CCCCCC</color>
+    <color name="grå40">#999999</color>
+    <color name="grå50">#808080</color>
+    <color name="grå60">#666666</color>
+    <color name="grå70">#4d4d4d</color>
+    <color name="grå80">#333333</color>
+    <color name="sort">#000000</color>
+
+    <color name="blå">#55b9c4</color>
+    <color name="blå_mørk">#258994</color>
 
 </resources>

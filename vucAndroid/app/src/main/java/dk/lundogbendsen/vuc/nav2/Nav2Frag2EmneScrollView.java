@@ -1,10 +1,13 @@
 package dk.lundogbendsen.vuc.nav2;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -20,6 +23,8 @@ import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Ikon;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
+import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
+import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 public class Nav2Frag2EmneScrollView extends Fragment {
 
@@ -71,13 +76,35 @@ public class Nav2Frag2EmneScrollView extends Fragment {
     scrollView.smoothScrollTo(0, fokusView.getTop());
 //    scrollView.requestChildFocus(fokusView, fokusView);
   }
-/*
-  public void næste() {
-    int i = viewPager.getCurrentItem();
-    viewPager.setCurrentItem(i + 1, true);
-  }
 
-  public void hopTilEmne(int position) {
-    viewPager.setCurrentItem(position + 1, true);
-  }*/
+  public void startRedigering() {
+    final Snackbar sb = Snackbar.make(viewPager, "Tryk på overskriften på punktet du vil redigere", Snackbar.LENGTH_INDEFINITE);
+    sb.show();
+    viewPager.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        int y = (int) event.getY();
+        viewPager.setOnTouchListener(null);
+        sb.dismiss();
+        Rect hitRect = new Rect();
+        for (int n = 0; n<viewPager.getChildCount(); n++) {
+          View c = viewPager.getChildAt(n);
+          c.getHitRect(hitRect);
+          boolean ramt = hitRect.intersect(0, y - 1, Integer.MAX_VALUE, y + 1);
+          Log.d(n);
+          Log.d("viewPager.getChild() = "+ramt+hitRect+" "+c.getTag());
+          Object synligtFragment = c.getTag();
+          if (ramt && synligtFragment instanceof TrinFrag) {
+            Frag22RedigerTrin f2 = new Frag22RedigerTrin();
+            f2.setArguments(((TrinFrag)synligtFragment).getArguments());
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+                    .replace(R.id.hovedakt_indhold, f2)
+                    .addToBackStack(null).commit();
+          }
+        }
+        return true;
+      }
+    });
+  }
 }

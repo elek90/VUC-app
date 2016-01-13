@@ -41,8 +41,6 @@ import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
-import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
-import dk.lundogbendsen.vuc.frag1nav.Frag22Trin;
 
 public class Nav2HovedAkt extends AppCompatActivity
         implements AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -56,7 +54,7 @@ public class Nav2HovedAkt extends AppCompatActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.hoved_akt2);
+    setContentView(R.layout.nav2_hoved_akt);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -101,7 +99,7 @@ public class Nav2HovedAkt extends AppCompatActivity
     spinner.setOnItemSelectedListener(this);
 
 
-    drawer.setScrimColor(Color.TRANSPARENT);
+    drawer.setScrimColor(Color.TRANSPARENT); // 0x10000000);
 
 
     AQuery aq = new AQuery(this);
@@ -116,23 +114,28 @@ public class Nav2HovedAkt extends AppCompatActivity
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
               .add(R.id.hovedakt_indhold, new Nav2Frag2EmneScrollView()).commit();
+      App.forgrundstråd.postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          drawer.openDrawer(GravityCompat.START);
+        }
+      }, 100);
     }
 
     fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (App.synligtFragment instanceof Frag22Trin) {
-          Frag22RedigerTrin f2 = new Frag22RedigerTrin();
-          f2.setArguments(App.synligtFragment.getArguments());
-          getSupportFragmentManager().beginTransaction()
-                  .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                  .replace(R.id.hovedakt_indhold, f2)
-                  .addToBackStack(null).commit();
-          return;
+
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.hovedakt_indhold);
+        if (f instanceof Nav2Frag2EmneScrollView) {
+          ((Nav2Frag2EmneScrollView) f).startRedigering();
+          Brugervalg.instans.redigererNu = true;
+          Brugervalg.instans.opdaterObservatører();
+        } else {
+          Snackbar.make(view, "Kun trin kan p.t. redigeres", Snackbar.LENGTH_LONG)
+                  .setAction("Action", null).show();
         }
-        Snackbar.make(view, "Kun trin kan p.t. redigeres", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
       }
     });
 
@@ -251,6 +254,7 @@ public class Nav2HovedAkt extends AppCompatActivity
   @Override
   public void onClick(View v) {
     Log.d("klik "+v);
+    drawer.closeDrawer(GravityCompat.START);
     navigationView.scrollTo(0,0); // rul op i toppen
     Trin trin = (Trin) v.getTag();
     if (trin!=null) {

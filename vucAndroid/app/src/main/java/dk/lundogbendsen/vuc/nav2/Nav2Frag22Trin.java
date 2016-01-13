@@ -72,16 +72,6 @@ public class Nav2Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnI
     return rod;
   }
 
-  @Override
-  public void setUserVisibleHint(boolean isVisibleToUser) {
-    super.setUserVisibleHint(isVisibleToUser);
-    if (isVisibleToUser) {
-      trin.udført = true;
-      App.synligtFragment = this;
-    } else if (App.synligtFragment == this) App.synligtFragment = null;
-  }
-
-
   ///////////////////// Youtube ////////////////////
 
   @Override
