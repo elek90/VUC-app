@@ -2,6 +2,7 @@ package dk.lundogbendsen.vuc.frag1nav;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,12 @@ import com.androidquery.AQuery;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
+import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
+import dk.lundogbendsen.vuc.domæne.Emne;
+import dk.lundogbendsen.vuc.domæne.Optagelse;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneHorisontalViewpager;
@@ -89,14 +93,40 @@ public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, 
   }
 
 
+  @NonNull
+  public static String lavEmail(Emne e) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Besvarelse af "+e.navn+"\n\n");
+    int antal=0, besv=0;
+    for (Trin t : e.trin) {
+      if (!TrinFrag.ikonTilFragment.containsKey(t.ikon)) continue;
+      antal++;
+      sb.append("Svar "+antal+": "+t.navn+":\n");
+      if (t.svar!=null && t.svar.harIndhold()) {
+        if (t.svar.tekst!=null && t.svar.tekst.length()>0) sb.append(t.svar.tekst+"\n");
+        if (t.svar.optagelser!=null) for (Optagelse o:t.svar.optagelser) {
+          sb.append(o.url+"\n");
+          if (o.tekst!=null && o.tekst.length()>0) sb.append(o.tekst+"\n");
+        }
+        besv++;
+      } else {
+        sb.append("mangler");
+      }
+    }
+    return sb.toString();
+  }
+
+
   @Override
   public void onClick(View v) {
     Intent i = new Intent(Intent.ACTION_SEND);
     i.setType("message/rfc822");
-    i.putExtra(Intent.EXTRA_EMAIL, new String[]{"jacob.nordfalk@gmail.com"});
-    i.putExtra(Intent.EXTRA_CC, new String[]{"jacob.nordfalk@gmail.com"});
-    i.putExtra(Intent.EXTRA_SUBJECT, "Et billede fra AndroidElementer");
-    i.putExtra(Intent.EXTRA_TEXT, "Her er et billede");
+    i.putExtra(Intent.EXTRA_EMAIL, new String[]{"nordfalk@lundogbendsen.dk"});
+    i.putExtra(Intent.EXTRA_CC, new String[]{"nordfalk@lundogbendsen.dk"});
+    String tekst = lavEmail(Brugervalg.instans.emne);
+    i.putExtra(Intent.EXTRA_SUBJECT, tekst.split("\n")[0]);
+    i.putExtra(Intent.EXTRA_TEXT, tekst);
+    Log.d(tekst);
 //        i.putExtra(Intent.EXTRA_STREAM, MinProvider.URI);
 
     startActivity(Intent.createChooser(i, "Send e-post..."));

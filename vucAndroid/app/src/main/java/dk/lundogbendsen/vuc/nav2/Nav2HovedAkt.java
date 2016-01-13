@@ -112,14 +112,20 @@ public class Nav2HovedAkt extends AppCompatActivity
 
 
     if (savedInstanceState == null) {
-      getSupportFragmentManager().beginTransaction()
-              .add(R.id.hovedakt_indhold, new Nav2Frag2EmneScrollView()).commit();
-      App.forgrundstråd.postDelayed(new Runnable() {
-        @Override
-        public void run() {
-          drawer.openDrawer(GravityCompat.START);
-        }
-      }, 100);
+      if (savedInstanceState == null) {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.hovedakt_indhold, new Nav2Frag1VælgEmne()).commit();
+        /*
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.hovedakt_indhold, new Nav2Frag2EmneScrollView()).commit();
+        App.forgrundstråd.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            drawer.openDrawer(GravityCompat.START);
+          }
+        }, 100);
+        */
+      }
     }
 
     fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -215,41 +221,6 @@ public class Nav2HovedAkt extends AppCompatActivity
   @Override
   public void onNothingSelected(AdapterView<?> parent) {
   }
-
-  /**
-   * Om tilbageknappen skal afslutte programmet eller toggle MenuDraweren
-   */
-  static boolean tilbageknapSkalToggleMenu = true; // hack - static, ellers skulle den gemmes i savedInstanceState
-
-  public void xxxonBackPressed() {
-    if (!tilbageknapSkalToggleMenu && drawer.isDrawerOpen(GravityCompat.START)) {
-      finish();
-    } else {
-      super.onBackPressed();
-    }
-  }
-
-  public void xxxfinish() {
-    if (tilbageknapSkalToggleMenu && !drawer.isDrawerOpen(GravityCompat.START)) {
-      drawer.openDrawer(GravityCompat.START);
-    } else {
-      super.finish();
-    }
-    tilbageknapSkalToggleMenu = false;
-  }
-
-  @Override
-  public boolean dispatchTouchEvent(MotionEvent ev) {
-    tilbageknapSkalToggleMenu = true;
-    return super.dispatchTouchEvent(ev);
-  }
-
-  @Override
-  public boolean dispatchTrackballEvent(MotionEvent ev) {
-    tilbageknapSkalToggleMenu = true;
-    return super.dispatchTrackballEvent(ev);
-  }
-
 
   @Override
   public void onClick(View v) {

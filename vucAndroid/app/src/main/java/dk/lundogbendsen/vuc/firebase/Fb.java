@@ -110,20 +110,18 @@ public class Fb {
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {
         App.sætErIGang(false, "Fb.indlæsSvarForEmne("+emne+" med id="+emne.id);
-        if (!dataSnapshot.exists()) {
-          // ok, så bruger vi den vi har
-          return;
+        if (dataSnapshot.exists()) {
+          for (Trin t : emne.trin) {
+            DataSnapshot fbsvar = dataSnapshot.child(t.id);
+            Log.d("Fb.indlæsSvarForEmne t.id=" + t.id + " har " + fbsvar);
+            if (fbsvar == null) continue;
+            Svar svar = fbsvar.getValue(Svar.class);
+            if (svar == null) continue;
+            t.svar = svar;
+            svar.trin = t;
+          }
+          Log.d("Fb.indlæsSvarForEmne() svar " + dataSnapshot);
         }
-        for (Trin t : emne.trin) {
-          DataSnapshot fbsvar = dataSnapshot.child(t.id);
-          Log.d("Fb.indlæsSvarForEmne t.id="+t.id+" har "+fbsvar);
-          if (fbsvar==null) continue;
-          Svar svar = fbsvar.getValue(Svar.class);
-          if (svar==null) continue;
-          t.svar = svar;
-          svar.trin = t;
-        }
-        Log.d("Fb.indlæsSvarForEmne() svar "+dataSnapshot);
         observatør.run();
       }
     });

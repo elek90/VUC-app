@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tekst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/oi_actions_dialog_yes"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="Kemi i din hverdag"
+        android:gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+
+    <TextView
+        android:id="@+id/beskrivelse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:alpha="0.8"
+        android:text="3 ud af 7 spørgsmål mangler"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
+
+
+</LinearLayout>

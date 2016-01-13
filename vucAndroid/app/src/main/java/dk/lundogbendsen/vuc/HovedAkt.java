@@ -2,10 +2,8 @@ package dk.lundogbendsen.vuc;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -19,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -27,7 +24,6 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
-import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.frag1nav.Frag1VælgEmne;
 import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
@@ -56,29 +52,7 @@ public class HovedAkt extends AppCompatActivity
     drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     final FrameLayout frame = (FrameLayout) findViewById(R.id.hovedakt_indhold);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-      public float lastTranslate;
-
-      @SuppressLint("NewApi")
-      public void onDrawerSlide(View drawerView, float slideOffset)
-      {
-        float moveFactor = (navigationView.getWidth() * slideOffset);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-        {
-          frame.setTranslationX(moveFactor);
-        }
-        else
-        {
-          TranslateAnimation anim = new TranslateAnimation(lastTranslate, moveFactor, 0.0f, 0.0f);
-          anim.setDuration(0);
-          anim.setFillAfter(true);
-          frame.startAnimation(anim);
-
-          lastTranslate = moveFactor;
-        }
-      }
-    };
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
     drawer.setDrawerListener(toggle);
     toggle.syncState();
 

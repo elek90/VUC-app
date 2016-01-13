@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 
@@ -25,7 +25,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View rod = inflater.inflate(R.layout.frag1_vaelg_emne_niveau, container, false);
+    View rod = inflater.inflate(R.layout.frag1_vaelg_emne, container, false);
 
     listView = (ListView) rod.findViewById(android.R.id.list);
     listView.setOnItemClickListener(this);
@@ -60,7 +60,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
   @Override
   public void run() {
     adapter = new ArrayAdapter(getActivity(),
-            android.R.layout.simple_list_item_1, android.R.id.text1, Brugervalg.instans.hold.emner);
+            R.layout.frag1_vaelg_emne_elem, R.id.tekst, Brugervalg.instans.hold.emner);
     listView.setAdapter(adapter);
   }
 }

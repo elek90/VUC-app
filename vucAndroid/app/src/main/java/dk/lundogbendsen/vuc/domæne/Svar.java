@@ -28,4 +28,10 @@ public class Svar {
     this.trin = trin;
     trinId = trin.id;
   }
+
+  public boolean harIndhold() {
+    if (tekst!=null && tekst.length()>0) return true;
+    if (optagelser!=null && optagelser.size()>0) return true;
+    return false;
+  }
 }
