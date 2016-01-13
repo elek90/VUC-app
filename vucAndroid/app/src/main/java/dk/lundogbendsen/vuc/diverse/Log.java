@@ -192,4 +192,8 @@ public class Log {
   public static void rapporterFejl(String s) {
     rapporterFejl(new IllegalStateException(s));
   }
+
+  public static void d(String s, String s1) {
+    d(s+" "+s1);
+  }
 }

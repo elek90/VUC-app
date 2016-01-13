@@ -8,6 +8,6 @@ public class Aflevering extends Trin {
   }
 
   public Aflevering(String navn) {
-    super(navn);
+    super(Ikon.mail, navn);
   }
 }

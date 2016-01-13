@@ -14,10 +14,10 @@ import com.google.android.youtube.player.YouTubeIntents;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 
-import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
-import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.Diverse;
+import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.domæne.Svar;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneHorisontalViewpager;
@@ -42,10 +42,11 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
     aq.id(R.id.overskrift).text(trin.navn);
     Integer resId = IkonTilDrawable.ikonTilDrawable.get(trin.ikon);
     if (resId != null) aq.id(R.id.billede).image(resId);
+    else aq.id(R.id.billede).gone();
 
 
+    yttn = (YouTubeThumbnailView) rod.findViewById(R.id.trin_multimedie);
     if (trin.videoUrl!=null && trin.videoUrl.length()>5) {
-      yttn = (YouTubeThumbnailView) rod.findViewById(R.id.trin_multimedie);
       yttn.initialize(Diverse.YOUTUBE_NØGLE, this);
       yttn.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -54,6 +55,8 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
           startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), trin.videoUrl, false, true));
         }
       });
+    } else {
+      yttn.setVisibility(View.GONE);
     }
 
     aq.id(R.id.tekst).text(trin.tekst).visibility(aq.getText().length()>0?View.VISIBLE:View.GONE);

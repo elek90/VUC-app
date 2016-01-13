@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Viden"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="2dp" 
+        android:paddingRight="2dp"
+        android:drawableTop="@drawable/ta_mimetypes_x_office_presentation"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:background="@color/kgul"
+        android:id="@+id/menu1Viden"/>

@@ -17,14 +17,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -32,11 +31,16 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 
+import java.util.ArrayList;
+
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.HovedAkt;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
+import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
+import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
+import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
 import dk.lundogbendsen.vuc.frag1nav.Frag22Trin;
 
@@ -46,6 +50,8 @@ public class Nav2HovedAkt extends AppCompatActivity
   private DrawerLayout drawer;
   private FloatingActionButton fab;
   private ProgressBar progressBar;
+  private LinearLayout kategorier;
+  private ScrollView navigationView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +60,9 @@ public class Nav2HovedAkt extends AppCompatActivity
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     progressBar = (ProgressBar) findViewById(R.id.progressBar);
+    kategorier = (LinearLayout) findViewById(R.id.kategorier);
 
-    final ScrollView navigationView = (ScrollView) findViewById(R.id.nav_view);
+    navigationView = (ScrollView) findViewById(R.id.nav_view);
 
 
     drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -95,29 +102,15 @@ public class Nav2HovedAkt extends AppCompatActivity
 
 
     drawer.setScrimColor(Color.TRANSPARENT);
-    View.OnTouchListener farvKnapNårDenErTrykketNed = new View.OnTouchListener() {
-      public boolean onTouch(View view, MotionEvent me) {
-        Log.d("onTouch()", me.toString());
-        TextView ib = (TextView) view;
-        if (me.getAction() == MotionEvent.ACTION_DOWN) {
-          ib.setAlpha(0.5f);
-        } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
-        } else {
-          ib.setAlpha(1);
-        }
-        return false;
-      }
-    };
 
 
     AQuery aq = new AQuery(this);
-    for (int id : new int[]{R.id.menu1Viden, R.id.menu2Udstyr, R.id.menu3Forsøg, R.id.menu4Rapport, }) {
-      aq.id(id).clicked(this).getView().setOnTouchListener(farvKnapNårDenErTrykketNed);
-    }
     aq.id(R.id.redigeringstilstand).clicked(this).checked(Brugervalg.instans.redigeringstilstand);
     aq.id(R.id.nulstil_data).clicked(this);
+    aq.id(R.id.hent_ny_version).clicked(this);
     aq.id(R.id.emner).clicked(this);
     aq.id(R.id.skift_navigation).clicked(this);
+    aq.id(R.id.skift_navigation2).clicked(this);
 
 
     if (savedInstanceState == null) {
@@ -144,7 +137,37 @@ public class Nav2HovedAkt extends AppCompatActivity
     });
 
     Brugervalg.instans.observatørerTilføjOgKør(brugervalgtObservatør);
+    kategorier.removeAllViews(); // sættes dynamisk i sætKategorier()
   }
+
+  public void sætKategorier(ArrayList<Trin> trin) {
+    kategorier.removeAllViews();
+    for (Trin t : trin) {
+      TextView katTv = (TextView) getLayoutInflater().inflate(R.layout.nav2_venstremenu_kategori, null, true);
+      katTv.setText(t.navn);
+      katTv.setCompoundDrawablesWithIntrinsicBounds(0, IkonTilDrawable.ikonTilDrawable.get(t.ikon), 0, 0);
+      katTv.setOnClickListener(this);
+      katTv.setBackgroundResource(IkonTilDrawable.ikonfarver.get(t.ikon));
+      katTv.setOnTouchListener(farvKnapNårDenErTrykketNed);
+      katTv.setTag(t);
+      kategorier.addView(katTv);
+    }
+  }
+
+
+  View.OnTouchListener farvKnapNårDenErTrykketNed = new View.OnTouchListener() {
+    public boolean onTouch(View view, MotionEvent me) {
+      Log.d("onTouch()", me.toString());
+      TextView ib = (TextView) view;
+      if (me.getAction() == MotionEvent.ACTION_DOWN) {
+        ib.setAlpha(0.5f);
+      } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
+      } else {
+        ib.setAlpha(1);
+      }
+      return false;
+    }
+  };
 
   @Override
   protected void onDestroy() {
@@ -227,6 +250,16 @@ public class Nav2HovedAkt extends AppCompatActivity
 
   @Override
   public void onClick(View v) {
+    Log.d("klik "+v);
+    navigationView.scrollTo(0,0); // rul op i toppen
+    Trin trin = (Trin) v.getTag();
+    if (trin!=null) {
+      Fragment f = getSupportFragmentManager().findFragmentById(R.id.hovedakt_indhold);
+      if (f instanceof Nav2Frag2EmneScrollView) {
+        ((Nav2Frag2EmneScrollView) f).scrollTilKategori(trin);
+      }
+      return;
+    }
     int id = v.getId();
     if (id == R.id.emner) {
       getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);

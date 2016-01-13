@@ -15,7 +15,7 @@ public class Brugervalg {
   public boolean redigeringstilstand;
   public boolean redigererNu;
 
-  public void initTestdata(Logik l) {
+  public void opdaterValgFraNyLogikinstans(Logik l) {
     bru = l.brugere[0];
     hold = bru.holdListe[0];
     emne = hold.emner[0];

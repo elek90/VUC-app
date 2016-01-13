@@ -30,52 +30,58 @@
             android:id="@+id/fag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/kategorier"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Viden"
-            android:padding="10dp"
-            android:drawableTop="@drawable/ta_mimetypes_x_office_presentation"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:gravity="center"
-            android:background="@color/kgul"
-            android:id="@+id/menu1Viden"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Udstyr"
-            android:padding="10dp"
-            android:drawableTop="@drawable/ta_categories_preferences_system"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:gravity="center"
-            android:background="@color/klgrøn"
-            android:id="@+id/menu2Udstyr"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Viden"
+                android:padding="10dp"
+                android:drawableTop="@drawable/ta_mimetypes_x_office_presentation"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center"
+                android:background="@color/kgul"
+                android:id="@+id/menu1Viden"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Forsøg"
-            android:padding="10dp"
-            android:drawableTop="@drawable/oi_categories_applications_science_3"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:gravity="center"
-            android:background="@color/klrød"
-            android:id="@+id/menu3Forsøg"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Udstyr"
+                android:padding="10dp"
+                android:drawableTop="@drawable/ta_categories_preferences_system"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center"
+                android:background="@color/klgrøn"
+                android:id="@+id/menu2Udstyr"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forsøg"
+                android:padding="10dp"
+                android:drawableTop="@drawable/oi_categories_applications_science_3"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center"
+                android:background="@color/klrød"
+                android:id="@+id/menu3Forsøg"/>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rapport"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:drawableTop="@drawable/ta_apps_accessories_text_editor"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:gravity="center"
-            android:background="@color/klblå"
-            android:id="@+id/menu4Rapport"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rapport"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:drawableTop="@drawable/ta_apps_accessories_text_editor"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center"
+                android:background="@color/klblå"
+                android:id="@+id/menu4Rapport"/>
+        </LinearLayout>
 
         <CheckBox
             android:layout_width="wrap_content"

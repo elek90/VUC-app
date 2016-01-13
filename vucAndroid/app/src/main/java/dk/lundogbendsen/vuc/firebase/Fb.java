@@ -24,6 +24,7 @@ public class Fb {
   public static Firebase firebaseRefLogik;
   public static Firebase firebaseEmner;
   public static Firebase firebaseSvar;
+  public static boolean initialiseret;
 
   public static void gemTestdata() {
     firebaseRefLogik.setValue(Logik.instans);
@@ -75,12 +76,15 @@ public class Fb {
                 emneliste.add(dataSnapshot.getValue(Emne.class));
                 if (emneliste.size()<h.emneIdListe.size()) return; // flere emner
                 h.emner = emneliste.toArray(h.emner);
-                for (Emne e : h.emner) for (Trin t : e.trin) {
-                  t.emne = e;
-                  Trin.idref.put(t.id, t);
+                for (Emne e : h.emner) for (Trin trin : e.trin) {
+                  trin.emne = e;
+                  Trin.idref.put(trin.id, trin);
+                  Log.d("TildeltFb ID trin.id="+trin.id + " "+trin.ikon+"/"+trin.navn);
                 }
                 holdNr++;
                 if (holdNr<Brugervalg.instans.bru.holdListe.length) return; // flere hold
+                initialiseret = true;
+                Brugervalg.instans.opdaterValgFraNyLogikinstans(Logik.instans);
                 Brugervalg.instans.opdaterObservatører();
                 if (kaldNummer++ == 1) App.sætErIGang(false, "initFb");
                 else App.kortToast("Data er blevet opdateret\n(ud i hovedmenuen for at se ændringerne)");

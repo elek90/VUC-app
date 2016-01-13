@@ -37,12 +37,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
-import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.diverse.FilCache;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.diverse.Netvaerksstatus;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Logik;
+import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.nav2.Nav2HovedAkt;
 
 
@@ -74,7 +74,7 @@ public class App extends Application {
 
   public void nulstilData() {
     Logik.instans.lavTestdata();
-    Brugervalg.instans.initTestdata(Logik.instans);
+    Brugervalg.instans.opdaterValgFraNyLogikinstans(Logik.instans);
     Fb.gemTestdata();
   }
 
@@ -139,7 +139,7 @@ public class App extends Application {
     }
 
     Logik.instans.lavTestdata();
-    Brugervalg.instans.initTestdata(Logik.instans);
+    Brugervalg.instans.opdaterValgFraNyLogikinstans(Logik.instans);
     Fb.initFb();
     Log.d("onCreate tog " + (System.currentTimeMillis() - TIDSSTEMPEL_VED_OPSTART) + " ms");
 

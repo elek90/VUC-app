@@ -4,14 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import com.androidquery.AQuery;
 
+import dk.lundogbendsen.vuc.diverse.Log;
+import dk.lundogbendsen.vuc.domæne.Brugervalg;
+import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.nav2.Nav2HovedAkt;
 
 public class Splash_akt extends Activity implements Runnable {
 
+  static boolean velkomstVist = false;
   static Splash_akt aktivitetDerVisesNu = null;
   Handler handler = new Handler();
 
@@ -19,24 +22,29 @@ public class Splash_akt extends Activity implements Runnable {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    Log.d("Splash_akt", "aktiviteten blev startet!");
+    Log.d("Splash_akt: aktiviteten blev startet!");
     setContentView(R.layout.splash_akt);
     new AQuery(this).id(R.id.version).text(App.versionsnavn);
 
     aktivitetDerVisesNu = this;
-    if (App.opstartTest) run(); else
     // Hvis savedInstanceState ikke er null er det en aktivitet der er ved at blive genstartet
     if (savedInstanceState == null) {
-      handler.postDelayed(this, 2000); // <1> Kør run() om 3 sekunder
+      if (velkomstVist) run(); else
+      //handler.postDelayed(this, 2000); // <1> Kør run() om 3 sekunder
+      Brugervalg.instans.observatører.add(this);
     }
+    velkomstVist = true;
   }
 
   public void run() {
+    if (!Fb.initialiseret) return; // Vent lidt længere.....
+    Log.d("Splash_akt: Fb.initialiseret så vi kan gå videre...");
     startActivity(new Intent(this, Nav2HovedAkt.class));
     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     aktivitetDerVisesNu.finish();  // <2> Luk velkomsaktiviteten
     aktivitetDerVisesNu = null;
+    Brugervalg.instans.observatører.remove(this);
   }
 
   /**
