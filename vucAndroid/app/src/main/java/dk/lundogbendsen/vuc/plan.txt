@@ -1,8 +1,40 @@
-
+Færdigt v0.2 (13 januar)
+=======
 Oploadservice til cloudinary
 
 Nyt, mere horisontalt, layout og navigation
 
+Trin-farver/kategorier
 
-Trin-farver
-Skærmvending
+
+Færdigt 15 januar og derefter
+=======
+
+ - Skærmvending - selv 'håndtere' skærmvendinger når der skiftes til kameraet under en optagelse
+
+
+
+Udeståender før marktest
+========================
+
+Navigation:
+ - Pseudofragmenter i stedet for rigtige fragmenter for bedre kontrol?
+ - Rydde op
+
+
+Nye besvarelsestyper:
+ - Videoer
+ - Lyd
+ - Ikon for frit valg mellem lyd/billede/video/tekst besvarelsesform
+
+
+Selv vælge hvornår store filer (billeder, video, lyd) skal oploades
+
+
+Brugeroprettelse: holdkode, studienummer, navn
+
+
+
+Kendte fejl
+===========
+

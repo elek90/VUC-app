@@ -30,6 +30,7 @@
         </activity>
         <activity
             android:name=".nav2.Nav2HovedAkt"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

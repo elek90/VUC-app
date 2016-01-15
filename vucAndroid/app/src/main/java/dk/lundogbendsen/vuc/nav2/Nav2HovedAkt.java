@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -151,6 +152,14 @@ public class Nav2HovedAkt extends AppCompatActivity
     }
   }
 
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    Log.d("onConfigurationChanged start");
+    super.onConfigurationChanged(newConfig);
+    Log.d("onConfigurationChanged slut 1");
+    drawer.requestLayout();
+    Log.d("onConfigurationChanged slut 2");
+  }
 
   View.OnTouchListener farvKnapNårDenErTrykketNed = new View.OnTouchListener() {
     public boolean onTouch(View view, MotionEvent me) {

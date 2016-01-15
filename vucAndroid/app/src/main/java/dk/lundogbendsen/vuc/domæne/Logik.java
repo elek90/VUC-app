@@ -100,7 +100,7 @@ public class Logik {
             new Trin(kat_viden, "Bliv klog på kemi i hjemmet"),
             new Trin(video, "Syrers og basers egenskaber", "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
             new Trin(video, "pH skala og måling af syrers og basers styrke. Sammenhæng mellem fortynding og styrke", "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
-            new Trin(video, "Forklaringer på faglige begreber." +
+            new Trin(video, "Forklaringer på faglige begreber. " +
                     "Syrer indeholder H+-ioner.\n" +
                     "Baser indeholder OH-- ioner.\n" +
                     "Hvad er et neutralt stof?", "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
