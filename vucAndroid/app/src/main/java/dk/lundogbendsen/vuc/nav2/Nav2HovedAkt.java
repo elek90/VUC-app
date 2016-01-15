@@ -35,13 +35,14 @@ import com.androidquery.AQuery;
 import java.util.ArrayList;
 
 import dk.lundogbendsen.vuc.App;
-import dk.lundogbendsen.vuc.HovedAkt;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
 import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
+import dk.lundogbendsen.vuc.skrald.Nav2Frag2EmneHorisontalViewpager;
+import dk.lundogbendsen.vuc.skrald.nav1.HovedAkt;
 
 public class Nav2HovedAkt extends AppCompatActivity
         implements AdapterView.OnItemSelectedListener, View.OnClickListener {

@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc.nav2;
+package dk.lundogbendsen.vuc.skrald;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,8 +20,8 @@ import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
-import dk.lundogbendsen.vuc.frag1nav.Frag21Forside;
-import dk.lundogbendsen.vuc.frag1nav.Fragmentfabrikering;
+import dk.lundogbendsen.vuc.skrald.nav1.Frag21Forside;
+import dk.lundogbendsen.vuc.skrald.nav1.Fragmentfabrikering;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
 public class Nav2Frag2EmneHorisontalViewpager extends Fragment {

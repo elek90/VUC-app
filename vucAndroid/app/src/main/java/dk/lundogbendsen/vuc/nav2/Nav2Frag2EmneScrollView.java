@@ -23,7 +23,6 @@ import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Ikon;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
-import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 public class Nav2Frag2EmneScrollView extends Fragment {
