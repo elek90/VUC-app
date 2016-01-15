@@ -22,7 +22,7 @@ import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 
-public class Nav2Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener, Runnable {
+public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener, Runnable {
 
   private ListView listView;
 
@@ -91,7 +91,7 @@ public class Nav2Frag1VælgEmne extends Fragment implements AbsListView.OnItemCl
       public void run() {
         getFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.hovedakt_indhold, new Nav2Frag2EmneScrollView()).addToBackStack(null).commit();
+                .replace(R.id.hovedakt_indhold, new Frag2EmneScrollView()).addToBackStack(null).commit();
       }
     });
   }

@@ -9,10 +9,11 @@
                                         tools:openDrawer="start">
 
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/koordlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".skrald.nav1.HovedAkt">
+        tools:context=".skrald.nav1.SkraldHovedAkt">
 
         <android.support.design.widget.AppBarLayout
             android:layout_height="wrap_content"
@@ -40,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".skrald.nav1.HovedAkt">
+            tools:context=".skrald.nav1.SkraldHovedAkt">
 
         </FrameLayout>
 
@@ -54,13 +55,13 @@
             app:elevation="40dp"
             android:src="@drawable/oi_apps_kedit_2"/>
     </android.support.design.widget.CoordinatorLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
+    <include
+        layout="@layout/nav2_venstremenu"
+        android:paddingTop="?attr/actionBarSize"
         android:fitsSystemWindows="false"
-        app:menu="@menu/venstremenu"/>
+        android:layout_gravity="start"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"/>
+
 
 </android.support.v4.widget.DrawerLayout>

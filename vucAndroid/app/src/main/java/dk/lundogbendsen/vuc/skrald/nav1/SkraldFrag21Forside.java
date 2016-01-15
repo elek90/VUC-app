@@ -23,8 +23,8 @@ import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 
 
-public class Frag21Forside extends Fragment implements AbsListView.OnItemClickListener, View.OnClickListener, Runnable {
-  private Frag2EmneViewpager ejerFragment;
+public class SkraldFrag21Forside extends Fragment implements AbsListView.OnItemClickListener, View.OnClickListener, Runnable {
+  private SkraldFrag2EmneViewpager ejerFragment;
 
   private TextView overskrift;
 
@@ -37,7 +37,7 @@ public class Frag21Forside extends Fragment implements AbsListView.OnItemClickLi
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-    ejerFragment = (Frag2EmneViewpager) getParentFragment();
+    ejerFragment = (SkraldFrag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
 

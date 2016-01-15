@@ -10,7 +10,7 @@ import com.androidquery.AQuery;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.firebase.Fb;
-import dk.lundogbendsen.vuc.nav2.Nav2HovedAkt;
+import dk.lundogbendsen.vuc.nav2.HovedAkt;
 
 public class Splash_akt extends Activity implements Runnable {
 
@@ -39,7 +39,7 @@ public class Splash_akt extends Activity implements Runnable {
   public void run() {
     if (!Fb.initialiseret) return; // Vent lidt længere.....
     Log.d("Splash_akt: Fb.initialiseret så vi kan gå videre...");
-    startActivity(new Intent(this, Nav2HovedAkt.class));
+    startActivity(new Intent(this, HovedAkt.class));
     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     aktivitetDerVisesNu.finish();  // <2> Luk velkomsaktiviteten

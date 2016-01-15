@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc.frag1nav;
+package dk.lundogbendsen.vuc.skrald.nav1;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,10 +27,10 @@ import dk.lundogbendsen.vuc.domæne.Emne;
 import dk.lundogbendsen.vuc.domæne.Optagelse;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
-import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneHorisontalViewpager;
+import dk.lundogbendsen.vuc.skrald.SkraldNav2Frag2EmneHorisontalViewpager;
 
 
-public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class SkraldFrag23Aflevering extends TrinFrag implements View.OnClickListener, AdapterView.OnItemClickListener {
 
   private TextView overskrift;
 
@@ -135,7 +135,7 @@ public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Fragment ejerFragment = getParentFragment();
-    if (ejerFragment instanceof Frag2EmneViewpager) ((Frag2EmneViewpager) ejerFragment).hopTilEmne(position);;
-    if (ejerFragment instanceof Nav2Frag2EmneHorisontalViewpager) ((Nav2Frag2EmneHorisontalViewpager) ejerFragment).hopTilEmne(position);;
+    if (ejerFragment instanceof SkraldFrag2EmneViewpager) ((SkraldFrag2EmneViewpager) ejerFragment).hopTilEmne(position);;
+    if (ejerFragment instanceof SkraldNav2Frag2EmneHorisontalViewpager) ((SkraldNav2Frag2EmneHorisontalViewpager) ejerFragment).hopTilEmne(position);;
   }
 }

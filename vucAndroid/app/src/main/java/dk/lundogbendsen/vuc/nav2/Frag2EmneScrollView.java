@@ -25,7 +25,7 @@ import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
-public class Nav2Frag2EmneScrollView extends Fragment {
+public class Frag2EmneScrollView extends Fragment {
 
   private LinearLayout viewPager;
   private LinkedHashMap<Trin, Integer> kategorier;
@@ -34,7 +34,7 @@ public class Nav2Frag2EmneScrollView extends Fragment {
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View rod = inflater.inflate(R.layout.nav2_frag2_emne_scrollview, container, false);
+    View rod = inflater.inflate(R.layout.frag2_emne_scrollview, container, false);
     viewPager = (LinearLayout) rod.findViewById(R.id.viewpager);
     scrollView = (ScrollView) rod.findViewById(R.id.scrollView);
     FragmentManager fm = getChildFragmentManager();
@@ -45,12 +45,12 @@ public class Nav2Frag2EmneScrollView extends Fragment {
         kategorier.put(t, n);
       }
       if (savedInstanceState==null) {
-        Fragment f = Nav2Fragmentfabrikering.nytFragment(t, n == Brugervalg.instans.emne.trin.length - 1);
+        Fragment f = Fragmentfabrikering.nytFragment(t, n == Brugervalg.instans.emne.trin.length - 1);
         fm.beginTransaction().add(R.id.viewpager, f, "frag_trin_" + t.id).commit();
         fm.executePendingTransactions();
       }
     }
-    ((Nav2HovedAkt) getActivity()).sætKategorier(new ArrayList<>(kategorier.keySet()));
+    ((HovedAkt) getActivity()).sætKategorier(new ArrayList<>(kategorier.keySet()));
     App.forgrundstråd.post(new Runnable() {
       @Override
       public void run() {
@@ -64,7 +64,7 @@ public class Nav2Frag2EmneScrollView extends Fragment {
       App.forgrundstråd.postDelayed(new Runnable() {
         @Override
         public void run() {
-          ((Nav2HovedAkt) getActivity()).visMenu();
+          ((HovedAkt) getActivity()).visMenu();
         }
       }, 100);
 

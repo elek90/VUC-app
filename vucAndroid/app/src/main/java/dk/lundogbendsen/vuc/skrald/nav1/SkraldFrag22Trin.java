@@ -1,6 +1,5 @@
-package dk.lundogbendsen.vuc.nav2;
+package dk.lundogbendsen.vuc.skrald.nav1;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.util.Linkify;
@@ -21,9 +20,10 @@ import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.domæne.Svar;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
+import dk.lundogbendsen.vuc.skrald.SkraldNav2Frag2EmneHorisontalViewpager;
 
 
-public class Nav2Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnInitializedListener {
+public class SkraldFrag22Trin extends TrinFrag implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
 
   private YouTubeThumbnailView yttn;
   private AQuery aq;
@@ -33,9 +33,11 @@ public class Nav2Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnI
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-    View rod = inflater.inflate(R.layout.nav2_frag2_s2_trin, container, false);
+
+    View rod = inflater.inflate(R.layout.skrald_frag2_s2_trin, container, false);
     rod.setTag(this);
     aq = new AQuery(rod);
+    aq.id(R.id.næste).clicked(this);
 
     aq.id(R.id.overskrift).text(trin.navn);
     Integer resId = IkonTilDrawable.ikonTilDrawable.get(trin.ikon);
@@ -50,8 +52,7 @@ public class Nav2Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnI
         @Override
         public void onClick(View v) {
           // public static Intent createPlayVideoIntentWithOptions (Context context, String videoId, boolean fullscreen, boolean finishOnEnd)
-          Intent i = YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), trin.videoUrl, false, true);
-          if (App.tjekIntent(i)) startActivity(i);
+          startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), trin.videoUrl, false, true));
         }
       });
     } else {
@@ -71,6 +72,23 @@ public class Nav2Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnI
 
     return rod;
   }
+
+  @Override
+  public void setUserVisibleHint(boolean isVisibleToUser) {
+    super.setUserVisibleHint(isVisibleToUser);
+    if (isVisibleToUser) {
+      trin.udført = true;
+      App.synligtFragment = this;
+    } else if (App.synligtFragment == this) App.synligtFragment = null;
+  }
+
+  @Override
+  public void onClick(View v) {
+    Fragment ejerFragment = getParentFragment();
+    if (ejerFragment instanceof SkraldFrag2EmneViewpager) ((SkraldFrag2EmneViewpager) ejerFragment).næste();
+    if (ejerFragment instanceof SkraldNav2Frag2EmneHorisontalViewpager) ((SkraldNav2Frag2EmneHorisontalViewpager) ejerFragment).næste();
+  }
+
 
   ///////////////////// Youtube ////////////////////
 

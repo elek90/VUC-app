@@ -25,11 +25,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".skrald.nav1.HovedAkt"
+            android:name=".skrald.nav1.SkraldHovedAkt"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".nav2.Nav2HovedAkt"
+            android:name=".nav2.HovedAkt"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

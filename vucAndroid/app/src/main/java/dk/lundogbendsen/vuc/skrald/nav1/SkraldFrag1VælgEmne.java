@@ -16,7 +16,7 @@ import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 
 
-public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener, Runnable {
+public class SkraldFrag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener, Runnable {
 
   private ListView listView;
 
@@ -54,7 +54,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
     Brugervalg.instans.emne = Brugervalg.instans.hold.emner[position];
     getFragmentManager().beginTransaction()
             .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-            .replace(R.id.hovedakt_indhold, new Frag2EmneViewpager()).addToBackStack(null).commit();
+            .replace(R.id.hovedakt_indhold, new SkraldFrag2EmneViewpager()).addToBackStack(null).commit();
   }
 
   @Override

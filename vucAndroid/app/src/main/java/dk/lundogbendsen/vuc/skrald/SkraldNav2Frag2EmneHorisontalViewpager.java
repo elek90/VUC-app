@@ -20,11 +20,11 @@ import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
-import dk.lundogbendsen.vuc.skrald.nav1.Frag21Forside;
-import dk.lundogbendsen.vuc.skrald.nav1.Fragmentfabrikering;
+import dk.lundogbendsen.vuc.skrald.nav1.SkraldFrag21Forside;
+import dk.lundogbendsen.vuc.skrald.nav1.SkraldFragmentfabrikering;
 import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 
-public class Nav2Frag2EmneHorisontalViewpager extends Fragment {
+public class SkraldNav2Frag2EmneHorisontalViewpager extends Fragment {
 
   /**
    * The {@link ViewPager} that will host the section contents.
@@ -40,7 +40,7 @@ public class Nav2Frag2EmneHorisontalViewpager extends Fragment {
     faner = new ArrayList();
     faner.addAll(Arrays.asList(Brugervalg.instans.emne.trin));
 
-    View rod = inflater.inflate(R.layout.nav2_frag2_emne_viewpager, container, false);
+    View rod = inflater.inflate(R.layout.skrald_navn2_frag2_emne_viewpager, container, false);
     viewPager = (VerticalViewPager) rod.findViewById(R.id.viewpager);
     viewPager.setAdapter(new FaneAdapter(getChildFragmentManager()));
     Fb.indlæsSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne, new Runnable() {
@@ -81,8 +81,8 @@ public class Nav2Frag2EmneHorisontalViewpager extends Fragment {
     public Fragment getItem(int position) {
       Object f = faner.get(position);
       if (f instanceof Fragment) return (Fragment) f;
-      if (f instanceof Trin) return Fragmentfabrikering.nytFragment((Trin) f, position==getCount()-1);
-      return new Frag21Forside(); // fejl
+      if (f instanceof Trin) return SkraldFragmentfabrikering.nytFragment((Trin) f, position==getCount()-1);
+      return new SkraldFrag21Forside(); // fejl
     }
 
     @Override

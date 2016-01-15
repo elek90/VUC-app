@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc;
+package dk.lundogbendsen.vuc.skrald.nav1;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -23,13 +23,13 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
-import dk.lundogbendsen.vuc.frag1nav.Frag1VælgEmne;
-import dk.lundogbendsen.vuc.frag1nav.Frag22RedigerTrin;
-import dk.lundogbendsen.vuc.frag1nav.Frag22Trin;
+import dk.lundogbendsen.vuc.nav2.Frag22RedigerTrin;
 
-public class HovedAkt extends AppCompatActivity
+public class SkraldHovedAkt extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
   private DrawerLayout drawer;
@@ -40,7 +40,7 @@ public class HovedAkt extends AppCompatActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.hoved_akt);
+    setContentView(R.layout.skrald_hoved_akt);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -56,7 +56,7 @@ public class HovedAkt extends AppCompatActivity
     drawer.setDrawerListener(toggle);
     toggle.syncState();
 
-    View headerView = navigationView.inflateHeaderView(R.layout.venstremenu_top);
+    View headerView = navigationView.inflateHeaderView(R.layout.skrald_venstremenu_top);
     ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.holdListe);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     Spinner spinner = (Spinner) headerView.findViewById(R.id.fag);
@@ -65,14 +65,14 @@ public class HovedAkt extends AppCompatActivity
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-              .add(R.id.hovedakt_indhold, new Frag1VælgEmne()).commit();
+              .add(R.id.hovedakt_indhold, new SkraldFrag1VælgEmne()).commit();
     }
 
     fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (App.synligtFragment instanceof Frag22Trin) {
+        if (App.synligtFragment instanceof SkraldFrag22Trin) {
           Frag22RedigerTrin f2 = new Frag22RedigerTrin();
           f2.setArguments(App.synligtFragment.getArguments());
           getSupportFragmentManager().beginTransaction()

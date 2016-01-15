@@ -22,12 +22,12 @@ import dk.lundogbendsen.vuc.domæne.Ikon;
 import dk.lundogbendsen.vuc.domæne.Logik;
 import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
-import dk.lundogbendsen.vuc.skrald.nav1.Frag2EmneViewpager;
+import dk.lundogbendsen.vuc.skrald.nav1.SkraldFrag2EmneViewpager;
 
 
 public class Frag22RedigerTrin extends TrinFrag implements View.OnClickListener {
 
-  private Frag2EmneViewpager ejerFragment;
+  private SkraldFrag2EmneViewpager ejerFragment;
   private ImageView billede;
   private YouTubeThumbnailView yttn;
   private AQuery aq;
@@ -39,7 +39,7 @@ public class Frag22RedigerTrin extends TrinFrag implements View.OnClickListener 
                            Bundle savedInstanceState) {
 
 
-    ejerFragment = (Frag2EmneViewpager) getParentFragment();
+    ejerFragment = (SkraldFrag2EmneViewpager) getParentFragment();
 
     View rod = inflater.inflate(R.layout.frag2_s2_trin_rediger, container, false);
     aq = new AQuery(rod);

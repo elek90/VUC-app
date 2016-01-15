@@ -18,13 +18,13 @@ import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.domæne.Trin;
-import dk.lundogbendsen.vuc.skrald.nav1.Frag2EmneViewpager;
+import dk.lundogbendsen.vuc.skrald.nav1.SkraldFrag2EmneViewpager;
 
 
-public class Frag22TrinYTFragment extends Fragment implements View.OnClickListener, YouTubePlayer.OnInitializedListener {
+public class SkraldFrag22TrinYTFragment extends Fragment implements View.OnClickListener, YouTubePlayer.OnInitializedListener {
   static String TRIN = "TRIN";
 
-  private Frag2EmneViewpager ejerFragment;
+  private SkraldFrag2EmneViewpager ejerFragment;
   private TextView overskrift;
   private Trin trin;
   private ImageView billede;
@@ -36,7 +36,7 @@ public class Frag22TrinYTFragment extends Fragment implements View.OnClickListen
 
     trin = (Trin) getArguments().getSerializable(TRIN);
 
-    View rod = inflater.inflate(R.layout.frag2_s2_trin, container, false);
+    View rod = inflater.inflate(R.layout.skrald_frag2_s2_trin, container, false);
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
     overskrift.setText(trin.navn);
 
@@ -46,7 +46,7 @@ public class Frag22TrinYTFragment extends Fragment implements View.OnClickListen
     //else billede.setVisibility(View.GONE);
 
     rod.findViewById(R.id.næste).setOnClickListener(this);
-    ejerFragment = (Frag2EmneViewpager) getParentFragment();
+    ejerFragment = (SkraldFrag2EmneViewpager) getParentFragment();
 
     if (trin.videoUrl!=null) {
       if (savedInstanceState==null) {

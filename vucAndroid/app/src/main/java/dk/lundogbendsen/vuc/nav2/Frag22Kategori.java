@@ -12,7 +12,7 @@ import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 
-public class Nav2Frag22Kategori extends TrinFrag {
+public class Frag22Kategori extends TrinFrag {
 
   private AQuery aq;
 
@@ -20,7 +20,7 @@ public class Nav2Frag22Kategori extends TrinFrag {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-    View rod = inflater.inflate(R.layout.nav2_frag2_s2_kategori, container, false);
+    View rod = inflater.inflate(R.layout.frag2_s2_kategori, container, false);
     rod.setTag(this);
     aq = new AQuery(rod);
 

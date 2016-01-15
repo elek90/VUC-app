@@ -1,4 +1,4 @@
-package dk.lundogbendsen.vuc.frag1nav;
+package dk.lundogbendsen.vuc.skrald.nav1;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,13 +15,13 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
 import dk.lundogbendsen.vuc.firebase.Fb;
 
-public class Frag2EmneViewpager extends Fragment {
+public class SkraldFrag2EmneViewpager extends Fragment {
 
   /**
    * The {@link ViewPager} that will host the section contents.
@@ -35,10 +35,10 @@ public class Frag2EmneViewpager extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
     faner = new ArrayList();
-    faner.add(new Frag21Forside());
+    faner.add(new SkraldFrag21Forside());
     faner.addAll(Arrays.asList(Brugervalg.instans.emne.trin));
 
-    View rod = inflater.inflate(R.layout.frag2_emne_viewpager, container, false);
+    View rod = inflater.inflate(R.layout.skrald_frag2_emne_viewpager, container, false);
     viewPager = (ViewPager) rod.findViewById(R.id.viewpager);
     viewPager.setAdapter(new FaneAdapter(getChildFragmentManager()));
 //        viewPager.setPageTransformer(false, new ZoomOutPageTransformer());
@@ -100,8 +100,8 @@ public class Frag2EmneViewpager extends Fragment {
     public Fragment getItem(int position) {
       Object f = faner.get(position);
       if (f instanceof Fragment) return (Fragment) f;
-      if (f instanceof Trin) return Fragmentfabrikering.nytFragment((Trin) f, position==getCount()-1);
-      return new Frag21Forside(); // fejl
+      if (f instanceof Trin) return SkraldFragmentfabrikering.nytFragment((Trin) f, position==getCount()-1);
+      return new SkraldFrag21Forside(); // fejl
     }
 
     @Override

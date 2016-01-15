@@ -1,5 +1,6 @@
-package dk.lundogbendsen.vuc.frag1nav;
+package dk.lundogbendsen.vuc.nav2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.util.Linkify;
@@ -20,10 +21,9 @@ import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.domæne.Svar;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
-import dk.lundogbendsen.vuc.nav2.Nav2Frag2EmneHorisontalViewpager;
 
 
-public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTubeThumbnailView.OnInitializedListener {
+public class Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnInitializedListener {
 
   private YouTubeThumbnailView yttn;
   private AQuery aq;
@@ -33,11 +33,9 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-
-    View rod = inflater.inflate(R.layout.frag2_s2_trin, container, false);
+    View rod = inflater.inflate(R.layout.nav2_frag2_s2_trin, container, false);
     rod.setTag(this);
     aq = new AQuery(rod);
-    aq.id(R.id.næste).clicked(this);
 
     aq.id(R.id.overskrift).text(trin.navn);
     Integer resId = IkonTilDrawable.ikonTilDrawable.get(trin.ikon);
@@ -52,7 +50,8 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
         @Override
         public void onClick(View v) {
           // public static Intent createPlayVideoIntentWithOptions (Context context, String videoId, boolean fullscreen, boolean finishOnEnd)
-          startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), trin.videoUrl, false, true));
+          Intent i = YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), trin.videoUrl, false, true);
+          if (App.tjekIntent(i)) startActivity(i);
         }
       });
     } else {
@@ -72,23 +71,6 @@ public class Frag22Trin extends TrinFrag implements View.OnClickListener, YouTub
 
     return rod;
   }
-
-  @Override
-  public void setUserVisibleHint(boolean isVisibleToUser) {
-    super.setUserVisibleHint(isVisibleToUser);
-    if (isVisibleToUser) {
-      trin.udført = true;
-      App.synligtFragment = this;
-    } else if (App.synligtFragment == this) App.synligtFragment = null;
-  }
-
-  @Override
-  public void onClick(View v) {
-    Fragment ejerFragment = getParentFragment();
-    if (ejerFragment instanceof Frag2EmneViewpager) ((Frag2EmneViewpager) ejerFragment).næste();
-    if (ejerFragment instanceof Nav2Frag2EmneHorisontalViewpager) ((Nav2Frag2EmneHorisontalViewpager) ejerFragment).næste();
-  }
-
 
   ///////////////////// Youtube ////////////////////
 
