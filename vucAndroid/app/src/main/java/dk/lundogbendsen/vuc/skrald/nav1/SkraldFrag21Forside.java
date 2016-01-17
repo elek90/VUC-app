@@ -39,7 +39,7 @@ public class SkraldFrag21Forside extends Fragment implements AbsListView.OnItemC
 
     ejerFragment = (SkraldFrag2EmneViewpager) getParentFragment();
 
-    View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
+    View rod = inflater.inflate(R.layout.skrald_frag2_s1_forside, container, false);
 
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
     overskrift.setText(Brugervalg.instans.emne.navn);
@@ -64,7 +64,7 @@ public class SkraldFrag21Forside extends Fragment implements AbsListView.OnItemC
       LayoutInflater inflater = getActivity().getLayoutInflater();
       @Override
       public View getView(int position, View v, ViewGroup parent) {
-        if (v==null) v = inflater.inflate(R.layout.frag2_s1_forside_elem, null);
+        if (v==null) v = inflater.inflate(R.layout.skrald_frag2_s1_forside_elem, null);
         AQuery aq = new AQuery(v);
         Trin trin = liste.get(position);
         aq.id(R.id.ikon).image(IkonTilDrawable.ikonTilDrawable.get(trin.ikon));

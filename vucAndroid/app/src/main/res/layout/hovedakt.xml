@@ -56,7 +56,7 @@
             android:src="@drawable/oi_apps_kedit_2"/>
     </android.support.design.widget.CoordinatorLayout>
     <include
-        layout="@layout/nav2_venstremenu"
+        layout="@layout/venstremenu"
         android:paddingTop="?attr/actionBarSize"
         android:fitsSystemWindows="false"
         android:layout_gravity="start"

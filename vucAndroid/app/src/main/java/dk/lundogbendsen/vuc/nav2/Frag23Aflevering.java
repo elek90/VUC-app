@@ -43,7 +43,7 @@ public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, 
                            Bundle savedInstanceState) {
 
 
-    View rod = inflater.inflate(R.layout.frag2_s1_forside, container, false);
+    View rod = inflater.inflate(R.layout.skrald_frag2_s1_forside, container, false);
     rod.setTag(this);
     overskrift = (TextView) rod.findViewById(R.id.overskrift);
     overskrift.setText(trin.navn);
@@ -69,7 +69,7 @@ public class Frag23Aflevering extends TrinFrag implements View.OnClickListener, 
       LayoutInflater inflater = getActivity().getLayoutInflater();
       @Override
       public View getView(int position, View v, ViewGroup parent) {
-        if (v==null) v = inflater.inflate(R.layout.frag2_s1_forside_elem, null);
+        if (v==null) v = inflater.inflate(R.layout.skrald_frag2_s1_forside_elem, null);
         AQuery aq = new AQuery(v);
         Trin trin = liste.get(position);
         aq.id(R.id.ikon).image(IkonTilDrawable.ikonTilDrawable.get(trin.ikon));

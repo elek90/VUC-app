@@ -142,7 +142,7 @@ public class HovedAkt extends AppCompatActivity
   public void sætKategorier(ArrayList<Trin> trin) {
     kategorier.removeAllViews();
     for (Trin t : trin) {
-      TextView katTv = (TextView) getLayoutInflater().inflate(R.layout.nav2_venstremenu_kategori, null, true);
+      TextView katTv = (TextView) getLayoutInflater().inflate(R.layout.venstremenu_kategori, null, true);
       katTv.setText(t.navn);
       katTv.setCompoundDrawablesWithIntrinsicBounds(0, IkonTilDrawable.ikonTilDrawable.get(t.ikon), 0, 0);
       katTv.setOnClickListener(this);

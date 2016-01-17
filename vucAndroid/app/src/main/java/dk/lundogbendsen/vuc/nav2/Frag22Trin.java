@@ -33,7 +33,7 @@ public class Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnIniti
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-    View rod = inflater.inflate(R.layout.nav2_frag2_s2_trin, container, false);
+    View rod = inflater.inflate(R.layout.frag2_s2_trin, container, false);
     rod.setTag(this);
     aq = new AQuery(rod);
 
