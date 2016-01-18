@@ -1,13 +1,13 @@
 package dk.lundogbendsen.vuc.nav2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -52,6 +52,7 @@ public class Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnIniti
           // public static Intent createPlayVideoIntentWithOptions (Context context, String videoId, boolean fullscreen, boolean finishOnEnd)
           Intent i = YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), trin.videoUrl, false, true);
           if (App.tjekIntent(i)) startActivity(i);
+          else startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/"+trin.videoUrl)));
         }
       });
     } else {
@@ -76,14 +77,16 @@ public class Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnIniti
 
   @Override
   public void onInitializationSuccess(YouTubeThumbnailView view, YouTubeThumbnailLoader loader) {
-    view.setImageResource(R.drawable.loading_thumbnail);
+    view.setImageResource(R.drawable.video_loading_thumbnail);
     loader.setVideo(trin.videoUrl);
   }
 
+  private static boolean youtubefejlVist = false;
   @Override
   public void onInitializationFailure(YouTubeThumbnailView view, YouTubeInitializationResult errorReason) {
-    view.setImageResource(R.drawable.no_thumbnail);
-    String errorMessage = "Youtube kunne ikke startes: "+errorReason.toString();
-    Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+    view.setImageResource(R.drawable.video_no_thumbnail);
+    if (youtubefejlVist) return;
+    App.kortToast("Kan ikke vise Youtube-miniaturer: "+errorReason.toString());
+    youtubefejlVist = true;
   }
 }

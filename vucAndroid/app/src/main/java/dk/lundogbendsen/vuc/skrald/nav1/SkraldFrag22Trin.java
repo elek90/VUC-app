@@ -94,13 +94,13 @@ public class SkraldFrag22Trin extends TrinFrag implements View.OnClickListener, 
 
   @Override
   public void onInitializationSuccess(YouTubeThumbnailView view, YouTubeThumbnailLoader loader) {
-    view.setImageResource(R.drawable.loading_thumbnail);
+    view.setImageResource(R.drawable.video_loading_thumbnail);
     loader.setVideo(trin.videoUrl);
   }
 
   @Override
   public void onInitializationFailure(YouTubeThumbnailView view, YouTubeInitializationResult errorReason) {
-    view.setImageResource(R.drawable.no_thumbnail);
+    view.setImageResource(R.drawable.video_no_thumbnail);
     String errorMessage = "Youtube kunne ikke startes: "+errorReason.toString();
     Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
   }

@@ -275,7 +275,7 @@ public class App extends Application {
 
   public static boolean tjekIntent(Intent i) {
       if (i.resolveActivity(instans.getPackageManager()) != null) return true;
-      App.langToast("Program kan ikke startes");
+      //App.langToast("Program kan ikke startes");
       return false;
   }
 }
