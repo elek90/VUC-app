@@ -23,10 +23,38 @@
         android:layout_height="match_parent"
         android:layout_weight="1"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/vandret_linje_bg"/>
+
     <TextView
-        android:layout_width="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Redigering af opgavetrin:\nVælg 'Redigér som lærer' i venstremenuen"
-        android:id="@+id/textView"/>
+        android:text="Tilføj emne"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/emnekode"
+            android:hint="Emnekode, f.eks. &apos;123&apos;"
+            android:layout_weight="1"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tilføj_nyt_emne"
+            android:text="Tilføj"/>
+    </LinearLayout>
 
 </LinearLayout>

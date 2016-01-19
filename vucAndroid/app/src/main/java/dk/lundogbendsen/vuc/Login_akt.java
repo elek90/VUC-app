@@ -112,8 +112,8 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
           App.langToast("Du blev logget ind.");
           App.prefs.edit().putString("navn", navnText.getText().toString())
                           .putString("email", emailText.getText().toString()).commit();
-          Fb.firebaseBruger = Fb.firebaseRod.child("brugere").child(authData.getUid());
-          Fb.firebaseBruger.child("sidste_login").setValue(new Date());
+          Fb.sætAuthData(authData);
+          Fb.firebaseBruger.child("sidst_logget_ind").setValue(new Date());
           findViewById(R.id.loading_section).setVisibility(View.GONE);
         }
 

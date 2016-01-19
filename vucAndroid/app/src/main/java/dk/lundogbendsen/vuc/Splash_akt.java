@@ -39,7 +39,7 @@ public class Splash_akt extends Activity implements Runnable {
   public void run() {
     if (!Fb.initialiseret) return; // Vent lidt længere.....
     Log.d("Splash_akt: Fb.initialiseret så vi kan gå videre...");
-    if (Fb.firebaseRefLogik.getAuth() == null) { //  App.prefs.getString(BRUGERNAVN, null)==
+    if (Fb.firebaseBruger == null) { //  App.prefs.getString(BRUGERNAVN, null)==
       startActivity(new Intent(this, Login_akt.class));
     } else {
       startActivity(new Intent(this, HovedAkt.class));

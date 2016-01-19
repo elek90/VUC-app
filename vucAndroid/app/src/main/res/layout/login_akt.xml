@@ -89,7 +89,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="0dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/fb_or_line">
+                android:background="@drawable/vandret_linje_bg"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -7,6 +7,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.diverse.Log;
@@ -112,10 +113,13 @@ public class Fb {
     });
   }
 
-  public static void sætAuthData(AuthData authData) {
-    Log.d("Fb: Sæt authData="+ Fb.authData);
+  public static void sætAuthData(AuthData authData1) {
+    Log.d("Fb: Sæt authData="+ authData1 + " fra "+Fb.authData);
+    Fb.authData = authData1;
     if (Fb.authData !=null) {
       firebaseBruger = firebaseRod.child("brugere").child(Fb.authData.getUid());
+      firebaseBruger.child("sidst_brugt").setValue(new Date());
+      Log.d("Fb: firebaseBruger="+ firebaseBruger);
     }
   }
 

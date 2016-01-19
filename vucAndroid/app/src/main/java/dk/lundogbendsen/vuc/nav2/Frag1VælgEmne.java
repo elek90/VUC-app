@@ -15,6 +15,7 @@ import com.androidquery.AQuery;
 
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Emne;
 import dk.lundogbendsen.vuc.domæne.Trin;
@@ -22,7 +23,7 @@ import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 
 
-public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener, Runnable {
+public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickListener, Runnable, View.OnClickListener {
 
   private ListView listView;
 
@@ -30,6 +31,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
   public static final String INDLÆSER = "Indlæser...";
   public static final String EJ_BEGYNDT = "ikke begyndt";
   public static final String FÆRDIG = "færdig";
+  private AQuery aq;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +60,8 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
         }
       });
     }
+    aq = new AQuery(rod);
+    rod.findViewById(R.id.tilføj_nyt_emne).setOnClickListener(this);
     return rod;
   }
 
@@ -113,5 +117,12 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
       }
     };
     listView.setAdapter(adapter);
+  }
+
+  @Override
+  public void onClick(View v) {
+    String emnekode = aq.id(R.id.emnekode).getText().toString();
+    Log.d("Fb.firebaseBruger ?= " + Fb.firebaseBruger);
+    Fb.firebaseBruger.child("emner").child(emnekode).setValue("1");
   }
 }
