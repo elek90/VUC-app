@@ -1,5 +1,6 @@
 package dk.lundogbendsen.vuc.firebase;
 
+import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -21,10 +22,17 @@ import dk.lundogbendsen.vuc.domæne.Trin;
  * Created by j on 10-01-16.
  */
 public class Fb {
+  public static Firebase firebaseRod;
   public static Firebase firebaseRefLogik;
   public static Firebase firebaseEmner;
   public static Firebase firebaseSvar;
+  public static Firebase firebaseBruger;
   public static boolean initialiseret;
+
+  // AuthData{uid='a50a54e7-bf82-4d2c-9816-cd50d9f31085', provider='password', token='***', expires='1453232975',
+  // auth='{provider=password, uid=a50a54e7-bf82-4d2c-9816-cd50d9f31085}',
+  // providerData='{email=jacno@dtu.dk, isTemporaryPassword=false, profileImageURL=https://secure.gravatar.com/avatar/36904d97418c4025ba6727ab57272ae4?d=retro}'}
+  public static AuthData authData;
 
   public static void gemTestdata() {
     firebaseRefLogik.setValue(Logik.instans);
@@ -41,10 +49,11 @@ public class Fb {
     App.sætErIGang(true, "initFb");
     Firebase.setAndroidContext(App.instans);
     Firebase.getDefaultConfig().setPersistenceEnabled(true);
-    Firebase firebaseRef = new Firebase("https://vuctest.firebaseio.com/v3");
-    firebaseRefLogik = firebaseRef.child("_logik");
-    firebaseEmner = firebaseRef.child("emner");
-    firebaseSvar = firebaseRef.child("svar");
+    firebaseRod = new Firebase("https://vuctest.firebaseio.com/v3");
+    firebaseRefLogik = firebaseRod.child("_logik");
+    firebaseEmner = firebaseRod.child("emner");
+    firebaseSvar = firebaseRod.child("svar");
+    sætAuthData(firebaseRod.getAuth());
 
     firebaseRefLogik.addValueEventListener(new ValueEventListener() {
       int kaldNummer = 1;
@@ -101,6 +110,13 @@ public class Fb {
       public void onCancelled(FirebaseError firebaseError) {
       }
     });
+  }
+
+  public static void sætAuthData(AuthData authData) {
+    Log.d("Fb: Sæt authData="+ Fb.authData);
+    if (Fb.authData !=null) {
+      firebaseBruger = firebaseRod.child("brugere").child(Fb.authData.getUid());
+    }
   }
 
   public static void indlæsSvarForEmne(Bruger bru, final Emne emne, final Runnable observatør) {

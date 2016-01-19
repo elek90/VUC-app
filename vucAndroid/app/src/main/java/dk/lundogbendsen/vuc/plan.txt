@@ -35,6 +35,7 @@ Nye besvarelsestyper:
  - Videoer
  - Lyd
  - Ikon for frit valg mellem lyd/billede/video/tekst besvarelsesform
+ - Datapunkt: Tekst/tal, der registreres også GPS-koordinater og tidspunkt
 
 
 Selv vælge hvornår store filer (billeder, video, lyd) skal oploades

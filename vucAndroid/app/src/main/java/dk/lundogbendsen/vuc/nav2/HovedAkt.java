@@ -35,12 +35,14 @@ import com.androidquery.AQuery;
 import java.util.ArrayList;
 
 import dk.lundogbendsen.vuc.App;
+import dk.lundogbendsen.vuc.Login_akt;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.diverse.AppOpdatering;
 import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
+import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.skrald.SkraldNav2Frag2EmneHorisontalViewpager;
 import dk.lundogbendsen.vuc.skrald.nav1.SkraldHovedAkt;
 
@@ -109,6 +111,7 @@ public class HovedAkt extends AppCompatActivity
     aq.id(R.id.nulstil_data).clicked(this);
     aq.id(R.id.hent_ny_version).clicked(this);
     aq.id(R.id.emner).clicked(this);
+    aq.id(R.id.log_ud).clicked(this);
     aq.id(R.id.skift_navigation).clicked(this);
     aq.id(R.id.skift_navigation2).clicked(this);
 
@@ -236,6 +239,11 @@ public class HovedAkt extends AppCompatActivity
     int id = v.getId();
     if (id == R.id.emner) {
       getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    } else if (id == R.id.log_ud) {
+      Fb.firebaseRod.unauth();
+      Fb.authData = null;
+      finish();
+      startActivity(new Intent(this, Login_akt.class));
     } else if (id == R.id.redigeringstilstand) {
       Brugervalg.instans.redigeringstilstand = !Brugervalg.instans.redigeringstilstand;
       App.prefs.edit().putBoolean("redigeringstilstand",Brugervalg.instans.redigeringstilstand).commit();
