@@ -33,6 +33,7 @@ import com.cloudinary.Cloudinary;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -99,7 +100,14 @@ public class App extends Application {
     fejlsøgning = prefs.getBoolean("fejlsøgning", false);
     res = App.instans.getResources();
 
-    fillager = ContextCompat.getExternalFilesDirs(this, Environment.DIRECTORY_PICTURES)[0];
+    File[] filesDirs = ContextCompat.getExternalFilesDirs(this, Environment.DIRECTORY_PICTURES);
+    Log.d("filesDirs="+Arrays.toString(filesDirs));
+    for (File f : filesDirs) {
+      if (f==null) continue; // Det er set at en af indgangene er null, så vi itererer over dem
+      fillager = f;
+      break;
+    }
+    Log.d("fillager="+fillager+"  mkdirs "+fillager.mkdirs()+ " skrivbar "+fillager.canWrite());
 
     // HTTP-forbindelser havde en fejl præ froyo, men jeg har også set problemet på Xperia Play, der er 2.3.4 (!)
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {

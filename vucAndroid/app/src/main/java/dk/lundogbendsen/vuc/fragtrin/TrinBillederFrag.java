@@ -71,12 +71,14 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
   @Override
   public void onResume() {
     trin.tmpHackTrinBillederFrag = this;
+    Log.d("onResume "+this);
     super.onResume();
   }
 
   @Override
   public void onPause() {
     trin.tmpHackTrinBillederFrag = null;
+    Log.d("onPause "+this);
     super.onPause();
   }
 
@@ -139,7 +141,7 @@ XXX efter gebnstart
 
   public static void gemOptagelse(final Trin trin, final Optagelse optagelse) {
     try {
-      Log.d("optagelse.lokalUri="+ optagelse.lokalUri);
+      Log.d("gemOptagelse lokalUri="+ optagelse.lokalUri);
       trin.svar.optagelser.add(optagelse);
       trin.svar.ændretSkalGemmes = true;
 

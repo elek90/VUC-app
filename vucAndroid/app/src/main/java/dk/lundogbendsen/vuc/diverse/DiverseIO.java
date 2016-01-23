@@ -143,6 +143,7 @@ public class DiverseIO {
     File fil;
     do { // lav unikt filnavn
       fil = new File(App.fillager, filnavn+"_"+tidsstempel+(n++==0?"":"_"+n) + endelse);
+      Log.d("opretUnikFil "+fil);
     } while (fil.exists());
     fil.getParentFile().mkdirs();
     return fil;
