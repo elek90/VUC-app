@@ -3,8 +3,6 @@
               android:layout_height="match_parent"
               android:layout_marginTop="5dp"
               android:animateLayoutChanges="true"
-              android:background="#f5f5f5"
-              android:foreground="#ffffff"
               android:orientation="vertical"
               android:paddingBottom="6dp"
               android:paddingLeft="20dp"
@@ -25,6 +23,9 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/navn"
                 android:layout_width="match_parent"
@@ -32,7 +33,11 @@
                 android:hint="Studienummer og navn"
                 android:inputType="textPersonName"
                 android:paddingTop="20dp"/>
+            </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
@@ -40,7 +45,11 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:paddingTop="20dp"/>
+            </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/adgangskode"
                 android:layout_width="match_parent"
@@ -48,6 +57,7 @@
                 android:hint="Adgangskode"
                 android:inputType="textPassword"
                 android:paddingTop="16dp"/>
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/log_ind"

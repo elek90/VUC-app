@@ -25,6 +25,9 @@
             android:padding="16dp"
             android:orientation="vertical">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/overskrift"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -32,14 +35,22 @@
                 android:layout_height="wrap_content"
                 android:hint="Overskrift"
                 android:text="Bliv klog på lys og og og og og og og meget meget andet"/>
+            </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Video-ID"
                 android:id="@+id/trin_multimedie"
                 />
+            </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,6 +60,7 @@
                 android:id="@+id/tekst"
                 android:paddingRight="@dimen/activity_horizontal_margin"
             />
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
