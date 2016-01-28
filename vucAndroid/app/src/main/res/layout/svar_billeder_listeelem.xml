@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:card_view="http://schemas.android.com/apk/res-auto"
-              android:padding="18dp"
+              android:padding="8dp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:orientation="vertical">
@@ -9,15 +9,16 @@
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:padding="18dp"
+        android:padding="6dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         card_view:cardElevation="8dp"
         card_view:cardCornerRadius="4dp">
+        <!-- Højde sættes i TrinBillederFrag -->
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:id="@+id/billede"
             android:src="@drawable/vucroskilde_logo"
             android:scaleType="centerInside"
@@ -32,9 +33,6 @@
             android:layout_gravity="top|right"/>
 
     </android.support.v7.widget.CardView>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
     <EditText
         android:layout_width="match_parent"
@@ -42,6 +40,5 @@
         android:id="@+id/billedetekst"
         android:hint="billedetekst"
         />
-    </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>

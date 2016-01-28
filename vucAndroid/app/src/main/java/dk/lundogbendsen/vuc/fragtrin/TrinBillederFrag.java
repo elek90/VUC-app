@@ -32,8 +32,10 @@ import java.util.Map;
 
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.diverse.DiverseIO;
 import dk.lundogbendsen.vuc.diverse.Log;
+import dk.lundogbendsen.vuc.diverse.MyLinearLayoutManager;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Optagelse;
 import dk.lundogbendsen.vuc.domæne.Svar;
@@ -58,33 +60,21 @@ public class TrinBillederFrag extends TrinFrag implements View.OnClickListener {
     aq.id(R.id.galleri).clicked(this);
     recyclerView = (RecyclerView) rod.findViewById(R.id.recyclerView);
     recyclerView.setHasFixedSize(false);
-    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+    recyclerView.setLayoutManager(new MyLinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
     recyclerView.setAdapter(adapter);
     if (trin.svar ==null) {
       trin.svar = new Svar(Brugervalg.instans.bru, trin);
     }
     if (trin.svar.optagelser ==null) trin.svar.optagelser = new ArrayList<Optagelse>();
     if (trin.svar.optagelser.isEmpty()) recyclerView.setVisibility(View.GONE);
-    return rod;
-  }
-
-  @Override
-  public void onResume() {
     trin.tmpHackTrinBillederFrag = this;
-    Log.d("onResume "+this);
-    super.onResume();
-  }
-
-  @Override
-  public void onPause() {
-    trin.tmpHackTrinBillederFrag = null;
-    Log.d("onPause "+this);
-    super.onPause();
+    return rod;
   }
 
   @Override
   public void onDestroyView() {
     Log.d("onDestroyView "+this);
+    trin.tmpHackTrinBillederFrag = null;
     super.onDestroyView();
   }
 
@@ -142,20 +132,20 @@ XXX efter gebnstart
   public static void gemOptagelse(final Trin trin, final Optagelse optagelse) {
     try {
       Log.d("gemOptagelse lokalUri="+ optagelse.lokalUri);
-      trin.svar.optagelser.add(optagelse);
-      trin.svar.ændretSkalGemmes = true;
 
-      if (trin.tmpHackTrinBillederFrag != null) {
-        final TrinBillederFrag f = trin.tmpHackTrinBillederFrag;
-        f.recyclerView.setVisibility(View.VISIBLE);
-        f.adapter.notifyItemInserted(f.adapter.getItemCount()-1);
-        App.forgrundstråd.post(new Runnable() {
-          @Override
-          public void run() {
-            f.recyclerView.smoothScrollToPosition(f.adapter.getItemCount()-1);
-          }
-        });
-      }
+      // Vent til allersidst i eventkøen så animationen kan ses
+      Diverse.udførSidstIHovedtråden(200, new Runnable() {
+        @Override
+        public void run() {
+          trin.svar.optagelser.add(optagelse);
+          trin.svar.ændretSkalGemmes = true;
+          if (trin.tmpHackTrinBillederFrag== null) return;
+          TrinBillederFrag f = trin.tmpHackTrinBillederFrag;
+          f.recyclerView.setVisibility(View.VISIBLE);
+          f.adapter.notifyItemInserted(f.adapter.getItemCount()-1);
+          f.recyclerView.smoothScrollToPosition(f.adapter.getItemCount()-1);
+        }
+      });
       final ContentResolver cr = App.instans.getContentResolver();
       BitmapFactory.Options bmOptions = new BitmapFactory.Options();
       bmOptions.inJustDecodeBounds = true;
@@ -208,7 +198,6 @@ XXX efter gebnstart
 
   public class OptagelseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final ImageView billede;
-    private final AQuery billedeaq;
     private final ImageView slet;
     private final EditText billedetekst;
     public boolean billedetekstUnderOpdatering;
@@ -217,7 +206,6 @@ XXX efter gebnstart
       super(v);
       billede = (ImageView) v.findViewById(R.id.billede);
       billede.setOnClickListener(this);
-      billedeaq = new AQuery(billede);
       billedetekst = (EditText) v.findViewById(R.id.billedetekst);
       billedetekst.addTextChangedListener(new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -238,19 +226,28 @@ XXX efter gebnstart
         trin.svar.ændretSkalGemmes = true;
         trin.svar.optagelser.remove(getAdapterPosition());
         adapter.notifyItemRemoved(getAdapterPosition());
+        /*
+        int pos = getAdapterPosition();
+        Optagelse o = trin.svar.optagelser.remove(pos);
+        trin.svar.optagelser.add(o);
+        adapter.notifyItemMoved(pos, trin.svar.optagelser.size()-1);
+        */
       } else {
         App.udestår("vis popop med billede");
       }
     }
   }
+
   RecyclerView.Adapter<OptagelseViewHolder> adapter = new RecyclerView.Adapter<OptagelseViewHolder>() {
     @Override
-    public OptagelseViewHolder onCreateViewHolder(ViewGroup parent,
-                                                  int viewType) {
-      View v = LayoutInflater.from(parent.getContext())
-              .inflate(R.layout.svar_billeder_listeelem, null, false);
-      OptagelseViewHolder vh = new OptagelseViewHolder(v);
-      return vh;
+    public int getItemCount() {
+      return trin.svar.optagelser.size();
+    }
+
+    @Override
+    public OptagelseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.svar_billeder_listeelem, null, false);
+      return new OptagelseViewHolder(v);
     }
 
     @Override
@@ -260,11 +257,10 @@ XXX efter gebnstart
       holder.billedetekst.setText(trin.svar.optagelser.get(position).tekst);
       holder.billedetekstUnderOpdatering = false;
       holder.billede.setImageDrawable(null);
-      int højde = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+      int højde = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, getResources().getDisplayMetrics());
       int bredde = (int) (højde*optagelse.aspektRatio);
       holder.billede.getLayoutParams().height = højde;
       holder.billede.getLayoutParams().width = bredde==0? ViewGroup.LayoutParams.WRAP_CONTENT : bredde;
-      holder.billede.setAdjustViewBounds(false);
 
       // Vis billedet. Først prøver vi med lokal URI
       if (optagelse.lokalUri!=null && !optagelse.ignorerLokalUri) {
@@ -277,8 +273,7 @@ XXX efter gebnstart
           //Glide.with(getContext()).load(lokalUri).into(holder.billede);
           Log.d("onBindViewHolder("+position+ ": bruger lokalUri=" +lokalUri);
           //holder.billedeaq.image(url, true, true, bredde, R.drawable.vucroskilde_logo, null, AQuery.FADE_IN_NETWORK, AQuery.RATIO_PRESERVE);
-          // Hurra, det gik godt. Hop ud
-          return;
+          return; // Hurra, det gik godt. Hop ud
         } catch (Exception e) {
           optagelse.ignorerLokalUri = true; // URI dur ikke på denne maskine, den kommer nok fra en anden, øv bøv
           Log.d("ignorerLokalUri for optagelse "+position+ ": " + e);
@@ -292,6 +287,12 @@ XXX efter gebnstart
         //Log.d("cloudinary_id => "+url+ " i stedet for "+optagelse.url);
       }
       Picasso.with(getContext()).load(url).resize(bredde,højde).into(holder.billede);
+    }
+
+  };
+}
+
+
       /*
       Log.d("onBindViewHolder("+position+ ": bruger URL for optagelse "+position+ ": " + url+"  "+optagelse.aspektRatio);
       if (optagelse.aspektRatio>0 && false) {
@@ -301,11 +302,4 @@ XXX efter gebnstart
         holder.billedeaq.image(url, true, true, bredde, R.drawable.vucroskilde_logo, null, AQuery.FADE_IN_NETWORK, AQuery.RATIO_PRESERVE);
       }
       */
-    }
 
-    @Override
-    public int getItemCount() {
-      return trin.svar.optagelser.size();
-    }
-  };
-}

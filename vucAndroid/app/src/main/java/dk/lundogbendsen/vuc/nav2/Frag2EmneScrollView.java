@@ -51,7 +51,7 @@ public class Frag2EmneScrollView extends Fragment {
       }
     }
     ((HovedAkt) getActivity()).sætKategorier(new ArrayList<>(kategorier.keySet()));
-    App.forgrundstråd.post(new Runnable() {
+    App.hovedtråd.post(new Runnable() {
       @Override
       public void run() {
         Log.d("viewPager.getChildCount() = "+viewPager.getChildCount());
@@ -61,7 +61,7 @@ public class Frag2EmneScrollView extends Fragment {
       }
     });
     if (savedInstanceState==null && !kategorier.isEmpty()) {
-      App.forgrundstråd.postDelayed(new Runnable() {
+      App.hovedtråd.postDelayed(new Runnable() {
         @Override
         public void run() {
           ((HovedAkt) getActivity()).visMenu();

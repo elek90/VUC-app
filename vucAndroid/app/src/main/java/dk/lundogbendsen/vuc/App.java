@@ -58,7 +58,7 @@ public class App extends Application {
   public static NotificationManager notificationManager;
   public static AudioManager audioManager;
   public static boolean fejlsøgning = false;
-  public static Handler forgrundstråd;
+  public static Handler hovedtråd;
   public static Typeface skrift;
 
   public static Netvaerksstatus netværk;
@@ -92,7 +92,7 @@ public class App extends Application {
       BugSenseHandler.initAndStartSession(this, getString(PRODUKTION ? R.string.bugsense_nøgle : R.string.bugsense_testnøgle));
     super.onCreate();
 
-    forgrundstråd = new Handler();
+    hovedtråd = new Handler();
     connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
     notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     audioManager = (AudioManager) App.instans.getSystemService(Context.AUDIO_SERVICE);
@@ -192,7 +192,7 @@ public class App extends Application {
     Log.d("langToast(" + txt);
     if (aktivitetIForgrunden == null) txt = "VUC:\n" + txt;
     final String txt2 = txt;
-    forgrundstråd.post(new Runnable() {
+    hovedtråd.post(new Runnable() {
       @Override
       public void run() {
         // lange toasts bør blive hængende
@@ -208,7 +208,7 @@ public class App extends Application {
     Log.d("kortToast(" + txt);
     if (aktivitetIForgrunden == null) txt = "VUC:\n" + txt;
     final String txt2 = txt;
-    forgrundstråd.post(new Runnable() {
+    hovedtråd.post(new Runnable() {
       @Override
       public void run() {
         // lange toasts bør blive hængende

@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "dk.lundogbendsen.vuc"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "0.2 (13. januar)"
     }
@@ -51,5 +51,4 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2' // 100kb
 
     compile 'com.github.castorflex.verticalviewpager:library:19.0.1'
-
 }
