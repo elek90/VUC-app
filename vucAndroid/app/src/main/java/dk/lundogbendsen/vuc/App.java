@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.bugsense.trace.BugSenseHandler;
 import com.cloudinary.Cloudinary;
+import com.crashlytics.android.Crashlytics;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,6 +47,7 @@ import dk.lundogbendsen.vuc.domæne.Logik;
 import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.nav2.HovedAkt;
 import dk.lundogbendsen.vuc.skrald.nav1.SkraldHovedAkt;
+import io.fabric.sdk.android.Fabric;
 
 
 public class App extends Application {
@@ -91,6 +93,14 @@ public class App extends Application {
     if (!EMULATOR)
       BugSenseHandler.initAndStartSession(this, getString(PRODUKTION ? R.string.bugsense_nøgle : R.string.bugsense_testnøgle));
     super.onCreate();
+    Fabric.with(this, new Crashlytics());
+    /*
+    Answers.getInstance().logLogin(new LoginEvent().putMethod("metode").putSuccess(true));
+    Crashlytics.setUserIdentifier("12345");
+    Crashlytics.setUserEmail("user@fabric.io");
+    Crashlytics.setUserName("Test User");
+    //throw new RuntimeException("This is a crash");
+    */
 
     hovedtråd = new Handler();
     connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
