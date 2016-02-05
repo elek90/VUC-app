@@ -23,6 +23,7 @@ import static dk.lundogbendsen.vuc.domæne.Ikon.kat_rapport;
 import static dk.lundogbendsen.vuc.domæne.Ikon.kat_udstyr;
 import static dk.lundogbendsen.vuc.domæne.Ikon.kat_viden;
 import static dk.lundogbendsen.vuc.domæne.Ikon.notesblok;
+import static dk.lundogbendsen.vuc.domæne.Ikon.skriv__uden_ikon;
 import static dk.lundogbendsen.vuc.domæne.Ikon.video;
 import static dk.lundogbendsen.vuc.domæne.Ikon.værktøj;
 /**
@@ -69,7 +70,7 @@ public class Logik {
       new Trin(foto, "Tag billeder af spektrum"),
       new Trin(foto, "Tag billeder af lyskilde"),
       new Trin(kat_rapport, "Rapport"),
-      new Trin(notesblok, "Beskriv dine observationer"),
+      new Trin(skriv__uden_ikon, "Beskriv dine observationer"),
       new Aflevering("Send rapport"),
     };
 

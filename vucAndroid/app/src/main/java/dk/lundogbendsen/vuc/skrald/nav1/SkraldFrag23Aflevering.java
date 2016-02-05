@@ -99,7 +99,7 @@ public class SkraldFrag23Aflevering extends TrinFrag implements View.OnClickList
     sb.append("Besvarelse af "+e.navn+"\n\n");
     int antal=0, besv=0;
     for (Trin t : e.trin) {
-      if (!TrinFrag.ikonTilFragment.containsKey(t.ikon)) continue;
+      if (!TrinFrag.ikonTilTrinFrag.containsKey(t.ikon)) continue;
       antal++;
       sb.append("Svar "+antal+": "+t.navn+":\n");
       if (t.svar!=null && t.svar.harIndhold()) {

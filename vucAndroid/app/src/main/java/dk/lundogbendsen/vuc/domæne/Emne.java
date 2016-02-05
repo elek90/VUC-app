@@ -10,7 +10,7 @@ public class Emne {
   public String navn;
   public Trin[] trin;
   public String id;
-  public transient String tmpData;
+  public transient String tmpData = "Indlæser.....";
 
   public Emne() {
   }

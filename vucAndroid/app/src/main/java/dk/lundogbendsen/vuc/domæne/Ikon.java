@@ -8,6 +8,7 @@ public enum Ikon {
   tom, bog, mail, video, kamera, tavle, noter_i_felten, mikrofon, notesblok,
   hjælp, mennesker, pen_og_blyant, værktøj, lyd, vigtigt, pære, advarsel,
   vedhæft, pipette, hammer, reagensglas, foto,
+  skriv__uden_ikon,
 
   kat_viden(Type.kategori),
   kat_udstyr(Type.kategori),

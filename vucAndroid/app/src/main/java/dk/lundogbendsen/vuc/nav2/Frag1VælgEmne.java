@@ -69,7 +69,7 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
   public static String findStatus(Emne e) {
     int antal=0, besv=0;
     for (Trin t : e.trin) {
-      if (!TrinFrag.ikonTilFragment.containsKey(t.ikon)) continue;
+      if (!TrinFrag.ikonTilTrinFrag.containsKey(t.ikon)) continue;
       antal++;
       if (t.svar!=null && t.svar.harIndhold()) besv++;
     }
@@ -107,7 +107,9 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
       @Override
       public View getView(int position, View convertView, ViewGroup parent) {
         View rod = super.getView(position, convertView, parent);
-        String beskrivelse = Brugervalg.instans.hold.emner[position].tmpData;
+        Log.d("Brugervalg.instans.hold.emner[position]="+Brugervalg.instans.hold.emner[position]);
+        Emne e = Brugervalg.instans.hold.emner[position];
+        String beskrivelse = e==null?"(fejl - e==null)":e.tmpData;
         new AQuery(rod)
                 .id(R.id.beskrivelse).text(beskrivelse)
                 .id(R.id.tekst).getTextView().setCompoundDrawablesWithIntrinsicBounds(0,0,
@@ -124,5 +126,6 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
     String emnekode = aq.id(R.id.emnekode).getText().toString();
     Log.d("Fb.firebaseBruger ?= " + Fb.firebaseBruger);
     Fb.firebaseBruger.child("emner").child(emnekode).setValue("1");
+    App.langToast("Ikke implementeret endnu");
   }
 }

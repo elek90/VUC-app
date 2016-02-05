@@ -15,7 +15,7 @@ public class Fragmentfabrikering {
 
   public static Fragment nytFragment(Trin trin, boolean sidste) {
     Fragment fragment;
-    if (trin instanceof Aflevering || sidste) fragment = new Frag23Aflevering();
+    if (trin instanceof Aflevering || sidste) fragment = new Frag23Send();
     else if (trin.ikon.type == Ikon.Type.kategori) {
       fragment = new Frag22Kategori();
     } else {

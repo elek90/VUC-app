@@ -50,7 +50,7 @@ public class Fb {
     App.sætErIGang(true, "initFb");
     Firebase.setAndroidContext(App.instans);
     Firebase.getDefaultConfig().setPersistenceEnabled(true);
-    firebaseRod = new Firebase("https://vuctest.firebaseio.com/v3");
+    firebaseRod = new Firebase("https://vuc.firebaseio.com/v3");
     firebaseRefLogik = firebaseRod.child("_logik");
     firebaseEmner = firebaseRod.child("emner");
     firebaseSvar = firebaseRod.child("svar");
