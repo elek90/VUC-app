@@ -90,10 +90,11 @@ public class App extends Application {
     instans = this;
     netværk = new Netvaerksstatus();
     EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
-    if (!EMULATOR)
+    if (!EMULATOR) {
       BugSenseHandler.initAndStartSession(this, getString(PRODUKTION ? R.string.bugsense_nøgle : R.string.bugsense_testnøgle));
+      Fabric.with(this, new Crashlytics());
+    }
     super.onCreate();
-    Fabric.with(this, new Crashlytics());
     /*
     Answers.getInstance().logLogin(new LoginEvent().putMethod("metode").putSuccess(true));
     Crashlytics.setUserIdentifier("12345");

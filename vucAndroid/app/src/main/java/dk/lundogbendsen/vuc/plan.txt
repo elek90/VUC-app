@@ -7,8 +7,8 @@ Nyt, mere horisontalt, layout og navigation
 Trin-farver/kategorier
 
 
-Færdigt 15 januar og derefter
-=======
+Færdigt 5 februar
+=================
 
  - Skærmvending - selv 'håndtere' skærmvendinger når der skiftes til kameraet under en optagelse
  - Når man har indsat optagelse animeres ikke hen til den nye optagelse
