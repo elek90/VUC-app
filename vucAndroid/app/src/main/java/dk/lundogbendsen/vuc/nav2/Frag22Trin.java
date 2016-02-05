@@ -27,7 +27,7 @@ public class Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnIniti
 
   private YouTubeThumbnailView yttn;
   private AQuery aq;
-  private boolean besvarelsesfragOprettet;
+  private boolean initialiseret; // Tilføj kun underfragmenter FØRSTE gang
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,14 +61,14 @@ public class Frag22Trin extends TrinFrag implements YouTubeThumbnailView.OnIniti
 
     aq.id(R.id.tekst).text(trin.tekst).visibility(aq.getText().length()>0?View.VISIBLE:View.GONE);
     Linkify.addLinks(aq.getTextView(), Linkify.ALL);
-    if (savedInstanceState==null && !besvarelsesfragOprettet) {
-      besvarelsesfragOprettet = true;
+    if (savedInstanceState==null && !initialiseret) {
       Fragment f = TrinFrag.nytFragment(trin);
       if (f!=null) {
         if (trin.svar==null) trin.svar = new Svar();
         getChildFragmentManager().beginTransaction().add(R.id.besvarelsesfrag, f).commit();
       }
     }
+    initialiseret = true;
 
     return rod;
   }

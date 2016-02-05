@@ -27,10 +27,10 @@ public class Brugervalg {
      */
 
   public void opdaterObservatører() {
-    for (Runnable r : observatører) r.run();
+    for (Runnable r : new ArrayList<>(observatører)) r.run();
   }
 
-  public void observatørerTilføjOgKør(Runnable runnable) {
+  public void tilføjOgKørObservatør(Runnable runnable) {
     observatører.add(runnable);
     runnable.run();
   }

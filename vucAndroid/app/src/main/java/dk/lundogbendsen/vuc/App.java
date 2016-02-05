@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.bugsense.trace.BugSenseHandler;
 import com.cloudinary.Cloudinary;
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -86,15 +87,16 @@ public class App extends Application {
   @SuppressLint("NewApi")
   @Override
   public void onCreate() {
+    super.onCreate();
     TIDSSTEMPEL_VED_OPSTART = System.currentTimeMillis();
-    instans = this;
-    netværk = new Netvaerksstatus();
     EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
+    instans = this;
     if (!EMULATOR) {
       BugSenseHandler.initAndStartSession(this, getString(PRODUKTION ? R.string.bugsense_nøgle : R.string.bugsense_testnøgle));
-      Fabric.with(this, new Crashlytics());
     }
-    super.onCreate();
+    Fabric.with(this, new Crashlytics.Builder()
+            .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
+            .build());
     /*
     Answers.getInstance().logLogin(new LoginEvent().putMethod("metode").putSuccess(true));
     Crashlytics.setUserIdentifier("12345");
@@ -103,6 +105,7 @@ public class App extends Application {
     //throw new RuntimeException("This is a crash");
     */
 
+    netværk = new Netvaerksstatus();
     hovedtråd = new Handler();
     connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
     notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

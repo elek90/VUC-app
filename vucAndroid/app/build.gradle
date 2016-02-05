@@ -33,6 +33,7 @@ android {
         }
         debug {
             applicationIdSuffix 'beta'
+            ext.enableCrashlytics = false
         }
     }
 

@@ -18,6 +18,7 @@ import java.util.LinkedHashMap;
 
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
+import dk.lundogbendsen.vuc.diverse.Diverse;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Ikon;
@@ -30,6 +31,7 @@ public class Frag2EmneScrollView extends Fragment {
   private LinearLayout viewPager;
   private LinkedHashMap<Trin, Integer> kategorier;
   private ScrollView scrollView;
+  private boolean initialiseret; // Tilføj kun underfragmenter FØRSTE gang
 
   @Nullable
   @Override
@@ -44,12 +46,13 @@ public class Frag2EmneScrollView extends Fragment {
       if (t.ikon.type == Ikon.Type.kategori) {
         kategorier.put(t, n);
       }
-      if (savedInstanceState==null) {
+      if (savedInstanceState==null && !initialiseret) {
         Fragment f = Fragmentfabrikering.nytFragment(t, n == Brugervalg.instans.emne.trin.length - 1);
         fm.beginTransaction().add(R.id.viewpager, f, "frag_trin_" + t.id).commit();
         fm.executePendingTransactions();
       }
     }
+
     ((HovedAkt) getActivity()).sætKategorier(new ArrayList<>(kategorier.keySet()));
     App.hovedtråd.post(new Runnable() {
       @Override
@@ -60,15 +63,16 @@ public class Frag2EmneScrollView extends Fragment {
         }
       }
     });
-    if (savedInstanceState==null && !kategorier.isEmpty()) {
-      App.hovedtråd.postDelayed(new Runnable() {
+    if (savedInstanceState==null && !kategorier.isEmpty() && !initialiseret) {
+      Diverse.udførSidstIHovedtråden(100, new Runnable() {
         @Override
         public void run() {
           ((HovedAkt) getActivity()).visMenu();
         }
-      }, 100);
+      });
 
     }
+    initialiseret = true;
     return rod;
   }
 

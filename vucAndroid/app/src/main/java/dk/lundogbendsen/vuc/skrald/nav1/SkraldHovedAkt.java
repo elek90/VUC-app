@@ -86,7 +86,7 @@ public class SkraldHovedAkt extends AppCompatActivity
       }
     });
 
-    Brugervalg.instans.observatørerTilføjOgKør(brugervalgtObservatør);
+    Brugervalg.instans.tilføjOgKørObservatør(brugervalgtObservatør);
   }
 
   @Override

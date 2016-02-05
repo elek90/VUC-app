@@ -40,7 +40,7 @@ public class Frag3Aflevering extends Fragment implements View.OnClickListener, A
     View rod = inflater.inflate(R.layout.frag3_aflevering, container, false);
 
     webView = (WebView) rod.findViewById(R.id.indhold);
-
+    webView.setBackgroundColor(0); // Brug baggrundens farve
     String html = lavHtml(Brugervalg.instans.emne, Brugervalg.instans.bru);
     webView.loadData(html, "text/html; charset=utf-8", "UTF-8");
 

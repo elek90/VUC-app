@@ -14,10 +14,16 @@ Færdigt 5 februar
  - Når man har indsat optagelse animeres ikke hen til den nye optagelse
  - Man kan ikke altid se at der er flere optagelser
  - Rydde op
+ - Brugeroprettelse:
+
+
 
 
 Kendte fejl
 ===========
+ - Alle brugere redigerer pt i den samme besvarelse
+
+
 Vis venstremenu hvis emne har lagt kategorier ind i den - skal gøres bedre
 
 
@@ -43,6 +49,8 @@ Aflevering (HTML)
 
 Hvis muligt/senere
 ==================
+Oprettelse af opgaver
+
 Skal der være tegnefunktion på billeder? – Det er ønskeligt, ja.
 Beskæringsmuligheder? Dette er der pt. ikke taget stilling til.
 

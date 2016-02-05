@@ -138,7 +138,7 @@ public class HovedAkt extends AppCompatActivity
       }
     });
 
-    Brugervalg.instans.observatørerTilføjOgKør(brugervalgtObservatør);
+    Brugervalg.instans.tilføjOgKørObservatør(brugervalgtObservatør);
     kategorier.removeAllViews(); // sættes dynamisk i sætKategorier()
   }
 
