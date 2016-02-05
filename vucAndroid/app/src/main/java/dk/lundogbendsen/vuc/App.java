@@ -94,9 +94,8 @@ public class App extends Application {
     if (!EMULATOR) {
       BugSenseHandler.initAndStartSession(this, getString(PRODUKTION ? R.string.bugsense_nøgle : R.string.bugsense_testnøgle));
     }
-    Fabric.with(this, new Crashlytics.Builder()
-            .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
-            .build());
+    //Fabric.with(this, new Crashlytics());
+    Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
     /*
     Answers.getInstance().logLogin(new LoginEvent().putMethod("metode").putSuccess(true));
     Crashlytics.setUserIdentifier("12345");

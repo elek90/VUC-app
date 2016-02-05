@@ -12,9 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.LoginEvent;
-import com.crashlytics.android.answers.SignUpEvent;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -22,6 +19,7 @@ import com.firebase.client.FirebaseError;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Map;
 
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.firebase.Fb;
@@ -155,14 +153,14 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
           Fb.sætAuthData(authData);
           Fb.firebaseBruger.child("sidst_logget_ind").setValue(new Date());
           findViewById(R.id.loading_section).setVisibility(View.GONE);
-          Answers.getInstance().logLogin(new LoginEvent().putSuccess(true));
+          //Answers.getInstance().logLogin(new LoginEvent().putSuccess(true));
         }
 
         @Override
         public void onAuthenticationError(FirebaseError firebaseError) {
           App.langToast("Fejl: " + firebaseError);
           findViewById(R.id.loading_section).setVisibility(View.GONE);
-          Answers.getInstance().logLogin(new LoginEvent().putSuccess(false));
+          //Answers.getInstance().logLogin(new LoginEvent().putSuccess(false));
         }
       });
     }
@@ -173,14 +171,18 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
 
     if (v.getId()==R.id.opret_bruger) {
       findViewById(R.id.loading_section).setVisibility(View.VISIBLE);
-      Fb.firebaseRod.createUser(emailText.getText().toString(), passwordText.getText().toString(), new Firebase.ResultHandler(){
+      Fb.firebaseRod.createUser(emailText.getText().toString(), passwordText.getText().toString(),new Firebase.ValueResultHandler<Map<String, Object>>() {
         @Override
-        public void onSuccess() {
+        public void onSuccess(Map<String, Object> result) {
+          System.out.println("Successfully created user account with uid: " + result.get("uid"));
+          Fb.firebaseBruger = Fb.firebaseRod.child("brugere").child(result.get("uid").toString());
+          Fb.firebaseBruger.child("navn").setValue(navnText.getText().toString());
+          Fb.firebaseBruger.child("email").setValue(emailText.getText().toString());
           App.langToast("Bruger oprettet.");
           findViewById(R.id.loading_section).setVisibility(View.GONE);
           oprettelse = false;
           visSkjulFelter();
-          Answers.getInstance().logSignUp(new SignUpEvent().putSuccess(true));
+          //Answers.getInstance().logSignUp(new SignUpEvent().putSuccess(true));
           onClick(findViewById(R.id.log_ind));
         }
 
@@ -188,9 +190,10 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
         public void onError(FirebaseError firebaseError) {
           App.langToast("Fejl: " + firebaseError);
           findViewById(R.id.loading_section).setVisibility(View.GONE);
-          Answers.getInstance().logSignUp(new SignUpEvent().putSuccess(false));
+          //Answers.getInstance().logSignUp(new SignUpEvent().putSuccess(false));
         }
       });
     }
   }
+  int n;
 }
