@@ -30,7 +30,7 @@
                 android:id="@+id/navn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Studienummer og navn"
+                android:hint="Navn (og evt studienummer)"
                 android:inputType="textPersonName"
                 android:paddingTop="20dp"/>
             </android.support.design.widget.TextInputLayout>
@@ -42,7 +42,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="Email (brugernavn)"
                 android:inputType="textEmailAddress"
                 android:paddingTop="20dp"/>
             </android.support.design.widget.TextInputLayout>
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="right"
-                android:text="Ny bruger?"
+                android:text="Opret ny bruger"
                 android:textStyle="bold"
                 android:typeface="normal"/>
 

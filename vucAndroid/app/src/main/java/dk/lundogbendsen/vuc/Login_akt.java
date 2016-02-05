@@ -5,13 +5,21 @@ import android.accounts.AccountManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ListPopupWindow;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.LoginEvent;
+import com.crashlytics.android.answers.SignUpEvent;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -25,6 +33,7 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
   private EditText passwordText;
   private EditText navnText;
   private static boolean oprettelse = false;
+  private ListPopupWindow lpw;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +48,48 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
     String email = App.prefs.getString("email", "");
     navnText.setText(App.prefs.getString("navn", ""));
 
-    if (email.isEmpty()) {
-      AccountManager accountManager = AccountManager.get(this);
-      Account[] konti = accountManager.getAccounts();// accountManager.getAccountsByType("com.google");
-      Log.d("Konti: "+ Arrays.toString(konti));
-      // Konti: [Account {name=user@updatecenter, type=com.sonyericsson.updatecenter.account.default}, Account {name=Phone contacts, type=com.sonyericsson.localcontacts}, Account {name=SDN contacts, type=com.sonyericsson.sdncontacts}, Account {name=jacob.nordfalk@gmail.com, type=com.google}]
-      for (Account k: konti) {
-        if (!k.name.contains("@")) continue;
-        email = k.name;
+    Log.d("Konti: " + Arrays.toString(AccountManager.get(this).getAccounts()));
+    /*
+    Account[] konti = accountManager.getAccounts();   giver konti: [
+    Account {name=user@updatecenter, type=com.sonyericsson.updatecenter.account.default},
+    Account {name=Phone contacts, type=com.sonyericsson.localcontacts},
+    Account {name=SDN contacts, type=com.sonyericsson.sdncontacts},
+    Account {name=jacob.nordfalk@gmail.com, type=com.google}]
+    */
+
+    final ArrayList<String> kontiEmail = new ArrayList<>();
+    for (String type : new String[] {"com.google", "com.twitter.android.auth.login", "com.twitter", "com.facebook.auth.login", "com.facebook"}) {
+      final Account[] konti = AccountManager.get(this).getAccountsByType(type);
+      Log.d("Konti for "+ type + Arrays.toString(konti));
+      for (Account k : konti) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(k.name).matches()) continue;
+        if (email.isEmpty()) email = k.name;
+        kontiEmail.add(k.name);
         //navnText.setText(email.substring(0, email.indexOf("@")));
       }
     }
+    Log.d("kontiEmail "+ kontiEmail);
+    //final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, konti);
+    lpw = new ListPopupWindow(this);
+    lpw.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, kontiEmail));
+    //lpw.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, konti));
+    lpw.setAnchorView(emailText);
+    //lpw.setModal(true);
+    emailText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (!v.isShown()) return;
+        if (hasFocus) lpw.show();
+        else lpw.dismiss();
+      }
+    });
+    lpw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        emailText.setText(kontiEmail.get(position));
+        lpw.dismiss();
+      }
+    });
     emailText.setText(email);
 
     findViewById(R.id.log_ind).setOnClickListener(this);
@@ -115,12 +155,14 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
           Fb.sætAuthData(authData);
           Fb.firebaseBruger.child("sidst_logget_ind").setValue(new Date());
           findViewById(R.id.loading_section).setVisibility(View.GONE);
+          Answers.getInstance().logLogin(new LoginEvent().putSuccess(true));
         }
 
         @Override
         public void onAuthenticationError(FirebaseError firebaseError) {
           App.langToast("Fejl: " + firebaseError);
           findViewById(R.id.loading_section).setVisibility(View.GONE);
+          Answers.getInstance().logLogin(new LoginEvent().putSuccess(false));
         }
       });
     }
@@ -138,12 +180,15 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
           findViewById(R.id.loading_section).setVisibility(View.GONE);
           oprettelse = false;
           visSkjulFelter();
+          Answers.getInstance().logSignUp(new SignUpEvent().putSuccess(true));
+          onClick(findViewById(R.id.log_ind));
         }
 
         @Override
         public void onError(FirebaseError firebaseError) {
           App.langToast("Fejl: " + firebaseError);
           findViewById(R.id.loading_section).setVisibility(View.GONE);
+          Answers.getInstance().logSignUp(new SignUpEvent().putSuccess(false));
         }
       });
     }

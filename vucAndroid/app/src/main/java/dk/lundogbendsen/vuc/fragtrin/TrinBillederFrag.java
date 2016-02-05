@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -224,8 +225,19 @@ XXX efter gebnstart
     public void onClick(View v) {
       if (v==slet) {
         trin.svar.ændretSkalGemmes = true;
-        trin.svar.optagelser.remove(getAdapterPosition());
-        adapter.notifyItemRemoved(getAdapterPosition());
+        final int pos = getAdapterPosition();
+        final Optagelse o = trin.svar.optagelser.remove(pos);
+        adapter.notifyItemRemoved(pos);
+        Snackbar.make(recyclerView, "Optagelse fjernet", Snackbar.LENGTH_LONG)
+                .setAction("Fortryd", new View.OnClickListener() {
+                  @Override
+                  public void onClick(View view) {
+                    trin.svar.ændretSkalGemmes = true;
+                    trin.svar.optagelser.add(pos, o);
+                    adapter.notifyItemInserted(pos);
+                    recyclerView.smoothScrollToPosition(pos);
+                  }
+                }).show();
         /*
         int pos = getAdapterPosition();
         Optagelse o = trin.svar.optagelser.remove(pos);
