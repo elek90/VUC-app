@@ -22,7 +22,6 @@ public class Splash_akt extends Activity implements Runnable {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    Log.d("Splash_akt: aktiviteten blev startet!");
     setContentView(R.layout.splash_akt);
     new AQuery(this).id(R.id.version).text(App.versionsnavn);
 

@@ -19,8 +19,6 @@ import dk.lundogbendsen.vuc.diverse.IkonTilDrawable;
 import dk.lundogbendsen.vuc.diverse.Log;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Ikon;
-import dk.lundogbendsen.vuc.domæne.Logik;
-import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.fragtrin.TrinFrag;
 import dk.lundogbendsen.vuc.skrald.nav1.SkraldFrag2EmneViewpager;
 
@@ -100,8 +98,7 @@ public class Frag22RedigerTrin extends TrinFrag implements View.OnClickListener 
     trin.tekst = aq.id(R.id.tekst).getText().toString();
     trin.videoUrl = aq.id(R.id.trin_multimedie).getText().toString();
     trin.ikon = (Ikon) spinner.getSelectedItem();
-    Fb.firebaseRefLogik.setValue(Logik.instans);
-    App.kortToast("Data gemt");
+    App.kortToast("UDESTÅR Data gemt");
     getFragmentManager().popBackStack();
   }
 

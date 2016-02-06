@@ -79,7 +79,8 @@ public class App extends Application {
 
   public void nulstilData() {
     Logik.instans.lavTestdata();
-    Brugervalg.instans.opdaterValgFraNyLogikinstans(Logik.instans);
+    Brugervalg.instans.bru = Logik.instans.brugere[0];
+    Brugervalg.instans.emne = Logik.instans.emner.get(0);
     Fb.gemTestdata();
   }
 
@@ -122,10 +123,6 @@ public class App extends Application {
     }
     Log.d("fillager="+fillager+"  mkdirs "+fillager.mkdirs()+ " skrivbar "+fillager.canWrite());
 
-    // HTTP-forbindelser havde en fejl præ froyo, men jeg har også set problemet på Xperia Play, der er 2.3.4 (!)
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-      System.setProperty("http.keepAlive", "false");
-    }
     String packageName = getPackageName();
     try {
       if ("dk.lundogbendsen.vuc".equals(packageName)) {
@@ -141,7 +138,6 @@ public class App extends Application {
       if (EMULATOR) App.versionsnavnDetaljer += " EMU";
       Log.d("App.versionsnavn=" + App.versionsnavnDetaljer);
 
-      Class.forName("android.os.AsyncTask"); // Fix for http://code.google.com/p/android/issues/detail?id=20915
     } catch (Exception e) {
       Log.rapporterFejl(e);
     }
@@ -160,8 +156,6 @@ public class App extends Application {
       skrift = Typeface.DEFAULT;
     }
 
-    Logik.instans.lavTestdata();
-    Brugervalg.instans.opdaterValgFraNyLogikinstans(Logik.instans);
     Fb.initFb();
     Log.d("onCreate tog " + (System.currentTimeMillis() - TIDSSTEMPEL_VED_OPSTART) + " ms");
 

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -51,7 +50,7 @@ public class SkraldFrag1VælgEmne extends Fragment implements AbsListView.OnItem
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    Brugervalg.instans.emne = Brugervalg.instans.hold.emner[position];
+    //Brugervalg.instans.emne = Brugervalg.instans.hold.emner[position];
     getFragmentManager().beginTransaction()
             .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
             .replace(R.id.hovedakt_indhold, new SkraldFrag2EmneViewpager()).addToBackStack(null).commit();
@@ -59,8 +58,7 @@ public class SkraldFrag1VælgEmne extends Fragment implements AbsListView.OnItem
 
   @Override
   public void run() {
-    adapter = new ArrayAdapter(getActivity(),
-            R.layout.frag1_vaelg_emne_elem, R.id.tekst, Brugervalg.instans.hold.emner);
+    //adapter = new ArrayAdapter(getActivity(),R.layout.frag1_vaelg_emne_elem, R.id.tekst, Brugervalg.instans.hold.emner);
     listView.setAdapter(adapter);
   }
 }

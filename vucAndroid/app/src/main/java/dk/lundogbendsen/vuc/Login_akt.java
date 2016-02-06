@@ -22,6 +22,8 @@ import java.util.Date;
 import java.util.Map;
 
 import dk.lundogbendsen.vuc.diverse.Log;
+import dk.lundogbendsen.vuc.domæne.Bruger;
+import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.nav2.HovedAkt;
 
@@ -175,9 +177,12 @@ public class Login_akt extends AppCompatActivity implements Firebase.AuthStateLi
         @Override
         public void onSuccess(Map<String, Object> result) {
           System.out.println("Successfully created user account with uid: " + result.get("uid"));
-          Fb.firebaseBruger = Fb.firebaseRod.child("brugere").child(result.get("uid").toString());
-          Fb.firebaseBruger.child("navn").setValue(navnText.getText().toString());
-          Fb.firebaseBruger.child("email").setValue(emailText.getText().toString());
+          Bruger b = Brugervalg.instans.bru = new Bruger();
+          b.navn = navnText.getText().toString();
+          b.email = emailText.getText().toString();
+          b.uid = result.get("uid").toString();
+          Fb.firebaseBruger = Fb.firebaseRod.child("brugere").child(b.uid);
+          Fb.firebaseBruger.setValue(b);
           App.langToast("Bruger oprettet.");
           findViewById(R.id.loading_section).setVisibility(View.GONE);
           oprettelse = false;

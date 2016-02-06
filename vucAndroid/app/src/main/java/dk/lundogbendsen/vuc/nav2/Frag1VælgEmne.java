@@ -50,15 +50,8 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
         Brugervalg.instans.observatører.remove(this);
       }
     });
-    for (final Emne e : Brugervalg.instans.hold.emner) {
-      e.tmpData = INDLÆSER;
-      Fb.indlæsSvarForEmne(Brugervalg.instans.bru, e, new Runnable() {
-        @Override
-        public void run() {
-          e.tmpData = findStatus(e);
-          adapter.notifyDataSetChanged();
-        }
-      });
+    for (final Emne e : Brugervalg.instans.bru.emner) {
+      e.tmpData = findStatus(e);
     }
     aq = new AQuery(rod);
     rod.findViewById(R.id.tilføj_nyt_emne).setOnClickListener(this);
@@ -89,26 +82,20 @@ public class Frag1VælgEmne extends Fragment implements AbsListView.OnItemClickL
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    Brugervalg.instans.emne = Brugervalg.instans.hold.emner[position];
-    Fb.indlæsSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne, new Runnable() {
-      @Override
-      public void run() {
-        getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.hovedakt_indhold, new Frag2EmneScrollView()).addToBackStack(null).commit();
-      }
-    });
+    Brugervalg.instans.emne = Brugervalg.instans.bru.emner.get(position);
+    getFragmentManager().beginTransaction()
+            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+            .replace(R.id.hovedakt_indhold, new Frag2EmneScrollView()).addToBackStack(null).commit();
   }
 
   @Override
   public void run() {
     adapter = new ArrayAdapter(getActivity(),
-            R.layout.frag1_vaelg_emne_elem, R.id.tekst, Brugervalg.instans.hold.emner) {
+            R.layout.frag1_vaelg_emne_elem, R.id.tekst, Brugervalg.instans.bru.emner) {
       @Override
       public View getView(int position, View convertView, ViewGroup parent) {
         View rod = super.getView(position, convertView, parent);
-        Log.d("Brugervalg.instans.hold.emner[position]="+Brugervalg.instans.hold.emner[position]);
-        Emne e = Brugervalg.instans.hold.emner[position];
+        Emne e = Brugervalg.instans.bru.emner.get(position);
         String beskrivelse = e==null?"(fejl - e==null)":e.tmpData;
         new AQuery(rod)
                 .id(R.id.beskrivelse).text(beskrivelse)

@@ -15,7 +15,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
@@ -43,6 +42,7 @@ public class SkraldNav2Frag2EmneHorisontalViewpager extends Fragment {
     View rod = inflater.inflate(R.layout.skrald_navn2_frag2_emne_viewpager, container, false);
     viewPager = (VerticalViewPager) rod.findViewById(R.id.viewpager);
     viewPager.setAdapter(new FaneAdapter(getChildFragmentManager()));
+    /*
     Fb.indlæsSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne, new Runnable() {
       @Override
       public void run() {
@@ -53,6 +53,7 @@ public class SkraldNav2Frag2EmneHorisontalViewpager extends Fragment {
         }
       }
     });
+    */
     return rod;
   }
 

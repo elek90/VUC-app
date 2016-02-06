@@ -22,12 +22,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
@@ -46,8 +43,7 @@ import dk.lundogbendsen.vuc.firebase.Fb;
 import dk.lundogbendsen.vuc.skrald.SkraldNav2Frag2EmneHorisontalViewpager;
 import dk.lundogbendsen.vuc.skrald.nav1.SkraldHovedAkt;
 
-public class HovedAkt extends AppCompatActivity
-        implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class HovedAkt extends AppCompatActivity implements View.OnClickListener {
 
   private DrawerLayout drawer;
   private FloatingActionButton fab;
@@ -95,12 +91,6 @@ public class HovedAkt extends AppCompatActivity
     };
     drawer.setDrawerListener(toggle);
     toggle.syncState();
-
-    ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.holdListe);
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    Spinner spinner = (Spinner) findViewById(R.id.fag);
-    spinner.setAdapter(adapter);
-    spinner.setOnItemSelectedListener(this);
 
 
     drawer.setScrimColor(Color.TRANSPARENT); // 0x10000000);
@@ -198,30 +188,9 @@ public class HovedAkt extends AppCompatActivity
           fab.setVisibility(vis);
         }
       });
-/*      navigationView.getMenu().findItem(R.id.redigeringstilstand).setTitle(
-              Brugervalg.instans.redigeringstilstand ?
-                      "Se som elev" : "Redigér som lærer");
-                      */
     }
   };
 
-  boolean førsteGang = true;
-  @Override
-  public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-    if (førsteGang) {
-      førsteGang = false;
-      return;
-    }
-    Brugervalg.instans.hold = Brugervalg.instans.bru.holdListe[position];
-    Brugervalg.instans.opdaterObservatører();
-    drawer.closeDrawer(GravityCompat.START);
-    if (App.fejlsøgning) App.kortToast("onItemSelected "+position);
-    getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-  }
-
-  @Override
-  public void onNothingSelected(AdapterView<?> parent) {
-  }
 
   @Override
   public void onClick(View v) {

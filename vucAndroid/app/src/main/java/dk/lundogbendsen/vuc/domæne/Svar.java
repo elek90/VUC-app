@@ -12,9 +12,7 @@ public class Svar {
   public String tekst = "";
   public ArrayList<Optagelse> optagelser;
   public String trinId;
-  public String brugerId;
 
-  public transient String id;
   public transient Trin trin;
   public transient Bruger bruger;
   public transient boolean ændretSkalGemmes;
@@ -24,7 +22,6 @@ public class Svar {
 
   public Svar(Bruger bru, Trin trin) {
     bruger = bru;
-    brugerId = bruger.navn;
     this.trin = trin;
     trinId = trin.id;
   }

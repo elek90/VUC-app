@@ -1,18 +1,8 @@
 package dk.lundogbendsen.vuc.domæne;
 
-/*
-Få implementeret at
- 1) en opgave kan vises (incl videoer, lyd og tekst)
- 2) en opgave kan besvares
-        (ikke kun med kamera, også med billeder fra galleri)
-        (incl videoer, lyd og tekst)
-        (bare en mail)
- 3) en ny opgve kan oprettes og redigeres
- 4) redigere en eksisterende opgave, evt "klone" den først
-
- */
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.ArrayList;
 
 import dk.lundogbendsen.vuc.diverse.Log;
 
@@ -35,29 +25,15 @@ import static dk.lundogbendsen.vuc.domæne.Ikon.værktøj;
 @JsonIgnoreProperties
 public class Logik {
   public static Logik instans = new Logik();
-  public Bruger[] brugere;
+  public transient Bruger[] brugere;
+  public transient ArrayList<Emne> emner;
 
   public void lavTestdata() {
     brugere = new Bruger[]{new Bruger("Hans Hansen", "hans.hansen@gmail.com")};
-    Bruger hans = brugere[0];
 
-    hans.holdListe = new Hold[]{
-            new Hold("Naturfag"),
-            new Hold("Matematik"),
-            new Hold("Engelsk I"),
-    };
+    emner = new ArrayList<>();
 
-    Hold naturfag = hans.holdListe[0];
-    naturfag.emner = new Emne[]{
-            new Emne("Lys - Niveau G"),
-            new Emne("Vejr"),
-            new Emne("Kemi i din hverdag"),
-            new Emne("Lys - Niveau F-E-D"),
-            new Emne("Husholdningskemi - Niveau G"),
-            new Emne("Syrer og baser"),
-    };
-
-    naturfag.emner[0].trin = new Trin[]{
+    emner.add(new Emne("Lys - Niveau G", new Trin[]{
       new Trin(kat_viden, "Viden"),
       new Trin(bog, "Bliv klog på lys", "Øjet kan se forskellige farver. De forskellige farver skyldes, at lyset kan have forskellige bølgelængder. \nBølgelængden af synligt lys ligger i intervallet fra ca. 380 nm (violet lys) til ca. 740 nm (rødt lys). De mellemliggende bølgelængder ses som blå, grøn, gul og orange. \n\nMere kortbølget stråling kaldes ultraviolet lys eller UV, og mere langbølget stråling kaldes infrarødt lys eller IR. I huden findes varmefølsomme receptorer som omdanner IR til varme. I huden findes endvidere pigment som aktiveres når huden udsættes for UV. Nogle dyr, f.eks. bier, kan se UV, mens andre dyr, f.eks. klapperslanger, kan se IR.\n\nLæs mere på https://da.wikipedia.org/wiki/Lys"),
       new Trin(kat_udstyr, "Udstyr"),
@@ -72,9 +48,9 @@ public class Logik {
       new Trin(kat_rapport, "Rapport"),
       new Trin(skriv__uden_ikon, "Beskriv dine observationer"),
       new Aflevering("Send rapport"),
-    };
+    }));
 
-    naturfag.emner[1].trin = new Trin[]{
+    emner.add(new Emne("Vejr", new Trin[]{
       new Trin(kat_viden, "Viden"),
       new Trin(video, "Bliv klog på vejret. Kort præsentation af forskellige vejrfænomener.", "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
       new Trin(video, "Stormvejr – kraftig blæst – vindstille som kontrast – lavtryk og højtryk", "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
@@ -95,9 +71,9 @@ public class Logik {
       new Trin(kat_rapport, "Rapport"),
       new Trin(notesblok, "Beskriv dine observationer"),
       new Aflevering("Send rapport"),
-    };
+    }));
 
-    naturfag.emner[2].trin = new Trin[]{
+    emner.add(new Emne("Kemi i din hverdag", new Trin[]{
             new Trin(kat_viden, "Bliv klog på kemi i hjemmet"),
             new Trin(video, "Syrers og basers egenskaber", "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
             new Trin(video, "pH skala og måling af syrers og basers styrke. Sammenhæng mellem fortynding og styrke", "https://youtu.be/n7tt0I0P8gY?list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi"),
@@ -118,11 +94,11 @@ public class Logik {
             new Trin(foto, "Undersøge madvarer og drikkevarer - både faste og flydende, og inddele i syrer-baser-neutrale stoffer. \n" +
                     "Kommentere resultaterne."),
             new Aflevering("Send rapport"),
-    };
+    }));
 
 
 
-    naturfag.emner[3].trin = new Trin[]{
+    emner.add(new Emne("Lys - Niveau F-E-D", new Trin[]{
             new Trin(bog, "Bliv klog på lys", "Øjet kan se forskellige farver. De forskellige farver skyldes, at lyset kan have forskellige bølgelængder.\n\nLæs mere på https://da.wikipedia.org/wiki/Lys"),
             new Trin(bog, "Sådan bruger du udstyret", "Et spektrometer kan skille de forskellige farver ad. Kig i det, mens du holder det op en lyskilde, f.eks. himlen."),
             new Trin(bog, "Optag et spektrum med et spektrometer", "https://www.youtube.com/watch?v=ZWZYtfT0ZZk&list=PLW_WKZMCQZMvbVXJ8yHLCGNx8LJJD5WAi&index=2"),
@@ -130,59 +106,53 @@ public class Logik {
             new Trin(foto, "Tag et billede af den blå himmel"),
             new Trin(foto, "Tag billeder af lyskilde"),
             new Aflevering("Send rapport"),
-    };
+    }));
 
-    naturfag.emner[4].trin = new Trin[]{
+    emner.add(new Emne("Husholdningskemi - Niveau G", new Trin[]{
             new Trin(bog, "Kemi i køkkenet"),
             new Trin(kat_udstyr, "Forberedelse"),
             new Trin(bog, "Mel og vand"),
             new Trin(kat_forsøg, "Gennemfør din egen undersøgelse"),
             new Trin(foto, "Tag billeder af blanding"),
             new Aflevering("Send rapport"),
-    };
+    }));
 
-    naturfag.emner[5].trin = new Trin[]{
+    emner.add(new Emne("Syrer og baser", new Trin[]{
             new Trin("Om PH-værdi"),
             new Trin("Sikkerhed"),
             new Trin("Mål PH-værdien af saltsyre"),
             new Trin("Mål PH-værdien af fortyndet saltsyre"),
             new Trin("Tag billeder af lakmuspapir"),
             new Aflevering("Send rapport"),
-    };
+    }));
     lavKonsistent();
   }
 
 
   private void lavKonsistent() {
     int nEmne = 1;
-    if (brugere==null) lavTestdata();
-    for (Bruger b : brugere) {
-      if (b.holdListe == null) b.holdListe = new Hold[]{new Hold("Et hold")};
-      for (Hold hold : b.holdListe) {
-        hold.emneIdListe.clear();
-        if (hold.emner == null) hold.emner = new Emne[]{new Emne("Et emne")};
-        for (Emne emne : hold.emner) {
-          if (emne.id==null) {
-            emne.id = "e"+nEmne++;
-            Log.d("Tildelt ID emne.id="+emne.id);
-          }
-          hold.emneIdListe.add(emne.id);
-          int nTrin = 1;
-          if (emne.trin == null) {
-            emne.trin = new Trin[]{new Trin("Trin 1"), new Trin("Trin 2"), new Trin("Trin 3"), new Trin("Trin 4"), new Aflevering("Aflevering")};
-            for (Trin trin : emne.trin) {
-              trin.ikon = Ikon.values()[(int) (Math.random() * Ikon.values().length)];
-            }
-          }
-          for (Trin trin : emne.trin) {
-            trin.emne = emne;
-            if (trin.id==null) {
-              trin.id = emne.id+"t"+nTrin++;
-              Log.d("Tildelt ID trin.id="+trin.id + " "+trin.ikon+"/"+trin.navn);
-            }
-            Trin.idref.put(trin.id, trin);
-          }
+    Bruger b = brugere[0];
+    for (Emne emne : emner) {
+      if (emne.id==null) {
+        emne.indtastningskode = ""+(1000+nEmne);
+        emne.id = "e"+nEmne++;
+        Log.d("Tildelt ID emne.id="+emne.id);
+      }
+      b.emneIdListe.add(emne.id);
+      int nTrin = 1;
+      if (emne.trin == null) {
+        emne.trin = new Trin[]{new Trin("Trin 1"), new Trin("Trin 2"), new Trin("Trin 3"), new Trin("Trin 4"), new Aflevering("Aflevering")};
+        for (Trin trin : emne.trin) {
+          trin.ikon = Ikon.values()[(int) (Math.random() * Ikon.values().length)];
         }
+      }
+      for (Trin trin : emne.trin) {
+        trin.emne = emne;
+        if (trin.id==null) {
+          trin.id = emne.id+"t"+nTrin++;
+          Log.d("Tildelt ID trin.id="+trin.id + " "+trin.ikon+"/"+trin.navn);
+        }
+        Trin.idref.put(trin.id, trin);
       }
     }
   }

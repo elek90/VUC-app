@@ -15,7 +15,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
 import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.domæne.Trin;
@@ -58,17 +57,6 @@ public class SkraldFrag2EmneViewpager extends Fragment {
 
       @Override
       public void onPageScrollStateChanged(int state) {
-      }
-    });
-
-    Fb.indlæsSvarForEmne(Brugervalg.instans.bru, Brugervalg.instans.emne, new Runnable() {
-      @Override
-      public void run() {
-        viewPager.getAdapter().notifyDataSetChanged();
-        if (App.opstartTest) {
-          App.opstartTest = false;
-          viewPager.setCurrentItem(8);
-        }
       }
     });
     return rod;

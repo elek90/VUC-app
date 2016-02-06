@@ -17,11 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 
 import dk.lundogbendsen.vuc.App;
 import dk.lundogbendsen.vuc.R;
@@ -30,7 +27,7 @@ import dk.lundogbendsen.vuc.domæne.Brugervalg;
 import dk.lundogbendsen.vuc.nav2.Frag22RedigerTrin;
 
 public class SkraldHovedAkt extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
   private DrawerLayout drawer;
   private FloatingActionButton fab;
@@ -57,12 +54,13 @@ public class SkraldHovedAkt extends AppCompatActivity
     toggle.syncState();
 
     View headerView = navigationView.inflateHeaderView(R.layout.skrald_venstremenu_top);
+    /*
     ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, android.R.id.text1, Brugervalg.instans.bru.holdListe);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     Spinner spinner = (Spinner) headerView.findViewById(R.id.fag);
     spinner.setAdapter(adapter);
     spinner.setOnItemSelectedListener(this);
-
+    */
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
               .add(R.id.hovedakt_indhold, new SkraldFrag1VælgEmne()).commit();
@@ -115,6 +113,7 @@ public class SkraldHovedAkt extends AppCompatActivity
     }
   };
 
+  /*
   boolean førsteGang = true;
   @Override
   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -132,6 +131,7 @@ public class SkraldHovedAkt extends AppCompatActivity
   @Override
   public void onNothingSelected(AdapterView<?> parent) {
   }
+  */
 
   @Override
   public void onBackPressed() {
