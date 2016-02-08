@@ -15,7 +15,6 @@ import static dk.lundogbendsen.vuc.domæne.Ikon.kat_viden;
 import static dk.lundogbendsen.vuc.domæne.Ikon.notesblok;
 import static dk.lundogbendsen.vuc.domæne.Ikon.skriv__uden_ikon;
 import static dk.lundogbendsen.vuc.domæne.Ikon.video;
-import static dk.lundogbendsen.vuc.domæne.Ikon.værktøj;
 /**
  * Roden i træet af objekter, der repræsenterer data i app'en.
  * <p/>
@@ -97,7 +96,7 @@ public class Logik {
     }));
 
 
-
+/*
     emner.add(new Emne("Lys - Niveau F-E-D", new Trin[]{
             new Trin(bog, "Bliv klog på lys", "Øjet kan se forskellige farver. De forskellige farver skyldes, at lyset kan have forskellige bølgelængder.\n\nLæs mere på https://da.wikipedia.org/wiki/Lys"),
             new Trin(bog, "Sådan bruger du udstyret", "Et spektrometer kan skille de forskellige farver ad. Kig i det, mens du holder det op en lyskilde, f.eks. himlen."),
@@ -125,6 +124,15 @@ public class Logik {
             new Trin("Tag billeder af lakmuspapir"),
             new Aflevering("Send rapport"),
     }));
+*/
+    emner.add(new Emne("Lav ny opgave", new Trin[]{
+            new Trin(kat_viden, "Viden"),
+            new Trin(bog, "Du kan selv lave nye opgaver", "Optag billeder (og senere video). Kommenter optagelsern"),
+            new Trin(kat_forsøg, "Forsøg"),
+            new Trin(foto, "Tag de billeder der skal være i opgaven"),
+            new Aflevering("Send opgave som HTML"),
+    }));
+
     lavKonsistent();
   }
 
